@@ -14,6 +14,7 @@
 * `git status`: 查看本地仓库状态,显示是否有变更的文件
 * `git add` : 添加文件到本地仓库
 * `git commit` : 将暂存区的文件添加到仓库中
+* `git remote add origin 远程仓库地址` : 连接远程仓库
 * `git branch` : 查看自己当前所在分支
 * `git remote -v` : 查看远程版本库信息
 * `git remote rm origin` :远程仓库移除起点
@@ -86,6 +87,8 @@ git config --global user.email "邮箱地址"
 
 ![](http://i0.hdslb.com/bfs/album/484201019fa90a20006838c06da18b19d34ca0f0.jpg)
 
-* 学习教程链接:[阮一峰git教程](https://www.ruanyifeng.com/blog/2014/06/git_remote.html)
-* 掘金教程: [掘金git教程](https://juejin.cn/post/6869519303864123399)
+* [阮一峰git教程](https://www.ruanyifeng.com/blog/2014/06/git_remote.html)
+* [掘金git教程](https://juejin.cn/post/6869519303864123399)
+
+* [知乎教程](https://zhuanlan.zhihu.com/p/135183491)
 

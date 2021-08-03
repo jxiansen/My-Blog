@@ -10,13 +10,24 @@
 
 ## 基础命令
 
+### 本地操作
+
 * `git init`: 本地初始化仓库
 * `git status`: 查看本地仓库状态,显示是否有变更的文件
 * `git add` : 添加文件到本地仓库
 * `git commit` : 将暂存区的文件添加到仓库中
-* `git remote add origin 远程仓库地址` : 连接远程仓库
+
+### 远程操作
+
+为了便于远程管理,每一个远程主机都要有一个指定的主机名
+
+* `git remote` 列出所有远程主机
+* `git remote -v` : 查看远程主机信息
+* `git remote add 主机名 远程仓库地址` : 添加远程主机
+* `git remote rm 主机名` 删除远程主机
+* `git remote rename 原主机名 新主机名`  修改远程主机名字
+* `git remote show 主机名` 查看该主机详细信息
 * `git branch` : 查看自己当前所在分支
-* `git remote -v` : 查看远程版本库信息
 * `git remote rm origin` :远程仓库移除起点
 
 

@@ -145,9 +145,9 @@ apt-get update:更新源中的索引,获得最新的软件包
 
 > 方法二,将`nginx`容器内部的配置文件挂载到主机内部,对主机的目录进行修改,适合经常修改操作的情况
 
-https://www.cnblogs.com/qiqiloved/p/13470064.html
+[nginx配置](https://www.cnblogs.com/qiqiloved/p/13470064.html)
 
-## Dokcer 部署 Jenkins 及初始配置
+## Docker 部署 Jenkins 及初始配置
 
 1. 下载`jenkins` 镜像
 
@@ -204,8 +204,6 @@ jenkinsci/blueocean
 
 此时`jenkins`服务已经部署好,浏览器访问`服务器ip:9090`使用服务
 
-[服务器详细地址]()
-
 ![image-20210802112741179](http://i0.hdslb.com/bfs/album/dd26ab59e40adedb0060bd8c833ee357643ffef3.png)
 
 查看`jenkins`密码
@@ -215,12 +213,6 @@ cat /var/jenkins_home/secrets/initialAdminPassword
 ```
 
 ![image-20210802135853545](http://i0.hdslb.com/bfs/album/023eac3342a2307714a618c1ca3bf03e70ced63a.png)
-
-#### `jenkin`账号
-
-| 管理员用户名 |  密码  |     邮箱      |          服务地址          |
-| :----------: | :----: | :-----------: | :------------------------: |
-|     root     | 123456 | root@root.com | http://192.168.50.17:9090/ |
 
 ## docker 部署 gogs
 
@@ -253,13 +245,7 @@ docker run --name gogs -p 10022:22 -p 10050:3000 \
 
 ![image-20210802160140804](http://i0.hdslb.com/bfs/album/0b69eca5bbef95558ce9a4cea9d47228569ff696.png)
 
-#### `gogs`账号
-
-| 管理员用户名 |  密码  |     邮箱      |          服务地址           |
-| :----------: | :----: | :-----------: | :-------------------------: |
-|     root     | 123456 | root@root.com | http://192.168.50.17:10050/ |
-
-https://zhuanlan.zhihu.com/p/253217380
+[知乎gogs部署](https://zhuanlan.zhihu.com/p/253217380)
 
 ## Docker 部署 nginx
 
@@ -313,12 +299,6 @@ server {
 ```bash
 docker run -d -p 80:80 --name nginx -v /home/nginx/html:/usr/share/nginx/html nginx
 ```
-
-#### `nginx`服务
-
-|        服务地址         |
-| :---------------------: |
-| http://192.168.50.17:80 |
 
 ## `dockers`概念区分,`Images`,`Containers` `Volumes` 区别
 

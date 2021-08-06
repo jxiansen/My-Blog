@@ -5,7 +5,7 @@ module.exports = {
     ['meta', { name: 'referrer', content: 'no-referrer' }]//  使用B站图床防盗链
   ],
   title: 'VitePress',
-  description: '这是我的网站',
+  description: '总结自己的学习历程',
   dest: './dist',//打包输出目录
   markdown: {
     lineNumbers: true
@@ -35,8 +35,8 @@ module.exports = {
         activeMatch: '^/config/'
       },
       {
-        text: '我的github',
-        link: 'https://www.baidu.com'
+        text: '我的gitee',
+        link: 'https://gitee.com/hijingfeng/my-blog'
       }
     ],
 
@@ -57,6 +57,8 @@ function getGuideSidebar() {
       children: [
         { text: "30S-css", link: "/STUDY/30S-css" },
         { text: "30S-js", link: "/STUDY/30S-js" },
+        { text: "Linux学习", link: "/STUDY/linux" },
+        { text: "docker入门", link: "/STUDY/docker" },
         { text: "vitepress", link: "/STUDY/vitepress-study" },
         { text: "JavaScript", link: "/STUDY/javaScript" },
         { text: "Javascript刷题", link: "/STUDY/js-practice" },
@@ -76,7 +78,7 @@ function getGuideSidebar() {
         { text: "2021前端开发路线图", link: "/hub/fontend" },
         { text: "debian替换国内镜像源", link: "/hub/debian-img" },
         { text: "Centos开放防火墙端口", link: "/hub/Centos-open" },
-        { text: "SPA单页面应用", link: "/hub/spa"},
+        { text: "SPA单页面应用", link: "/hub/spa" },
         { text: "网址导航", link: "/hub/collect-address"}
       ]
     }

@@ -12,10 +12,13 @@
 
 ### 本地操作
 
-* `git init`: 本地初始化仓库
+* `git init`: 本地初始化新建仓库
 * `git status`: 查看本地仓库状态,显示是否有变更的文件
 * `git add` : 添加文件到本地仓库
 * `git commit` : 将暂存区的文件添加到仓库中
+* `git branch` 查看本地分支
+* `git branch -m 旧分支名 新分支名` 在本地修改分支名
+* `git diff` :查看的是`add`前和`add`后的差异
 
 ### 远程操作
 
@@ -30,9 +33,15 @@
 * `git branch` : 查看自己当前所在分支
 * `git remote rm origin` :远程仓库移除起点
 
+`git`中,`origin`和`master` 分支的理解?
+
+git的远程服务器有多个repository,每一个远程仓库都有多个分支,origin就是远程仓库的指针或者本体名称,说白了就是这个远程仓库叫啥名
+
+master就是本地分支的一个名字,通常情况下是指主分支,这个名字也可以修改成其他名字.
 
 
-## 实践:提交本地文件到远程仓库
+
+###  实践:提交本地文件到远程仓库
 
 1. 本地新建一个仓库 `git init` 
 
@@ -95,8 +104,13 @@ git config --global user.email "邮箱地址"
 
 最后，这个用户名和邮箱是可以随便配置的（不提倡），如果你配置的邮箱是github里真实存在的邮箱，则commits里显示的是这个邮箱对应的账号；如果配置的邮箱是一个在github里不存在的邮箱，则commits里显示的是你配置的用户名。
 
+### 常用`git`命令
 
 ![](http://i0.hdslb.com/bfs/album/484201019fa90a20006838c06da18b19d34ca0f0.jpg)
+
+### `git`命令思维导图
+
+![git命令](http://i0.hdslb.com/bfs/album/ced18de825e756bf0e60e92b4b7b18f0a50550ad.png)
 
 * [阮一峰git教程](https://www.ruanyifeng.com/blog/2014/06/git_remote.html)
 * [掘金git教程](https://juejin.cn/post/6869519303864123399)

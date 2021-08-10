@@ -1,10 +1,18 @@
-# Docker 配置
+# Docker 入门
+
+## 基础命令
 
 `docker ps`: 查看正在运行的容器, 参数`-a` :过去曾经运行过的容器
 
 `docker stop 容器id`: 停止运行此容器
 
 `docker start 容器id` 启动已经创建好的容器
+
+`docker search 镜像名` 在远程仓库中搜索所有可用的镜像
+
+![image-20210808173929994](http://i0.hdslb.com/bfs/album/234c360c8ff0c19984b3c615e75f06f2fc330508.png)
+
+`name` :镜像名	`description` 描述	`stars` 星	`official` 是否是官方	`automated` 自动构建
 
 `docker run` 以镜像创建一个新的容器并运行
 

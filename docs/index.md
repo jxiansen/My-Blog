@@ -2,7 +2,7 @@
 home: true
 heroImage: http://i0.hdslb.com/bfs/album/e6c53dc180e8e1a5dcd819cc161ee0fdc911128d.png
 heroAlt: Banner
-heroText: 阿C的树洞
+heroText: 阿J的树洞
 tagline: Life · Study · Think 
 actionText: Get Started →
 actionLink: /STUDY/30S-css

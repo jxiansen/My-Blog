@@ -500,7 +500,7 @@ function converToBinary(num) {
 }
 ```
 
-### 判断是否包含数字
+## 判断是否包含数字
 
 ![image-20210729091258496](http://i0.hdslb.com/bfs/album/61a6a4f308a6f1f8dcfd52228ffae69f7d12a684.png)
 
@@ -515,4 +515,50 @@ function containsNumber(str) {
   }
   return true;
 }
+
+//遍历字符串,使用 !NaN 判断是否为数字
+function containsNumber(str) {
+  for(let item of str) {
+    if(!isNaN(item)) {
+      return true
+    }
+  }
+  return false;
+}
 ```
+
+## 斐波那契数列第n项值
+
+![image-20210812144325644](http://i0.hdslb.com/bfs/album/89cf0d462c9324c21dc4727c846d2b6591b31046.png)
+
+``` js
+// 方法一,新建初始数组,循环(n-1)次,每次将数组的倒数第一项与倒数第二项的和push进去,最后返回数组的pop
+function fibonacci(n) {
+  let arr = [0,1];
+  let i = 1;
+  while (i < n) {
+    arr.push(arr[arr.length - 2] + arr[arr.length - 1]);
+    //还可以使用es6语法的arr.at()反向索引访问数组的值
+    //arr.push(arr.at(-2) + arr.at(-1));
+    i++
+  }
+  return arr.pop();
+}
+
+//方法二,递归
+function fibonacci(n) {
+  return n < 3 ? 1 : fibonacci(n-1) + fibonacci(n-2);
+}
+
+//方法三,迭代
+function fibonacci(n) {
+  let start = 1, second = 1, end;
+  for(let i = 3; i <= n; i++) {
+    end = start + end;
+    start = second;
+    second = end;
+  }
+  return end;
+}
+```
+

@@ -1,3 +1,7 @@
+# 牛客网练习题
+
+牛客网`JavaScript`基础练习挑战记录
+
 ## 移除数组中的元素
 
 ![](http://i0.hdslb.com/bfs/album/3f1272da0d48cc16b019c5f315bf07e7f5a07463.png)
@@ -561,4 +565,113 @@ function fibonacci(n) {
   return end;
 }
 ```
+
+## 或运算
+
+![image-20210815124741282](http://i0.hdslb.com/bfs/album/6c9e14e4fc252d957f67ac9da5045917aac7ff4e.png)
+
+```js
+function or(a,b) {
+  return a || b;
+}
+```
+
+## 且运算
+
+![image-20210815124857068](http://i0.hdslb.com/bfs/album/e56d10e41b4d0b87afc9d5e6f1b613426395357a.png)
+
+``` js
+	function add(a,b) {
+    return a && b;
+  }
+//且运算规则:如果a的布尔值是true ===> 返回b的值
+//				 如果a的布尔值是false===> 直接返回a的值,且不再对第二个运算子求值
+```
+
+
+
+# `FreeCodeCamp`基础算法
+
+[官网链接](https://chinese.freecodecamp.org/learn/javascript-algorithms-and-data-structures/basic-algorithm-scripting/convert-celsius-to-fahrenheit)
+
+## 摄氏度转换为华氏度
+
+![image-20210814174446734](http://i0.hdslb.com/bfs/album/2888730d1262e7b10c79b43b0af2cb0cabd07123.png)
+
+``` js
+function convertToF(celsius) {
+  return celsius * 9 /5 + 32;
+}
+//对于结果直接返回即可
+```
+
+## 反转字符串
+
+![image-20210815011341225](http://i0.hdslb.com/bfs/album/206c6a2b330c0c989a518013e99592831c5885e0.png)
+
+``` js
+输入: 'hello'
+输出: 'olleh'
+```
+
+``` js
+// 思路一,split拆分成数组 ==> 数组倒置 ==> join拼接数组
+function reverseString(str) {
+  return str.split('').reverse().join('');
+}
+
+// 思路二,for循环从尾到头遍历,每次拼接遍历到的字符串
+function reverseString(str) {
+  let res = ''
+  for(let i = str.length - 1; i >= 0; i--) {
+    res += str[i]
+  }
+  return res;
+}
+
+// 思路三,字符串拆分成数组 ==> 设置头指针i,尾指针j ==>  只要 i < j 循环互换数组指针处位置
+function reverseString(str) {
+	let arr = str.split('')
+  let i = 0, j = str.length - 1, tmp = 0;
+  while(i < j) {
+    tmp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = tmp;
+    i++;
+    j--;
+  }
+  return arr.join('');
+}
+
+// ES6语法
+function reverseString(str) {
+  let arr = str.split('');
+  let i = 0, j = arr.length - 1;
+  while(i < j) {
+    [arr[i],arr[j]] = [arr[j],arr[i]];
+    i++;
+    j--;
+  }
+  return arr.join('');
+}
+```
+
+# 额外练习
+
+## 数组去重
+
+```js 
+function fn(arr){
+	let res = []
+  for(let item of arr) {
+    if( !res.includes(item) ) {
+      res.push(item)
+    }
+  }
+  return res;
+}
+// 声明新数组,每次遍历数组item时,判断新数组中是否有原数item,如果没有则添加 
+```
+
+
 

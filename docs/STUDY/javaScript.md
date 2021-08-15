@@ -6,7 +6,7 @@
 
 js 语言最初是为了 web 浏览器创造的，其主要作用就是为了操作 dom 元素，提供一种控制网页的方法。
 
-<img :src="('http://i0.hdslb.com/bfs/album/729e41cb8f508a45b84ea9c0dcf4bcb440b59e62.png')" alt="dom">
+![](http://i0.hdslb.com/bfs/album/729e41cb8f508a45b84ea9c0dcf4bcb440b59e62.png)
 
 `window`为根对象
 

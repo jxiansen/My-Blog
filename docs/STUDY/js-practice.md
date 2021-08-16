@@ -654,9 +654,73 @@ function reverseString(str) {
   }
   return arr.join('');
 }
+
+// 思路四,使用递归 (hello) ==> o(ell)h ==> ol(l)eh ==> olleh
+function reverseString(str) {
+  if(!str) {		// 如果字符不存在,返回空字符
+    return ''
+  };
+  if(str.length === 1) {		// 如果字符长度为一,返回字符
+    return str;
+  }
+  let end = str.length - 1;
+  return str[end] + reverseString(str.slice(1,end)) + str[0];		// 返回首尾互换并且上一次调用递归后的字符串
+}								// str.slice(start,end):获取子字符串返回[start,end),包括第一个参数,不包括第二个参数
 ```
 
+## 计算整数的阶乘
+
+![image-20210816163629896](http://i0.hdslb.com/bfs/album/1607f9367633c7947d1b5d08f73dce5aa1d5f298.png)
+
+``` js
+// 方法一,迭代遍历累积
+function factorialize(num) {
+	let res = 1
+  for(let i = 1; i <= num; i++) {
+    res *= i
+  }
+  return res;
+}
+
+// 方法二,递归法
+function factorialize(num) {
+	return num <= 1 ? 1 : factorialize(num-1) * num;
+}
+```
+
+## 找出字符串中的最长单词
+
+![image-20210816175310251](http://i0.hdslb.com/bfs/album/497c5e877a4ad88887f087589c6f1651d7dbac6e.png)
+
+``` js
+输入: "The quick brown fox jumped over the lazy dog"
+输出: 6
+```
+
+``` js
+// 遍历字符串分割的数组,累技每一项的字符串长度
+function findLongestWordLength(str) {
+  let arr = str.split(' ')
+  let len = 0
+  for(let item of arr) {
+    if(len < item.length) {
+      len = item.length
+    }
+  }
+  return len;
+}
+
+// 方法二: 字符串分割为数组 ==> 数组每一项map返回长度数组 ==> 长度数组升序排列 ==> 弹出最大数
+function findLongestWordLength(str) {
+  return str.split(' ').map(item => item).sort((a,b) => a-b).pop();
+}
+```
+
+
+
 # 额外练习
+
+
 
 ## 数组去重
 

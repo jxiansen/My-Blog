@@ -40,7 +40,7 @@ module.exports = {
       }
     ],
 
-    sidebarDepth: 1,
+    sidebarDepth: 3,
     sidebar: {
       '/guide/': getGuideSidebar(),
       '/config/': getConfigSidebar(),
@@ -79,7 +79,7 @@ function getGuideSidebar() {
         { text: "debian替换国内镜像源", link: "/hub/debian-img" },
         { text: "Centos开放防火墙端口", link: "/hub/Centos-open" },
         { text: "SPA单页面应用", link: "/hub/spa" },
-        { text: "网址导航", link: "/hub/collect-address"}
+        { text: "网址导航", link: "/hub/collect-address" }
       ]
     }
   ]

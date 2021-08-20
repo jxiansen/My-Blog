@@ -716,6 +716,166 @@ function findLongestWordLength(str) {
 }
 ```
 
+## 找出多个数组中的最大数字
+
+![image-20210817114806289](http://i0.hdslb.com/bfs/album/b6c4b08ff58aa96139ec5dc97357d17372a50747.png)
+
+``` js
+输入: [[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]
+输出: [ 5, 27, 39, 1001 ]
+```
+
+``` js
+// 对数组map ==> 每一项子数组正序排序 ==> 排序的数组pop出最大值 ==> 最大值组成新数组
+function largestOfFour(arr) {
+  return arr.map(item => item.sort((a,b) => a-b).pop());
+}
+
+// 遍历子数组,进行迭代比较
+function largestOfFour(arr) {
+  let res = []
+  for(let i = 0; i < arr.length; i++) {
+    let max = -Infinity
+    for(let item of arr[i]) {
+      max = Math.max(max,item)
+    }
+    res.push(max)
+  }
+  return res
+}
+
+// 使用ES6中的map和...展开运算符,对每个子数组展开取最大值
+function largestOfFour(arr) {
+  return arr.map(item => Math.max(...item))
+}
+```
+
+## 确认结尾
+
+.![image-20210820104611925](http://i0.hdslb.com/bfs/album/29a0353ef25bd88e6109b65b2a592abeb6f089d7.png)
+
+``` js
+输入: "Walking on water and developing software from a specification are easy if both are frozen", "specification"
+输出: false
+
+输入: "Bastian", "n"
+输出: true
+```
+
+``` js
+// 切掉str的target长度的字符串与target进行比较
+function confirmEnding(str, target) {
+  return str.slice(-target.length) === target;
+}
+
+// 从str，和target末尾开始遍历，每次遍历到的字符进行比较
+function confirmEnding(str,target) {
+  if(target.length > str.length) {
+    return false;
+  }
+  let i = str.length - 1, j = target.length - 1;		// 声明i和j为str与target的尾指针
+  while(j >= 0) {
+    if(str[i] !== target[j]) {						// 对于每次遍历到的字符判断是否一样，不一样直接返回false
+      return false;
+    }
+    i--;
+    j--;
+  }
+  return true;							// 只有当str都遍历完，没有发现有不一样的时候才能返回true
+}
+```
+
+## 重复输出字符串
+
+![image-20210820161707102](http://i0.hdslb.com/bfs/album/50145b9a6110bb8b8b5611c8c1e5f3a343f1c7ed.png)
+
+``` js
+输入: "abc", 3
+输出: "abcabcabc"
+
+输入: "abc", -2 
+输出: ""
+```
+
+```js
+// 声明空字符串,循环num次,每次连接字符串
+function repeatStringNumTimes(str,num) {
+  let res = ''
+	for(let i = 0; i < num; i++) {
+     res += str
+	}								// 当num为负数的时候,直接进不去循环,res还是为空,能覆盖到循环这个条件;无需另外判断
+	return res
+}
+
+// 使用数组join方法,有num+1数目元素的空数组,在数组间隙之间插入str字符串
+function repeatStringNumTimes(str,num) {
+  return num <= 0 ? '' : Array(num + 1).join(str)		// 声明一个有num+1个元素的空数组
+}
+
+// 使用递归
+/*
+	定义一个神奇的函数f()
+	'ababab' ==> 'abab' ==> 'ab' ==> ''
+	f(3) = f(2) + str
+	f(2) = f(1) + str
+	f(1) = f(0) + str			到f(0)时直接返回空字符
+	规律：f(num) = f(num - 1) + str
+*/
+function repeatStringNumTimes(str,num) {
+  return num <= 0 ? '' : repeatStringNumTimes(str,num - 1) + str;
+}
+```
+
+## 截断字符串
+
+![image-20210820171015070](http://i0.hdslb.com/bfs/album/af132e9a98913da99b0bb07bfefbef932283d447.png)
+
+``` js
+输入： "A-tisket a-tasket A green and yellow basket", 8
+输出:  "A-tisket..."
+
+输入： "hello" 9
+输出： "hello"
+```
+
+``` js
+// 如果str的长度比num大，使用slice切片拼接字符，否则直接返回str
+function truncateString(str,num) {
+ return str.length > num ? str.slice(0,num) + '...' : str;
+}
+```
+
+## 按参数过滤数组
+
+![image-20210821011455945](http://i0.hdslb.com/bfs/album/29616598dc00a1ed1a0e8676a39dc4489797bda4.png)
+
+``` js
+输入: findElement([1, 3, 5, 8, 9, 10], function(num) { return num % 2 === 0; })
+输出: 8
+```
+
+``` js
+// 遍历这个数组的每一元素,如果元素满足func直接返回该元素,如果所有元素都不满足函数条件,默认返回undefinded
+function findElement(arr,func) {
+  for(let item of arr) {
+    if(fun(item)) {
+      return item
+    }
+  }
+}
+
+// 使用ES6中的filter
+function findElement(arr,func) {
+  return arr.filter(fun)[0]			// filter传入参数func,返回的数组取第一项元素
+}
+
+// 使用ES6中的数组find方法	
+// arr.find(callback):返回满足特定条件的元素对象或者元素值， 不满足返回 undefined
+function findElemet(arr,func) {
+  return arr.find(func)
+}
+```
+
 
 
 # 额外练习
@@ -736,6 +896,3 @@ function fn(arr){
 }
 // 声明新数组,每次遍历数组item时,判断新数组中是否有原数item,如果没有则添加 
 ```
-
-
-

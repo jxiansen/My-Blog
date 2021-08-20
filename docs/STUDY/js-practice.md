@@ -590,7 +590,7 @@ function or(a,b) {
 
 
 
-# `FreeCodeCamp`基础算法
+# FreeCodeCamp基础算法
 
 [官网链接](https://chinese.freecodecamp.org/learn/javascript-algorithms-and-data-structures/basic-algorithm-scripting/convert-celsius-to-fahrenheit)
 

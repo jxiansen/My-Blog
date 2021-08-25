@@ -592,7 +592,13 @@ function or(a,b) {
 
 # FreeCodeCamp基础算法
 
-[官网链接](https://chinese.freecodecamp.org/learn/javascript-algorithms-and-data-structures/basic-algorithm-scripting/convert-celsius-to-fahrenheit)
+自学`js` 总感觉很多地方知识掌握的不到位,希望通过系统的刷题提高自己的知识掌握能力,写文章强迫自己输出,形成系统的思维.
+
+[FCC官网链接](https://chinese.freecodecamp.org/learn/javascript-algorithms-and-data-structures/basic-algorithm-scripting/convert-celsius-to-fahrenheit)
+
+[JS基础算法课程_B站链接](https://www.bilibili.com/video/BV1iZ4y1p7kr)
+
+
 
 ## 摄氏度转换为华氏度
 
@@ -876,6 +882,211 @@ function findElemet(arr,func) {
 }
 ```
 
+## 基本类型布尔值的检查
+
+![image-20210822010441978](http://i0.hdslb.com/bfs/album/c14846868e17528baf049b35602c3f1556d5e3b0.png)
+
+``` js
+输入: booWho(true)
+输出: true
+```
+
+```js
+function boowho(bool) {
+	return t(bool) === 'boolean' ? true : false;
+}
+```
+
+## 句中单词首字母大写
+
+![image-20210823105433241](http://i0.hdslb.com/bfs/album/95a43536c922eed77e002653be94970596327699.png)
+
+``` js
+输入: "sHoRt AnD sToUt" 
+输出: "Short And Stout"
+```
+
+``` js
+// 字符串split分割为数组 ==> 数组的每一项item转换大小写 ==> 空格拼接数组字符串
+function titleCase(str) {
+  return str.split(' ').map(item => item[0].toUpperCase() + item.slice(1).toLowerCase()).join(' ')
+}
+
+// 使用正则表达式,匹配空格和空格后面的第一个字母大写
+function titleCase(str) {
+  return str.toLowerCase().replace(/(^|\s)[a-z]/g, match => match.toUpperCase())
+}
+```
+
+## Slice 与 Splice
+
+![image-20210823145106553](http://i0.hdslb.com/bfs/album/1329bcb8a9945168dc68372593a7ce3d54a6cbbc.png)
+
+``` js
+输入: ([1, 2, 3], [4, 5], 1)
+返回: [4, 1, 2, 3, 5]
+```
+
+
+``` js
+// 使用splice方法在指定处切片插入,使用"..."展开运算符,可以打散数组
+function frankenSplice(arr1,arr2,n) {
+  return [...arr2.splice(0,n),...arr1,...arr2.splice(n)]
+}
+
+// 直接使用splice方法; arr.splice(index,[deleteCount],item)
+function frankenSplice(arr1,arr2,n) {
+  let resArr = arr2.slice()			// 对数组直接slice(),拷贝数组
+  resArr.splice(n,0,...arr1)
+  return resArr
+}
+```
+
+## 过滤数组中的假值
+
+![image-20210823161810980](http://i0.hdslb.com/bfs/album/7badc1efd9a502202d17207081ceadce5c9d2f91.png)
+
+``` js
+// 遍历数组元素,对每个元素使用Boolean()函数判断,将判断为真值的打入结果数组并返回
+function bouncer(arr) {
+  let res = []
+  for(let item of arr) {
+    if( Boolean(item) ) {		// 或者使用双重非运算符 !!(item) ,对元素取反默认判断其布尔值,双重取反抵消操作
+      res.push(item)
+    }
+  }
+  return res
+}
+
+// 使用filter过滤,回调函数中是返回满足条件的元素
+function bouncer(arr) {
+  return arr.filter(item => Boolean(item))		// 回调函数中,返回item的boolean为true的元素
+}
+// 进一步简化版本
+function bouncer(arr) {
+  return arr.filter(Boolean)		// filter中直接传入一个Boolean函数
+}
+```
+
+## 找出元素在排序后数组中的索引
+
+![image-20210824102322472](http://i0.hdslb.com/bfs/album/7e90a886203f2b54abef68f3ce58bfa20c45ce31.png)
+
+``` js
+输入: [10, 20, 30, 40, 50], 35
+输出: 3
+输入: [5, 3, 20, 3], 5
+输出: 2
+```
+
+
+
+``` js
+// 直接使用filter过滤出所有小于num的数组元素输出新数组长度
+function getIndexToIns(arr,num) {
+  return arr.filter(item => item < num).length
+}
+
+// 和filter思路一样,找出数组中比num小的数组
+function getIndexToIns(arr,num) {
+  let res = 0
+  for(let item of arr) {
+    if(item < num){
+      res++
+    }
+  }
+  return res
+}
+
+// 先将num打入到数组中,排序并输出num的第一次出现的位置
+function getIndexToIns(arr,num) {  
+  return [...arr,num].sort((a,b) => a-b).indexOf(num)
+}
+
+// 直接遍历添加好元素的数组,访问num的index
+function getIndexToIns(arr,num) {
+  let sortedArr = [...arr,num].sort((a,b) => a-b)
+  for(let i = 0; i < sortedArr.length; i++) {
+    if(sortedArr[i] === num) {
+      return i
+    }
+  }
+}
+```
+
+## 比较字符串
+
+![image-20210824153228857](http://i0.hdslb.com/bfs/album/6b7d1785287e2fbde750c31df6c6201f76f1abd0.png)
+
+``` js
+输入: ["hello", "hey"]
+返回:  false
+输入: ["voodoo", "no"]
+返回:  false
+```
+
+``` js
+// 先将数组字符串都转小写 ==> 遍历第二个字符串 ==> 判断第一个字符中是否包含第二个字符串元素
+function mutation(arr) {
+  let strArr = arr.map(item => item.toLowerCase())
+  for(let i of strArr[1]) {
+    if(!strArr[0].includes(i)) {
+      return false 
+    }
+  }
+  return true
+}
+
+// every对第二个字符串内的每一个元素进行遍历比较
+function mutation(arr) {
+  return arr[1].toLowerCase().split('').every(item => arr[0].toLowerCase().includes(item))
+}
+
+// 使用set集合的.set.has()属性来判断是否存在第二个字符串中的元素
+function mutation(arr) {
+  let set = new Set(arr[0].toLowerCase())
+  for(let item of arr[1].toLowerCase()) {
+    if( !set.has(item) ) {
+      return false
+    }
+  }
+  return true
+}
+```
+
+## 分割数组
+
+![image-20210823181319433](http://i0.hdslb.com/bfs/album/efc44eb91ff005abd4583a3cb4007215259ae980.png)
+
+``` js
+输入: [0, 1, 2, 3, 4, 5, 6, 7, 8], 4 
+返回: [[0, 1, 2, 3], [4, 5, 6, 7], [8]]
+```
+
+``` js
+// 声明结果数组,循环分割数组,将分割好的数组push到res中
+function chunkArrayInGroups(arr,size) {
+  let res = []
+  while(arr.length > 0) {
+    res.push(arr.splice(0,size))
+  }
+  return res
+} 
+
+// 使用双指针
+function chunkArrayInGroups(arr,size) {
+  let res = [] 
+  for(let i = 0; i < arr.length; i += size) {
+    let tmp = []
+    for(let j = i; j < i + size && j < arr.length; j++) {
+      tmp.push(arr[j])
+    }
+    res.push(tmp)
+  }
+  return res
+}
+```
+
 
 
 # 额外练习
@@ -885,14 +1096,35 @@ function findElemet(arr,func) {
 ## 数组去重
 
 ```js 
-function fn(arr){
-	let res = []
-  for(let item of arr) {
-    if( !res.includes(item) ) {
+// 方法一 声明新数组,forEach遍历数组,判断目标数组中是否有原数item,如果没有则添加 
+
+function fn(arr) {
+  let res = []
+  arr.forEach(item => {
+    if(!res.includes(item)) {
       res.push(item)
     }
-  }
+  })
   return res;
 }
-// 声明新数组,每次遍历数组item时,判断新数组中是否有原数item,如果没有则添加 
+
+// 方法二 新建Set集合(集合中的值只能出现一次),对集合进行展开
+function fn(arr) {
+  return [...new Set(arr)]
+}
+
+// 方法三 使用filter过滤
+function fn(arr) {
+  return arr.filter((item,index) => {
+    return arr.indexOf(item) === index
+  })
+}
+
+// 方法四 使用reduce, 第二个参数为空数组,每次遍历迭代时,判断空数组中是否有item,
+// 如果有的话直接返回累加器,没有的话返回新数组
+function fn(arr) {
+  return arr.reduce((pre,item)=> {
+    return pre.includes(item) ? pre : [...pre,item]
+  },[])
+}
 ```

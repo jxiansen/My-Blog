@@ -30,6 +30,12 @@
 
 `docker inspect 容器id` 查看容器信息
 
+> 如果容器内无法修改文件,可以先拷贝到宿主机中修改,然后再拷贝回去
+
+`docker cp 容器id:/home/demo.txt /root/ ` 拷贝容器中的`demo.tx`t文到宿主机的`/root`路径下
+
+`docker cp /root/demo.txt 容器id:/home` 拷贝宿主机中的`demo.txt`文件到容器内部
+
 `docker rmi 镜像id` 移除镜像
 
 `docker rename 原容器名 新容器名` 重命名容器

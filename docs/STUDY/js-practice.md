@@ -1,9 +1,8 @@
-# 牛客网练习题
+## 牛客网练习题
 
 牛客网`JavaScript`基础练习挑战记录
 
-## 移除数组中的元素
-
+### 移除数组中的元素
 ![](http://i0.hdslb.com/bfs/album/3f1272da0d48cc16b019c5f315bf07e7f5a07463.png)
 
 ```js
@@ -34,7 +33,7 @@ function removeWithoutCopy(arr,item){
 
 ```
 
-## 添加元素
+### 添加元素
 
 ![](http://i0.hdslb.com/bfs/album/aedbbca91ad22f5445051b205053d17455a7b0b8.png)
 
@@ -62,7 +61,7 @@ function append(arr,item){
 }
 ```
 
-## 删除数组最后一个元素
+### 删除数组最后一个元素
 
 ![](http://i0.hdslb.com/bfs/album/a49683795c97586c7a5723e2f2c54eb867423de7.png)
 
@@ -80,7 +79,7 @@ function truncafe(arr) {
 }
 ```
 
-## 添加元素
+### 添加元素
 
 ![](http://i0.hdslb.com/bfs/album/9db79ddeeab19efc07ad97f20da6c82f3489ea2d.png)
 
@@ -98,7 +97,7 @@ function prepend(arr, item) {
 }
 ```
 
-## 删除数组的第一个元素
+### 删除数组的第一个元素
 
 ![](http://i0.hdslb.com/bfs/album/7e992a0cd9031a53666b65ffdf847e1d7e4be9d6.png)
 
@@ -123,7 +122,7 @@ fuction(arr){
 }
 ```
 
-## 数组合并
+### 数组合并
 
 ![image-20210722155256824](http://i0.hdslb.com/bfs/album/0f22f1948c7eabdb548b53b4049d4b8d0ba4c228.png)
 
@@ -134,7 +133,7 @@ function concat(arr1, arr2) {
 //concat方法返回的是新数组
 ```
 
-## 添加元素
+### 添加元素
 
 ![](http://i0.hdslb.com/bfs/album/4f83ad0f4c60e341d44fc2bba838bf249f142d16.png)
 
@@ -152,7 +151,7 @@ function insert(arr, item, index) {
 }
 ```
 
-## 计数
+### 计数
 
 ![image-20210722163449677](http://i0.hdslb.com/bfs/album/e80c0e9526b74fe111200f6a867de312ca82919e.png)
 
@@ -178,7 +177,7 @@ function count(arr, item) {
 }
 ```
 
-## 查找重复元素
+### 查找重复元素
 
 ![image-20210722180804955](http://i0.hdslb.com/bfs/album/da5653c81af76efd660b7d8da73a8e1daece6022.png)
 
@@ -195,7 +194,7 @@ function duplicates(arr) {
 }
 ```
 
-## 求二次方
+### 求二次方
 
 ![image-20210723155435049](http://i0.hdslb.com/bfs/album/6d1614fa1d424f5db2dbb6dfe2d7b35eed93e615.png)
 
@@ -229,7 +228,7 @@ function square(arr) {
 // forEach():会修改原来的数组  ; map():得到一个新数组并返回
 ```
 
-## 查找数组元素
+### 查找数组元素
 
 ![image-20210723182626339](http://i0.hdslb.com/bfs/album/94f9b57451720b0cee0beaffc52a0549f85bc2f7.png)
 
@@ -255,7 +254,7 @@ function findAllOccurrences(arr, target) {
 }
 ```
 
-## 避免全局变量
+### 避免全局变量
 
 ![image-20210723190410320](http://i0.hdslb.com/bfs/album/5e30894249a4c3da6a55282cf2ae5335ea4f94c6.png)
 
@@ -281,7 +280,7 @@ function golobals() {
 }
 ```
 
-## 正确的函数定义
+### 正确的函数定义
 
 ![image-20210726131718017](http://i0.hdslb.com/bfs/album/d76184ad27195b43c33cf0ed209c8f46113b1222.png)
 
@@ -323,7 +322,7 @@ function functions(flag) {
 }
 ```
 
-## 正确的使用 `parseInt`
+### 正确的使用 `parseInt`
 
 ![image-20210726142355840](http://i0.hdslb.com/bfs/album/f4cee1355f75607bdff8778a746cbf8d3d7b2223.png)
 
@@ -340,7 +339,7 @@ function parse2Int(num) {
 //parseInt(string, radix):string:需被解析的字符串,radix:要解析数字的基数,值在0~36之间
 ```
 
-## 完全等同
+### 完全等同
 
 ![image-20210726143657770](http://i0.hdslb.com/bfs/album/ee2974b69b46d720d08f0dcb86ac6b8e09d8e6b7.png)
 
@@ -353,7 +352,7 @@ function identity(val1, val2) {
 //       === 严格相等,比较时不会做任何数据类型转换,值要相同,数据类型也要相同
 ```
 
-## 计时器
+### 计时器
 
 ![image-20210726152853196](http://i0.hdslb.com/bfs/album/930005f2059b64fa60763ecd5822f7fc26ce63fa.png)
 
@@ -425,7 +424,7 @@ if (age < 16) {
 
 ---
 
-## 流程控制
+### 流程控制
 
 ![image-20210726172502644](http://i0.hdslb.com/bfs/album/7fa930aedef3f6fa1cdb7bf697aaa517b8b49dca.png)
 
@@ -480,7 +479,7 @@ console.log(Object.prototype.toString.call(new Person())); //[object Object]
 
 ---
 
-## 二进制转换
+### 二进制转换
 
 ![image-20210728171600119](http://i0.hdslb.com/bfs/album/b74236b9bda7fb9606162afdfb2984908512aef8.png)
 
@@ -492,7 +491,7 @@ function base10(str) {
 //parseInt(str,radix):将字符串读取数字,并以指定基数(radix)返回
 ```
 
-## 二进制转换
+### 二进制转换
 
 ![image-20210728181338865](http://i0.hdslb.com/bfs/album/fa30dd116110f5c06a333b99c1a044314d09461a.png)
 
@@ -504,7 +503,7 @@ function converToBinary(num) {
 }
 ```
 
-## 判断是否包含数字
+### 判断是否包含数字
 
 ![image-20210729091258496](http://i0.hdslb.com/bfs/album/61a6a4f308a6f1f8dcfd52228ffae69f7d12a684.png)
 
@@ -531,7 +530,7 @@ function containsNumber(str) {
 }
 ```
 
-## 斐波那契数列第n项值
+### 斐波那契数列第n项值
 
 ![image-20210812144325644](http://i0.hdslb.com/bfs/album/89cf0d462c9324c21dc4727c846d2b6591b31046.png)
 
@@ -566,7 +565,7 @@ function fibonacci(n) {
 }
 ```
 
-## 或运算
+### 或运算
 
 ![image-20210815124741282](http://i0.hdslb.com/bfs/album/6c9e14e4fc252d957f67ac9da5045917aac7ff4e.png)
 
@@ -576,7 +575,7 @@ function or(a,b) {
 }
 ```
 
-## 且运算
+### 且运算
 
 ![image-20210815124857068](http://i0.hdslb.com/bfs/album/e56d10e41b4d0b87afc9d5e6f1b613426395357a.png)
 
@@ -590,7 +589,7 @@ function or(a,b) {
 
 
 
-# FreeCodeCamp基础算法
+## FreeCodeCamp基础算法
 
 自学`js` 总感觉很多地方知识掌握的不到位,希望通过系统的刷题提高自己的知识掌握能力,写文章强迫自己输出,形成系统的思维.
 
@@ -600,7 +599,7 @@ function or(a,b) {
 
 
 
-## 摄氏度转换为华氏度
+### 摄氏度转换为华氏度
 
 ![image-20210814174446734](http://i0.hdslb.com/bfs/album/2888730d1262e7b10c79b43b0af2cb0cabd07123.png)
 
@@ -611,7 +610,7 @@ function convertToF(celsius) {
 //对于结果直接返回即可
 ```
 
-## 反转字符串
+### 反转字符串
 
 ![image-20210815011341225](http://i0.hdslb.com/bfs/album/206c6a2b330c0c989a518013e99592831c5885e0.png)
 
@@ -674,7 +673,7 @@ function reverseString(str) {
 }								// str.slice(start,end):获取子字符串返回[start,end),包括第一个参数,不包括第二个参数
 ```
 
-## 计算整数的阶乘
+### 计算整数的阶乘
 
 ![image-20210816163629896](http://i0.hdslb.com/bfs/album/1607f9367633c7947d1b5d08f73dce5aa1d5f298.png)
 
@@ -694,7 +693,7 @@ function factorialize(num) {
 }
 ```
 
-## 找出字符串中的最长单词
+### 找出字符串中的最长单词
 
 ![image-20210816175310251](http://i0.hdslb.com/bfs/album/497c5e877a4ad88887f087589c6f1651d7dbac6e.png)
 
@@ -722,7 +721,7 @@ function findLongestWordLength(str) {
 }
 ```
 
-## 找出多个数组中的最大数字
+### 找出多个数组中的最大数字
 
 ![image-20210817114806289](http://i0.hdslb.com/bfs/album/b6c4b08ff58aa96139ec5dc97357d17372a50747.png)
 
@@ -756,7 +755,7 @@ function largestOfFour(arr) {
 }
 ```
 
-## 确认结尾
+### 确认结尾
 
 .![image-20210820104611925](http://i0.hdslb.com/bfs/album/29a0353ef25bd88e6109b65b2a592abeb6f089d7.png)
 
@@ -791,7 +790,7 @@ function confirmEnding(str,target) {
 }
 ```
 
-## 重复输出字符串
+### 重复输出字符串
 
 ![image-20210820161707102](http://i0.hdslb.com/bfs/album/50145b9a6110bb8b8b5611c8c1e5f3a343f1c7ed.png)
 
@@ -832,7 +831,7 @@ function repeatStringNumTimes(str,num) {
 }
 ```
 
-## 截断字符串
+### 截断字符串
 
 ![image-20210820171015070](http://i0.hdslb.com/bfs/album/af132e9a98913da99b0bb07bfefbef932283d447.png)
 
@@ -851,7 +850,7 @@ function truncateString(str,num) {
 }
 ```
 
-## 按参数过滤数组
+### 按参数过滤数组
 
 ![image-20210821011455945](http://i0.hdslb.com/bfs/album/29616598dc00a1ed1a0e8676a39dc4489797bda4.png)
 
@@ -882,7 +881,7 @@ function findElemet(arr,func) {
 }
 ```
 
-## 基本类型布尔值的检查
+### 基本类型布尔值的检查
 
 ![image-20210822010441978](http://i0.hdslb.com/bfs/album/c14846868e17528baf049b35602c3f1556d5e3b0.png)
 
@@ -897,7 +896,7 @@ function boowho(bool) {
 }
 ```
 
-## 句中单词首字母大写
+### 句中单词首字母大写
 
 ![image-20210823105433241](http://i0.hdslb.com/bfs/album/95a43536c922eed77e002653be94970596327699.png)
 
@@ -918,7 +917,7 @@ function titleCase(str) {
 }
 ```
 
-## Slice 与 Splice
+### Slice 与 Splice
 
 ![image-20210823145106553](http://i0.hdslb.com/bfs/album/1329bcb8a9945168dc68372593a7ce3d54a6cbbc.png)
 
@@ -942,7 +941,7 @@ function frankenSplice(arr1,arr2,n) {
 }
 ```
 
-## 过滤数组中的假值
+### 过滤数组中的假值
 
 ![image-20210823161810980](http://i0.hdslb.com/bfs/album/7badc1efd9a502202d17207081ceadce5c9d2f91.png)
 
@@ -968,7 +967,7 @@ function bouncer(arr) {
 }
 ```
 
-## 找出元素在排序后数组中的索引
+### 找出元素在排序后数组中的索引
 
 ![image-20210824102322472](http://i0.hdslb.com/bfs/album/7e90a886203f2b54abef68f3ce58bfa20c45ce31.png)
 
@@ -1014,7 +1013,7 @@ function getIndexToIns(arr,num) {
 }
 ```
 
-## 比较字符串
+### 比较字符串
 
 ![image-20210824153228857](http://i0.hdslb.com/bfs/album/6b7d1785287e2fbde750c31df6c6201f76f1abd0.png)
 
@@ -1054,7 +1053,7 @@ function mutation(arr) {
 }
 ```
 
-## 分割数组
+### 分割数组
 
 ![image-20210823181319433](http://i0.hdslb.com/bfs/album/efc44eb91ff005abd4583a3cb4007215259ae980.png)
 
@@ -1087,13 +1086,55 @@ function chunkArrayInGroups(arr,size) {
 }
 ```
 
+## FreeCodeCamp中级算法
+
+### 范围内的数字求和
+
+![image-20210825174403077](http://i0.hdslb.com/bfs/album/867f3997393a89725d3d8122c103818b24b91141.png)
+
+``` js
+输入: [1, 4]
+返回: 10
+输入: [5, 10]
+返回: 45
+```
+
+``` js
+// 先对数组排序,找出大数和小数 ==> 大数的前n项和减去小数的前n-1项和就是数字范围的和
+function sumAll(arr) {
+  let sum = num => num === 0 ? 0 : sum(num - 1) + num ;
+  let sortArr = arr.sort((a,b) => a-b)
+  return sum(sortArr[1]) - sum(sortArr[0] - 1)
+}
+```
+
+### 数组的对称差
+
+![image-20210825190650209](http://i0.hdslb.com/bfs/album/89a183bb5f81024f49cbf359c7ea5bd4cbc839d6.png)
+
+``` js
+输入: [1, 2, 3, 5], [1, 2, 3, 4, 5]
+返回: [4]
+输入: ["andesite", "grass", "dirt", "pink wool", "dead shrub"], ["diorite", "andesite", "grass", "dirt", "dead shrub"] 
+返回: ["diorite", "pink wool"]
+```
+
+``` js
+// 对称差 = 去重后的两数组元素 - 两数组共有的元素
+function diffArray(arr1,arr2) {
+  let total = [...new Set(arr1.concat(arr2))]
+  let same = arr1.filter(item => arr2.includes(item))
+  return total.filter(value => !same.includes(value))
+}
+```
 
 
-# 额外练习
+
+## 额外练习
 
 
 
-## 数组去重
+### 数组去重
 
 ```js 
 // 方法一 声明新数组,forEach遍历数组,判断目标数组中是否有原数item,如果没有则添加 

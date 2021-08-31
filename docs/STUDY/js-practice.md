@@ -1221,9 +1221,22 @@ function diffArray(arr1,arr2) {
 ``` js
 // 使用arguments接收类数组对象变成数组
 function destroyer(arr) {
-  let arr1 = Array.from(arguments)[0]
-  let arr2 = Array.from(arguments).slice(1)
-  return arr1.filter(item => !arr2.includes(item))
+  let toDelete = Array.from(arguments)		// 数组后面的参数组成的数组
+  return arr.filter(item => {				// arr就是默认数组参数
+    if(!toDelete.includes(item)) {
+      return item
+    }
+  })
+}
+
+// 换一种map写法
+function destroyer(arr) {
+  let toDelete = new Set([...arguments].slice(1))
+  return arr.filter(item => {
+    if(!toDelete.has(item)) {
+      return item
+    }
+  })
 }
 ```
 
@@ -1275,6 +1288,124 @@ function myReplace(str,before,after) {
   } ,'').trimStart()				// str.trimStart()方法可以去除字符串的首位空格
 }
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### 求斐波那契数列的奇数和
+
+![image-20210830094728369](http://i0.hdslb.com/bfs/album/eab5a632685d98922db4e2bf510594ec920e0a59.png)
+
+``` js
+输入: 1000
+返回: 1785
+输入: 4000000 
+返回: 4613732
+```
+
+``` js
+// 方法一: 先获得nums以内的斐波那契数列 ==> 对数列奇数元素求和
+function sumFibs(nums) {
+  let arr = [1,1], res = 0;
+  while(arr[arr.length - 1] + arr[arr.length - 2] <= nums) {
+    arr.push(arr[arr.length - 1] + arr[arr.length - 2])
+  }
+	for(let i of arr) {
+    if(i % 2 === 1) {
+      res += i
+    }
+  }
+  return res
+}
+```
+
+### 短线连接格式
+
+![image-20210831112323829](http://i0.hdslb.com/bfs/album/6af05f5c8e991670410e158f6c418439fa237e75.png)
+
+``` js
+输入: "This Is Spinal Tap"
+返回: "this-is-spinal-tap"
+输入: "thisIsSpinalTap"
+返回: "this-is-spinal-tap"
+输入: "The_Andy_Griffith_Show" 
+返回: "the-andy-griffith-show"
+```
+
+``` js
+function spinalCase(str) {
+  return str.split('').map(i => i.charCodeAt() < 90 ? ' ' + i.toLowerCase() : i)
+  .join('').trim().split(/ |-|_/).filter(i => i).join('-')
+}
+
+// 讲字符串用几个条件分割开来,再用-拼接,最后转x
+function spinalCase(str) {
+  return str.split(/_| |-|(?<=[a-z])\B(?=[A-Z])/).join('-').toLowerCase()
+}
+```
+
+### 集合排序
+
+![image-20210831143512068](http://i0.hdslb.com/bfs/album/3fbae109764fddd190819f1d69f6b57943ac9be7.png)
+
+``` js
+输入: [1, 3, 2], [5, 2, 1, 4], [2, 1] 
+返回: [1, 3, 2, 5, 4]
+输入: [1, 2, 3], [5, 2, 1] 
+返回: [1, 2, 3, 5]
+```
+
+``` js
+// 接受数组参数 ==> 数组扁平化 ==> set去重
+function uniteUnique(arr) {
+  return [...new Set(Array.from(arguments).flat())]
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## 额外练习
 

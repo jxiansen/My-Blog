@@ -66,6 +66,7 @@ function getGuideSidebar() {
         { text: "Markdown语法", link: "/STUDY/markdown" },
         { text: "MySQL", link: "/STUDY/mysql" },
         { text: "Vue", link: "/STUDY/Vue" },
+        { text: "前端面试题", link: "/STUDY/js-practice" },
         { text: "git入门教程", link: "/STUDY/git" }
       ]
     },

@@ -62,7 +62,7 @@ function append(arr,item){
 }
 ```
 
-### 删除数组最后一个元素
+### 21.删除数组最后一个元素
 
 ![](http://i0.hdslb.com/bfs/album/a49683795c97586c7a5723e2f2c54eb867423de7.png)
 
@@ -80,12 +80,12 @@ function truncafe(arr) {
 }
 ```
 
-### 添加元素
+### 22.添加元素
 
 ![](http://i0.hdslb.com/bfs/album/9db79ddeeab19efc07ad97f20da6c82f3489ea2d.png)
 
 ```js
-//方法一,拷贝出新数组,再去掉首位
+//方法一,拷贝出新数组,再添加元素到头部
 function prepend(arr, item) {
   let tmp = arr.slice();
   tmp.unshift(item);
@@ -96,9 +96,14 @@ function prepend(arr, item) {
 function prepend(arr, item) {
   return [item].concat(arr);
 }
+
+// 展开运算符...
+function prepend(arr, item) {
+    return [item,...arr]
+}
 ```
 
-### 删除数组的第一个元素
+### 23.删除数组的第一个元素
 
 ![](http://i0.hdslb.com/bfs/album/7e992a0cd9031a53666b65ffdf847e1d7e4be9d6.png)
 
@@ -123,7 +128,7 @@ fuction(arr){
 }
 ```
 
-### 数组合并
+### 24.数组合并
 
 ![image-20210722155256824](http://i0.hdslb.com/bfs/album/0f22f1948c7eabdb548b53b4049d4b8d0ba4c228.png)
 
@@ -134,7 +139,7 @@ function concat(arr1, arr2) {
 //concat方法返回的是新数组
 ```
 
-### 添加元素
+### 25.添加元素
 
 ![](http://i0.hdslb.com/bfs/album/4f83ad0f4c60e341d44fc2bba838bf249f142d16.png)
 
@@ -152,33 +157,54 @@ function insert(arr, item, index) {
 }
 ```
 
-### 计数
+### 20.添加元素
+
+![image-20210901181712463](http://i0.hdslb.com/bfs/album/952089721018a087f8ee161833b49aa4cf82cfd7.png)
+
+```js
+// 直接使用ES6的...spread展开操作符号
+function append(arr,item) {
+  return [...arr,item]
+}
+
+// 方法二 slice复制出一份,在push进去
+function append(arr,item) {
+  let res = arr.slice()
+  res.push(item)
+  return res
+}
+```
+
+
+
+### 26.计数
 
 ![image-20210722163449677](http://i0.hdslb.com/bfs/album/e80c0e9526b74fe111200f6a867de312ca82919e.png)
 
 ```js
+// 数组遍历计数
 function count(arr, item) {
   let count = 0;
-  for (let i of arr) {
-    if (i == item) {
-      count++;
+  arr.forEach(i => {
+    if(i === item) {
+      count++
     }
-  }
+  })
   return count;
 }
 
-function count(arr, item) {
-  let count = 0;
-  while (count < arr.length) {
-    if (arr.pop() == item) {
-      count++;
-    }
-  }
-  return count;
+// reduce遍历计数
+function count(arr,item) {
+  return arr.reduce((acc,val) => val === item ? acc + 1 : acc,0)
+}
+
+// filter过滤取长度
+function count(arr,item) {
+  return arr.filter(i => i === item).length
 }
 ```
 
-### 查找重复元素
+### 27.查找重复元素
 
 ![image-20210722180804955](http://i0.hdslb.com/bfs/album/da5653c81af76efd660b7d8da73a8e1daece6022.png)
 
@@ -504,6 +530,29 @@ function converToBinary(num) {
 }
 ```
 
+### 二进制转换
+
+![image-20210901142704660](http://i0.hdslb.com/bfs/album/fea26f31691d2ef1def2c9c7d8ff6d214d711b49.png)
+
+``` js
+// 方法一 直接使用原生的方法,字符串转二进制 ==> 分割为数组 ==> 反转数组访问
+function valueAtBit(num,bit) {
+  return num.toString(2).split('').reverse()[bit - 1]		// 注意:最后返回值是string类型
+}
+
+// 方法二 模拟除法运算
+function valueAtBit(num,bit) {
+  let res = 0
+  for(let i = 0; i < bit; i++) {
+    res = num % 2
+    num = parseInt(num / 2)
+  }
+  return res
+}
+```
+
+
+
 ### 判断是否包含数字
 
 ![image-20210729091258496](http://i0.hdslb.com/bfs/album/61a6a4f308a6f1f8dcfd52228ffae69f7d12a684.png)
@@ -589,6 +638,94 @@ function add(a, b) {
 //且运算规则:如果a的布尔值是true ===> 返回b的值
 //				 如果a的布尔值是false===> 直接返回a的值,且不再对第二个运算子求值
 ```
+
+### 使用arguments 
+
+![image-20210901140106457](http://i0.hdslb.com/bfs/album/9c43d0889c659ae963d86c0e36b9a2e3ac3a8790.png)
+
+``` js
+function useArguments() {
+  return Array.from(arguments).reduce((acc,item) => acc + item,0);
+}
+```
+
+### 柯里化
+
+![image-20210901152200855](http://i0.hdslb.com/bfs/album/f97b0645bdcd0032b1c16c9917511d852340cc2d.png)
+
+``` js
+// 函数柯里化: 把接受多个参数的函数变成接受多个单一参数的函数
+function curryIt(fn) {
+  return function(a) {
+    return function(b) {
+      return fucntion(c) {
+        return a + b + c
+      }
+    }
+  }
+}
+
+// 直接使用ES6的语法会更加简洁
+let curryIt = fn => a => b => c => a + b + c
+```
+
+### 模块
+
+![image-20210901154742901](http://i0.hdslb.com/bfs/album/b69f3ab80df5b5cb3f57599e6621242d7823928f.png)
+
+``` js
+function createModule(str1,str2) {
+  let obj = {
+    greeting: str1,
+    name: str2,
+    sayIt: function() {
+      return this.greeting + ', ' + this.name
+    }
+  }
+  return obj
+}
+```
+
+### 数组去重
+
+![image-20210901160808677](http://i0.hdslb.com/bfs/album/a03a3368a253688fd708315807929be2a2fb92d8.png)
+
+``` js
+// 遍历迭代去重
+Array.prototype.uniq = function() {
+  let res = []
+  this.forEach(item => {
+    if(!res.includes(item)) {
+      res.push(item)
+    }
+  })
+  return res
+}
+
+// 利用set集合中的值唯一特性去重
+Array.prototype.uniq = function() {
+  return [...new Set(this)]
+}
+```
+
+### 获取字符串的长度
+
+![image-20210901175430497](http://i0.hdslb.com/bfs/album/13f00c5229261b4cf800fbfc0dc318c49db8e94a.png)
+
+``` js
+function strLength(s, bUnicode255For1) {
+  if(bUnicode255For1) {
+    return s.length
+  } else {
+    return s.split('').reduce((acc,item) => item.charCodeAt() > 255 ? acc+2 : acc+1,0)
+  }
+}
+// reduce方法遍历到每个数组元素的时候,对累加器进行操作,最后返回累加器的值
+```
+
+
+
+
 
 ## FreeCodeCamp 基础算法
 
@@ -1372,75 +1509,3 @@ function uniteUnique(arr) {
   return [...new Set(Array.from(arguments).flat())]
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## 额外练习
-
-### 数组去重
-
-```js
-// 方法一 声明新数组,forEach遍历数组,判断目标数组中是否有原数item,如果没有则添加
-function fn(arr) {
-  let res = [];
-  arr.forEach((item) => {
-    if (!res.includes(item)) {
-      res.push(item);
-    }
-  });
-  return res;
-}
-
-// 方法二 新建Set集合(集合中的值只能出现一次),对集合进行展开
-function fn(arr) {
-  return [...new Set(arr)];
-}
-
-// 方法三 使用filter过滤
-function fn(arr) {
-  return arr.filter((item, index) => {
-    return arr.indexOf(item) === index;
-  });
-}
-
-// 方法四 使用reduce, 第二个参数为空数组,每次遍历迭代时,判断空数组中是否有item,
-// 如果有的话直接返回累加器,没有的话返回新数组
-function fn(arr) {
-  return arr.reduce((pre, item) => {
-    return pre.includes(item) ? pre : [...pre, item];
-  }, []);
-}
-```
-

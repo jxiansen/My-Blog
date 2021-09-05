@@ -1,4 +1,4 @@
-## 牛客网练习题
+## **牛客网练习题**
 
 牛客网`JavaScript`基础练习挑战记录
 
@@ -1426,6 +1426,53 @@ function myReplace(str,before,after) {
 }
 ```
 
+### 寻找缺失的字母
+
+![image-20210904183530343](http://i0.hdslb.com/bfs/album/4e67068f0ec41057b025081041fd6183d81ec7b4.png)
+
+``` js
+输入: "abce" 
+返回: "d"
+输入: "abcdefghjklmno"
+返回: "i"
+```
+
+``` js
+// 方法一, 分割字符串 ==> 字符串转字符码数组 ==> 遍历数组遇到不连续的数就输出其对应的字
+function fearNotLetter(str) {
+  let arr = str.split('').map(item => item.charCodeAt())
+  let cur = arr[0]
+  for(let i of arr) {
+    if(i !== cur) {
+      return String.fromCharCode(cur)
+    }
+    cur++
+  }
+}
+
+// 方法二, 遍历字符串 ==> 比较字符串当前值和下一个值得code码是否连续
+function fearNotLetter(str) {
+  for(let i = 0; i < str.length - 1; i++) {				// i+1的指针需要扫到末尾,所以i的位置要提前
+    let cur = str[i].charCodeAt(), next = str[i+1].charCodeAt();
+    if(cur + 1 !== next) {
+      return String.fromCharCode(cur+1)
+    }
+  }
+}
+
+// 方法三 在不缺失的字符串数组中过滤出没有出现过的数组元素
+function fearNotLetter(str) {
+  let start = str[0].charCodeAt(), end = str[str.length - 1].charCodeAt();
+  let arr = []
+  for(let i = start; i <= end; i++ ) {
+    arr.push(String.fromCharCode(i))
+  }
+  return arr.filter(item => !str.split('').includes(item))[0]
+}
+```
+
+
+
 
 
 
@@ -1509,3 +1556,56 @@ function uniteUnique(arr) {
   return [...new Set(Array.from(arguments).flat())]
 }
 ```
+
+### 翻译二进制字符串
+
+![image-20210902145558858](http://i0.hdslb.com/bfs/album/6fd0465b6bc97e5d6e16e6b7a05b04719c75e497.png)
+
+``` js
+输入: "01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111"
+返回: "Aren't bonfires fun!?"
+输入: "01001001 00100000 01101100 01101111 01110110 01100101 00100000 01000110 01110010 01100101 01100101 01000011 01101111 01100100 01100101 01000011 01100001 01101101 01110000 00100001" 
+返回: "I love FreeCodeCamp!"
+```
+
+``` js
+// 字符串split分割 ==> 每项字符转十进制数字 ==> string.formCharCode()转字符 ==> join拼接
+function binaryAgent(str) {
+  return str.split(' ').map(item => String.fromCharCode(parseInt(item,2))).join('')
+}
+```
+
+### 根据参数删除数组元素
+
+![image-20210902163043063](http://i0.hdslb.com/bfs/album/2b84d3cb43fc5cac161a62514798ab2de8e46cc7.png)
+
+``` js
+输入: [1, 2, 3, 4], function(n) {return n >= 3;}
+返回: [3, 4]
+输入: [1, 2, 3, 7, 4], function(n) {return n > 3;}
+返回: [7, 4]
+```
+
+``` js
+// 方法一 和数组filter有区别: filter过滤会对每一项元素进行访问,此题只需要返回第一次满足条件后面的元素
+function dropElements(arr,func) {
+  	let res = [...arr]
+    for(let i of arr) {
+      if(func(i)) {
+        break
+      } else {
+        res.shift()
+      }
+    }
+  	return res
+}
+
+// 方法二 使用while循环会更加简单点, 不停的判断数组的头部是否满足func,满足不操作,不满足切掉头部
+function dropElements(arr,func) {
+	while(!func(arr[0])) {
+    arr.shift()
+  }
+  
+}
+```
+

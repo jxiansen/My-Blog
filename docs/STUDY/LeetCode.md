@@ -38,3 +38,76 @@ function singleNumber(nums) {
 }
 ```
 
+### [977. 有序数组的平方](https://leetcode-cn.com/problems/squares-of-a-sorted-array/)
+
+![image-20210906101536449](http://i0.hdslb.com/bfs/album/d69f92aee9a0833eab927fb919e072449a81e35d.png)
+
+``` js
+function sortSquares(nums) {
+  return nums.map(i => i * i).sort((a,b) => a - b)
+}
+```
+
+### [1491. 去掉最低工资和最高工资后的工资平均值](https://leetcode-cn.com/problems/average-salary-excluding-the-minimum-and-maximum-salary/)
+
+![image-20210906104441186](http://i0.hdslb.com/bfs/album/ad69f7005623149346e7f275ba23a509d9d54fa7.png)
+
+``` js
+// 数组排序 ==> 去掉头尾 ==> reduce求和 ==> 取平均数
+function avarage(salary) {
+  let arr = salary.sort((a,b) => a - b)
+  arr.pop()
+  arr.shift()
+  return arr.reduce((acc,item) => acc + item , 0) / arr.length
+}
+
+// 数组找出最大最小值 ==> 数组遍历求和 ==> 去掉最大最小值后的和取平均值
+function average(salary) {
+  let max = Math.max(...salary)
+  let min = Math.min(...salary)
+  let sum = 0
+  for(let item of salary) {
+		sum += item
+  }
+  return (sum - max - min) / (salary.length - 2)
+}
+```
+
+### [1470. 重新排列数组](https://leetcode-cn.com/problems/shuffle-the-array/)
+
+![image-20210906115115797](http://i0.hdslb.com/bfs/album/1a2bd69e7f1fecbf73bb9c6b78584b009df905d8.png)
+
+``` js
+// 数组从中间切开 ==> 遍历数组元素 ==> 每次遍历添加后半段数组的头部元素
+function shuffle(nums,n) {
+	let arr1 = nums.slice(0,n)
+  let arr2 = nums.slice(-n)
+  let res = []
+  for(let item of arr1) {
+    res.push(item,arr2.shift())
+  }
+  return res
+}
+
+// 一行流解法: 取数组后面半段 ==> 对每个元素进行map返回新元素 ==>使用flat扁平化数组
+function shuffle(nums,n) {
+  return nums.slice(-n).map((item,index) => [nums[index],item]).flat()
+}
+```
+
+### [414. 第三大的数](https://leetcode-cn.com/problems/third-maximum-number/)
+
+![image-20210907005441567](http://i0.hdslb.com/bfs/album/86434757fdd90ea08fd655a4c9da370b49fead73.png)
+
+``` js
+// 第一次解的时候没发现相同大小的数组元素不能用作比较大小,最大的三个数必须是各不相同的,所以第一步需要对数组去重
+function thirdMax(nums) {
+  let arr = [...new Set(nums)].sort((a,b) => a - b).slice(-3)
+  if(arr.length === 3) {
+    return arr[0]
+  } else {
+    
+  }
+}
+```
+

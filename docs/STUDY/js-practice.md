@@ -1557,21 +1557,73 @@ function uniteUnique(arr) {
 }
 ```
 
-### 翻译二进制字符串
+### 质数求和
 
-![image-20210902145558858](http://i0.hdslb.com/bfs/album/6fd0465b6bc97e5d6e16e6b7a05b04719c75e497.png)
+![image-20210918014831480](http://i0.hdslb.com/bfs/album/072dee20fe25f4510ba43f5515d8330ac44d4058.png)
 
 ``` js
-输入: "01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111"
-返回: "Aren't bonfires fun!?"
-输入: "01001001 00100000 01101100 01101111 01110110 01100101 00100000 01000110 01110010 01100101 01100101 01000011 01101111 01100100 01100101 01000011 01100001 01101101 01110000 00100001" 
-返回: "I love FreeCodeCamp!"
+输入: sumPrimes(10)
+返回: 17
+输入: sumPrimes(977) 
+返回: 73156
+// 数字1 既不算质数也不算合数
 ```
 
 ``` js
-// 字符串split分割 ==> 每项字符转十进制数字 ==> string.formCharCode()转字符 ==> join拼接
-function binaryAgent(str) {
-  return str.split(' ').map(item => String.fromCharCode(parseInt(item,2))).join('')
+// 方法一 求出数字范围内得所有数字组成得数组 ==> 判断数字是否为质数 ==> 对质数数组进行求和
+function sumPrimes(num) {
+	let arr = []
+  for(let i = 1; i <= num; i++) {
+    if(isPrimeNum(i)) {
+      arr.push(i)
+    }
+  }
+  return arr.reduce((acc,item) => acc + item, 0)
+}
+
+function isPrimeNum(number) {
+	if(number === 1) {
+    return false
+  }
+  for(let j = 2; j < number; j++) {
+		if(number % j === 0) {
+			return false
+    }
+  }
+  return true
+}
+```
+
+
+
+
+
+
+### 找出数字范围内的最小公倍数
+
+![image-20210909143445541](http://i0.hdslb.com/bfs/album/b11d9d54a1dbbe774c80641ff77e6cdb205e6ae7.png)
+
+``` js
+输入：[1, 5] 
+返回: 60
+输入: [5, 1] 
+返回: 60
+输入: [1, 13] 
+返回: 360360
+```
+
+``` js
+// 获取范围内的数组 ==> 暴力穷举试探数组中的元素是否为所有元素公倍数
+function smallestCommons(arr) {
+	let min = Math.min(...arr), max = Math.max(...arr);
+  let numArr = [], res = max;
+  for(let i = min; i <= max; i++) {
+    numArr.push(i)
+  }
+  while(!numArr.every(i => res % i === 0)) {
+		res += max
+  }
+  return res
 }
 ```
 
@@ -1605,7 +1657,54 @@ function dropElements(arr,func) {
 	while(!func(arr[0])) {
     arr.shift()
   }
-  
 }
 ```
 
+### 数组扁平化
+
+![image-20210910001636637](http://i0.hdslb.com/bfs/album/c1fbee94405174c7c201315c383df28a452789fe.png)
+
+``` js
+输入: [[["a"]], [["b"]]] 
+返回: ["a", "b"]
+输入: [1, {}, [3, [[4]]]] 
+返回: [1, {}, 3, 4]
+```
+
+``` js
+// 使用递归: 声明结果数组 ==> 遍历给定数组,每项元素不是数组直接push,是数组递归返回数组中的元素
+function steamrollArray(arr) {
+	let res = []
+  for(let item of arr) {
+		if(Array.isArray(item)) {
+      res = [...res,...steamrollArray(item)]
+    } else {
+      res.push(item)
+    }
+  }
+  return res
+}
+
+// 方法二: 如果数组中是纯数字数组的话,对数组先转成字符串,分割最后在map
+function steamrollArray(arr) {
+	return arr.toString().split(',').map(item => parseInt(item))
+}
+```
+
+### 翻译二进制字符串
+
+![image-20210902145558858](http://i0.hdslb.com/bfs/album/6fd0465b6bc97e5d6e16e6b7a05b04719c75e497.png)
+
+``` js
+输入: "01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111"
+返回: "Aren't bonfires fun!?"
+输入: "01001001 00100000 01101100 01101111 01110110 01100101 00100000 01000110 01110010 01100101 01100101 01000011 01101111 01100100 01100101 01000011 01100001 01101101 01110000 00100001" 
+返回: "I love FreeCodeCamp!"
+```
+
+``` js
+// 字符串split分割 ==> 每项字符转十进制数字 ==> string.formCharCode()转字符 ==> join拼接
+function binaryAgent(str) {
+  return str.split(' ').map(item => String.fromCharCode(parseInt(item,2))).join('')
+}
+```

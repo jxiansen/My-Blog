@@ -101,13 +101,62 @@ function shuffle(nums,n) {
 
 ``` js
 // 第一次解的时候没发现相同大小的数组元素不能用作比较大小,最大的三个数必须是各不相同的,所以第一步需要对数组去重
+
+/* 方法一 */
 function thirdMax(nums) {
   let arr = [...new Set(nums)].sort((a,b) => a - b).slice(-3)
-  if(arr.length === 3) {
-    return arr[0]
-  } else {
-    
+  return arr.length < 3 ? arr.pop() : arr[0];
+}	
+
+/* 方法二 */
+var thirdMax = function(nums) {
+  let arr = [...new Set(nums)]           
+  if(arr.length < 3) {
+    return Math.max(...arr)
+  }                                               // 没啥讲的,数组去重判断返回
+  for(let i = 0; i < 3; i++) {                  // 冒泡三次,最大的三个数依次在尾部归位
+    for(let j = 0; j < arr.length - 1; j++) {       
+      if(arr[j] > arr[j+1]) {
+        [arr[j],arr[j+1]] = [arr[j+1],arr[j]]   // 结构语法交换两元素位置,就不需要引入第三变量了
+      }
+    }
   }
+  return arr[arr.length - 3]            // 直接返回第三大元素
+};
+
+/* 方法三 */
+var thirdMax = function(nums) {
+  let arr = [...new Set(nums)];   // 数组去重
+  if(arr.length < 3) {        
+    return Math.max(...arr)       // 长度小于三直接返回最大值
+  }     
+  arr.splice(arr.indexOf(Math.max(...arr)),1)     // 删除掉数组最大数
+  arr.splice(arr.indexOf(Math.max(...arr)),1)     // 删除数组中第二大数
+  return Math.max(...arr)                         // 返回第三大
+}; 
+```
+
+### [268. 丢失的数字](https://leetcode-cn.com/problems/missing-number/)
+
+![image-20210911002110978](http://i0.hdslb.com/bfs/album/15c18390735e28352ca721c8e3ff80d5877ce7f0.png)
+
+``` js
+// 方法一, 求出范围内的数组 ==> 过滤出数组中不包含的元素
+function missingNumber(nums) {
+	let arr = []
+  for(let i = 0; i <= nums.length; i++) {
+		arr.push(i)
+  }
+  return arr.filter(item => !nums.includes(item))
+}
+
+// 方法二 原本应该的数组和减去现在数组和
+function missingNumber(nums) {
+	let sum = 0
+  for(let i = 0; i <= nums.length; i++) {
+    sum += i
+  }
+  return sum - n
 }
 ```
 

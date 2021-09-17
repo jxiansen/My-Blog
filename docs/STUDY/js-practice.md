@@ -99,7 +99,7 @@ function prepend(arr, item) {
 
 // 展开运算符...
 function prepend(arr, item) {
-    return [item,...arr]
+  return [item, ...arr];
 }
 ```
 
@@ -163,19 +163,17 @@ function insert(arr, item, index) {
 
 ```js
 // 直接使用ES6的...spread展开操作符号
-function append(arr,item) {
-  return [...arr,item]
+function append(arr, item) {
+  return [...arr, item];
 }
 
 // 方法二 slice复制出一份,在push进去
-function append(arr,item) {
-  let res = arr.slice()
-  res.push(item)
-  return res
+function append(arr, item) {
+  let res = arr.slice();
+  res.push(item);
+  return res;
 }
 ```
-
-
 
 ### 26.计数
 
@@ -185,22 +183,22 @@ function append(arr,item) {
 // 数组遍历计数
 function count(arr, item) {
   let count = 0;
-  arr.forEach(i => {
-    if(i === item) {
-      count++
+  arr.forEach((i) => {
+    if (i === item) {
+      count++;
     }
-  })
+  });
   return count;
 }
 
 // reduce遍历计数
-function count(arr,item) {
-  return arr.reduce((acc,val) => val === item ? acc + 1 : acc,0)
+function count(arr, item) {
+  return arr.reduce((acc, val) => (val === item ? acc + 1 : acc), 0);
 }
 
 // filter过滤取长度
-function count(arr,item) {
-  return arr.filter(i => i === item).length
+function count(arr, item) {
+  return arr.filter((i) => i === item).length;
 }
 ```
 
@@ -534,24 +532,22 @@ function converToBinary(num) {
 
 ![image-20210901142704660](http://i0.hdslb.com/bfs/album/fea26f31691d2ef1def2c9c7d8ff6d214d711b49.png)
 
-``` js
+```js
 // 方法一 直接使用原生的方法,字符串转二进制 ==> 分割为数组 ==> 反转数组访问
-function valueAtBit(num,bit) {
-  return num.toString(2).split('').reverse()[bit - 1]		// 注意:最后返回值是string类型
+function valueAtBit(num, bit) {
+  return num.toString(2).split("").reverse()[bit - 1]; // 注意:最后返回值是string类型
 }
 
 // 方法二 模拟除法运算
-function valueAtBit(num,bit) {
-  let res = 0
-  for(let i = 0; i < bit; i++) {
-    res = num % 2
-    num = parseInt(num / 2)
+function valueAtBit(num, bit) {
+  let res = 0;
+  for (let i = 0; i < bit; i++) {
+    res = num % 2;
+    num = parseInt(num / 2);
   }
-  return res
+  return res;
 }
 ```
-
-
 
 ### 判断是否包含数字
 
@@ -639,13 +635,13 @@ function add(a, b) {
 //				 如果a的布尔值是false===> 直接返回a的值,且不再对第二个运算子求值
 ```
 
-### 使用arguments 
+### 使用 arguments
 
 ![image-20210901140106457](http://i0.hdslb.com/bfs/album/9c43d0889c659ae963d86c0e36b9a2e3ac3a8790.png)
 
-``` js
+```js
 function useArguments() {
-  return Array.from(arguments).reduce((acc,item) => acc + item,0);
+  return Array.from(arguments).reduce((acc, item) => acc + item, 0);
 }
 ```
 
@@ -653,7 +649,7 @@ function useArguments() {
 
 ![image-20210901152200855](http://i0.hdslb.com/bfs/album/f97b0645bdcd0032b1c16c9917511d852340cc2d.png)
 
-``` js
+```js
 // 函数柯里化: 把接受多个参数的函数变成接受多个单一参数的函数
 function curryIt(fn) {
   return function(a) {
@@ -673,16 +669,16 @@ let curryIt = fn => a => b => c => a + b + c
 
 ![image-20210901154742901](http://i0.hdslb.com/bfs/album/b69f3ab80df5b5cb3f57599e6621242d7823928f.png)
 
-``` js
-function createModule(str1,str2) {
+```js
+function createModule(str1, str2) {
   let obj = {
     greeting: str1,
     name: str2,
-    sayIt: function() {
-      return this.greeting + ', ' + this.name
-    }
-  }
-  return obj
+    sayIt: function () {
+      return this.greeting + ", " + this.name;
+    },
+  };
+  return obj;
 }
 ```
 
@@ -690,42 +686,40 @@ function createModule(str1,str2) {
 
 ![image-20210901160808677](http://i0.hdslb.com/bfs/album/a03a3368a253688fd708315807929be2a2fb92d8.png)
 
-``` js
+```js
 // 遍历迭代去重
-Array.prototype.uniq = function() {
-  let res = []
-  this.forEach(item => {
-    if(!res.includes(item)) {
-      res.push(item)
+Array.prototype.uniq = function () {
+  let res = [];
+  this.forEach((item) => {
+    if (!res.includes(item)) {
+      res.push(item);
     }
-  })
-  return res
-}
+  });
+  return res;
+};
 
 // 利用set集合中的值唯一特性去重
-Array.prototype.uniq = function() {
-  return [...new Set(this)]
-}
+Array.prototype.uniq = function () {
+  return [...new Set(this)];
+};
 ```
 
 ### 获取字符串的长度
 
 ![image-20210901175430497](http://i0.hdslb.com/bfs/album/13f00c5229261b4cf800fbfc0dc318c49db8e94a.png)
 
-``` js
+```js
 function strLength(s, bUnicode255For1) {
-  if(bUnicode255For1) {
-    return s.length
+  if (bUnicode255For1) {
+    return s.length;
   } else {
-    return s.split('').reduce((acc,item) => item.charCodeAt() > 255 ? acc+2 : acc+1,0)
+    return s
+      .split("")
+      .reduce((acc, item) => (item.charCodeAt() > 255 ? acc + 2 : acc + 1), 0);
   }
 }
 // reduce方法遍历到每个数组元素的时候,对累加器进行操作,最后返回累加器的值
 ```
-
-
-
-
 
 ## FreeCodeCamp 基础算法
 
@@ -1270,19 +1264,19 @@ function sumAll(arr) {
 
 // 等差数列求和公式,(首项 + 尾项) * 项数 / 2
 function sumAll(arr) {
-  return (arr[0]+arr[1]) * (Math.abs(arr[0]-arr[1]) + 1) / 2;
+  return ((arr[0] + arr[1]) * (Math.abs(arr[0] - arr[1]) + 1)) / 2;
 }
 
 // 双指针遍历求和
 function sumAll(arr) {
-  let start = Math.min(...arr)
-  let end = Math.max(...arr)
-  let res = 0
-  while(start <= end) {
-    res += start
-    start++
+  let start = Math.min(...arr);
+  let end = Math.max(...arr);
+  let res = 0;
+  while (start <= end) {
+    res += start;
+    start++;
   }
-  return res
+  return res;
 }
 ```
 
@@ -1301,46 +1295,49 @@ function sumAll(arr) {
 ```js
 // 方法一： 对称差 = 并集元素 - 交集元素
 function diffArray(arr1, arr2) {
-  let sum = arr1.concat(arr2)			// 数组并集
-  let cross = arr1.filter(item => arr2.includes(item));		// 数组交集
-  return sum.filter(value => !cross.includes(value));
+  let sum = arr1.concat(arr2); // 数组并集
+  let cross = arr1.filter((item) => arr2.includes(item)); // 数组交集
+  return sum.filter((value) => !cross.includes(value));
 }
 
 // 方法二： 声明结果数组 ==> 分别遍历两个数组，如果遍历到有另外一个数组中没有的元素push到结果中
-function diffArray(arr1,arr2) {
-  let res = []
-  arr1.forEach(item => {
-    if(!arr2.includes(item)) {
-      res.push(item)
+function diffArray(arr1, arr2) {
+  let res = [];
+  arr1.forEach((item) => {
+    if (!arr2.includes(item)) {
+      res.push(item);
     }
-  })
-  arr2.forEach(item => {
-    if(!arr1.includes(item)) {
-      res.push(item)
+  });
+  arr2.forEach((item) => {
+    if (!arr1.includes(item)) {
+      res.push(item);
     }
-  })
-  return res
+  });
+  return res;
 }
 /*
 	第二种优化写法,函数中调用函数
 */
-function diffArray(arr1,arr2) {
-  return [...getDiffOf(arr1,arr2),...getDiffOf(arr2,arr1)]
+function diffArray(arr1, arr2) {
+  return [...getDiffOf(arr1, arr2), ...getDiffOf(arr2, arr1)];
 }
 
-function getDiffOf(arr,target) {			// 被调用的求差别函数
-  let res = []
-  for(let item of arr) {
-    if(!target.includes(item)) {
-      res.push(item)
+function getDiffOf(arr, target) {
+  // 被调用的求差别函数
+  let res = [];
+  for (let item of arr) {
+    if (!target.includes(item)) {
+      res.push(item);
     }
   }
-  return res
+  return res;
 }
 
 // 方法三： 两个数组合并，并且过滤出数组一或者数组二中不包含的元素
-function diffArray(arr1,arr2) {
-  return arr1.concat(arr2).filter(val => !arr1.includes(val) || !arr2.includes(val))
+function diffArray(arr1, arr2) {
+  return arr1
+    .concat(arr2)
+    .filter((val) => !arr1.includes(val) || !arr2.includes(val));
 }
 ```
 
@@ -1348,32 +1345,33 @@ function diffArray(arr1,arr2) {
 
 ![image-20210827181134282](http://i0.hdslb.com/bfs/album/403ee9ea48cd10898ce860e4a551c3ce33412707.png)
 
-``` js
+```js
 输入： [1, 2, 3, 1, 2, 3], 2, 3
 返回:  [1,1]
 输入:  ["tree", "hamburger", 53], "tree", 53
 返回： ["hamburger"]
 ```
 
-``` js
+```js
 // 使用arguments接收类数组对象变成数组
 function destroyer(arr) {
-  let toDelete = Array.from(arguments)		// 数组后面的参数组成的数组
-  return arr.filter(item => {				// arr就是默认数组参数
-    if(!toDelete.includes(item)) {
-      return item
+  let toDelete = Array.from(arguments); // 数组后面的参数组成的数组
+  return arr.filter((item) => {
+    // arr就是默认数组参数
+    if (!toDelete.includes(item)) {
+      return item;
     }
-  })
+  });
 }
 
 // 换一种map写法
 function destroyer(arr) {
-  let toDelete = new Set([...arguments].slice(1))
-  return arr.filter(item => {
-    if(!toDelete.has(item)) {
-      return item
+  let toDelete = new Set([...arguments].slice(1));
+  return arr.filter((item) => {
+    if (!toDelete.has(item)) {
+      return item;
     }
-  })
+  });
 }
 ```
 
@@ -1381,48 +1379,52 @@ function destroyer(arr) {
 
 ![image-20210827110143546](http://i0.hdslb.com/bfs/album/17dfad513c9c6b4505d06c3449914d193c5ffda1.png)
 
-``` js
-输入: "Let us go to the store", "store", "mall"
-返回:	"Let us go to the mall"
-输入: "This has a spellngi error", "spellngi", "spelling"
-返回: "This has a spelling error"
+```js
+输入: "Let us go to the store", "store", "mall";
+返回: "Let us go to the mall";
+输入: "This has a spellngi error", "spellngi", "spelling";
+返回: "This has a spelling error";
 // 注意后after需要与before保持大小写一致
 ```
 
-
-
-``` js
+```js
 // 先判断before的首字母大小写 ==> 匹配before与after大小写一致 ===> 遍历替换str的数组再拼接
-function myReplace(str,before,after) {
-  if(before.charCodeAt(0) > 96) {
-    after = after[0].toLowerCase() + after.slice(1)
+function myReplace(str, before, after) {
+  if (before.charCodeAt(0) > 96) {
+    after = after[0].toLowerCase() + after.slice(1);
   } else {
-    after = after[0].toUpperCase() + after.slice(1)
+    after = after[0].toUpperCase() + after.slice(1);
   }
-  return str.split(' ').map(item => {
-    if(item === before) {
-      item = after
-    }
-    return item
-  }).join(' ')
+  return str
+    .split(" ")
+    .map((item) => {
+      if (item === before) {
+        item = after;
+      }
+      return item;
+    })
+    .join(" ");
 }
 
 // 思路一样，更换reduce方法来累加返回字符串
-function myReplace(str,before,after) {
-  let target = ''
-  if(before.charCodeAt(0) > 96) {
-		target = after[0].toLowerCase() + after.slice(1)
+function myReplace(str, before, after) {
+  let target = "";
+  if (before.charCodeAt(0) > 96) {
+    target = after[0].toLowerCase() + after.slice(1);
   } else {
-    target = after[0].toUpperCase() + after.slice(1)
+    target = after[0].toUpperCase() + after.slice(1);
   }
   // 更换大小写
-  return str.split(' ').reduce((acc,cur)=> {
-    if(cur === before) {
-      return acc + ' ' + target				// 如果当前字符串匹配相同，则返回拼接新的字符串
-    } else {
-      return acc + ' ' + cur			// 匹配不到，返回的字符没有改变
-    }
-  } ,'').trimStart()				// str.trimStart()方法可以去除字符串的首位空格
+  return str
+    .split(" ")
+    .reduce((acc, cur) => {
+      if (cur === before) {
+        return acc + " " + target; // 如果当前字符串匹配相同，则返回拼接新的字符串
+      } else {
+        return acc + " " + cur; // 匹配不到，返回的字符没有改变
+      }
+    }, "")
+    .trimStart(); // str.trimStart()方法可以去除字符串的首位空格
 }
 ```
 
@@ -1430,87 +1432,75 @@ function myReplace(str,before,after) {
 
 ![image-20210904183530343](http://i0.hdslb.com/bfs/album/4e67068f0ec41057b025081041fd6183d81ec7b4.png)
 
-``` js
-输入: "abce" 
-返回: "d"
-输入: "abcdefghjklmno"
-返回: "i"
+```js
+输入: "abce";
+返回: "d";
+输入: "abcdefghjklmno";
+返回: "i";
 ```
 
-``` js
+```js
 // 方法一, 分割字符串 ==> 字符串转字符码数组 ==> 遍历数组遇到不连续的数就输出其对应的字
 function fearNotLetter(str) {
-  let arr = str.split('').map(item => item.charCodeAt())
-  let cur = arr[0]
-  for(let i of arr) {
-    if(i !== cur) {
-      return String.fromCharCode(cur)
+  let arr = str.split("").map((item) => item.charCodeAt());
+  let cur = arr[0];
+  for (let i of arr) {
+    if (i !== cur) {
+      return String.fromCharCode(cur);
     }
-    cur++
+    cur++;
   }
 }
 
 // 方法二, 遍历字符串 ==> 比较字符串当前值和下一个值得code码是否连续
 function fearNotLetter(str) {
-  for(let i = 0; i < str.length - 1; i++) {				// i+1的指针需要扫到末尾,所以i的位置要提前
-    let cur = str[i].charCodeAt(), next = str[i+1].charCodeAt();
-    if(cur + 1 !== next) {
-      return String.fromCharCode(cur+1)
+  for (let i = 0; i < str.length - 1; i++) {
+    // i+1的指针需要扫到末尾,所以i的位置要提前
+    let cur = str[i].charCodeAt(),
+      next = str[i + 1].charCodeAt();
+    if (cur + 1 !== next) {
+      return String.fromCharCode(cur + 1);
     }
   }
 }
 
 // 方法三 在不缺失的字符串数组中过滤出没有出现过的数组元素
 function fearNotLetter(str) {
-  let start = str[0].charCodeAt(), end = str[str.length - 1].charCodeAt();
-  let arr = []
-  for(let i = start; i <= end; i++ ) {
-    arr.push(String.fromCharCode(i))
+  let start = str[0].charCodeAt(),
+    end = str[str.length - 1].charCodeAt();
+  let arr = [];
+  for (let i = start; i <= end; i++) {
+    arr.push(String.fromCharCode(i));
   }
-  return arr.filter(item => !str.split('').includes(item))[0]
+  return arr.filter((item) => !str.split("").includes(item))[0];
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ### 求斐波那契数列的奇数和
 
 ![image-20210830094728369](http://i0.hdslb.com/bfs/album/eab5a632685d98922db4e2bf510594ec920e0a59.png)
 
-``` js
-输入: 1000
-返回: 1785
-输入: 4000000 
-返回: 4613732
+```js
+输入: 1000;
+返回: 1785;
+输入: 4000000;
+返回: 4613732;
 ```
 
-``` js
+```js
 // 方法一: 先获得nums以内的斐波那契数列 ==> 对数列奇数元素求和
 function sumFibs(nums) {
-  let arr = [1,1], res = 0;
-  while(arr[arr.length - 1] + arr[arr.length - 2] <= nums) {
-    arr.push(arr[arr.length - 1] + arr[arr.length - 2])
+  let arr = [1, 1],
+    res = 0;
+  while (arr[arr.length - 1] + arr[arr.length - 2] <= nums) {
+    arr.push(arr[arr.length - 1] + arr[arr.length - 2]);
   }
-	for(let i of arr) {
-    if(i % 2 === 1) {
-      res += i
+  for (let i of arr) {
+    if (i % 2 === 1) {
+      res += i;
     }
   }
-  return res
+  return res;
 }
 ```
 
@@ -1518,24 +1508,33 @@ function sumFibs(nums) {
 
 ![image-20210831112323829](http://i0.hdslb.com/bfs/album/6af05f5c8e991670410e158f6c418439fa237e75.png)
 
-``` js
-输入: "This Is Spinal Tap"
-返回: "this-is-spinal-tap"
-输入: "thisIsSpinalTap"
-返回: "this-is-spinal-tap"
-输入: "The_Andy_Griffith_Show" 
-返回: "the-andy-griffith-show"
+```js
+输入: "This Is Spinal Tap";
+返回: "this-is-spinal-tap";
+输入: "thisIsSpinalTap";
+返回: "this-is-spinal-tap";
+输入: "The_Andy_Griffith_Show";
+返回: "the-andy-griffith-show";
 ```
 
-``` js
+```js
 function spinalCase(str) {
-  return str.split('').map(i => i.charCodeAt() < 90 ? ' ' + i.toLowerCase() : i)
-  .join('').trim().split(/ |-|_/).filter(i => i).join('-')
+  return str
+    .split("")
+    .map((i) => (i.charCodeAt() < 90 ? " " + i.toLowerCase() : i))
+    .join("")
+    .trim()
+    .split(/ |-|_/)
+    .filter((i) => i)
+    .join("-");
 }
 
 // 讲字符串用几个条件分割开来,再用-拼接,最后转x
 function spinalCase(str) {
-  return str.split(/_| |-|(?<=[a-z])\B(?=[A-Z])/).join('-').toLowerCase()
+  return str
+    .split(/_| |-|(?<=[a-z])\B(?=[A-Z])/)
+    .join("-")
+    .toLowerCase();
 }
 ```
 
@@ -1543,17 +1542,17 @@ function spinalCase(str) {
 
 ![image-20210831143512068](http://i0.hdslb.com/bfs/album/3fbae109764fddd190819f1d69f6b57943ac9be7.png)
 
-``` js
-输入: [1, 3, 2], [5, 2, 1, 4], [2, 1] 
-返回: [1, 3, 2, 5, 4]
-输入: [1, 2, 3], [5, 2, 1] 
-返回: [1, 2, 3, 5]
+```js
+输入: [1, 3, 2], [5, 2, 1, 4], [2, 1];
+返回: [1, 3, 2, 5, 4];
+输入: [1, 2, 3], [5, 2, 1];
+返回: [1, 2, 3, 5];
 ```
 
-``` js
+```js
 // 接受数组参数 ==> 数组扁平化 ==> set去重
 function uniteUnique(arr) {
-  return [...new Set(Array.from(arguments).flat())]
+  return [...new Set(Array.from(arguments).flat())];
 }
 ```
 
@@ -1561,69 +1560,66 @@ function uniteUnique(arr) {
 
 ![image-20210918014831480](http://i0.hdslb.com/bfs/album/072dee20fe25f4510ba43f5515d8330ac44d4058.png)
 
-``` js
-输入: sumPrimes(10)
-返回: 17
-输入: sumPrimes(977) 
-返回: 73156
+```js
+输入: sumPrimes(10);
+返回: 17;
+输入: sumPrimes(977);
+返回: 73156;
 // 数字1 既不算质数也不算合数
 ```
 
-``` js
+```js
 // 方法一 求出数字范围内得所有数字组成得数组 ==> 判断数字是否为质数 ==> 对质数数组进行求和
 function sumPrimes(num) {
-	let arr = []
-  for(let i = 1; i <= num; i++) {
-    if(isPrimeNum(i)) {
-      arr.push(i)
+  let arr = [];
+  for (let i = 1; i <= num; i++) {
+    if (isPrimeNum(i)) {
+      arr.push(i);
     }
   }
-  return arr.reduce((acc,item) => acc + item, 0)
+  return arr.reduce((acc, item) => acc + item, 0);
 }
 
 function isPrimeNum(number) {
-	if(number === 1) {
-    return false
+  if (number === 1) {
+    return false;
   }
-  for(let j = 2; j < number; j++) {
-		if(number % j === 0) {
-			return false
+  for (let j = 2; j < number; j++) {
+    if (number % j === 0) {
+      return false;
     }
   }
-  return true
+  return true;
 }
 ```
-
-
-
-
-
 
 ### 找出数字范围内的最小公倍数
 
 ![image-20210909143445541](http://i0.hdslb.com/bfs/album/b11d9d54a1dbbe774c80641ff77e6cdb205e6ae7.png)
 
-``` js
-输入：[1, 5] 
+```js
+输入：[1, 5]
 返回: 60
-输入: [5, 1] 
+输入: [5, 1]
 返回: 60
-输入: [1, 13] 
+输入: [1, 13]
 返回: 360360
 ```
 
-``` js
+```js
 // 获取范围内的数组 ==> 暴力穷举试探数组中的元素是否为所有元素公倍数
 function smallestCommons(arr) {
-	let min = Math.min(...arr), max = Math.max(...arr);
-  let numArr = [], res = max;
-  for(let i = min; i <= max; i++) {
-    numArr.push(i)
+  let min = Math.min(...arr),
+    max = Math.max(...arr);
+  let numArr = [],
+    res = max;
+  for (let i = min; i <= max; i++) {
+    numArr.push(i);
   }
-  while(!numArr.every(i => res % i === 0)) {
-		res += max
+  while (!numArr.every((i) => res % i === 0)) {
+    res += max;
   }
-  return res
+  return res;
 }
 ```
 
@@ -1631,31 +1627,37 @@ function smallestCommons(arr) {
 
 ![image-20210902163043063](http://i0.hdslb.com/bfs/album/2b84d3cb43fc5cac161a62514798ab2de8e46cc7.png)
 
-``` js
-输入: [1, 2, 3, 4], function(n) {return n >= 3;}
-返回: [3, 4]
-输入: [1, 2, 3, 7, 4], function(n) {return n > 3;}
-返回: [7, 4]
+```js
+输入: [1, 2, 3, 4],
+  function (n) {
+    return n >= 3;
+  };
+返回: [3, 4];
+输入: [1, 2, 3, 7, 4],
+  function (n) {
+    return n > 3;
+  };
+返回: [7, 4];
 ```
 
-``` js
+```js
 // 方法一 和数组filter有区别: filter过滤会对每一项元素进行访问,此题只需要返回第一次满足条件后面的元素
-function dropElements(arr,func) {
-  	let res = [...arr]
-    for(let i of arr) {
-      if(func(i)) {
-        break
-      } else {
-        res.shift()
-      }
+function dropElements(arr, func) {
+  let res = [...arr];
+  for (let i of arr) {
+    if (func(i)) {
+      break;
+    } else {
+      res.shift();
     }
-  	return res
+  }
+  return res;
 }
 
 // 方法二 使用while循环会更加简单点, 不停的判断数组的头部是否满足func,满足不操作,不满足切掉头部
-function dropElements(arr,func) {
-	while(!func(arr[0])) {
-    arr.shift()
+function dropElements(arr, func) {
+  while (!func(arr[0])) {
+    arr.shift();
   }
 }
 ```
@@ -1664,49 +1666,53 @@ function dropElements(arr,func) {
 
 ![image-20210910001636637](http://i0.hdslb.com/bfs/album/c1fbee94405174c7c201315c383df28a452789fe.png)
 
-``` js
-输入: [[["a"]], [["b"]]] 
-返回: ["a", "b"]
-输入: [1, {}, [3, [[4]]]] 
-返回: [1, {}, 3, 4]
+```js
+输入: [[["a"]], [["b"]]];
+返回: ["a", "b"];
+输入: [1, {}, [3, [[4]]]];
+返回: [1, {}, 3, 4];
 ```
 
-``` js
+```js
 // 使用递归: 声明结果数组 ==> 遍历给定数组,每项元素不是数组直接push,是数组递归返回数组中的元素
 function steamrollArray(arr) {
-	let res = []
-  for(let item of arr) {
-		if(Array.isArray(item)) {
-      res = [...res,...steamrollArray(item)]
+  let res = [];
+  for (let item of arr) {
+    if (Array.isArray(item)) {
+      res = [...res, ...steamrollArray(item)];
     } else {
-      res.push(item)
+      res.push(item);
     }
   }
-  return res
+  return res;
 }
 
 // 方法二: 如果数组中是纯数字数组的话,对数组先转成字符串,分割最后在map
 function steamrollArray(arr) {
-	return arr.toString().split(',').map(item => parseInt(item))
+  return arr
+    .toString()
+    .split(",")
+    .map((item) => parseInt(item));
 }
 ```
-
-
 
 ### 翻译二进制字符串
 
 ![image-20210902145558858](http://i0.hdslb.com/bfs/album/6fd0465b6bc97e5d6e16e6b7a05b04719c75e497.png)
 
-``` js
-输入: "01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111"
-返回: "Aren't bonfires fun!?"
-输入: "01001001 00100000 01101100 01101111 01110110 01100101 00100000 01000110 01110010 01100101 01100101 01000011 01101111 01100100 01100101 01000011 01100001 01101101 01110000 00100001" 
-返回: "I love FreeCodeCamp!"
+```js
+输入: "01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111";
+返回: "Aren't bonfires fun!?";
+输入: "01001001 00100000 01101100 01101111 01110110 01100101 00100000 01000110 01110010 01100101 01100101 01000011 01101111 01100100 01100101 01000011 01100001 01101101 01110000 00100001";
+返回: "I love FreeCodeCamp!";
 ```
 
-``` js
+```js
 // 字符串split分割 ==> 每项字符转十进制数字 ==> string.formCharCode()转字符 ==> join拼接
 function binaryAgent(str) {
-  return str.split(' ').map(item => String.fromCharCode(parseInt(item,2))).join('')
+  return str
+    .split(" ")
+    .map((item) => String.fromCharCode(parseInt(item, 2)))
+    .join("");
 }
 ```

@@ -140,7 +140,7 @@ React自身仅有很小的API,你刚开始只需要理解4个基本概念:
 
 初始化完成后,按照提示,输入对应的命令,安装依赖文件
 
-<img src="C:/Users/30328/AppData/Roaming/Typora/typora-user-images/image-20210927113523967.png" alt="image-20210927113523967" style="zoom:50%;" />
+<img src="http://i0.hdslb.com/bfs/album/3ec44b19b355d4470724a7e0f587a9b620b97df7.png" alt="image-20210927113523967" style="zoom:50%;" />
 
 在这里可以看到不到一秒钟,所有的依赖文件都已经安装完毕,可以说速度很快了
 

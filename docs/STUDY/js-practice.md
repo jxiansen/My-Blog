@@ -1428,6 +1428,39 @@ function myReplace(str, before, after) {
 }
 ```
 
+### DNA配对
+
+![image-20210918115325724](http://i0.hdslb.com/bfs/album/d5608e6f1ee0d0b18bf8ada0d64ad7b4b59a5488.png)
+
+``` js
+输入: "GCG" 
+返回: [["G", "C"], ["C","G"], ["G", "C"]]
+```
+
+``` js
+function pairElement(str) {
+	let obj = {
+    "A": "T",
+    "T": "A",
+    "G": "C",
+    "C": "G"
+  } 
+  let res = []
+  for(let item of str) {
+		for(let key in obj) {
+      if(item === ke) {
+        res.push([item,obj[key]])
+      }
+    }
+  }
+  return res
+}
+```
+
+
+
+
+
 ### 寻找缺失的字母
 
 ![image-20210904183530343](http://i0.hdslb.com/bfs/album/4e67068f0ec41057b025081041fd6183d81ec7b4.png)

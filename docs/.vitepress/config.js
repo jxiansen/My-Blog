@@ -58,6 +58,7 @@ function getGuideSidebar() {
         { text: "30S-css", link: "/STUDY/30S-css" },
         { text: "30S-js", link: "/STUDY/30S-js" },
         { text: "Linux学习", link: "/STUDY/linux" },
+        { text: "React初学者手册", link: "/STUDY/React-handbook" },
         { text: "docker入门", link: "/STUDY/docker" },
         { text: "vitepress", link: "/STUDY/vitepress-study" },
         { text: "JavaScript", link: "/STUDY/javaScript" },

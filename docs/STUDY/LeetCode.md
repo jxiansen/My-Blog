@@ -160,3 +160,20 @@ function missingNumber(nums) {
 }
 ```
 
+### [1. 两数之和](https://leetcode-cn.com/problems/two-sum/)
+
+![image-20210919011550412](http://i0.hdslb.com/bfs/album/caea4fcfa03f3a3776c792182bfc178ad8c1ccb8.png)
+
+``` js
+// 方法一, 双重循环遍历暴力解法
+function twoSum(nums,target) {
+  for(let i = 0; i < nums.length; i++) {
+    for(let j = i + 1; j < nums.length; j++) {
+      if((target - nums[i]) === nums[j]) {
+        return []
+      }
+    }
+  }
+}
+```
+

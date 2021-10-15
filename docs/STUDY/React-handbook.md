@@ -209,3 +209,421 @@ function App() {
 
 export default App
 ```
+
+一个由React构建的应用,或者说其他的流行框架类似于Vue和Svelte都是由几十个组件所组成.
+
+现在我们来分析下这第一个组件.我们可以把这个组件尽可能的简化成下面的样子:
+
+``` react
+import { useState } from 'react'
+import logo from './logo.svg'
+import './App.css'
+
+function App() {
+  return /* something */
+}
+
+export default App
+```
+
+在这你可以看到一些东西,我们首先导入了几个"东西",并且导出了一个叫 `App` 的函数,在例子中,我们导入的东西包括: Javascript库文件(`react` 的`npm` 包文件),一个SVG 图像,和一个CSS 文件
+
+> `create-react-app` 的默认配置允许我们导入图像和 CSS 文件以便我们在JavaScript 中使用,但这并不是我我们需要关心的事情,我们仅需要关注组件的概念
+
+`App` 是一个函数,在原来的例子中,它返回的东西乍看起来很奇怪,它看起来像是`HTML` 但是又在里面嵌入了`JavaScript` 代码.
+
+这就是 `JSX`  ,一种用来构建组件进行输出的特殊语言,下一章节我们会更多的聊`JSX`
+
+一个组件除了定义需要返回的 JSX 之外,还有其他几个特征
+
+组件可以有自己的 `state` (状态),这意味着它封装了一些其他组件无法访问的变量,除非这个组件主动暴露给应用的其他部分.
+
+组件也可以从其他组件中接受数据,这种情况我们称它为 `props` 
+
+别担心,我们很快就会详细的了解这些术语(JSX, State和Props).
+
+# JSX 简介
+
+说到React 就不得不提及 `JSX` ,你看到的第一个React 组件, `App` 组件就是由`create-react-app` 这个默认应用定义的,它的代码时这样的: 
+
+``` react
+import { useState } from 'react'
+import logo from './logo.svg'
+import './App.css'
+
+function App() {
+  const [count, setCount] = useState(0)
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>Hello Vite + React!</p>
+        <p>
+          <button type="button" onClick={() => setCount((count) => count + 1)}>
+            count is: {count}
+          </button>
+        </p>
+        <p>
+          Edit <code>App.jsx</code> and save to test HMR updates.
+        </p>
+        <p>
+          <a
+            className="App-link"
+            href="https://reactjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Learn React
+          </a>
+          {' | '}
+          <a
+            className="App-link"
+            href="https://vitejs.dev/guide/features.html"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Vite Docs
+          </a>
+        </p>
+      </header>
+    </div>
+  )
+}
+
+export default App
+```
+
+之前我们忽略了`return` 里面声明的东西,在本章节中我们将会讨论这些
+
+我们把组件中所有包裹在括号里面返回的内容称为JSX.这些东西看起来像 `HTML` 但并不是真正的 `HTML` .还是有点不同的地方,并且就算把这段代码放在`JS` 文件中,一点也不像`JavaScript` 
+
+代码背后,React将会对这些`JSX` 进行处理,并将其转译成浏览器能够解释的`JavaScript` 代码.
+
+虽然我们在编写 `JSX` 代码,但是最后有一个转译步骤,是其能够被`JavaScript` 解释器所执行.
+
+React给了我们这个接口,原因之一就是: 更容易使用`JSX` 来构建`UI` 界面,当然,你只要对它稍微熟悉点就够了
+
+下一小节中,我们将讨论`JSX` 如何让你更容易的构建`UI` 界面,然后我们将看看你需要知道其与正常`HTML` 的区别之处.
+
+# 使用JSX来组件UI
+
+正入上一节所提到的,使用`JSX` 的主要好处之一就是可以非常容易的建立一个React组件.特别是,在React组件中,你可以导入其他的React组件,也可以嵌入并显示他们.
+
+一个React组件通常是在它自己的文件中创建的,因为这样我们可以很容易的在其他组件中(通过导入)进行复用.
+
+但一个React组件也可以通过另一个组件的同一个文件来创建.如果你打算只在这个组件中使用它,也并没又什么规定,你自己感觉不错就行.
+
+当一个文件的行数变得太多了的时候,我一般会使用单独的文件.
+
+为了尽可能的简单,我们先创建一个相同的组件: `App.js` 
+
+我们接着创建一个`WelcomeMessage` 的组件:
+
+``` react
+function WelcomeMessage() {
+  return <p>Welcome!</p>
+}
+```
+
+看到没?这个简单的函数返回了一行代表`p` `HTML` 的元素的`JSX` ,我们将会添加它刀这个 `App.js` 文件.
+
+现在我们可以在 `App` 组件的 `JSX` 中添加这个 `<Welcome Message/>` 在用户界面中显示 
+
+``` react
+import { useState } from 'react'
+import logo from './logo.svg'
+import './App.css'
+
+function WelcomeMessage() {
+  return <p>Welcome!</p>
+}
+
+function App() {
+  const [count, setCount] = useState(0)
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>Hello Vite + React!</p>
+        <WelcomeMessage/>
+        <p>
+          <button type="button" onClick={() => setCount((count) => count + 1)}>
+            count is: {count}
+          </button>
+        </p>
+        <p>
+          Edit <code>App.jsx</code> and save to test HMR updates.
+        </p>
+        <p>
+          <a
+            className="App-link"
+            href="https://reactjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Learn React
+          </a>
+          {' | '}
+          <a
+            className="App-link"
+            href="https://vitejs.dev/guide/features.html"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Vite Docs
+          </a>
+        </p>
+      </header>
+    </div>
+  )
+}
+
+export default App
+```
+
+现在这是结果,你应该能在屏幕中看到这个 `Welcome` 信息.
+
+<img src="http://i0.hdslb.com/bfs/album/4d3f479e9833ed64f2743bf89e303b1f62fab238.png" alt="image-20210930171252350" style="zoom:67%;" />
+
+我们把这个应用中的 `WelcomeMessage`  称为"子组件", `App` 就是它的父组件.
+
+我们添加这个 `<Welcome Message>` 组件就像它是 `HTML` 语言一样,这就是 React 组件和 `JSX` 的美妙之处: 我们可以就像写 `HTML` 页面一样,用它们去构建应用界面.
+
+关于一些不同的地方,我们会在下一章节中介绍.
+
+# JSX 和 HTML 的不同之处
+
+`JSX` 看起来很像 `HTML` ,但他并不是.这个章节中,我想给你介绍一些使用 `JSX` 时候你必须要知道的重点.
+
+如果你仔细看 `App` 组件中的 `JSX` 元素,会发现一个地方明显有不同: 有一个奇怪的属性叫做: `class Name` .
+
+在 `HTML` 中,我们称为"class"属性,诸多原因,这个属性用的非常多,其中一个原因是 `CSS` , `class` 属性让我们很容易对 `HTML` 属性设置各种各样的样式,像`Tailwind` 这种`CSS` 框架把这个属性放在了用户设计界面的中心位置.
+
+但是有个问题,我们在`JS` 文件中写`UI` 代码,但是在`Javascript` 这门编程语言中,`Class` 是一个关键字,这意味着我们不能随便使用这个关键字,它有个特定的用途(定义`JavaScript` 类) ,所以React的作者不得不为他选择一个不同的名字.
+
+这就是我们最后要用`class Name`而不是`class` .当你直接复制/粘贴`HTML` 代码片段的时候,你需要牢记这一点,
+
+React 将会尽力保证不出错,但它会在开发者工具中提供一些报错提醒.
+
+![image-20210930195839507](http://i0.hdslb.com/bfs/album/3a5ee74cf87fc39363414b60f9c2b67d25893074.png)
+
+这并不是唯一存在这个问题的 `HTML` 功能,但却是最常见的一个.
+
+另一个 `JSX` 和 `HTML` 的不同之处是,`HTML` 语法很宽松,我们可以说,即使你在语法上有错误,或者你标签对闭合错误,或者有一个不匹配的.浏览器也会尽力去解释`HTML` 不会让它错误.
+
+这是网页的重要特点之一,它很宽松.
+
+`JSX` 就不那么宽松了,如果你忘了闭合标签,你会直接收到一个报错.
+
+<img src="http://i0.hdslb.com/bfs/album/9b33d1735df7cb87388aa8a3a7bb9e1a799a7370.png" alt="image-20210930200611990" style="zoom:67%;" />
+
+> React 一般会给出友好并且信息详尽的错误提示,这会帮你更好的解决问题
+
+另一个较大的不同之处在于在 `JSX` 和 `HTML` 中我们可以插入`js` 代码.
+
+我们会在下一章节中聊一聊这方面.
+
+# 在JSX中编写JavaScript
+
+React 的最棒的一个特点就是:React允许我们在`JSX` 中编写`JavaScript` 代码并嵌入.
+
+其他诸如`Angular` 和 `Vue` 框架,有他们自己特定的方式来输出模板中中的`JavaScript` 值,或者执行循环这样的事情.
+
+React并没有增加新的东西,相反,它通过使用大括号,来让我们在`JSX` 中使用`Javascript` 
+
+我直接拿我们之前研究的 `App` 组件当例子来向你展示:
+
+我们通过这样来导入这个 `logo` 的SVG 文件
+
+``` js
+import logo from './logo.svg'
+```
+
+接着我们在 `JSX`中给这个SVG 文件中的`img` 标签 `Src` 属性.
+
+``` js
+<img src+{logo} class="App-logo" alt="logo" />
+```
+
+再举个列子,假设 `App` 组件有一个变量叫做 `message` 
+
+``` react
+function App() {
+  const message = 'Hello!'
+  //...
+}
+```
+
+我们可以通过在 `JSX` 中添加 `{message}` 来输出他的值,在花括号 `{}` 中,我们可以添加任何 `Javascript` 语句,但每一个大括号都要有一个语句.接着这个代码语句必须有返回值.
+
+例如:这是一个在 `JSX` 中常见的语句,我们有一个三元操作符,我们定义了一个条件( `message=== hello` ),如果判断为真,就输出一个值,判断为假,则打印另一个值(指本例中 `message` 的内容)
+
+``` react
+{
+  message === 'Hello!' ? "true" : "false";
+}
+```
+
+# React状态管理
+
+每一个React组件都有自己的 `state` (状态),这里所说的 `state` 是什么意思? `state` 是由组件管理的一组数据.
+
+举个例子,想象下一个表单,表单中的每一个独立输入元素,都需要负责管理其对应状态: "表单内写了什么"
+
+当一个按钮没有被聚焦时,需要负责知道自己是否被点击了,一个超链接需要负责知道自己是否被鼠标悬停过,在React 或其他任何基于组件的框架和库中,我们所有的应用程序都基于并大量使用组件的状态.
+
+我们使用React 提供的 `usestate` 工具来管理状态.这是一个钩子(现在你还不用知道钩子的细节,但他就是这样用的)
+
+你先用这种方式来从React中导入`useState` 
+
+``` react
+import React, { useState } from 'react'
+```
+
+通过调用 `useState()` ,你将会得到一个新的状态变量,和一个我们可以调用的函数来改变其值.
+
+`useState()` 接受状态项的初始值,并返回一个包含状态变量的数组.以及可以用来改变状态的函数.
+
+例如: 
+
+``` react
+const [count, setCount] = useState(0)
+```
+
+这很重要,我们不能直接改变一个状态变量的值,必须调用它的修改器函数.否则React组件将不会根据数据的变化更新 UI界面.调用修改器函数是我们告诉React组件状态已经发生改变的方式.
+
+语法有点奇怪,对嘛? 由于`useState()` 返回一个数组,我们使用数组结构语法来访问每一个单独项目.像这样: `const [count, setCount] = useState(0)` 
+
+下面是一个实际的例子:
+
+``` react
+import { useState} from 'react'
+const Counter = () => {
+  const [count, setCount] = useState(0)
+  return (
+  	<div>
+    	<p>You clicked {count} times</p>
+      <button onClick={ () => setCount(count + 1)}>Clickme</button>
+    </div>
+  )
+}
+
+ReactDOM.render(<counter />,document.getElementById('App'))
+```
+
+只要你想,你可以添加任意多的 `useState() `调用 ,来创建任意多的状态变量
+
+``` react
+const [count, setCount ] = useState(0)
+const [anoterCounter, setAnoterCounter] = useSta
+```
+
+# React组件 Props
+
+我们把传递给组件的初始值称为 `props` ,在之前我们创造过一个 `welcomeMessage` 组件
+
+``` react
+function WelcomeMessage() {
+  return <p>Welcome!</p>
+}
+```
+
+接着我们这样来使用它:
+
+``` react
+<WelcomeMessage />
+```
+
+这个组件并没有任何初始值,它并没有 `props`, `props` 可以在作为属性传递给JSX中的组件.
+
+``` react
+<WelcomeMessage myProp={'somevalue'} />
+```
+
+然后在组件内部,我们接受 `props` 作为参数
+
+``` react
+function WelocmeMessage(props) {
+  return <p>Welcome!</p>
+}
+```
+
+我们经常会使用:"对象的解构" 来获取 `props` 的名称
+
+``` react
+function WelcomeMessage({ myprop}) {
+  return <p>Welcome!</p>
+}
+```
+
+现在我们有了`prop` ,我们可以在组件的内部使用它,例如: 我们可以在`JSX` 中打印它的值:
+
+``` react
+function WelcomeMessage({ myprop }) {
+  return <p>{myprop}</p>
+}
+```
+
+这里的大括号由多种含义,在函数参数的情况下,大括号是作为对象解构语法的一部分使用的,接着我们用它们来定义函数代码块,最后在JSX中打印 `JavaScript` 值.
+
+向组件传 `props` 是在你的应用程序中传递数据的好方法.一个组件要么持有数据要么通过 `props` 来接受数据.
+
+我们也可以把函数作为 `props` 来传递,所以一个子组件可以在一个父组件中调用一个函数.
+
+一个特殊的 `props` 叫做`children` 它包含在组件的开头和结尾标签之间传递任何东西的值,例如:
+
+``` react
+<welcomeMessage>Here is some message</welcomeMessage>
+```
+
+在这个例子中, 在 `WelcomeMessage` 内部,我们可以通过使用 `children` 来访问 `Here is some message` 的值.
+
+``` react
+function WelcomeMessage( {children} ) {
+  return <p> {children}</p>
+}
+```
+
+# React 应用中的数据流
+
+在React应用中,数据通常从父组件流向子组件,正如我们在上一节看到的那样,使用 `props` 
+
+``` react
+<WelcomeMessage myprop= {'somevalue'} />
+```
+
+如果你向子组件传递一个函数,你就可以改变从子组件上改变父组件的状态.
+
+``` react
+const [count,setCount] = useState(0)
+<Counter setCount = {setCount} />
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -2,6 +2,7 @@ module.exports = {
   base: '/',//基础路径
   head: [
     ['meta', { name: 'keywords', content: '前端,学习,成长,Mr-j,资源' }],
+    ['link', { rel: 'icon', href: 'http://i0.hdslb.com/bfs/album/ec78ee304b559735b0998fc680cfa3a2cfb8c53c.png', }],   // 网页tab栏的logo图
     ['meta', { name: 'referrer', content: 'no-referrer' }]//  使用B站图床防盗链
   ],
   title: 'VitePress',
@@ -13,41 +14,25 @@ module.exports = {
 
   themeConfig: {
     logo: 'http://i0.hdslb.com/bfs/album/ec78ee304b559735b0998fc680cfa3a2cfb8c53c.png',
-
     repo: 'vuejs/vitepress',
     docsDir: 'docs',
     docsBranch: 'master', //分支
 
     editLinks: true,
-    editLinkText: 'Edit this page on GitHub',
-    lastUpdated: 'Last Updated',
-
-    algolia: {
-      apiKey: 'c57105e511faa5558547599f120ceeba',
-      indexName: 'vitepress'
-    },
+    editLinkText: '在gitee上面修改',
+    lastUpdated: '上次更新于',
 
     nav: [
-      { text: 'Guide', link: '/', activeMatch: '^/$|^/guide/' },
-      {
-        text: '配置定义',
-        link: '/config/basics',
-        activeMatch: '^/config/'
-      },
-      {
-        text: '我的gitee',
-        link: 'https://gitee.com/hijingfeng/my-blog'
-      }
+      { text: '首页', link: '/', activeMatch: '^/$|^/guide/' },
+      { text: '我的gitee', link: 'https://gitee.com/hijingfeng/my-blog' }
     ],
 
     sidebarDepth: 3,
     sidebar: {
       '/guide/': getGuideSidebar(),
-      '/config/': getConfigSidebar(),
       '/': getGuideSidebar()
     }
-  },
-
+  }
 }
 
 function getGuideSidebar() {
@@ -85,22 +70,6 @@ function getGuideSidebar() {
         { text: "Centos开放防火墙端口", link: "/hub/Centos-open" },
         { text: "SPA单页面应用", link: "/hub/spa" },
         { text: "网址导航", link: "/hub/collect-address" }
-      ]
-    }
-  ]
-}
-
-function getConfigSidebar() {
-  return [
-    {
-      text: '应用配置',
-      children: [{ text: 'Basics', link: '/config/basics' }]
-    },
-    {
-      text: '主题配置',
-      children: [
-        { text: 'Homepage', link: '/config/homepage' },
-        { text: 'Algolia Search', link: '/config/algolia-search' }
       ]
     }
   ]

@@ -78,7 +78,7 @@ var Map = function() {
 };
 ```
 
-## ES6
+## ES6中的Map语法
 
 ``` js
 // new Map() : 创建 map
@@ -102,6 +102,115 @@ map.clear()
 // map.size(): 返回map中元素的个数
 map.size()
 ```
+
+## ES5中手动创建集合类及方法
+
+``` js
+class Set {
+  constructor() {
+    // 集合类用对象存储
+    this.dictionary = {};
+    this.length = 0;
+  }
+  // has(element)： 方法判断集合中是否存在某个元素，返回"true",不存在返回"false
+  has(element) {
+    return this.dictionary[element] !== undefined;
+  }
+  // 这个方法会返回集合中的所有值
+  values() {
+    return Object.values(this.dictionary);
+  }
+  // add(element): 方法添加一个新元素到集合中，添加成功则返回true,添加失败返回false
+  add(element) {
+    if (!this.has(element)) {
+      this.dictionary[element] = element;
+      this.length++;
+      return true;
+    }
+
+    return false;
+  }
+  // remove()方法，从集合中删除某个元素，并返回true，否则返回false
+  remove(element) {
+    if (this.has(element)) {
+      delete this.dictionary[element];
+      this.length--;
+      return true;
+    }
+
+    return false;
+  }
+  // size()方法： 返回集合中的元素个数
+  size() {
+    return this.length;
+  }
+  
+  // union() 方法： 接收一个集合作为参数，返回和原本集合的并集， setA.union(setB): 集合A和集合B的并集
+  union(set) {
+    const newSet = new Set()
+    // 遍历集合一的元素，将其添加到新集合中
+    this.values().forEach(item => newSet.add(item))
+    // 遍历结合二的元素，将其添加到新集合中
+    set.values().forEach(item => newSet.add(item))
+    return newSet
+  }
+  
+  // intersection()方法： 对两个集合的数据求交集
+  intersection(set) {
+    const newSet = new Set()
+    this.values().forEach(item => {
+      if(set.values().includes(item)) {
+        newSet.add(item)
+      }
+    });
+    return newSet
+  }
+  
+  // difference()方法： 找出集合一中存在二集合二中不存在的元素，即集合一和集合二的差集
+  difference() {
+    const newSet = new Set()
+    this.values().forEach(item => {
+      if(!set.values().includes(item)) {
+        newSet.add(item)
+      }
+    })
+    return newSet
+  }
+  
+  // isSubsetOf(set)方法： 判断集合二是否为集合一的子集，是则返回true,不是子集则返回false
+  isSubsetOf(set) {
+    return this.values().every(item => set.values().includes(item))
+  }
+}
+```
+
+## ES6集合
+
+``` js
+// 创建集合
+var set = new Set()
+
+// 从一个数组中创建集合
+var set = new Set([1,2,4,'hello',null])
+
+// 集合中添加元素
+set.add(1)
+set.add(2)
+
+// 集合中删除元素
+set.delete(1)
+
+// 检查值是否在集合中
+set.has(2)
+
+// 返回集合的大小
+set.size()
+
+// 使用 "..." 展开运算符将可迭代对象转化为数组
+var set = new Set([1,2,3])
+var setToArr = [...set] 		// [1,2,3]
+```
+
 
 ## 哈希表(散列表)
 
@@ -168,6 +277,48 @@ function LinkedList() {
     }
     length++;
   }
+  
+  // remove(element)方法: 从链表中删除给定的元素
+    this.remove = function(element){
+    // 当删除的元素即为head节点
+    if(head.element === element) {
+      head = head.next;
+      return length--
+    }
+    let previous = head;
+    // 只要当前节点不是element节点,就一直往后遍历
+    while(previous) {
+      let current = previous.next
+      if(current) {
+        if(current.element === element) {
+          previous.next = current.next
+          return length--;
+        }
+      }
+      previous = current
+    }
+  };
+  
+  // isEmpty(),判断链表是否为空
+  this.isEmpty = function {
+    return length === 0	 
+  }
+  
+	// indexOf(element),根据元素查询索引,head(索引为0),如果为查询到返回-1,查询到返回index
+  this.indexOf = function(element) {
+    let current = head;
+    // 遍历节点,当索引i小于链表长度并且当前节点不是尾节点时候执行语句
+    for(let i = 0; i < length && current !== null; i++) {
+      if(current.element === element) {
+        return i
+      }
+      current = current.next		// 每次循环后步进到下一节点
+    }
+    return -1
+  }
+
+  
+  
 }
 ```
 

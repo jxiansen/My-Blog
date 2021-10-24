@@ -209,3 +209,21 @@ reboot
 
 ![image-20210807180627713](http://i0.hdslb.com/bfs/album/dfb933c9748bc51149efbf4238a6fa21010da026.png)
 
+####  Linux中查找nginx配置所在目录
+
+默认的腾讯云`node`镜像包中配置了`nginx` ,学习`express` 的时候,ip地址总是默认转到80端口,很不方便,用`express` 来提供`http` 服务.
+
+先找到 `nginx` 主程序目录
+
+``` bash
+ps - ef | grep nginx
+# 找到 master process后面的目录
+```
+
+![image-20211022172917322](http://i0.hdslb.com/bfs/album/d81382bc35d1c98de6ec9dfd0923a4d401ce874a.png)
+
+``` bash
+# 停止nginx的http服务,此时就可以接触掉nginx占用的80端口了
+cd /usr/local/lighthouse/softwares/nginx/sbin/nginx -s stop
+```
+

@@ -49,6 +49,7 @@ function getGuideSidebar() {
         { text: "JavaScript", link: "/STUDY/javaScript" },
         { text: "Javascript刷题", link: "/STUDY/js-practice" },
         { text: "Javascript数据结构", link: "/STUDY/JS-DataStructure" },
+        { text: "express入门", link: "/STUDY/express" },
         { text: "LeetCode刷题", link: "/STUDY/LeetCode" },
         { text: "正则表达式入门", link: "/STUDY/regex" },
         { text: "Markdown语法", link: "/STUDY/markdown" },

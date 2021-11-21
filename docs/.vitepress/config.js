@@ -40,12 +40,12 @@ function getGuideSidebar() {
     {
       text: '初级',
       children: [
+        { text: "html-study", link: "/STUDY/html-study" },
         { text: "30S-css", link: "/STUDY/30S-css" },
         { text: "30S-js", link: "/STUDY/30S-js" },
         { text: "Linux学习", link: "/STUDY/linux" },
         { text: "React初学者手册", link: "/STUDY/React-handbook" },
         { text: "docker入门", link: "/STUDY/docker" },
-        { text: "vitepress", link: "/STUDY/vitepress-study" },
         { text: "JavaScript", link: "/STUDY/javaScript" },
         { text: "Javascript刷题", link: "/STUDY/js-practice" },
         { text: "Javascript数据结构", link: "/STUDY/JS-DataStructure" },
@@ -56,7 +56,8 @@ function getGuideSidebar() {
         { text: "MySQL", link: "/STUDY/mysql" },
         { text: "Vue", link: "/STUDY/Vue" },
         { text: "前端面试题", link: "/STUDY/font-end interview" },
-        { text: "git入门教程", link: "/STUDY/git" }
+        { text: "git入门教程", link: "/STUDY/git" },
+        { text: "vitepress", link: "/STUDY/vitepress-study" }
       ]
     },
     {

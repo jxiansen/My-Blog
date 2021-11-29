@@ -70,6 +70,7 @@ function getGuideSidebar() {
         { text: "2021前端开发路线图", link: "/hub/fontend" },
         { text: "debian替换国内镜像源", link: "/hub/debian-img" },
         { text: "Centos开放防火墙端口", link: "/hub/Centos-open" },
+        { text: "window解除端口占用", link: "/hub/windows-kill-process" },
         { text: "SPA单页面应用", link: "/hub/spa" },
         { text: "网址导航", link: "/hub/collect-address" }
       ]

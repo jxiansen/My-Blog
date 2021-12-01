@@ -296,7 +296,6 @@ body {
 #### align-self
 
 > 用来覆盖 flex 容器的 `align-items`的设定的,对项目设置该属性后会改变原来的默认对齐方式
-
 属性同 `align-items`
 
 #### flex-grow
@@ -311,19 +310,19 @@ body {
 
 - 1 (默认值),如果空间不够,项目将会等比例缩小
 - 0 不做任何缩小,保持原来尺寸
-- <number> 如果其他数字为 1,则该项目的宽度即为总宽度,乘以他所占比例
+- 如果其他数字为 1,则该项目的宽度即为总宽度,乘以他所占比例
 
 #### flex-basis
 
 > 在没有布局前,沿着主轴方向,设置子项目的基本宽度,设置该属性后原本的高度或者宽度都会失效.
 
-- <length> 直接写长度,
+- 直接写长度,
 - `auto` (默认值) 为项目本来大小
 
 #### flex
 
 > 是 `flex-grow` `flex-shrink` `flex-basis` 一起指定的缩写
 
-### flex总结导图
+### flex 总结导图
 
 ![flexbox](http://i0.hdslb.com/bfs/album/689a0566c15edb9b23edfb687de02cbc5c275d3b.png)

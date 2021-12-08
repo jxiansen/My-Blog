@@ -345,11 +345,9 @@ body {
 
 ![flexbox](http://i0.hdslb.com/bfs/album/689a0566c15edb9b23edfb687de02cbc5c275d3b.png)
 
-## 完整CSS grid 教学
+## grid 布局
 
-![Complete CSS Grid Tutorial with Cheat Sheet 🎖️](http://i0.hdslb.com/bfs/album/033e6b6dc72b1ed1efb32ff8245f7da65ff77eba.png)
-
-### grid 布局
+### 基础概念
 
 网格布局沿着主轴和交叉轴分布,通过各种网格属性,来操作这些项目来创建各种布局.
 
@@ -725,6 +723,10 @@ place-content: space-around space-evenly;
   align-self: start | end | center | stretch ;
 }
 ```
+
+#### 知识点总结
+
+![grid](http://i0.hdslb.com/bfs/album/1552d4777fe33a60034490ce015298584a6f1b2b.png)
 
 
 ### CSS变量

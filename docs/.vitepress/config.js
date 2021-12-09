@@ -24,10 +24,11 @@ module.exports = {
 
     nav: [
       { text: '首页', link: '/', activeMatch: '^/$|^/guide/' },
-      { text: '我的gitee', link: 'https://gitee.com/hijingfeng/my-blog' }
+      { text: '我的gitee', link: 'https://gitee.com/hijingfeng/my-blog' },
+      { text: '友情链接', link: 'http://www.shyuu.cn' },
     ],
 
-    sidebarDepth: 3,
+    sidebarDepth: 4,
     sidebar: {
       '/guide/': getGuideSidebar(),
       '/': getGuideSidebar()
@@ -46,6 +47,7 @@ function getGuideSidebar() {
         { text: "Linux学习", link: "/STUDY/linux" },
         { text: "React初学者手册", link: "/STUDY/React-handbook" },
         { text: "docker入门", link: "/STUDY/docker" },
+        { text: "sass入门", link: "/STUDY/sass" },
         { text: "JavaScript", link: "/STUDY/javaScript" },
         { text: "Javascript刷题", link: "/STUDY/js-practice" },
         { text: "Javascript数据结构", link: "/STUDY/JS-DataStructure" },

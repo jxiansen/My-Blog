@@ -1,5 +1,30 @@
 # JavaScript 知识点
 
+### JS数据类型
+
+七种基本数据类型: 
+
+* `Undefined` 
+* `Null` 
+* `Boolean` 
+* `Number` 
+* `String` 
+* `Symbol` (es6新增)
+* `BigInt` (es10新增)
+
+1种引用数据类型 `object` 
+
+* 普通对象`object`
+* 数组对象 `Array`
+* 正则对象 `RegExp` 
+* 日期对象 `Date` 
+* 数学对象 `Math` 
+* 函数对象 `Function` 
+
+快速记忆法: **那你是真的牛逼 (u s N B)**
+
+基础数据类型存储在栈内存中,引用数据类型存储在堆内存中.
+
 ## DOM
 
 - DOM(document model model)文档对象模型
@@ -273,6 +298,10 @@ tmp.sayHi(); //我叫:老王
 
   声明的变量，会被自动提升到函数的顶部，成为函数的升格
 
+<img src="http://i0.hdslb.com/bfs/album/e5dab58e4ec5fedc925b06b4d6cf56a5b232e56a.png" alt="image-20211221101416142" style="zoom:50%;" />
+
+当使用 `let` 时候,同名的变量只能声明一次,否则会报错,如果使用 `var` 则会覆盖.
+
 #### let 和 const 的区别
 
 - `let`和`const`相类似，都含有块级作用域，都不允许变量提升,不允许重复声明
@@ -422,3 +451,4 @@ for (let son of map.entries()) {
 [ '红烧肉', 45 ]
 */
 ```
+

@@ -177,3 +177,280 @@ function twoSum(nums,target) {
 }
 ```
 
+### [283. 移动零](https://leetcode-cn.com/problems/move-zeroes/)
+
+![image-20211225162052079](http://i0.hdslb.com/bfs/album/767e30ec7ed4c09a90ce09fa1df7c15bee898f79.png)
+
+**思路:**
+
+读写双指针,一个慢指针表示写指针,用一个快指针表示读指针,
+
+遍历数组,遇到非0的数,将读到的值写入写指针,触发写指针改写并移动(其他情况下指针不动),读指针走到头算法结束,遍历一遍完成后,写指针的位置前面就是所有非 0 的数, 最后再将写指针后面的位置都修改为 0
+
+![Animation.gif](https://github.com/MisterBooo/LeetCodeAnimation/blob/master/0283-Move-Zeroes/Animation/Animation.gif?raw=true)
+
+``` js
+let moveZeroes = function (nums) {
+  let write = 0;        // 设置默认开始时写指针的位置
+  nums.forEach((item, index) => {     // 遍历数组
+    if (item !== 0) {           
+      nums[write] = item        // 如果遍历的值不是0 则写指针改写值,并且指针位置下次右移动
+      write++
+    }
+  });               // 此时写指针之前都是遍历到的非0数
+  for (let i = write; i < nums.length; i++) {
+    nums[i] = 0           // 修改写指针后面的所有数为0
+  }
+  return nums
+}
+```
+
+### [27. 移除元素](https://leetcode-cn.com/problems/remove-element/)
+
+![image-20211225173139804](http://i0.hdslb.com/bfs/album/2d889e499a719d62db3cb6d8efb84fb51cae1073.png)
+
+``` js
+var removeElement = function (nums, val) {
+  let index = 0           // 定义写指针
+  for (let item of nums) {      // 遍历数组,如果遍历的值和目标不等,则写指针写入该值
+    if (item !== val) {
+      nums[index] = item;         
+      index++             // 改写完成后,对写指针后移
+    }
+  }                 // 非目标元素已全部移动到写指针前方
+  nums.splice(index, nums.length)     // 直接切掉指针后方的无用元素
+  return nums.length
+};
+```
+
+### [287. 寻找重复数](https://leetcode-cn.com/problems/find-the-duplicate-number/)
+
+![image-20211225223018280](http://i0.hdslb.com/bfs/album/5d0bbdc2dccb92ea90ac05b845aa08aac3bfaecc.png)
+
+``` js
+var findDuplicate = function (nums) {
+  for (let i = 0; i < nums.length; i++) {       // 外层循环控制左指针
+    for (let j = i + 1; j < nums.length; j++) {   // 内层循环遍历左指针右侧的值
+      if (nums[i] === nums[j]) {          // 判断左右指针是否相等
+        return nums[i]
+      }
+    }
+  }
+};
+```
+
+### [125. 验证回文串](https://leetcode-cn.com/problems/valid-palindrome/)
+
+![image-20211226140129733](http://i0.hdslb.com/bfs/album/927f0c79df158f8309fd6da6249ac91eff2dafee.png)
+
+**思路**
+
+* 对字符串预处理后,翻转字符串后与原字符串做比较
+
+``` js
+var isPalidrome = function(s) {
+  s = s.toLocaleLowerCase();    // 字符串都小写
+  let str = ''
+  for (let i = 0; i < s.length; i++) {
+    let zg = /^[0-9a-zA-Z]*$/;      // 使用正则表达式匹配其中的字母和数字
+    if (zg.test(s[i])) {
+      str += s[i]
+    }
+  }               // 得到处理好的正常字符串
+  let revesedStr = str.split('').reverse().join('')
+  return str === revesedStr;
+}
+```
+
+* 使用双指针,左指针从前往后移动,右指针从后往前移动,如果相同则继续移动判断下个字符; 这样一直移动到两个指针相遇
+
+``` js
+var isPalindrome = function (s) {
+  s = s.toLocaleLowerCase();    // 字符串都小写
+  let str = ''
+  for (let i = 0; i < s.length; i++) {
+    let zg = /^[0-9a-zA-Z]*$/;      // 使用正则表达式匹配其中的字母和数字
+    if (zg.test(s[i])) {
+      str += s[i]
+    }
+  }               // 得到处理好的正常字符串
+  for(let i = 0; i < Math.ceil(str.length - 1); i++) {	 // 双指针从前往后遍历字符串只需要遍历字符串的中间
+    if(str[i] !== str[str.length - 1 - i]) {        // 如果左右指针一但不相等则直接不是回文
+      return false
+    }
+  }
+  return true;
+};
+```
+
+### [2000. 反转单词前缀](https://leetcode-cn.com/problems/reverse-prefix-of-word/)
+
+![image-20211226161455523](http://i0.hdslb.com/bfs/album/ade76247e4c37d298298e65916e4d57ce6503630.png)
+
+* 思路一
+
+对字符串分割为数组,如果数组中不包含字符直接返回字符串,否则就找到字符串中的下标,截取前面的部分进行翻转最后对结果合并返回
+
+``` js
+var reversePrefix = function (word, ch) {
+  let arr = word.split('') 
+  return !arr.includes(ch) ? word : [...arr.splice(0, arr.indexOf(ch) + 1).reverse(), ...arr].join('');
+};
+```
+
+### [507. 完美数](https://leetcode-cn.com/problems/perfect-number/)
+
+![image-20211227092915402](http://i0.hdslb.com/bfs/album/3efaf592bd4762542b9be0b2b99974ccd8e34de4.png)
+
+* 穷举法: 遍历小于num的所有数,判断其是否为num的质因子.累加所有的质因子
+
+``` js
+var checkPerfectNumber = function(num) {
+  let res = 0;
+  for(let i = 1; i <= num / 2; i++) {				// 数字的只需要遍历到一半的数据就行
+    if(num % i === 0) {
+      res += i
+    }
+  }
+  return res === num ? true : false;
+}
+```
+
+### [412. Fizz Buzz](https://leetcode-cn.com/problems/fizz-buzz/)
+
+![image-20211227095149282](http://i0.hdslb.com/bfs/album/f3ab7671a62f89ae7d88129cd0082c31e6d03ef7.png)
+
+``` js
+var fizzBuzz = function(n) {
+  let arr = [];
+  for(let i = 1; i <= n; i++ ) {
+    if(i % 3 === 0 && i % 5 === 0) {     // 同时满足3和5的倍数优先级比较高,需要放在开始
+      arr.push("FizzBuzz")
+    } else if(i % 3 === 0) {
+      arr.push("Fizz")
+    } else if(i % 5 === 0) {
+      arr.push("Buzz")
+    } else {
+      arr.push(i.toString())
+    }
+  }
+  return arr;
+};
+```
+
+### [167. 两数之和 II - 输入有序数组](https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/)
+
+![image-20211227110459232](http://i0.hdslb.com/bfs/album/880a21f081cb314cad6aacf72c66b7355ddfdb47.png)
+
+``` js
+var twoSum = function(numbers, target) {
+  let res = []
+  numbers.forEach((item,index) => {				// 遍历数组
+    for(let i = index + 1; i < numbers.length; i++) {		// 每次遍历到的数字判断右指针的值
+      if(item + numbers[i] === target) {
+        res.push(index + 1, i + 1)
+      }
+    }
+  })
+  return res;
+};
+```
+
+### [66. 加一](https://leetcode-cn.com/problems/plus-one/)
+
+![image-20211227115240374](http://i0.hdslb.com/bfs/album/9b9e824af2cef3a3f8f714fb536a927a02374924.png)
+
+* 方法一: 直接使用BigInt数据类型来解决数据精度问题(最符合直觉)
+
+``` js
+function plusOne(digits) {
+  return (BigInt(digits.join('')) + 1n).toString().split('');			// BigInt数据类型用n表示
+}
+```
+
+* 方法二,遍历数组
+ ![image-20211227162205952](http://i0.hdslb.com/bfs/album/29c64264de5d6fcd2d7da6decd7a371ef26385bf.png)
+
+``` js
+function plusOne(digits) {
+  digits.unshift(0)         // 刚开始就给数组头添加一个0,防止一直进位
+  for (let i = digits.length - 1; i >= 0; i--) {    // 从后往前遍历数组
+    if (digits[i] !== 9) {        // 数字不为9,直接加一
+      digits[i]++
+      if (digits[0] == 0) {       // 当数组首位为0,说明没有一直进位,切掉数组头部
+        digits.shift()      
+      }
+      return digits
+    } else {            // 数字为9,改写当前值为0
+      digits[i] = 0;          
+    }
+  }
+}
+```
+
+### [202. 快乐数](https://leetcode-cn.com/problems/happy-number/)
+
+![image-20211227164513823](http://i0.hdslb.com/bfs/album/8620c1bb8a1f02a8c4adf67569b503e3b3bf5771.png)
+
+``` js
+var isHappy = function (n) {
+  let set = new Set();      // 创建一个set用来存取每次的n值
+  while (n > 1) {
+    n = n.toString().split('').map(i => parseInt(i) ** 2).reduce((acc, cur) => acc + cur); // 每次求和添加到set中
+    if (set.has(n)) {         // 如果set中有了n值说明当前的循环开始重复,永远无法变成 1 ,直接返回false
+      return false;
+    }
+    set.add(n)
+  }
+  return true     // 如果能走完循环则说明最终n变成了1
+};
+```
+
+### [2089. 找出数组排序后的目标下标](https://leetcode-cn.com/problems/find-target-indices-after-sorting-array/)
+
+![image-20211227202501283](http://i0.hdslb.com/bfs/album/ae186305459d6ecd30df2344cbc9fb8a4fb4e889.png)
+
+``` js
+var targetIndices = function (nums, target) {
+  let res = []
+  nums.sort((a, b) => a - b).forEach((item, index) => {     // 对数组排序后遍历数组
+    if (item === target) {      // 如果当前值等于数组索引,则返回数组下标
+      res.push(index)
+    }
+  })
+  return res
+};
+```
+
+### [704. 二分查找](https://leetcode-cn.com/problems/binary-search/)
+
+![image-20211227203742299](http://i0.hdslb.com/bfs/album/e41a26c1f33e9aaf0c1305d85a600a63cba84ed4.png)
+
+* 方法一: 直接数组排序后,使用indexOf( )函数
+
+``` js
+var search = function(nums,target) {
+  return nums.sort((a,b) => a - b).indexOf(target)
+}
+```
+
+* 方法二: 使用二分查找
+
+``` js
+var search = function (nums, target) {
+  let start = 0, end = nums.length - 1, middle, element;
+  while (start <= end) {
+    middle = ~~((start + end) / 2);
+    element = nums[middle];
+    if (element == target) {
+      return middle;
+    } else if (target < element) {
+      end = middle - 1;
+    } else {
+      start = middle + 1;
+    }
+  }
+  return -1;
+};
+```
+

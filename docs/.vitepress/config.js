@@ -62,8 +62,9 @@ function getGuideSidebar() {
       text: 'JavaScript',
       children: [
         { text: "JavaScript", link: "/STUDY/javaScript" },
-        { text: "LeetCode刷题", link: "/STUDY/LeetCode" },
-        { text: "Javascript刷题", link: "/STUDY/js-practice" },
+        { text: "LeetCode题解", link: "/STUDY/LeetCode" },
+        { text: "牛客网题解", link: "/STUDY/nowcoder" },
+        { text: "FreeCodeCamp题解", link: "/STUDY/js-practice" },
         { text: "Javascript简写技巧", link: "/STUDY/js-shorthand" },
         { text: "Javascript数据结构", link: "/STUDY/JS-DataStructure" }
       ]

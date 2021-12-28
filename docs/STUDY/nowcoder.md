@@ -154,6 +154,50 @@ function add(a, b) {
 //且运算规则:如果a的布尔值是true ===> 返回b的值
 //				 如果a的布尔值是false===> 直接返回a的值,且不再对第二个运算子求值
 ```
+### FED72 字符串字符统计
+
+![image-20211228225233380](http://i0.hdslb.com/bfs/album/4b9127061cbce6c8bb9349caef3ff7098384c08a.png)
+
+``` js
+function count(str) {
+  let obj = {};
+  let arr = [...str].filter(i => i !== ' ');    // 字符串打散成数组并过滤掉空格
+  for(let item of arr) {      // 遍历数组
+    item in obj ? obj[item]++ : obj[item] = 1;      // 如果空对象中已经有属性,计数加一;没有属性添加这个属性值为一
+  }
+  return obj
+}
+```
+
+## 流程控制
+
+### FED28 返回星期数
+
+![image-20211228221947130](http://i0.hdslb.com/bfs/album/cfc52a6ff8c446d7514e75917d1db555471abb50.png)
+
+``` js
+function _getday(value) {
+  switch (value) {
+    case 1:
+      return "星期一";
+    case 2:
+      return "星期二";
+    case 3:
+      return "星期三";
+    case 4:
+      return "星期四";
+    case 5:
+      return "星期五";
+    case 6:
+      return "星期六";
+    case 7:
+      return "星期天";
+  }
+}
+```
+
+
+
 ## 内置对象
 
 ### FED29 从大到小排序

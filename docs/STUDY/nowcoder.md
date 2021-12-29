@@ -402,14 +402,14 @@ function _push(array,value) {
 
 ``` js
 // indexOf() 方法
-function _indexOf(array,value) {
+function _indexof(array,value) {
   return array.indexOf(value);
 }
 
 // 遍历
-function _indexOf(array,value) {
-  for(let i in array) {
-    if(array[i] === value) {
+function _indexof(array, value) {
+  for (let i of array) {
+    if (array[i] == value) {
       return i
     }
   }
@@ -438,27 +438,31 @@ function _reverse(number) {
 }
 ```
 
+### FED46 字符串搜索
 
+![image-20211229140329167](http://i0.hdslb.com/bfs/album/b650020ead78c384f083b8506ae882cfbb6efca1.png)
 
+``` js
+// 直接循环遍历字符串
+function _search(string, value) {
+  for (let i = 0; i <= string.length - 1; i++) {
+    if (string[i] === value) {
+      return true;
+    }
+  }
+  return false;
+}
 
+// 字符串打散成为数组操作
+function _search(string,value) {
+	return [...string].includes(value)
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// String.indexOf()返回调用它的String对象中第一次出现的指定值的索引
+function _search(string, value) {
+  return string.indexOf(value) !== -1;
+}
+```
 
 ### FED57移除数组中的元素
 
@@ -687,6 +691,37 @@ function parse2Int(num) {
 
 //parseInt(string, radix):string:需被解析的字符串,radix:要解析数字的基数,值在0~36之间
 ```
+
+## 函数
+
+### FED47 函数——参数对象
+
+![image-20211229141126126](http://i0.hdslb.com/bfs/album/04c6a47f2cbb74f8a455a0b9c7aba73ea6c43f6e.png)
+
+``` js
+// 浏览器函数在调用的时候,会传递一个类数组对象参数: arguments.
+function getArguments(a, b, c) {
+  return [...arguments];			// 展开运算符将类数组对象转换成数组.
+}
+```
+
+## this
+
+### FED48 this指向
+
+![image-20211229143912059](http://i0.hdslb.com/bfs/album/beaaade738d9fc04c827c90ca695e497a3a16437.png)
+
+``` js
+```
+
+
+
+
+
+
+
+
+###        
 
 ### 20.添加元素
 

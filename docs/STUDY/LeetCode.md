@@ -454,3 +454,105 @@ var search = function (nums, target) {
 };
 ```
 
+### [LCP 01. 猜数字](https://leetcode-cn.com/problems/guess-numbers/)
+
+![image-20211229203448935](http://i0.hdslb.com/bfs/album/2804d10f9c5c30e5e3b08cdb191b7ddcb6443850.png)
+
+``` js
+// 直接遍历数组,判断是否相等
+var game = function(guess, answer) {
+  let count = 0
+  for(let i in guess) {
+    if(guess[i] === answer[i]) {
+      count++
+    }
+  }
+  return count
+};
+```
+
+### [1672. 最富有客户的资产总量](https://leetcode-cn.com/problems/richest-customer-wealth/)
+
+![image-20211229204211143](http://i0.hdslb.com/bfs/album/27f716e89d61659607636e7a5930c9ed15113d8b.png)
+
+``` js
+// 对二位数组中的每一项求和并返回原数组,最后取最大值
+var maximumWealth = function(accounts) {
+  return Math.max(...accounts.map(i => i.reduce((acc,cur) => acc + cur)));
+};
+```
+
+### [1662. 检查两个字符串数组是否相等](https://leetcode-cn.com/problems/check-if-two-string-arrays-are-equivalent/)
+
+![image-20211229204831629](http://i0.hdslb.com/bfs/album/4364ec1f308fbbd8263d89294514764c65d92d00.png)
+
+``` js
+// 直接使用join('')拼接
+var arrayStringsAreEqual = function(word1, word2) {
+  return word1.join('') === word2.join('');
+};
+
+// 用数组reduce()方法迭代拼接字符
+var arrayStringsAreEqual = function(word1, word2) {
+  let str1 = word1.reduce((acc,cur) => acc + cur, "")
+  let str2 = word2.reduce((acc,cur) => acc + cur, "")
+  return str2 === str1
+};
+```
+
+### [169. 多数元素](https://leetcode-cn.com/problems/majority-element/)
+
+![image-20211229221706617](http://i0.hdslb.com/bfs/album/ae240aa7c99227b9174ec8a774c29727e68bd8c1.png)
+
+``` js
+// 方法一,用对象累计存储数据计数
+var majorityElement = function (nums) {
+  let obj = {}      // 声明一个对象用来对每个元素计数
+  for (let item of nums) {
+    item.toString() in obj ? obj[item]++ : obj[item] = 1;     // 遍历数组,如果对象中没有这个值就初始化为1,否则加一
+  }
+  for (let key in obj) {
+    if (obj[key] > nums.length / 2) {     // 遍历对象属性值,找出多数元素
+      return key
+    }
+  }
+};
+
+// 方法二: 直接对数组排序后,取超过数组长度一半的数
+var majorityElement = function(nums) {
+  return nums.sort((a,b) => a - b)[~~(nums.length / 2)]
+};
+```
+
+### [1920. 基于排列构建数组](https://leetcode-cn.com/problems/build-array-from-permutation/)
+
+![image-20211229224010741](http://i0.hdslb.com/bfs/album/2b52c139dae730faf110b5e4119f8d8071d44eaa.png)
+
+``` js
+// 方法一: 直接遍历数组,并返回
+var buildArray = function(nums) {
+  let arr = []
+  nums.forEach(item => arr.push(nums[item]))
+  return arr;
+};
+
+// 方法二: 使用reduce()迭代
+var buildArray = function(nums) {
+  return nums.reduce((acc,cur) => {
+    acc.push(nums[cur])
+    return acc
+  },[]);
+}
+
+// 方法三: 使用map()方法
+var buildArray = function(nums) {
+  return nums.map(i => nums[i]);
+};
+```
+
+
+
+
+
+
+

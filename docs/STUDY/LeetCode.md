@@ -900,7 +900,7 @@ var reverseLeftWords = function (s, n) {
 
 ## [557. 反转字符串中的单词 III](https://leetcode-cn.com/problems/reverse-words-in-a-string-iii/)
 
-![image-20220102215612084](C:/Users/30328/AppData/Roaming/Typora/typora-user-images/image-20220102215612084.png)
+![image-20220102215612084](http://i0.hdslb.com/bfs/album/4537bcc64d5a11ca1118d8dd75acf59fb7c08f10.png)
 
 ``` js
 // api写法

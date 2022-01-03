@@ -5,7 +5,7 @@ module.exports = {
     ['link', { rel: 'icon', href: 'http://i0.hdslb.com/bfs/album/ec78ee304b559735b0998fc680cfa3a2cfb8c53c.png', }],   // 网页tab栏的logo图
     ['meta', { name: 'referrer', content: 'no-referrer' }]//  使用B站图床防盗链
   ],
-  title: 'VitePress',
+  title: '阿J的前端笔记',
   description: '总结自己的学习历程',
   dest: './dist',//打包输出目录
   markdown: {

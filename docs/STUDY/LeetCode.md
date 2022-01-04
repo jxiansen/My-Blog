@@ -165,16 +165,29 @@ function missingNumber(nums) {
 ![image-20210919011550412](http://i0.hdslb.com/bfs/album/caea4fcfa03f3a3776c792182bfc178ad8c1ccb8.png)
 
 ``` js
-// 方法一, 双重循环遍历暴力解法
-function twoSum(nums,target) {
-  for(let i = 0; i < nums.length; i++) {
-    for(let j = i + 1; j < nums.length; j++) {
-      if((target - nums[i]) === nums[j]) {
+// 使用暴力循环,两个指针把所有的可能都扫一遍
+function twoSum(nums, target) {
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i + 1; j < nums.length; j++) {
+      if ((target - nums[i]) === nums[j]) {
         return []
       }
     }
   }
 }
+
+// 使用哈希map
+var twoSum = function (nums, target) {
+  let map = new Map()       // 用哈希表来存储遍历过的元素和索引
+  for (let i = 0; i < nums.length; i++) {     // 每遍历一个元素,看看表中是否存在满足要求的目标数字
+    let match = target - nums[i];
+    if (map.has(match)) {
+      return [map.get(match), i]      // 如果表中有匹配的数直接返回[目标元素的索引,当前索引]
+    }
+    map.set(nums[i], i)       // 哈希表中存储当前的元素和对应的索引
+  }
+  return []
+};
 ```
 
 ## [283. 移动零](https://leetcode-cn.com/problems/move-zeroes/)
@@ -722,7 +735,7 @@ var canMakeArithmeticProgression = function(arr) {
 };
 ```
 
-### [1572. 矩阵对角线元素的和](https://leetcode-cn.com/problems/matrix-diagonal-sum/)
+## [1572. 矩阵对角线元素的和](https://leetcode-cn.com/problems/matrix-diagonal-sum/)
 
 ![image-20211231161539561](http://i0.hdslb.com/bfs/album/8beb7077d1bf08f935348f19faaa4b1bcce77213.png)
 
@@ -1014,6 +1027,7 @@ var toLowerCase = function (s) {
 ![image-20220103220111504](http://i0.hdslb.com/bfs/album/ad69de2406356cda14f02089d7728e6ef1ef7005.png)
 
 ``` js
+// 方法一: 用对象存取数据
 var sortSentence = function (s) {
   let arr = s.split(' ').map(item => [...item]);
   let obj = {}, res = '';
@@ -1026,7 +1040,114 @@ var sortSentence = function (s) {
   }
   return res.trim()     // 去除右侧添加的空格字符
 };
+
+// 方法二: 找出key和value,用数组存取
+var sortSentence = function (s) {
+  let res = [], arr = s.split(' ');   // 切分数组
+  for (let item of arr) {
+    let index = item.slice(-1) - 1;     // 每次取字符串的索引
+    let value = item.slice(0, item.length - 1)    // 取字符串的值
+    res[index] = value      // 用数组存取字符串
+  }
+  return res.join(' ');
+};
 ```
+
+## [剑指 Offer 03. 数组中重复的数字](https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/)
+
+![image-20220104175647251](http://i0.hdslb.com/bfs/album/0340b9fd173a39244fb5f5923dc6f575035c0eda.png)
+
+``` js
+var findRepeatNumber = function (nums) {
+  let map = new Map();
+  for (let item of nums) {
+    if (map.has(item)) {    // 如果表中有当前元素,则直接返回该元素
+      return item;
+    }
+    map.set(item, 0)      // 一直向哈希表中存数据
+  }
+};
+```
+
+## [剑指 Offer 05. 替换空格](https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/)
+
+![image-20220104181959698](http://i0.hdslb.com/bfs/album/02ccb1ca81baf457dd4d0d1fbc814a558374d7c4.png)
+
+``` js
+// 方法一: 直接使用api
+var replaceSpace = function (s) {
+  return s.replaceAll(' ', "%20")
+};
+
+// 第二种使用api方法
+var replaceSpace = function (s) {
+  return s.split(' ').join('%20');
+};
+
+// 方法二: 切割成数组操作
+var replaceSpace = function (s) {
+  let arr = [...s];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === " ") {
+      arr[i] = "%20"
+    }
+  }
+  return arr.join('')
+};
+
+
+// 遍历字符串拼接
+var replaceSpace = function (s) {
+  let res = "";
+  for (let item of s) {
+    item === " " ? res += "%20" : res += item;
+  }
+  return res
+};
+```
+
+## [387. 字符串中的第一个唯一字符](https://leetcode-cn.com/problems/first-unique-character-in-a-string/)
+
+![image-20220104225113686](http://i0.hdslb.com/bfs/album/865da6d3c5885e07a3c6154f8f03e309b6aa89c6.png)
+
+``` js
+var firstUniqChar = function (s) {
+  let map = new Map();      // 用哈希表存取字符串,统计出每个字符串出现的次数
+  for (let item of s) {
+    map.has(item) ? map.set(item, 1) : map.set(item, 0);
+  }
+  for (let key of map.keys()) {     // 遍历map的键
+    if (map.get(key) === 0) {     // 如果键只出现过一次,则返回字符串中该键的索引
+      return s.indexOf(key)
+    }
+  }
+  return -1;      // 如果字符中找不到该键,则返回-1;
+};
+
+// 用对象来存取数据
+var firstUniqChar = function (s) {
+  let obj = {};
+  for (let i = 0; i < s.length; i++) {
+    let str = s[i];
+    str in obj ? obj[str]++ : obj[str] = 1;
+  }
+  for (let i = 0; i < s.length; i++) {
+    let str = s[i];
+    if (obj[str] === 1) {
+      return i
+    }
+  }
+  return -1
+};
+```
+
+
+
+
+
+
+
+
 
 
 

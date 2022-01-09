@@ -439,28 +439,33 @@ var targetIndices = function (nums, target) {
 
 ![image-20211227203742299](http://i0.hdslb.com/bfs/album/e41a26c1f33e9aaf0c1305d85a600a63cba84ed4.png)
 
-* 方法一: 直接数组排序后,使用indexOf( )函数
+* 方法一: 直接使用 api
 
 ``` js
-var search = function(nums,target) {
-  return nums.sort((a,b) => a - b).indexOf(target)
-}
+var search = function(nums, target) {
+  return nums.indexOf(target)
+};
 ```
 
 * 方法二: 使用二分查找
+
+  二分法的使用前提: 
+
+  * 数组为有序数组
+  * 数组中无重复元素
 
 ``` js
 var search = function (nums, target) {
   let start = 0, end = nums.length - 1, middle, element;
   while (start <= end) {
-    middle = ~~((start + end) / 2);
-    element = nums[middle];
-    if (element == target) {
+    middle = ~~((start + end) / 2);     // 定义中间节点坐标
+    element = nums[middle];     // 中间元素值
+    if (element == target) {      // 中间元素等于目标直接返回索引
       return middle;
-    } else if (target < element) {
+    } else if (target < element) {    // 目标小于中间元素,右指针移动到中间指针左侧
       end = middle - 1;
     } else {
-      start = middle + 1;
+      start = middle + 1;     // 目标大于中间元素,左指针移到到中间指针右侧
     }
   }
   return -1;
@@ -1140,6 +1145,247 @@ var firstUniqChar = function (s) {
   return -1
 };
 ```
+
+## [1528. 重新排列字符串](https://leetcode-cn.com/problems/shuffle-string/)
+
+![image-20220106165835536](http://i0.hdslb.com/bfs/album/8d6b3de80050983d7e888025ec416c1dd4b87180.png)
+
+``` js
+// 用新数组去存
+var restoreString = function (s, indices) {
+  let res = new Array(indices.length);
+  for (let key in indices) {
+    res[indices[key]] = s[key]
+  }
+  return res.join('')
+};
+
+// 用对象来存数据,按序遍历
+var restoreString = function (s, indices) {
+  let obj = {}, res = '';
+  for (let i = 0; i < s.length; i++) {
+    obj[indices[i]] = s[i]
+  }
+  for (let key in obj) {
+    res += obj[key]
+  }
+  return res
+};
+
+// 用map做映射表来排序
+var restoreString = function (s, indices) {
+  let map = new Map(), res = '';
+  for (let i = 0; i < s.length; i++) {
+    map.set( indices[i],s[i])
+  }
+  for (let j = 0; j < s.length; j++) {
+    res += map.get(j)
+  }
+  return res
+};
+```
+
+##  [1768. 交替合并字符串](https://leetcode-cn.com/problems/merge-strings-alternately/)
+
+![image-20220108170016290](http://i0.hdslb.com/bfs/album/839d47d048aa1be63c49a58ac878ef435151ac0d.png)
+
+``` js
+// 方法一
+var mergeAlternately = function (word1, word2) {
+  let arr = [], arr1 = [...word1], arr2 = [...word2];
+  while (arr1.length > 0 || arr2.length > 0) {    // 只要两个字符串数组不为空就一直向目标数组push元素
+    arr.push(arr1.shift(), arr2.shift())
+  }
+  return arr.join('');        // 拼接元素
+};
+
+
+// 方法二
+var mergeAlternately = function (word1, word2) {
+  let res = [], maxLen = Math.max(word1.length, word2.length);
+  for (let i = 0; i < maxLen; i++) {      // 遍历字符串中较长的那个
+    let str1 = word1[i], str2 = word2[i];
+    res.push(str1, str2)          // 用数组存遍历到的字符
+  }
+  return res.filter(item => item !== undefined).join('');   // 过滤掉数组中的undefined元素,拼接
+};
+```
+
+## [面试题 01.01. 判定字符是否唯一](https://leetcode-cn.com/problems/is-unique-lcci/)
+
+![image-20220108171738943](http://i0.hdslb.com/bfs/album/101cd7f0e2156532dece3fbeec062ff373cb237f.png)
+
+``` js
+// 使用set去重,比较长度
+var isUnique = function (s) {
+  let set = new Set(s)      
+  return set.size === s.length;
+};
+
+// 双重for循环,比较两个值是否相同
+var isUnique = function (s) {
+  for (let l = 0; l < s.length; l++) {
+    for (let r = l + 1; r < s.length; r++) {
+      if (s[l] === s[r]) {
+        return false;
+      }
+    }
+  }
+  return true;
+};
+```
+
+## [884. 两句话中的不常见单词](https://leetcode-cn.com/problems/uncommon-words-from-two-sentences/)
+
+![image-20220108220507437](http://i0.hdslb.com/bfs/album/1d0de29c8107ca104559acba7109a46997d7b433.png)
+
+``` js
+var uncommonFromSentences = function (s1, s2) {
+  let arr = `${s1} ${s2}`.split(' ');
+  let map = new Map(), res = [];
+  for (let item of arr) {       // 用 map 来存储单词出现的次数
+    map.has(item) ? map.set(item, 1) : map.set(item, 0);
+  }
+  for (let key of map.keys()) {   // 遍历 map 找出其中只出现过一次的元素
+    if (map.get(key) === 0) {
+      res.push(key)
+    }
+  }
+  return res
+};
+
+// 用对象存储计数
+var uncommonFromSentences = function (s1, s2) {
+  let arr = `${s1} ${s2}`.split(' '), res = [];
+  let obj = {};
+  for (let item of arr) {
+    item in obj ? obj[item]++ : obj[item] = 0;
+  }
+  for (let key in obj) {
+    if (obj[key] === 0) {
+      res.push(key)
+    }
+  }
+  return res
+};
+```
+
+## [1945. 字符串转化后的各位数字之和](https://leetcode-cn.com/problems/sum-of-digits-of-string-after-convert/)
+
+![image-20220108222308268](http://i0.hdslb.com/bfs/album/17289ab14f9904861c8a97b6c490c555935d638f.png)
+
+``` js
+var getLucky = function (s, k) {
+  let num = [...s].map(item => item.charCodeAt() - 96).join('')
+  while (k > 0) {
+    num = [...num].map(i => parseInt(i)).reduce((acc, cur) => acc + cur, 0).toString();
+    k--
+  }
+  return Number(num)
+};
+```
+
+## [771. 宝石与石头](https://leetcode-cn.com/problems/jewels-and-stones/)
+
+![image-20220109150114742](http://i0.hdslb.com/bfs/album/2bffd498602d00bf351ec5fc5451339f1647997f.png)
+
+``` js
+// 方法一: 直接使用数组过滤
+var numJewelsInStones = function (jewels, stones) {
+  return [...stones].filter(i => jewels.includes(i)).length
+};
+
+// 方法二: 双重循环遍历出两边值相等的计数
+var numJewelsInStones = function (jewels, stones) {
+  let count = 0
+  for (let item of jewels) {    
+    for (let val of stones) {
+      if (item === val) {
+        count++;
+      }
+    }
+  }
+  return count;
+};
+
+// 用哈希表来存取宝石的类型,遍历字符串累计数
+var numJewelsInStones = function (jewels, stones) {
+  let set = new Set(), count = 0;
+  for (let item of jewels) {
+    set.add(item)
+  }
+  for (let i of stones) {
+    if (set.has(i)) {
+      count++
+    }
+  }
+  return count;
+};
+```
+
+## [1880. 检查某单词是否等于两单词之和](https://leetcode-cn.com/problems/check-if-word-equals-summation-of-two-words/)
+
+![image-20220109161001405](http://i0.hdslb.com/bfs/album/e409d648eeaae036dea4ec87799e6a457c253949.png)
+
+``` js
+// 定义一个根据字符串求数值的函数
+var isSumEqual = function (firstWord, secondWord, targetWord) {
+  let getNum = str => Number([...str].map(i => i.charCodeAt() - 97).join(''));
+  return getNum(firstWord) + getNum(secondWord) === getNum(targetWord);
+};
+```
+
+## [1941. 检查是否所有字符出现次数相同](https://leetcode-cn.com/problems/check-if-all-characters-have-equal-number-of-occurrences/)
+
+![image-20220109163613326](http://i0.hdslb.com/bfs/album/511ae25945b5ea7c949487231bf2cd77ef9e2a23.png)
+
+``` js
+var areOccurrencesEqual = function(s) {
+  let obj = {}, arr = [];
+  for (let item of s) {
+    item in obj ? obj[item]++ : obj[item] = 1;    // 对象用来存储每个字符出现的次数
+  }
+  for (let key in obj) {
+    arr.push(obj[key])      // 数组存放所有的次数
+  }
+  return [...new Set(arr)].length === 1;    // 使用set对数组去重,如果去重后的长度为一说明每个字符都出现相同的次数
+};
+```
+
+## [1935. 可以输入的最大单词数](https://leetcode-cn.com/problems/maximum-number-of-words-you-can-type/)
+
+![image-20220109181137819](http://i0.hdslb.com/bfs/album/2c911cd21b1bd4eb9113a25d72cbe4b9954082e6.png)
+
+``` js
+var canBeTypedWords = function (text, brokenLetters) {
+  let arr = text.split(' '), count = 0;
+  for (let i of arr) {    // 遍历目标单词
+    for (let j of i) {    // 遍历每个目标单词中的字母
+      if (brokenLetters.includes(j)) {    // 累计出遍历的字母中有损坏的单词
+        count++;
+        break;      // 遇到有损坏的单词后面的单词也不需要遍历了,直接break
+      }
+    }
+  }           // count 是已经损坏的单词
+  return arr.length - count   // 返回去掉损坏单词的所有单词数
+};
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
 
 

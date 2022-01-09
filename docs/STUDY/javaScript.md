@@ -254,6 +254,181 @@ tmp.sayHi(); //我叫:老王
 //构造出的对象,并调用对象的方法
 ```
 
+使用构造函数创建出来的对象,这个对象都叫做这个构造函数的 `instance` (实列),`javaScript`提供了一种简单的方法来验证对象是否是由构造函数所创建的.返回`true` 或者 `false`
+
+``` js
+let Bird = function(name,color) {
+  this.name = name;
+  this.color = color;
+  this.numLegs = 4;
+}
+
+let bird = new Bird("jack",'yellow')
+bird instanceof Bird;			// true;			bird是由构造函数创建的实例,所以返回true
+
+let obj = { name: 'Jack', color: 'yellow', numLegs: 4 }
+obj instanceof Bird;		// false;			obj不是构造函数创建的实例,返回false
+```
+
+ `prototype` 是一个可以在所有实例之间共享的对象,由于所有的实例都可以继承 `prototype` 看作是创建对象的配方.  在 `JavaScript` 中所有的对象都有几个 `prototype` 属性,这个属性是属于它所在的构造函数.
+
+**对象两种属性**
+
+* 自身属性: 直接在对象上定义的.
+* `prototype`: 原型属性在`prototype` 上定义.
+
+``` js
+function Bird(name) {
+  this.name = name;     // 自有属性
+}
+
+Bird.prototype.numLegs = 2;   // 原型属性
+
+let duck = new Bird("Jack");
+
+let ownProps = [];      // 自身属性数组
+let prototypeProps = [];  // 原型属性数组
+
+for (let property in duck) {     // for...in主要是用来遍历对象的所有属性,包括自有属性和原型属性
+  if (duck.hasOwnProperty(property)) {     // 遍历到的自有属性
+    ownProps.push(property)
+  } else {
+    prototypeProps.push(property)     // 遍历到原型属性
+  }
+}
+console.log(ownProps)			// [ 'name' ]
+console.log(prototypeProps)			// [ 'numLegs' ]
+```
+
+**`constructor` 属性**
+
+每个实例对象都从原型中继承了一个`constructor` 属性,这个属性指向了用于构造此实例对象的构造函数.
+
+``` js
+function Dog(name) {
+  this.name = name;
+}
+
+// 检查创建这个实例是否是由这个Dog 创建的
+function joinDogFraternity(candidate) {
+  return candidate.constructor === Dog;
+}
+```
+
+**将原型用对象修改**
+
+单独给`prototype` 添加属性,
+
+``` js
+Bird.prototype.numLegs = 2;
+```
+
+如果需要添加多个原型属性,这样写就太拖沓了
+
+``` js
+Bird.prototype.eat = function () {
+  console.log("nom nom nom");
+}
+
+Bird.prototype.describe = function () {
+  console.log("My name is " + this.name);
+}
+```
+
+最有效的方式就是直接给对象的 `prototype` 设置一个已经包含了属性的新对象,直接将这个对象挂在到这个原型属性上.一次性添加进来.
+
+``` js
+function Dog(name) {
+  this.name = name;
+}
+
+Dog.prototype = {
+  numLegs: 2,
+  eat: () => console.log("nom nom nom"),
+  describe: function() {
+    console.log(`My name is ${this.name}`)		// 箭头函数的this问题,只能用普通函数写法
+  } 
+};
+let dog = new Dog("jack")
+
+console.log(dog)			// { name: 'jack' }
+console.log(dog.name)		// jack
+dog.eat()					// nom nom nom
+dog.describe()		// My name is jack
+```
+
+**更改原型时，记得设置构造函数属性**
+
+手动设置一个新对象的原型有个副作用: 会清除原本的 `constructor` 属性,这个属性可以用来检查是那个构造函数创建了实例,但是现在该属性已经被覆盖了.需要手动给原型对象中定义个 `constructor` 属性:
+
+``` js
+function Dog(name) {
+  this.name = name;
+}
+
+Dog.prototype = {
+  constructor: Dog,     // 手动的给原型对象添加 constructor 属性
+  numLegs: 4,
+  eat: function () {
+    console.log("nom nom nom");
+  },
+  describe: function () {
+    console.log("My name is " + this.name);
+  }
+};
+
+let dog = new Dog('Jack')
+console.log(dog.constructor === Dog)    // true
+```
+
+**对象的原型从哪里来**
+
+对象可以直接从创建它的构造函数哪里继承其 `prototype` 
+
+``` js
+function Bird(name) {
+  this.name = name;
+}
+
+let duck = new Bird("Jack");
+
+// 检查 duck 对象是否继承自 Bird 的构造函数
+console.log(Bird.prototype.isPrototypeOf(duck));			// true;
+```
+
+**原型链**
+
+`JavaScript` 中基本所有的对象都有自己的 `prototype` .并且对象的 `prototype` 自身也是一个对象.所有他自己也有自己的 `prototype` 
+
+``` js
+function Dog(name) {
+  this.name = name;
+}
+
+let beagle = new Dog("Snoopy");
+
+console.log(beagle.hasOwnProperty)   // [Function: hasOwnProperty]
+// beagle的原型是从 Dog 构造函数所继承的
+console.log(Dog.prototype.isPrototypeOf(beagle));  // true
+
+// Dog的原型是从 Object对象的构造函数所继承的.
+console.log(Object.prototype.isPrototypeOf(Dog.prototype))
+```
+
+`hasOwnProperty` 是定义在 `Object.prototype` 上的一个方法,虽然在 `Dog` 的原型上面没有定义该方法,但是依然可以在这个对象上面访问到,这就是通过 `prototype` 链条访问的一个例子,因为 `Object` 是 `JavaScript` 中所有对象的 `supertype` ,因此所有的对象都可以访问 `hasOwnProperty` 方法.
+
+
+
+
+
+
+
+
+
+
+
+
+
 #### Array
 
 #### Math
@@ -452,3 +627,4 @@ for (let son of map.entries()) {
 */
 ```
 
+​	

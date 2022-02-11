@@ -13,10 +13,16 @@ module.exports = {
   },
 
   themeConfig: {
-    logo: 'http://i0.hdslb.com/bfs/album/ec78ee304b559735b0998fc680cfa3a2cfb8c53c.png',
-    repo: 'vuejs/vitepress',
+    logo: 'http://i0.hdslb.com/bfs/album/f6337abef81027541d5dfe953c210a573dfb1f8f.png',
+    repo: 'https://gitee.com/hijingfeng/my-blog',
     docsDir: 'docs',
-    docsBranch: 'master', //分支
+    docsBranch: 'main', //分支
+
+    algolia: {
+      appId: 'AEBD6KM6KA',
+      apiKey: '53f1a9e7bcee7bf871a4602329fbf639',
+      indexName: 'data'
+    },
 
     editLinks: true,
     editLinkText: '在gitee上面修改',
@@ -24,7 +30,6 @@ module.exports = {
 
     nav: [
       { text: '首页', link: '/', activeMatch: '^/$|^/guide/' },
-      { text: '我的gitee', link: 'https://gitee.com/hijingfeng/my-blog' },
       { text: '友情链接', link: 'http://www.shyuu.cn' },
     ],
 

@@ -1205,3 +1205,84 @@ function strLength(s, bUnicode255For1) {
 }
 // reduce方法遍历到每个数组元素的时候,对累加器进行操作,最后返回累加器的值
 ```
+
+## 前端大挑战
+
+### JS1 直角三角形
+
+​      ![image-20220130102542119](http://i0.hdslb.com/bfs/album/9219aa230b8369cd0e384ecf88634630e1d7cdf9.png)
+
+``` js
+var triangle = document.querySelector('.triangle');
+let str = ''
+for(let i = 0; i <= 3; i++) {
+    for(let j = 0; j < i; j++) {
+        str += '*'
+    }
+    str += '<br/>'
+}
+triangle.innerHTML = str;
+```
+
+### JS5 创建数组
+
+![image-20220130102912401](http://i0.hdslb.com/bfs/album/592506e911f8dcd06f946500de8875170750162c.png)
+
+``` js
+const _createArray = (number) => {
+    return new Array(number).fill(number)
+}
+```
+
+### JS7 无重复数组
+
+![image-20220130104617651](http://i0.hdslb.com/bfs/album/0458d557f3c7fb3790217158131b7fec32d8b752.png)
+
+``` js
+const _getUniqueNums = (start, end, n) => {
+  var res = [], i = n;
+  var randomNum = (start, end) => ~~(Math.random() * (end - start + 1)) + start;
+  while (n) {
+    res.push(randomNum(start, end))
+    n--
+  }
+  return res
+}
+```
+
+## JS9 新数组
+
+![image-20220130105926868](http://i0.hdslb.com/bfs/album/69b01c723e3f6e94b9f795c18bed266cb3a37dd6.png)
+
+``` js
+const _delete = (array, index) => {
+  let res = [];
+  for (let item of array) {
+    if (item === array[index]) continue;
+    res.push(item)
+  }
+  return res
+}
+```
+
+### JS10 计数器
+
+![image-20220130110621411](http://i0.hdslb.com/bfs/album/2077646f31459c483bdcfed30fe2050ca1a1e1c4.png)
+
+``` js
+const closure = () => {
+  let count = 1;
+  return function () {
+    return count++;
+  }
+}
+```
+
+
+
+
+
+
+
+
+

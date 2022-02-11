@@ -1371,25 +1371,175 @@ var canBeTypedWords = function (text, brokenLetters) {
 };
 ```
 
+## [1431. 拥有最多糖果的孩子](https://leetcode-cn.com/problems/kids-with-the-greatest-number-of-candies/)
+
+![image-20220110113913063](http://i0.hdslb.com/bfs/album/ea16a51df8eaf9d2ef6b6a97d64ab6e9b614b4d4.png)
+
+``` js
+var kidsWithCandies = function (candies, extraCandies) {
+  let max = Math.max(...candies);
+  return candies.map(i => i + extraCandies >= max ? true : false)
+};
+```
+
+## [1281. 整数的各位积和之差](https://leetcode-cn.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/)
+
+![image-20220110120248051](http://i0.hdslb.com/bfs/album/60e46e677805d48aba963adfd068fe49b4434138.png)
+
+``` js
+// 使用reduce
+var subtractProductAndSum = function (n) {
+  let arr = [...n.toString()].map(i => parseInt(i));
+  let Power = arr.reduce((acc, cur) => acc * cur, 1);
+  let sum = arr.reduce((acc, cur) => acc + cur);
+  return Power - sum;
+};
+
+// 遍历数字组成的字符串
+var subtractProductAndSum = function (n) {
+  let Power = 1, sum = 0;
+  for (let item of n.toString()) {
+    sum += Number(item);
+    Power *= Number(item);
+  }
+  return Power - sum;
+};
+```
+
+## [面试题 16.01. 交换数字](https://leetcode-cn.com/problems/swap-numbers-lcci/)
+
+![image-20220110193114350](http://i0.hdslb.com/bfs/album/35fc09bc695a48465b06ce4e17a37fde5d7ed510.png)
+
+``` js
+// 方法一: 直接ES6结构语法交换数值
+var swapNumbers = function (numbers) {
+  [numbers[0],numbers[1]] = [numbers[1],numbers[0]];
+  return numbers;
+};
+
+// 方法二: 直接数组反转
+var swapNumbers = function (numbers) {
+  return numbers.reverse();
+};
+
+// 方法三: 加减腾挪法
+var swapNumbers = function (numbers) {
+  numbers[0] += numbers[1]
+  numbers[1] = numbers[0] - numbers[1];
+  numbers[0] = numbers[0] - numbers[1]
+  return numbers;
+};
+
+// 方法四: 异或运算
+var swapNumbers = function (numbers) {
+  numbers[0] ^= numbers[1]
+  numbers[1] ^= numbers[0]
+  numbers[0] ^= numbers[1]
+  return numbers;
+};
+```
+
+## [1832. 判断句子是否为全字母句](https://leetcode-cn.com/problems/check-if-the-sentence-is-pangram/)
+
+![image-20220110192902550](http://i0.hdslb.com/bfs/album/ca4ba1221def97eef7945fef838f61c6c6b59322.png)
+
+``` js
+var checkIfPangram = function (sentence) {
+  let res = [];
+  for (let i = 97; i <= 122; i++) {       // 遍历字母表
+    let str = String.fromCharCode(i);
+    if (!sentence.includes(str)) {      // 判断给定的字符中是否包含有字母表的全部
+      return false;
+    }
+  }
+  return true;
+};
+```
+
+## [剑指 Offer 18. 删除链表的节点](https://leetcode-cn.com/problems/shan-chu-lian-biao-de-jie-dian-lcof/)
+
+![image-20220114120051504](http://i0.hdslb.com/bfs/album/aca4d6bcbf898a1803706c017360891740d59e02.png)
+
+``` js
+var deleteNode = function (head, val) {
+  // val是头节点
+  if (head.val === val) {         // 如果目标值为头节点,直接返回头节点的下一节点
+    return head.next;
+  }
+
+  // val不在头节点
+  let pre = head;     // 声明前置指针
+  while (pre.next !== null) {         // 只要前置指针的下一节点不是空节点,指针就一直后移
+    if (pre.next.val === val) {         // 如果前置指针的下一节点值为目标值
+      pre.next = pre.next.next;         // 前置指针指向下下个节点
+      return head
+    }
+    pre = pre.next;
+  }
+};
+```
+
+## [面试题 02.03. 删除中间节点](https://leetcode-cn.com/problems/delete-middle-node-lcci/)
+
+![image-20220114134216909](http://i0.hdslb.com/bfs/album/94f9f425da2f153b0e85f7e5b9548b8aadb78348.png)
+
+``` js
+var deleteNode = function (node) {
+  node.val = node.next.val;
+  node.next = node.next.next;
+  // 给定的是要删除的目标节点,不是head节点,所以无需从头开始遍历
+  // 要删除的节点的下一节点的值给当前节点,并指向下下节点,当前节点会被自动回收掉
+};
+```
+
+## [206. 反转链表](https://leetcode-cn.com/problems/reverse-linked-list/)
+
+![image-20220114162517762](http://i0.hdslb.com/bfs/album/2fa2d0c06f46c8339b978070a05827dc20d2ad79.png)
+
+``` js
+// 使用数组存链表反转
+var reverseList = function (head) {
+  // 如果数组为空直接返回head
+  if (!head) {
+    return head;
+  }
+
+  let arr = [], cur = head;
+  while (cur) {
+    arr.unshift(cur);
+    cur = cur.next;
+  }
+  // 遍历反转过的数组元素,构造链表
+  for (let i = 0; i < arr.length - 1; i++) {
+    arr[i].next = arr[i + 1];
+  }
+  arr[arr.length - 1] = null;   // 单独设置尾节点指向null
+  return arr[0];
+};
 
 
+// 递归法,不断的调用自身函数达到不断反转链表的指针和节点
+var reverseList = function (head) {
+  // 如果数组为空直接返回head
+  if (!head || !head.next) {
+    return head;
+  }
+  // 生成新节点,递归调用
+  let newNode = reverseList(head.next)
+  // 将头节点的下一个指针指向头节点,从而反转
+  head.next.next = head;
+  // 头节点指向null
+  head.next = null;
+  return newNode;
+};
+```
 
+## [203. 移除链表元素](https://leetcode-cn.com/problems/remove-linked-list-elements/)
 
+![image-20220114211515818](http://i0.hdslb.com/bfs/album/0a0c24472fbbb37927a77b06eba6ffa63415c87a.png)
 
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
+``` js
+```
 
 
 

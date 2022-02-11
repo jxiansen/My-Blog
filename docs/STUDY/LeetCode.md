@@ -1534,12 +1534,148 @@ var reverseList = function (head) {
 };
 ```
 
-## [203. 移除链表元素](https://leetcode-cn.com/problems/remove-linked-list-elements/)
+## [1991. 找到数组的中间位置](https://leetcode-cn.com/problems/find-the-middle-index-in-array/)
 
-![image-20220114211515818](http://i0.hdslb.com/bfs/album/0a0c24472fbbb37927a77b06eba6ffa63415c87a.png)
+![image-20220211152045139](http://i0.hdslb.com/bfs/album/5220f860639dc4803bc91a3cf832739941414eeb.png)
 
 ``` js
+var findMiddleIndex = function (nums) {
+  let getSum = arr => arr.reduce((acc, cur) => acc + cur, 0)
+  for (let i = 0; i < nums.length; i++) {
+    let [left, right] = [getSum(nums.slice(0, i)), getSum(nums.slice(i + 1))]     // 指针左右数组分别求和
+    if (left === right) return i      // 左右和相等则返回指针
+  }
+  return -1       // 未找到返回错误指针
+};
 ```
+
+## [1137. 第 N 个泰波那契数](https://leetcode-cn.com/problems/n-th-tribonacci-number/)
+
+![image-20220211174815502](http://i0.hdslb.com/bfs/album/8ca87e9af20eb139c65e608da23dee8ce85c5098.png)
+
+``` js
+// 递归写法: 性能太差,会爆栈
+var tribonacci = function (n) {
+  if (n === 2 || n === 1) return 1
+  if (n === 0) return 0
+  return tribonacci(n - 1) + tribonacci(n - 2) + tribonacci(n - 3)
+};
+
+// 递推公式
+var tribonacci = function (n) {
+  let arr = [0, 1, 1]
+  for (let i = 3; i <= n; i++) {
+    arr[i] = arr[i - 1] + arr[i - 2] + arr[i - 3];
+  }
+  return arr[n]
+};
+```
+
+## [917. 仅仅反转字母](https://leetcode-cn.com/problems/reverse-only-letters/)
+
+![image-20220211195741133](http://i0.hdslb.com/bfs/album/3efbc50971819f06232f72cc9ae60724de9a9aae.png)
+
+```js
+// 普通解法:
+var reverseOnlyLetters = function (s) {
+  let isWord = str => str.toLowerCase() !== str.toUpperCase()
+  let arr = [...s].filter(i => isWord(i)).reverse(), res = '';      // 过滤出字母数组并反转
+  for (let item of s) {       // 遍历字符串,拼接反转过后的数组元素
+    res += isWord(item) ? arr.shift() : item;
+  }
+  return res
+};
+
+
+// 双指针法: 从左右位置分别开始遍历,交换左右指针的值
+var reverseOnlyLetters = function (s) {
+  let isWord = str => str.toLowerCase() !== str.toUpperCase()   // 判断是否为字母
+  let arr = [...s], l = 0, r = arr.length - 1;
+  while (l < r) {
+    if (!isWord(arr[l])) l++;       // 指针遇到非字母左移或者右移
+    if (!isWord(arr[r])) r--;
+    if (isWord(arr[l]) && isWord(arr[r])) {     // 左右指针都为字母,则交换值
+      let tmp = arr[l];
+      arr[l] = arr[r];
+      arr[r] = tmp;
+      l++
+      r--
+    }
+  }
+  return arr.join('')         // 拼接数组为字符串
+};
+```
+
+## [面试题 01.09. 字符串轮转](https://leetcode-cn.com/problems/string-rotation-lcci/)
+
+![image-20220211202716816](http://i0.hdslb.com/bfs/album/4f8b0b2e10acdc3979629752e7db16968a242c06.png)
+
+``` js
+var isFlipedString = function (s1, s2) {
+  return s2.length === s1.length ? s1.repeat(2).includes(s2) : false;
+  // 如果两个字符串的长度一样判断s1拼接两次后的字符串中是否包含s2,长度不一样直接返回false
+}
+```
+
+## [796. 旋转字符串](https://leetcode-cn.com/problems/rotate-string/)
+
+![image-20220211205123890](http://i0.hdslb.com/bfs/album/c585dd0a263db1557a3f4b912bb510213156f037.png)
+
+``` js
+var rotateString = function (s, goal) {
+  return s.length === goal.length && s.repeat(2).includes(goal);
+  // 当两个字符串长度一样并且第一个字符串首尾拼接的字符串中包含第二个字符串都满足的时候返回true
+};
+```
+
+## [剑指 Offer II 003. 前 n 个数字二进制中 1 的个数](https://leetcode-cn.com/problems/w3tCBm/)
+
+![image-20220211215842528](http://i0.hdslb.com/bfs/album/729ab635fec8c5e1da4f78ddc3dd319db520b734.png)
+
+``` js
+// 方法1: 对数组转成二进制后再分割统计出 '1'的个数
+var countBits = function (n) {
+  let arr = []
+  for (let i = 0; i <= n; i++) {
+    let num = [...i.toString(2)].reduce((acc, cur) => {
+      if (cur === '1') acc++
+      return acc
+    }, 0);
+    arr.push(num)
+  }
+  return arr
+};
+
+// 方法二: 封装一个求数字转二进制后其中字符串'1'的个数
+var countBits = function (n) {
+  let arr = [];
+  var countBit = function (num) {
+    let count = 0
+    while (num > 1) {
+      let tmp = num % 2;
+      num = (num - tmp) / 2;
+      if (tmp === 1) count++
+    }
+    if (num === 1) count++
+    return count
+  }
+
+  for (let i = 0; i <= n; i++) {
+    arr.push(countBit(i))
+  }
+  return arr
+};
+```
+
+
+
+
+
+
+
+
+
+
 
 
 

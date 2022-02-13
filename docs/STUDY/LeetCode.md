@@ -43,9 +43,26 @@ function singleNumber(nums) {
 ![image-20210906101536449](http://i0.hdslb.com/bfs/album/d69f92aee9a0833eab927fb919e072449a81e35d.png)
 
 ``` js
+// 暴力法: map后sort排序
 function sortSquares(nums) {
   return nums.map(i => i * i).sort((a,b) => a - b)
 }
+
+// 双指针法
+var sortedSquares = function (nums) {
+  let l = 0, r = nums.length - 1, res = [];
+  while (l <= r) {      // 左右双指针,依次添加元素到结果中
+    if (Math.abs(nums[r]) >= Math.abs(nums[l])) {
+      res.push(nums[r] ** 2)
+      r--       // 分别移动指针
+    } else {
+      res.push(nums[l] ** 2)
+      l++
+    }
+  }
+  return res.reverse();
+};
+
 ```
 
 ## [1491. 去掉最低工资和最高工资后的工资平均值](https://leetcode-cn.com/problems/average-salary-excluding-the-minimum-and-maximum-salary/)
@@ -1666,6 +1683,110 @@ var countBits = function (n) {
   return arr
 };
 ```
+
+## [88. 合并两个有序数组](https://leetcode-cn.com/problems/merge-sorted-array/)
+
+![image-20220213171638059](http://i0.hdslb.com/bfs/album/9ef1df31e64bce58bb598c4783ff9b437df0be17.png)
+
+``` js
+// 方法一: 遍历第二个数组,插入的位置
+var merge = function (nums1, m, nums2, n) {
+  nums1.length = m      // 先对数组进行预收缩,防止后面比较时多余的元素干扰
+  let idx = 0;      // 初始索引
+  for (let i = 0; i < n; i++) {
+    let val = nums2[i]
+    while (val > nums1[idx]) {      // 找到插入点
+      idx++
+    }
+    nums1.splice(idx, 0, val)     // 插入元素
+  }
+};
+
+// 方法二: 合并两个数组之后再排序
+var merge = function (nums1, m, nums2, n) {
+  for (let i = 0; i < n; i++) {
+    nums1[m + i] = nums2[i]
+  }
+  nums1.sort((a, b) => a - b)
+};
+```
+
+## [1089. 复写零](https://leetcode-cn.com/problems/duplicate-zeros/)
+
+![image-20220213173114645](http://i0.hdslb.com/bfs/album/96953212c5f450624412abbd5d28e09a1b207e54.png)
+
+``` js
+var duplicateZeros = function (arr) {
+  let len = arr.length;
+  for (let i = 0; i < len; i++) {
+    if (arr[i] === 0) {
+      arr.splice(i, 0, 0)		// 遍历数组找到0处并添加剂一个0
+      i++
+    }
+  }
+  arr.length = len			// 最后收缩数组范围
+};
+```
+
+## [844. 比较含退格的字符串](https://leetcode-cn.com/problems/backspace-string-compare/)
+
+![image-20220213224827077](http://i0.hdslb.com/bfs/album/24fd53812eb7eee0c6ff8b4aa6e165714f516724.png)
+
+``` js
+// 方法一 : 左右指针分别处理字符串
+var backspaceCompare = function (s, t) {
+  let compare = str => {      // 定义一个比较函数,对字符串进行处理
+    let arr = [...str]
+    for (let r = 0; r < arr.length; r++) {    // 右指针遍历字符串数组
+      if (arr[r] === '#') {         // 右指针扫到"#",左指针就向前找到第一个不是"#"的元素,并改写它为"#"
+        let l = r - 1;
+        while (arr[l] === '#') {
+          l--
+        }
+        arr[l] = '#'
+      }
+    }
+    return arr.filter(i => i !== '#').join('')    // 过滤掉所有的退格符号,拼接出字符串
+  }
+  return compare(s) === compare(t)
+};
+
+// 栈方法
+var backspaceCompare = function (s, t) {
+  let filterStr = str => {
+    let stack = []
+    for (let item of str) {
+      item === '#' ? stack.pop() : stack.push(item);    // 遍历字符串,不是"#"入栈,遇到"#"则出栈
+    }
+    return stack.join('')     // 栈中留下的都是处理好的字符串
+  }
+  return filterStr(s) === filterStr(t)
+};
+ 
+// 方法三: 对字符串进行模拟退格处理
+var backspaceCompare = function (s, t) {
+  let replStr = str => {
+    let res = '', count = 0;
+    for (let i = str.length - 1; i >= 0; i--) {     // 从后往前遍历字符串: 三种情况
+      if (str[i] === '#') {       // 1. 遇到 "#", 累计出 "#"的个数
+        count++
+      } else if (count > 0) {     // 2. 不是 "#", 当前存在 "#",减少累计数模拟删除
+        count--
+      } else {
+        res = str[i] + res      // 3. 不是 "#"并且累计数已经清空,将这个元素拼接到结果字符串
+      }
+    }
+    return res      // 返回的结果就是已经模拟出退格处理
+  }
+  return replStr(s) === replStr(t)
+};
+```
+
+
+
+
+
+
 
 
 

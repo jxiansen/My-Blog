@@ -1782,15 +1782,73 @@ var backspaceCompare = function (s, t) {
 };
 ```
 
+## [821. 字符的最短距离](https://leetcode-cn.com/problems/shortest-distance-to-a-character/)
 
+![image-20220214134829782](http://i0.hdslb.com/bfs/album/e2cb62cab17cca2fd0333b3cbebe332c96c41d68.png)
 
+``` js
+// 中心扩展法: 最符合直觉
+var shortestToChar = function (s, c) {
+  let res = []
+  for (let i = 0; i < s.length; i++) {    // 遍历字符串
+    let step = 0        // 步长: 用来累计距离
+    for (; step < Infinity; step++) {     // 对遍历到的字符串分别从左右扩展寻找目标元素
+      if (s[i + step] === c || s[i - step] === c) break     // 找到目标元素则跳出循环
+    }
+    res[i] = step
+  }
+  return res
+};
+```
 
+## [剑指 Offer 21. 调整数组顺序使奇数位于偶数前面](https://leetcode-cn.com/problems/diao-zheng-shu-zu-shun-xu-shi-qi-shu-wei-yu-ou-shu-qian-mian-lcof/)
 
+​	![image-20220214141800065](http://i0.hdslb.com/bfs/album/5e5260f35cfb3334ba40acfb4180000066a680c9.png)
 
+``` js
+// 双指针向中间逼近
+var exchange = function (nums) {
+  let [l, r] = [0, nums.length - 1];        // 左右指针从首尾逼近
+  while (l < r) {
+    if (nums[l] % 2 === 0 && nums[r] % 2 === 1) {     // 左偶右奇: 交换彼此值
+      [nums[l], nums[r]] = [nums[r], nums[l]]
+      l++
+      r--
+    };
+    if (nums[l] % 2 === 1) l++      // 左指针为奇数：指针后移
+    if (nums[r] % 2 === 0) r--      // 右指针为偶数: 指针左移
+  }
+  return nums
+};
+```
 
+## [1417. 重新格式化字符串](https://leetcode-cn.com/problems/reformat-the-string/)
 
+![image-20220215122059858](http://i0.hdslb.com/bfs/album/9dbe01050cc2ba98e606fa61be35bde2c017cd4d.png)
 
+* 使用正则表达式处理得到字符串和数字串
 
+* 如果两串长度之差大于1,直接返回空串
+
+* 定义一个函数: 函数传两个字符串参数,对传入的字符串进行拼接,默认str1.length >= str2.length,因为str2的长度短,对于访问不到的值拼接空字符串
+
+* 依据字符串和数字串长度进行判断返回
+
+``` js
+var reformat = function (s) {
+  let str = s.replace(/\d/g, '');       // 正则表达式处理得到字符串和数字分组
+  let num = s.replace(/[a-z]/g, '');
+  if (Math.abs(str.length - num.length) > 1) return '';     // 字符差的数量大于1直接返回空字符
+  function strSplit(str1, str2) {         // 拼接两个不等长字符串函数: 默认 str1.length >= str2.length
+    let res = ''
+    for (let i = 0; i < str1.length; i++) {
+      res += str2[i] === undefined ? str1[i] + '' : str1[i] + str2[i];      //遍历到最后,str2因为长度较短,所以访问不到str2[i],手动拼接一个空字符串
+    }
+    return res
+  }
+  return str.length >= num.length ? strSplit(str, num) : strSplit(num, str);
+};
+```
 
 
 

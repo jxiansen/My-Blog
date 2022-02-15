@@ -5,10 +5,12 @@
 | 简写 | 描述                                  |
 | ---- | ------------------------------------- |
 | `.`  | 通配符,匹配所有除换行符以外的所有字符 |
-| `\w` | 匹配所有字母数字                      |
+| `\w` | 匹配所有字母数字: 等同于[a-zA-Z0-9_]  |
 | `\W` | 匹配所有非字母和数字                  |
 | `\d` | 匹配所有数字                          |
 | `\D` | 匹配所有非数字                        |
+| `\s` | 空白符                                |
+| `\S` | 非空白符                              |
 |      |                                       |
 
 ``` js
@@ -40,6 +42,42 @@ str.match(/regex/) 与 /regex/.text(str)
 'aaabbccABC'.match(/a+/g)
 [ "aaa" ]
 ```
+
+### 通配符匹配任何内容
+
+如果不知道匹配模式中的确切字符,可以使用 `.` 来替代这个字符
+
+``` js
+/.un/.test("Let's have fun with regular expressions!")
+// 可以匹配到 `run ,sun, fun, gun, bun`等
+```
+
+### 字符集
+
+使用字符集更灵活的匹配字符,将字符集放置在方括号中 `[]` 来定义需要匹配的字符集
+
+``` js
+let bigStr = "big";
+let bagStr = "bag";
+let bugStr = "bug";
+let bogStr = "bog";
+let bgRegex = /b[aiu]g/;
+bigStr.match(bgRegex);
+bagStr.match(bgRegex);
+bugStr.match(bgRegex);
+bogStr.match(bgRegex);
+// 顺序排列，四次 match 调用将返回值 ["big"]、["bag"]、["bug"] 和 null。 无法匹配到bog
+```
+
+### 连字符
+
+`-` 匹配字符串范围
+
+``` js
+/[a-z]/ : 匹配从 `a` 到 `z`的所有字符
+```
+
+
 
 ### 匹配0次或者多次的字符
 
@@ -76,6 +114,52 @@ null
 [ "ti", "tani" ]
 // 使用 ? 改成懒惰匹配,返回满足tiao
 ```
+
+### 匹配字符串的头部
+
+`^`
+
+### 匹配字符串的末尾
+
+使用`$`  来搜寻末尾的匹配模式
+
+``` js
+let str = "This is a never ending story"
+str.test(/story$/)
+// 返回true
+str.test(/apple$/)
+// 返回false: 末尾没有匹配到
+```
+
+
+
+## 修饰符(Flag)
+
+### 匹配时忽略大小写
+
+使用 `i` `(ignore)`来忽略匹配字符串的大小写
+
+``` js
+let myString = "freeCodeCamp";
+let fccRegex = /FREECODECamp/i;
+let result = fccRegex.test(myString);
+// true
+```
+
+### 全局匹配
+
+使用 `g` (global) 来多次搜寻或提取模式匹配
+
+``` js
+"Repeat, Repeat, Repeat".match(/Repeat/g)
+//[ 'Repeat', 'Repeat', 'Repeat' ]
+```
+
+### 多行匹配
+
+`m` (multiline) 多行匹配,有 m的时候 ^$可以表示第
+
+
 
 
 

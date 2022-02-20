@@ -165,3 +165,89 @@ let result = fccRegex.test(myString);
 
 
 
+### 正则练习题
+
+### 连续字符串去重
+
+将`"aaaaaabbbbbbbccccccc"`转化为`"abc"`
+
+``` js
+function strReplace(str) {
+    return str.replace(/(\w)\1+/g, '$1')
+}
+// 用(\w)捕获连续字符串中的字母,对匹配到的连续字符串进行替换
+```
+
+### 千分位分割数字
+
+将 `“100000000”`这样的数字处理成`100,000,000`
+
+第一步: 尝试将后面的第一个逗号给弄出来
+
+``` js
+let str = '123456789'
+let reg = /(?=\d{3}$)/				// 找到靠近末尾的临近三个字符的空位置,将空位置替换为 ','
+console.log(str.replace(reg,','))		// 123456,789
+```
+
+
+
+#### [正则表达式验证 PIN 码](https://www.codewars.com/kata/55f8a9c06c018a0d6e000132/train/javascript)
+
+
+
+![image-20220215224917408](http://i0.hdslb.com/bfs/album/8f2eb521ae98aa0c3e57bf23c3fd0244d4d269c3.png)
+
+``` js
+function validatePIN(pin) {
+  return /(^\d{4}$)|(^\d{6}$)/.test(pin)
+}
+```
+
+![QQ图片20220215225053](http://i0.hdslb.com/bfs/album/dacbb616490134c65835f4c8b8953942a41c1c91.png)
+
+
+
+![image-20220216155050200](http://i0.hdslb.com/bfs/album/8983622ced77f21fa433c224cd23ce1996188c1c.png)
+
+![image-20220216160916441](http://i0.hdslb.com/bfs/album/54dd1f3f72c357af3dbe867fd8de19b9effeeaab.png)
+
+![image-20220216161046372](http://i0.hdslb.com/bfs/album/7ad39dde4bc05b9709b3b57c3c5c8be037a369cc.png)
+
+![image-20220216162735069](http://i0.hdslb.com/bfs/album/9160cdd2b9f0373e4efc466b1db8c9f6114dd4e9.png)
+
+### [Trim method](https://www.codewars.com/kata/5a0b33888ba914a5e40000b7/train/javascript)
+
+![image-20220217204110697](http://i0.hdslb.com/bfs/album/2145bc727d9523756d86dfae5b10724230591d4d.png)
+
+``` js
+String.prototype.trim = function(c=' ') {
+	return this.replace(RegExp(`^${c}+|${c}+$`,'ig'),'')
+}
+```
+
+### [credit-card-mask](https://www.codewars.com/kata/credit-card-mask/train/javascript)
+
+![image-20220217211448324](http://i0.hdslb.com/bfs/album/a2790f972650d4464c01f36def739b2e88548e01.png)
+
+``` js
+function maskify(cc) {
+  // return cc.replace(/^.+(?=.{4})/, match => match.replace(/./g, '#'))
+  return cc.replace(/^.+(?=.{4})/, match => '#'.repeat(match.length))
+}
+// 从头开始匹配任意长度 => 使用断言排除后面四位 => 对匹配到的字符进行等长度的替换
+```
+
+### [**Decipher this!**](https://www.codewars.com/kata/581e014b55f2c52bb00000f8/train/javascript)
+
+![image-20220217223744849](http://i0.hdslb.com/bfs/album/1a413f895361471484a3a00b611d738c3b5663db.png)
+
+``` js
+function decipherThis(str) {
+  return str.split(' ').map(i => 
+			i.replace(/^\d+/, match => String.fromCharCode(match))
+           .replace(/^(.)(.)(.*)(.)$/, '$1$4$3$2')).join(' ')
+};
+// 空格分割成数组 => 替换首尾的数字为字符 => 使用分组分割字符串为四份并重新组合后返回 => 拼接字符
+```
+

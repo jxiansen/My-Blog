@@ -55,7 +55,6 @@ function getGuideSidebar() {
         { text: "sass入门", link: "/STUDY/sass" },
         { text: "express入门", link: "/STUDY/express" },
         { text: "正则表达式入门", link: "/STUDY/regex" },
-        { text: "学习正则表达式", link: "/STUDY/learn-regex" },
         { text: "Markdown语法", link: "/STUDY/markdown" },
         { text: "MySQL", link: "/STUDY/mysql" },
         { text: "Vue", link: "/STUDY/Vue" },

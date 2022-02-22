@@ -41,9 +41,9 @@ mkdir docs && echo '# Hello VitePress' > docs/index.md
 ```json
 {
   "scripts": {
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs"
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "serve": "vitepress serve docs"
   }
 }
 ```
@@ -54,7 +54,7 @@ mkdir docs && echo '# Hello VitePress' > docs/index.md
 pnpm dev
 ```
 
-现在 VitePress 将在 http://localhost:3000,点击这个链接就可以挑战
+现在 VitePress 将在本地 `http://localhost:3000`启动,点击这个链接就可以
 
 ## 表格
 

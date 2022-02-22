@@ -2009,3 +2009,29 @@ var replaceSpace = function (s) {
 };
 ```
 
+## [1614. 括号的最大嵌套深度](https://leetcode-cn.com/problems/maximum-nesting-depth-of-the-parentheses/)
+
+![image-20220222225150307](http://i0.hdslb.com/bfs/album/6c2f47fe0acedc03dab489820663c1086a20ea6e.png)
+
+**栈模拟**:  并不需要真正的栈去处理
+
+1. 遍历字符,如果遇到左括号则深度加一
+
+2. 遇到右括号则深度减一
+
+3. 用max存取栈曾经有过的最大深度
+
+``` js
+var maxDepth = function (s) {
+  let dep = 0, max = 0;
+  for (let item of s) {
+    if (item === '(') dep++
+    if (item === ')') dep--
+    max = Math.max(dep, max)
+  }
+  return max;
+};
+```
+
+
+

@@ -240,6 +240,17 @@ let moveZeroes = function (nums) {
 ![image-20211225173139804](http://i0.hdslb.com/bfs/album/2d889e499a719d62db3cb6d8efb84fb51cae1073.png)
 
 ``` js
+// 读写双指针: 读指针向右侧遍历遇到不是目标的元素则左侧的写指针开始复刻并移动指针.
+var removeElement = function (nums, val) {
+  let len = nums.length;      // 记录下最开始的长度
+  for (var l = 0, r = 0; r < len; r++) {
+    if (nums[r] !== val) {        // 遇到不是目标元素,左指针开始改写并右移
+      nums[l] = nums[r]
+      l++
+    }
+  }
+  return l
+};
 var removeElement = function (nums, val) {
   let index = 0           // 定义写指针
   for (let item of nums) {      // 遍历数组,如果遍历的值和目标不等,则写指针写入该值
@@ -1096,6 +1107,32 @@ var findRepeatNumber = function (nums) {
 ![image-20220104181959698](http://i0.hdslb.com/bfs/album/02ccb1ca81baf457dd4d0d1fbc814a558374d7c4.png)
 
 ``` js
+// 读写双指针改写
+var replaceSpace = function (s) {
+  // 字符串分割为数组
+  let arr = [...s], count = 0;
+
+  // 计算出空格数,用来扩容
+  for (let item of arr) {
+    if (item === ' ') count++
+  }
+
+  // 左右双指针遍历
+  let [l, r] = [arr.length - 1, arr.length + count * 2 - 1]
+  while (l >= 0) {
+    if (arr[l] === ' ') {       // 左指针遇到了空格,右指针开始写字符串,并不断左移
+      arr[r--] = '0'
+      arr[r--] = '2'
+      arr[r--] = '%'
+      l--                 // 右指针写完后,左指针左移
+    } else {
+      arr[r--] = arr[l--]     // 左指针遇到正常字符: 将左指针读到的值写入右指针,并各自左移
+    }
+  }
+  return arr.join('')     // 拼接字符串
+};
+
+
 // 方法一: 直接使用api
 var replaceSpace = function (s) {
   return s.replaceAll(' ', "%20")
@@ -1106,13 +1143,11 @@ var replaceSpace = function (s) {
   return s.split(' ').join('%20');
 };
 
-// 方法二: 切割成数组操作
+// 方法二: 切割成数组拼接
 var replaceSpace = function (s) {
   let arr = [...s];
   for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === " ") {
-      arr[i] = "%20"
-    }
+    if (arr[i] === " ") arr[i] = "%20"
   }
   return arr.join('')
 };
@@ -1850,17 +1885,127 @@ var reformat = function (s) {
 };
 ```
 
+## [151. 翻转字符串里的单词](https://leetcode-cn.com/problems/reverse-words-in-a-string/)
+
+![image-20220222151440118](http://i0.hdslb.com/bfs/album/545761f82038a17a591714cc97970b3411a6ede2.png)
+
+**双指针法: O(1) 额外空间复杂度的原地解法**
+
+1. 先对字符串转成可操作的数组并翻转
+
+2. 对字符串中的每个单词翻转
+
+3. 去除多余的空格和首尾的空格
+
+``` js
+var reverseWords = function (s) {
+  var arr = [...s];
+  var l = 0, r = arr.length - 1;
+
+  // 翻转字符串
+  function reverseStr(i, j) {
+    let [l, r] = [i, j]
+    while (l < r) {
+      [arr[l], arr[r]] = [arr[r], arr[l]]
+      l++
+      r--
+    }
+  }
+
+  // 翻转字符串中的单词
+  function reverseWord() {
+    let l = 0, r = 0;
+    while (r < arr.length) {
+      while (arr[r] === ' ') {
+        r++
+      }
+      l = r
+      while (arr[r] !== ' ' && arr[r]) {
+        r++
+      }
+      reverseStr(l, r - 1)
+    }
+  }
+
+  // 移除多余空格
+  function removeSpace() {
+    let [slow, fast] = [0, 0];
+    while (fast < arr.length) {
+      // 跳过首位和中间超过一的的空格
+      if (arr[fast] === ' ' && (fast === 0 || arr[fast - 1] === ' ')) {
+        fast++
+      } else {
+        arr[slow++] = arr[fast++]
+      }
+    }
+    // 去除尾部的多余空格; 慢指针有可能在最后一个元素后面第一个或者第二个,所以需要判断
+    arr.length = arr[slow - 1] === ' ' ? slow - 1 : slow;
+  }
+
+  reverseStr(l, r)
+  reverseWord(arr)
+  removeSpace(arr)
+  return arr.join('')
+};
+```
+
+**方法二:直接使用库函数**
+
+``` js
+var reverseWords = function (s) {
+  return s.trim().split(/\s+/g).reverse().join(' ')
+};
+```
+
+## [344. 反转字符串](https://leetcode-cn.com/problems/reverse-string/)
+
+![image-20220222151909887](http://i0.hdslb.com/bfs/album/9b13de58f4fbf20b9411bd09ac1cd3980ffe1e21.png)
+
+``` js
+// 使用双指针从左右两边交换值
+var reverseString = function (s) {
+  let [l, r] = [-1, s.length]
+  while (++l < --r) {         // 不太建议这样写,可读写略差,只是为了简洁
+    [s[l], s[r]] = [s[r], s[l]]
+  }
+  return s
+};
+```
+
+## [剑指 Offer 05. 替换空格](https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/)
+
+![image-20220222152144804](http://i0.hdslb.com/bfs/album/1e8208615791af39224de09bbcd4ff8dd99e400b.png)
+
+``` js
+// 方法一: 读写双指针改写
+var replaceSpace = function (s) {
+  // 字符串分割为数组
+  let arr = [...s], count = 0;
+
+  // 计算出空格数,用来扩容
+  for (let item of arr) {
+    if (item === ' ') count++
+  }
+
+  // 左右双指针遍历
+  let [l, r] = [arr.length - 1, arr.length + count * 2 - 1]
+  while (l >= 0) {
+    if (arr[l] === ' ') {       // 左指针遇到了空格,右指针开始写字符串,并不断左移
+      arr[r--] = '0'
+      arr[r--] = '2'
+      arr[r--] = '%'
+      l--                 // 右指针写完后,左指针左移
+    } else {
+      arr[r--] = arr[l--]     // 左指针遇到正常字符: 将左指针读到的值写入右指针,并各自左移
+    }
+  }
+  return arr.join('')     // 拼接字符串
+};
 
 
-
-
-
-
-
-
-
-
-
-
-
+// 方法一: 直接使用api
+var replaceSpace = function (s) {
+  return s.replaceAll(' ', "%20")
+};
+```
 

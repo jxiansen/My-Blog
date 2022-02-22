@@ -85,9 +85,29 @@ master就是本地分支的一个名字,通常情况下是指主分支,这个名
 
 #### 具体命令
 
+1. 查看用户名和邮箱地址: 
+
+``` bash
+git config user.name
+git config user.email
+```
+
+2. 修改用户名和邮箱地址
+
+``` bash
+git config user.name '用户名'
+git config user.email '邮箱地址'
+```
+
+这样修改仅仅是修改当前所在项目的个人信息
+
+3. 全局中修改个人信息
+
 ```bash
-git config --globa user.name "你的名字"
+git config --global user.name "你的名字"
 git config --global user.email "邮箱地址"
+// 这是在全局修改用户名和邮箱记录
+// 或者直接修改全局的.gitconfig 文件, 路径在 /.gitconfigzhon
 ```
 
 #### 疑问 
@@ -102,7 +122,7 @@ git config --global user.email "邮箱地址"
 
 其次，按正常操作来说，你应该配置你的真实用户名和邮箱，这样一来在远程仓库的commits里可以看到哪个操作是你所为。
 
-最后，这个用户名和邮箱是可以随便配置的（不提倡），如果你配置的邮箱是github里真实存在的邮箱，则commits里显示的是这个邮箱对应的账号；如果配置的邮箱是一个在github里不存在的邮箱，则commits里显示的是你配置的用户名。
+最后，**这个用户名和邮箱是可以随便配置的（不提倡），如果你配置的邮箱是github里真实存在的邮箱，则commits里显示的是这个邮箱对应的账号；如果配置的邮箱是一个在github里不存在的邮箱，则commits里显示的是你配置的用户名**。
 
 ### 常用`git`命令
 

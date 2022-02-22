@@ -30,6 +30,7 @@ module.exports = {
 
     nav: [
       { text: '首页', link: '/', activeMatch: '^/$|^/guide/' },
+      { text: 'Github', link: 'https://github.com/jxiansen' },
       { text: '友情链接', link: 'http://www.shyuu.cn' },
     ],
 

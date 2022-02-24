@@ -2033,5 +2033,332 @@ var maxDepth = function (s) {
 };
 ```
 
+## [面试题 03.04. 化栈为队](https://leetcode-cn.com/problems/implement-queue-using-stacks-lcci/)
+
+![image-20220223170006929](http://i0.hdslb.com/bfs/album/b22d44576220a3111b66dee8a0de4e448fb193c8.png)
+
+``` js
+var MyQueue = function () {
+  this.stack = []
+};
+
+/**
+ * Push element x to the back of queue. 
+ * @param {number} x
+ * @return {void}
+ */
+MyQueue.prototype.push = function (x) {
+  this.stack.push(x)
+};
+
+/**
+ * Removes the element from in front of queue and returns that element.
+ * @return {number}
+ */
+MyQueue.prototype.pop = function () {
+  return this.stack.shift()
+};
+
+/**
+ * Get the front element.
+ * @return {number}
+ */
+MyQueue.prototype.peek = function () {
+  return this.stack[0]
+};
+
+/**
+ * Returns whether the queue is empty.
+ * @return {boolean}
+ */
+MyQueue.prototype.empty = function () {
+  return this.stack.length === 0
+};
+```
+
+## [剑指 Offer 09. 用两个栈实现队列](https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/)
+
+![image-20220223173857690](http://i0.hdslb.com/bfs/album/3931dcfac54741ec3e945d886ebbfb4269b070cd.png)
+
+**就是用两个栈来回腾挪模拟出队列,腾挪的时候注意第二个栈想要加入新的元素,必须要等他自己先出栈干净才能入栈.**
+
+```javascript
+var CQueue = function() {
+  this.stackA = []
+  this.stackB = []
+};
+
+/** 
+ * @param {number} value
+ * @return {void}
+ */
+CQueue.prototype.appendTail = function(value) {
+  this.stackA.push(value)
+};
+
+/**
+ * @return {number}
+ */
+CQueue.prototype.deleteHead = function () {
+  // 如果栈B中还有元素,先紧着他出队列,出干净了再push新元素到栈B中
+  if (this.stackB.length) {
+    return this.stackB.pop()
+  } else {
+    // 此时栈B已经空了,需要把栈A中的元素倒过来腾挪到栈B中
+    while (this.stackA.length) {
+      this.stackB.push(this.stackA.pop())
+    }
+    return this.stackB.length === 0 ? -1 : this.stackB.pop()
+    // 如果栈B此时没有元素就返回-1,否则就返回栈B的顶部
+  }
+};
+```
+
+## [225. 用队列实现栈](https://leetcode-cn.com/problems/implement-stack-using-queues/)
+
+![image-20220224211439691](http://i0.hdslb.com/bfs/album/fbd19d5086b827c621953ce2d88a449e6e5c514c.png)
+
+* 方法一: 双队列实现
+
+``` js
+var MyStack = function () {
+  this.queueA = []    // 主队列
+  this.queueB = []    // 副队列
+};
+
+MyStack.prototype.push = function (x) {
+  while (this.queueA.length) {          // 主队列先搬到辅队列中
+    this.queueB.push(this.queueA.shift())
+  }
+  this.queueA.push(x)         // 主队列中添加元素就确保了最后添加的元素在队列头
+  while (this.queueB.length) {
+    this.queueA.push(this.queueB.shift())   // 再把辅助队列搬回到主队列中
+  }
+};
+
+MyStack.prototype.pop = function () {
+  return this.queueA.shift()
+};
+
+MyStack.prototype.top = function () {
+  return this.queueA[0];
+};
+
+MyStack.prototype.empty = function () {
+  return this.queueA.length === 0
+};
+```
+
+* 方法二: 单队列实现
+
+``` js
+var MyStack = function () {
+  this.queue = []
+};
+
+MyStack.prototype.push = function (x) {
+  this.queue.push(x)
+};
+
+MyStack.prototype.pop = function () {
+  let count = this.queue.length - 1;
+  while (count--) {
+    this.queue.push(this.queue.shift())
+  }
+  return this.queue.shift()
+};
+
+
+MyStack.prototype.top = function () {
+  return this.queue[this.queue.length - 1]
+};
+
+MyStack.prototype.empty = function () {
+  return this.queue.length === 0;
+};
+```
+
+## [面试题 03.02. 栈的最小值](https://leetcode-cn.com/problems/min-stack-lcci/)
+
+![image-20220223204905217](http://i0.hdslb.com/bfs/album/9509fd9f579d01d634906580a1eb1a144aa58da0.png)
+
+构造一个辅助栈,与主栈保持同步,每当新push元素的时候,如果小于或等于辅助栈也同步push
+
+**小技巧**: 可以预先给辅助栈中添加一个infinity值来避免判栈空操作
+
+**有两种压栈方式,各有特点**
+
+[题解思路]( https://leetcode-cn.com/problems/min-stack-lcci/solution/lai-zi-zuo-shen-de-jie-ti-si-lu-wo-yi-yi-hyp4/)
+
+``` js
+var MinStack = function () {
+  this.stack = []
+  this.minStack = [Infinity]
+};
+
+ 
+MinStack.prototype.push = function (x) {
+  this.stack.push(x)
+  if (x <= this.minStack[this.minStack.length - 1]) this.minStack.push(x)
+  // 如果新元素小于辅助栈栈顶就push进去
+};
+
+ 
+MinStack.prototype.pop = function () {
+  let item = this.stack.pop()
+  if (item === this.minStack[this.minStack.length - 1]) {
+    this.minStack.pop()
+  }
+};
+
+ 
+MinStack.prototype.top = function () {
+  return this.stack[this.stack.length - 1]
+};
+
+ 
+MinStack.prototype.getMin = function () {
+  return this.minStack[this.minStack.length - 1]
+};
+```
+
+## [1021. 删除最外层的括号](https://leetcode-cn.com/problems/remove-outermost-parentheses/)
+
+![image-20220224112448241](http://i0.hdslb.com/bfs/album/83bc445bc33cae05a12597cfc7a600e2eecbb9f6.png)
+
+* 计数法: 遇到左括号，我们的计数器 +1+1+1，遇到右括号，我们的计数器 −1-1−1。
+
+[优秀题解](// https://leetcode-cn.com/problems/remove-outermost-parentheses/solution/ji-shu-fa-shan-chu-zui-wai-ceng-de-gua-h-55id/)
+
+``` js
+var removeOuterParentheses = function (s) {
+  let res = '', count = 0;
+  for (let str of s) {
+    if (str === '(' && count++ > 0) res += str
+    if (str === ')' && count-- > 1) res += str
+  }
+  return res
+};
+```
+
+* 使用辅助栈来存取元素
+
+想象栈是一个薯片桶,我一直往里放薯片,薯片"有正有负",相邻的正负碰到一起就会"抵消"
+
+只要薯片桶底部还有薯片就用空字符串拼接纪录从倒数第二个开始的薯片出场顺序
+
+当要新加的薯片可以"抵消"掉最底层的薯片时,停止拼接字符串
+
+``` js
+var removeOuterParentheses = function (s) {
+  let stack = [], res = '';
+  for (let str of s) {
+    if (str === '(') {
+      stack.push(str)     // 如果取到的是'(',栈中添加元素
+      if (stack.length > 1) res += str;   // 当栈深大于1的时候,顺便拼接字符串,相当于把"最外面皮"给剥下来了
+    } else {
+      if (stack.length > 1) res += str;   // 取到 "(",依旧拼接字符串
+      stack.length && stack.pop()         // 只要栈不为空就让之前进栈的左括号出栈
+    }
+  }
+  return res
+};
+```
+
+## [20. 有效的括号](https://leetcode-cn.com/problems/valid-parentheses/)
+
+![image-20220224203919550](http://i0.hdslb.com/bfs/album/e1a89ef11097f774762c35c18367938a1cfe7c80.png)
+
+[题解](https://leetcode-cn.com/problems/valid-parentheses/solution/dai-ma-sui-xiang-lu-dai-ni-gao-ding-zhan-x3xw/)
+
+``` js
+var isValid = function (s) {
+  let stack = []
+  let map = {
+    '(': ')',
+    '{': '}',
+    '[': ']'
+  }
+  for (let str of s) {
+    if (str in map) {   // 遇到左括号就入栈
+      stack.push(str)
+      continue;
+    }
+    if (map[stack.pop() !== str]) return false
+    // 遇到右括号就出栈顶元素查表看其是否匹配
+  }
+  return !stack.length    // 如果最后栈中还有元素说明没有匹配抵消完
+};
+```
+
+## [1441. 用栈操作构建数组](https://leetcode-cn.com/problems/build-an-array-with-stack-operations/)
+
+![image-20220224211715412](http://i0.hdslb.com/bfs/album/03bf54c51a8d0170716d576bb51e6cca96f3a5ad.png)
+
+``` js
+var buildArray = function (target, n) {
+  let res = [], len = 0;
+  for (let i = 1; i <= n; i++) {
+    if (target.includes(i)) {
+      res.push('Push')
+      len++
+    } else {
+      res.push('Push', 'Pop')
+    }
+    if (len === target.length) return res     // 当长度和target相等时,直接返回
+  }
+};
+```
+
+## 
+
+#### [1047. 删除字符串中的所有相邻重复项](https://leetcode-cn.com/problems/remove-all-adjacent-duplicates-in-string/)
+
+![image-20220224213954027](http://i0.hdslb.com/bfs/album/ae2e70c7ee37a6314a16c0a7295146d768158e39.png)
+
+``` js
+var removeDuplicates = function (s) {
+  let stack = []
+  for (let str of s) {
+    if (stack.length && str === stack[stack.length - 1]) {
+      stack.pop()     // 如果栈不为空,且将要遍历到的字符串等于栈顶元素,直接pop
+    } else {
+      stack.push(str)
+    }
+  }
+  return stack.join('')
+};
+```
+
+## [150. 逆波兰表达式求值](https://leetcode-cn.com/problems/evaluate-reverse-polish-notation/)
+
+![image-20220224224336230](http://i0.hdslb.com/bfs/album/9f364afbe69dd73ab7230796edea3012a3cc94e8.png)
+
+``` js
+var evalRPN = function (tokens) {
+  let stack = [];
+
+  // 定义一个计算对象,对参数和操作符进行处理
+  let compMap = {
+    '+': (a, b) => +a + +b,   // 防止识别 "+" 为拼接字符串,进行类型转换
+    '-': (a, b) => a - b,
+    '*': (a, b) => a * b,
+    '/': (a, b) => Math.trunc(a / b)
+  }
+
+  for (let str of tokens) {
+    if (stack.length > 1 && str in compMap) {
+      let [right, left] = [stack.pop(), stack.pop()]
+      stack.push(compMap[str](left, right))     // 每次计算完的结果重新push到栈中等待下次计算
+    } else {
+      stack.push(str)
+    }
+  }
+  return stack[0]
+}
+```
+
+
+
 
 

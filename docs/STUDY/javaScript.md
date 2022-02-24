@@ -1,29 +1,55 @@
 # JavaScript 知识点
 
-### JS数据类型
+### JS 数据类型
 
-七种基本数据类型: 
+七种基本数据类型:
 
-* `Undefined` 
-* `Null` 
-* `Boolean` 
-* `Number` 
-* `String` 
-* `Symbol` (es6新增)
-* `BigInt` (es10新增)
+- `Undefined`
+- `Null`
+- `Boolean`
+- `Number`
+- `String`
+- `Symbol` (es6 新增)
+- `BigInt` (es10 新增)
 
-1种引用数据类型 `object` 
+1 种引用数据类型 `object`
 
-* 普通对象`object`
-* 数组对象 `Array`
-* 正则对象 `RegExp` 
-* 日期对象 `Date` 
-* 数学对象 `Math` 
-* 函数对象 `Function` 
+- 普通对象`object`
+- 数组对象 `Array`
+- 正则对象 `RegExp`
+- 日期对象 `Date`
+- 数学对象 `Math`
+- 函数对象 `Function`
 
 快速记忆法: **那你是真的牛逼 (u s N B)**
 
 基础数据类型存储在栈内存中,引用数据类型存储在堆内存中.
+
+### if...else...简写
+
+- if()语句
+
+```js
+if (3 > 2) console.log(23);
+```
+
+- 三目运算符: 条件 ? 条件成立的执行语句 : null
+
+```js
+2 + 3 === 5 ? alert("true") : null;
+```
+
+- `&&` 条件为真走`&&` 后面的语句
+
+```js
+9 % 3 !== 0 && alert("成立");
+```
+
+- `||` 条件不管成不成立都走 `||`后面的语句
+
+```js
+ 9%3！=0 || alert('成立')
+```
 
 ## DOM
 
@@ -70,7 +96,7 @@ console.log(body)
 返回值：
 
     有与此 id 匹配的元素，返回相应元素
-    
+
     无与此 id 匹配的元素，返回null
 
 - `getElementsByTagName()`
@@ -80,7 +106,7 @@ console.log(body)
 返回值：伪数组(常用的数组方法无法使用)
 
     遇到相匹配的标签元素，返回所有的元素
-    
+
     如果没有相匹配的元素，返回空伪数组
 
 - `getElementsByClassName()`
@@ -90,7 +116,7 @@ console.log(body)
 返回值：伪数组(常用的数组方法无法使用)
 
     遇到相匹配的类元素，返回所有的元素
-    
+
     如果没有相匹配的类名，返回空伪数组
 
 - `getElementsByName()`
@@ -256,55 +282,57 @@ tmp.sayHi(); //我叫:老王
 
 使用构造函数创建出来的对象,这个对象都叫做这个构造函数的 `instance` (实列),`javaScript`提供了一种简单的方法来验证对象是否是由构造函数所创建的.返回`true` 或者 `false`
 
-``` js
-let Bird = function(name,color) {
+```js
+let Bird = function (name, color) {
   this.name = name;
   this.color = color;
   this.numLegs = 4;
-}
+};
 
-let bird = new Bird("jack",'yellow')
-bird instanceof Bird;			// true;			bird是由构造函数创建的实例,所以返回true
+let bird = new Bird("jack", "yellow");
+bird instanceof Bird; // true;			bird是由构造函数创建的实例,所以返回true
 
-let obj = { name: 'Jack', color: 'yellow', numLegs: 4 }
-obj instanceof Bird;		// false;			obj不是构造函数创建的实例,返回false
+let obj = { name: "Jack", color: "yellow", numLegs: 4 };
+obj instanceof Bird; // false;			obj不是构造函数创建的实例,返回false
 ```
 
- `prototype` 是一个可以在所有实例之间共享的对象,由于所有的实例都可以继承 `prototype` 看作是创建对象的配方.  在 `JavaScript` 中所有的对象都有几个 `prototype` 属性,这个属性是属于它所在的构造函数.
+`prototype` 是一个可以在所有实例之间共享的对象,由于所有的实例都可以继承 `prototype` 看作是创建对象的配方. 在 `JavaScript` 中所有的对象都有几个 `prototype` 属性,这个属性是属于它所在的构造函数.
 
 **对象两种属性**
 
-* 自身属性: 直接在对象上定义的.
-* `prototype`: 原型属性在`prototype` 上定义.
+- 自身属性: 直接在对象上定义的.
+- `prototype`: 原型属性在`prototype` 上定义.
 
-``` js
+```js
 function Bird(name) {
-  this.name = name;     // 自有属性
+  this.name = name; // 自有属性
 }
 
-Bird.prototype.numLegs = 2;   // 原型属性
+Bird.prototype.numLegs = 2; // 原型属性
 
 let duck = new Bird("Jack");
 
-let ownProps = [];      // 自身属性数组
-let prototypeProps = [];  // 原型属性数组
+let ownProps = []; // 自身属性数组
+let prototypeProps = []; // 原型属性数组
 
-for (let property in duck) {     // for...in主要是用来遍历对象的所有属性,包括自有属性和原型属性
-  if (duck.hasOwnProperty(property)) {     // 遍历到的自有属性
-    ownProps.push(property)
+for (let property in duck) {
+  // for...in主要是用来遍历对象的所有属性,包括自有属性和原型属性
+  if (duck.hasOwnProperty(property)) {
+    // 遍历到的自有属性
+    ownProps.push(property);
   } else {
-    prototypeProps.push(property)     // 遍历到原型属性
+    prototypeProps.push(property); // 遍历到原型属性
   }
 }
-console.log(ownProps)			// [ 'name' ]
-console.log(prototypeProps)			// [ 'numLegs' ]
+console.log(ownProps); // [ 'name' ]
+console.log(prototypeProps); // [ 'numLegs' ]
 ```
 
 **`constructor` 属性**
 
 每个实例对象都从原型中继承了一个`constructor` 属性,这个属性指向了用于构造此实例对象的构造函数.
 
-``` js
+```js
 function Dog(name) {
   this.name = name;
 }
@@ -319,25 +347,25 @@ function joinDogFraternity(candidate) {
 
 单独给`prototype` 添加属性,
 
-``` js
+```js
 Bird.prototype.numLegs = 2;
 ```
 
 如果需要添加多个原型属性,这样写就太拖沓了
 
-``` js
+```js
 Bird.prototype.eat = function () {
   console.log("nom nom nom");
-}
+};
 
 Bird.prototype.describe = function () {
   console.log("My name is " + this.name);
-}
+};
 ```
 
 最有效的方式就是直接给对象的 `prototype` 设置一个已经包含了属性的新对象,直接将这个对象挂在到这个原型属性上.一次性添加进来.
 
-``` js
+```js
 function Dog(name) {
   this.name = name;
 }
@@ -345,47 +373,47 @@ function Dog(name) {
 Dog.prototype = {
   numLegs: 2,
   eat: () => console.log("nom nom nom"),
-  describe: function() {
-    console.log(`My name is ${this.name}`)		// 箭头函数的this问题,只能用普通函数写法
-  } 
+  describe: function () {
+    console.log(`My name is ${this.name}`); // 箭头函数的this问题,只能用普通函数写法
+  },
 };
-let dog = new Dog("jack")
+let dog = new Dog("jack");
 
-console.log(dog)			// { name: 'jack' }
-console.log(dog.name)		// jack
-dog.eat()					// nom nom nom
-dog.describe()		// My name is jack
+console.log(dog); // { name: 'jack' }
+console.log(dog.name); // jack
+dog.eat(); // nom nom nom
+dog.describe(); // My name is jack
 ```
 
 **更改原型时，记得设置构造函数属性**
 
 手动设置一个新对象的原型有个副作用: 会清除原本的 `constructor` 属性,这个属性可以用来检查是那个构造函数创建了实例,但是现在该属性已经被覆盖了.需要手动给原型对象中定义个 `constructor` 属性:
 
-``` js
+```js
 function Dog(name) {
   this.name = name;
 }
 
 Dog.prototype = {
-  constructor: Dog,     // 手动的给原型对象添加 constructor 属性
+  constructor: Dog, // 手动的给原型对象添加 constructor 属性
   numLegs: 4,
   eat: function () {
     console.log("nom nom nom");
   },
   describe: function () {
     console.log("My name is " + this.name);
-  }
+  },
 };
 
-let dog = new Dog('Jack')
-console.log(dog.constructor === Dog)    // true
+let dog = new Dog("Jack");
+console.log(dog.constructor === Dog); // true
 ```
 
 **对象的原型从哪里来**
 
-对象可以直接从创建它的构造函数哪里继承其 `prototype` 
+对象可以直接从创建它的构造函数哪里继承其 `prototype`
 
-``` js
+```js
 function Bird(name) {
   this.name = name;
 }
@@ -393,41 +421,29 @@ function Bird(name) {
 let duck = new Bird("Jack");
 
 // 检查 duck 对象是否继承自 Bird 的构造函数
-console.log(Bird.prototype.isPrototypeOf(duck));			// true;
+console.log(Bird.prototype.isPrototypeOf(duck)); // true;
 ```
 
 **原型链**
 
-`JavaScript` 中基本所有的对象都有自己的 `prototype` .并且对象的 `prototype` 自身也是一个对象.所有他自己也有自己的 `prototype` 
+`JavaScript` 中基本所有的对象都有自己的 `prototype` .并且对象的 `prototype` 自身也是一个对象.所有他自己也有自己的 `prototype`
 
-``` js
+```js
 function Dog(name) {
   this.name = name;
 }
 
 let beagle = new Dog("Snoopy");
 
-console.log(beagle.hasOwnProperty)   // [Function: hasOwnProperty]
+console.log(beagle.hasOwnProperty); // [Function: hasOwnProperty]
 // beagle的原型是从 Dog 构造函数所继承的
-console.log(Dog.prototype.isPrototypeOf(beagle));  // true
+console.log(Dog.prototype.isPrototypeOf(beagle)); // true
 
 // Dog的原型是从 Object对象的构造函数所继承的.
-console.log(Object.prototype.isPrototypeOf(Dog.prototype))
+console.log(Object.prototype.isPrototypeOf(Dog.prototype));
 ```
 
 `hasOwnProperty` 是定义在 `Object.prototype` 上的一个方法,虽然在 `Dog` 的原型上面没有定义该方法,但是依然可以在这个对象上面访问到,这就是通过 `prototype` 链条访问的一个例子,因为 `Object` 是 `JavaScript` 中所有对象的 `supertype` ,因此所有的对象都可以访问 `hasOwnProperty` 方法.
-
-
-
-
-
-
-
-
-
-
-
-
 
 #### Array
 
@@ -484,14 +500,14 @@ console.log(Object.prototype.isPrototypeOf(Dog.prototype))
 
 `const` 声明的关键字通常用大写字母作为常量标识符
 
-``` js
+```js
 const NUM = 12;
-const HUMAN_NAME = 'jack';
+const HUMAN_NAME = "jack";
 ```
 
 **注：`const` 声明并不能保证变量的值不得改动，而是指向变量内存地址的指针不能改动是固定的，对于复合数据类型的数据（对象和数组），指向的数据依旧是可以变动的。**
 
-``` js
+```js
 const ARR = [1，2，3，4]；
 ARR = [5,6,7,8];	//错误
 ARR[3] = 5;		//输出[1,2,3,5]
@@ -501,16 +517,15 @@ ARR[3] = 5;		//输出[1,2,3,5]
 
 `const` 声明的对象并不是真正的不可改，可以使用`Object.freeze(对象)`来彻底冻结保护对象数据不被改写
 
-``` js
+```js
 let user = {
-  name: 'jack',
+  name: "jack",
   age: 10,
-  hobby: 'game'
-}
-Object.freeze(user);		//冻结了这个对象
-user.age = 20;		//普通模式下不会报错，但是数据无法改写,严格模式下会报错
-console.log(user)		//{ name: 'jack', age: 10, hobby: 'game' }
-
+  hobby: "game",
+};
+Object.freeze(user); //冻结了这个对象
+user.age = 20; //普通模式下不会报错，但是数据无法改写,严格模式下会报错
+console.log(user); //{ name: 'jack', age: 10, hobby: 'game' }
 ```
 
 #### 箭头函数和 this 的指向问题
@@ -542,33 +557,29 @@ let sum = (a,b) => a + b;
 
 #### 设置函数的默认参数
 
-ES6语法允许参数传入默认的参数，来更加的灵活的运用函数
+ES6 语法允许参数传入默认的参数，来更加的灵活的运用函数
 
-``` js
+```js
 let sum = (num = 10) => num + 2;
-sum();		//12
-sum(5);		//7
+sum(); //12
+sum(5); //7
 ```
 
 #### rest 展开运算符
 
 使用`...` 展开运算符，可以创建一个变量来接受多个参数的的函数，这些参数以数组的形式存储在函数内部读取的数组中，在此函数内部，各种数组的方法也都可以使用。
 
-``` js
+```js
 const sum = (...args) => {
   let tmp = 0;
-  for(let i of args) {
+  for (let i of args) {
     tmp += i;
   }
-  console.log(args.length)
+  console.log(args.length);
   return tmp;
-}
-sum(1,2,3,4)		//4, 10		函数内部，y
+};
+sum(1, 2, 3, 4); //4, 10		函数内部，y
 ```
-
-
-
-
 
 #### Map 和 set(集合与映射)
 
@@ -627,4 +638,4 @@ for (let son of map.entries()) {
 */
 ```
 
-​	
+​

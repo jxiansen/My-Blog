@@ -2310,9 +2310,7 @@ var buildArray = function (target, n) {
 };
 ```
 
-## 
-
-#### [1047. 删除字符串中的所有相邻重复项](https://leetcode-cn.com/problems/remove-all-adjacent-duplicates-in-string/)
+##  [1047. 删除字符串中的所有相邻重复项](https://leetcode-cn.com/problems/remove-all-adjacent-duplicates-in-string/)
 
 ![image-20220224213954027](http://i0.hdslb.com/bfs/album/ae2e70c7ee37a6314a16c0a7295146d768158e39.png)
 
@@ -2357,6 +2355,206 @@ var evalRPN = function (tokens) {
   return stack[0]
 }
 ```
+
+## [682. 棒球比赛](https://leetcode-cn.com/problems/baseball-game/)
+
+![image-20220225120825650](http://i0.hdslb.com/bfs/album/4eaf9bbfe119650edcce46a3310a8a9fd9e0bdf5.png)
+
+``` js
+var calPoints = function (ops) {
+  const stack = [], oper = {
+    'C': st => st.pop(),
+    'D': st => st.push(st[st.length - 1] * 2),
+    '+': st => st.push(+st[st.length - 1] + +st[st.length - 2])
+  }
+  for (let item of ops) {
+    item in oper ? oper[item](stack) : stack.push(+item);
+  }
+  return stack.reduce((sum, cur) => sum + cur, 0)
+};
+```
+
+## [1544. 整理字符串](https://leetcode-cn.com/problems/make-the-string-great/)
+
+![image-20220225181311462](http://i0.hdslb.com/bfs/album/aa2444224d94f24b8a8057c7b5a5f48db508f764.png)
+
+* 函数用来判断栈顶字符和当前字符是否大小写是否相异
+
+* 如果栈中有元素并且大小写不匹配就出栈顶, 否则就入栈
+
+``` js
+var makeGood = function (s) {
+  var stack = []
+  // 判断栈顶字符和当前字符是否大小写相异
+  let isMatch = char => Math.abs(char.charCodeAt() - (stack[stack.length - 1]).charCodeAt()) === 32;
+  for (let str of s) {
+    stack.length && isMatch(str) ? stack.pop() : stack.push(str);
+  }
+  return stack.join('')
+};
+```
+
+## [2011. 执行操作后的变量值](https://leetcode-cn.com/problems/final-value-of-variable-after-performing-operations/)
+
+![image-20220226115241546](http://i0.hdslb.com/bfs/album/2340bbf277360d60f3cb32c1c604192aa3d49fec.png)
+
+``` js
+// 弱智题,做着找自信用的
+var finalValueAfterOperations = function (operations) {
+  return operations.reduce((acc, cur) => acc + (/\-/g.test(cur) ? -1 : 1), 0)
+};
+```
+
+## [2161. 根据给定数字划分数组](https://leetcode-cn.com/problems/partition-array-according-to-given-pivot/)
+
+![image-20220226121401947](http://i0.hdslb.com/bfs/album/97e7a15ddca9f5149a830650cd565d5b543ee910.png)
+
+``` js
+var pivotArray = function (nums, pivot) {
+  let left = [], middle = [], right = [];
+  for (let num of nums) {
+    if (num < pivot) left.push(num)
+    if (num > pivot) right.push(num)
+    if (num === pivot) middle.push(num)
+  }
+  return [...left, ...middle, ...right];
+};
+```
+
+## [1844. 将所有数字用字符替换](https://leetcode-cn.com/problems/replace-all-digits-with-characters/)
+
+![image-20220226130309738](http://i0.hdslb.com/bfs/album/3feb3c683c43cac9b8b31fa12c184f5f99b4a2f2.png)
+
+``` js
+var replaceDigits = function (s) {
+  let shift = (str, num) => String.fromCharCode(str.charCodeAt() + +num);
+  return [...s].map((cur, idx, arr) => /\d/.test(cur) ? shift(arr[idx - 1], cur) : cur).join('')
+};
+```
+
+## [1002. 查找共用字符](https://leetcode-cn.com/problems/find-common-characters/)
+
+![image-20220226203002817](http://i0.hdslb.com/bfs/album/0154fcadfca03e07a93d1780798f57bb5c92aa93.png)
+
+``` js
+var commonChars = function (words) {
+  var cross = (str1, str2) => {
+    let res = '', arr = [...str2];
+    for (let char of str1) {
+      let idx = arr.findIndex(i => i === char)
+      if (idx !== -1) {
+        res += char;
+        arr[idx] = '*'
+      }
+    }
+    return res
+  }
+  while (words.length > 1) {
+    words.push(cross(words.shift(), words.shift()))
+  }
+  return [...words[0]]
+};
+```
+
+``` js
+/* 
+  定义一个函数cross: 对两个字符串求交集(交集中允许同一字符出现多次)
+
+  举例: 
+  第一轮:label    ['r','o','l','l','e','r']  res: 'l'  在数组中找到同是 "l" 的索引,并改写他,防止下次被遍历到
+        ↑                  ↑ : 改写为 '*'
+  第二轮:label    ['r','o','*','l','e','r']  res: 'l'  找不到 'a' 不用管
+         ↑                              
+  第三轮:label    ['r','o','*','l','e','r']  res: 'l'  找不到 'b' 不用管
+          ↑
+  第四轮:label    ['r','o','*','l','e','r']  res: 'le'  找到 'e' 拼接
+           ↑                       ↑
+  第四轮:label    ['r','o','*','l','*','r']  res: 'lel'  找到了 'l' 拼接
+            ↑                  ↑
+
+   只要 words 数组中的长度还大于一,就一直把最前面两个字符串shift出来,用函数处理后push到数组中
+  最后的结果就是数组中所有字符串的共用字符了
+*/
+```
+
+## [242. 有效的字母异位词](https://leetcode-cn.com/problems/valid-anagram/)
+
+![image-20220226214727704](http://i0.hdslb.com/bfs/album/b667c7e82aa49bf77a6e29d7c01131137f769103.png)
+
+``` js
+// api法: 对字符串打散了以后按照Asics表排序再拼接判断是否一致
+var isAnagram = function (s, t) {
+  return [...s].sort().join('') === [...t].sort().join('')
+};
+
+// 方法二: 哈希计数
+/* 
+  遍历第一个字符串,用map统计出每个字符串出现的次数
+  遍历第二个字符串,如果遇到map中没有此key,直接返回false,对遍历到的字符串计数--
+  如果遍历map,如果map中还有value不为0,说明没有抵消完全,返回false
+*/
+var isAnagram = function (s, t) {
+  let map = {}
+  for (let char of s) {
+    char in map ? map[char]++ : map[char] = 1;
+  }
+  for (let item of t) {
+    if (!(item in map)) return false
+    map[item]--
+  }
+  for (let key in map) {
+    if (map[key] !== 0) return false
+  }
+  return true
+};
+```
+
+## [383. 赎金信](https://leetcode-cn.com/problems/ransom-note/)
+
+![image-20220226220944108](http://i0.hdslb.com/bfs/album/22f9930c08b3342d673575d849f8c9a3f1b988db.png)
+
+``` js
+// 使用数组当作哈希表使用: 数组的索引为26个字母的映射值,数组的值默认填充为0表示出现的次数
+var canConstruct = function (ransomNote, magazine) {
+  let arr = new Array(26).fill(0), base = 'a'.charCodeAt()    // base: 基准定位
+  for (let char of magazine) {
+    arr[char.charCodeAt() - base]++
+  }
+  for (let str of ransomNote) {
+    let idx = str.charCodeAt() - base;
+    if (!arr[idx]) return false;        // 哈希表中找到的值为空,直接返回false
+    arr[idx]--        // 哈希表中存在该字符值--
+  }
+  return true;
+};
+
+
+// 使用对象来当作哈希表使用
+var canConstruct = function (ransomNote, magazine) {
+  let map = {}
+  for (let item of magazine) {
+    item in map ? map[item]++ : map[item] = 1;
+  }
+  for (let char of ransomNote) {
+    if (!(char in map)) return false
+    map[char]--
+  }
+  for (let key in map) {
+    if (map[key] < 0) return false
+  }
+  return true;
+};
+```
+
+
+
+
+
+
+
+
+
+
 
 
 

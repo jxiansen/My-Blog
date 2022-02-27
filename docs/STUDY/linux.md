@@ -190,7 +190,7 @@ firewall-cmd --permanent --remove-port=123/tcp
 `*.zip` 用 unzip 解压
 ```
 
-#### 重命名主机名
+## 重命名主机名
 
 阿里云的主机名太长太丑了,想要修改主机名,发现阿里云居然不提供修改的地方,百度了下找到了简单的方法
 
@@ -209,7 +209,7 @@ reboot
 
 ![image-20210807180627713](http://i0.hdslb.com/bfs/album/dfb933c9748bc51149efbf4238a6fa21010da026.png)
 
-####  Linux中查找nginx配置所在目录
+###  Linux中查找nginx配置所在目录
 
 默认的腾讯云`node`镜像包中配置了`nginx` ,学习`express` 的时候,ip地址总是默认转到80端口,很不方便,用`express` 来提供`http` 服务.
 
@@ -227,3 +227,33 @@ ps - ef | grep nginx
 cd /usr/local/lighthouse/softwares/nginx/sbin/nginx -s stop
 ```
 
+## 服务器端和主机端`ssh` 配置
+
+### 本地安装`ssh` 服务
+
+本地如果已经安装好 `git` 工具,直接命令行 `cd` 到 `~` 目录下,运行命令生成 `ssh key`
+
+``` bash
+cd ~
+ssh-keygen -t rsa -C "xxxxx@xxxxx.com"
+```
+
+邮箱只是为了找到联系方式可以不填,此时路径中就已经生成了以下文件
+
+![image-20220227160001244](http://i0.hdslb.com/bfs/album/4323dd2ebb0b57c9dadc4da5b4290c59bd760d7f.png)
+
+`id_rsa.pub` 中的内容,就是所需的公钥内容
+
+### 服务器端
+
+进入到购买的服务器端,同样进入本地的 `.ssh` 路径看看是不是也有这些公钥文件生成
+
+如果没有的同样安装一遍 `git` 再重新配置一下公钥密钥
+
+![image-20220227160237525](http://i0.hdslb.com/bfs/album/8c897ac605c6ad999829a36dd84384a5feb27326.png)
+
+
+
+上图中的 `authorized_keys` 文件，就是设置本地免密登录的文件，只要把之前本地生成的 `id_rsa.pub` 内容放入 `authorized_keys` 中，在本地命令行工具执行 `ssh root@服务器IP`，便能直接免密登录。
+
+![image-20220227160328206](http://i0.hdslb.com/bfs/album/8d38f66805cc31cfe740a3791f3e2337367fe0db.png)

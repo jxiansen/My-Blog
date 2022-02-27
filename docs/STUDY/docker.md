@@ -202,7 +202,7 @@ jenkinsci/blueocean   latest    090919d971fc   17 hours ago   716MB
 3. 以此镜像文件启动成容器
 
 ```bash
-docker run -d  \
+docker run -d -it  \
 --name jenkins -u root \
 -p 9090:8080  \
 -v /var/jenkins_home:/var/jenkins_home  \

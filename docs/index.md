@@ -2,7 +2,7 @@
 home: true
 heroImage: http://i0.hdslb.com/bfs/album/e6c53dc180e8e1a5dcd819cc161ee0fdc911128d.png
 heroAlt: Banner
-heroText: 阿J的前端笔记
+heroText: 阿J 的前端笔记
 tagline: Life · Study · Think
 actionText: Get Started →
 actionLink: /STUDY/30S-css

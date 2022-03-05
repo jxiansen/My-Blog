@@ -36,43 +36,51 @@ module.exports = {
 
     sidebarDepth: 4,
     sidebar: {
-      '/guide/': getGuideSidebar(),
-      '/': getGuideSidebar()
+      '/': getSidebar()
     }
   }
 }
 
-function getGuideSidebar() {
+function getSidebar() {
   return [
     {
-      text: '初级',
+      text: '基础知识',
       children: [
-        { text: "html-study", link: "/STUDY/html-study" },
         { text: "30S-css", link: "/STUDY/30S-css" },
         { text: "30S-js", link: "/STUDY/30S-js" },
-        { text: "Linux学习", link: "/STUDY/linux" },
-        { text: "React初学者手册", link: "/STUDY/React-handbook" },
-        { text: "docker入门", link: "/STUDY/docker" },
-        { text: "sass入门", link: "/STUDY/sass" },
-        { text: "express入门", link: "/STUDY/express" },
-        { text: "正则表达式入门", link: "/STUDY/regex" },
-        { text: "Markdown语法", link: "/STUDY/markdown" },
-        { text: "MySQL", link: "/STUDY/mysql" },
-        { text: "Vue", link: "/STUDY/Vue" },
-        { text: "前端面试题", link: "/STUDY/font-end interview" },
-        { text: "git入门教程", link: "/STUDY/git" },
-        { text: "vitepress", link: "/STUDY/vitepress-study" }
+        { text: "html-study", link: "/STUDY/html-study" },
+        { text: "Javascript简写技巧", link: "/STUDY/js-shorthand" },
+        { text: "Js数据结构", link: "/STUDY/JS-DataStructure" },
+        { text: "前端面试题", link: "/STUDY/font-end interview" }
       ]
     },
     {
-      text: 'JavaScript',
+      text: '框架',
       children: [
-        { text: "JavaScript", link: "/STUDY/javaScript" },
-        { text: "LeetCode题解", link: "/STUDY/LeetCode" },
-        { text: "牛客网题解", link: "/STUDY/nowcoder" },
-        { text: "FreeCodeCamp题解", link: "/STUDY/js-practice" },
-        { text: "Javascript简写技巧", link: "/STUDY/js-shorthand" },
-        { text: "Javascript数据结构", link: "/STUDY/JS-DataStructure" }
+        { text: "Vue", link: "/STUDY/Vue" },
+        { text: "express入门", link: "/STUDY/express" },
+        { text: "React初学者手册", link: "/STUDY/React-handbook" }
+      ]
+    },
+    {
+      text: '前端拓展技能',
+      children: [
+        { text: "Markdown语法", link: "/STUDY/markdown" },
+        { text: "git入门教程", link: "/STUDY/git" },
+        { text: "sass入门", link: "/STUDY/sass" },
+        { text: "正则表达式入门", link: "/STUDY/regex" },
+        { text: "Linux学习", link: "/STUDY/linux" },
+        { text: "vitepress", link: "/STUDY/vitepress-study" },
+        { text: "docker入门", link: "/STUDY/docker" },
+        { text: "MySQL", link: "/STUDY/mysql" }
+      ]
+    },
+    {
+      text: '算法刷题',
+      children: [
+        { text: "NowCode", link: "/STUDY/nowcoder" },
+        { text: "FreeCodeCamp", link: "/STUDY/js-practice" },
+        { text: "LeetCode", link: "/STUDY/LeetCode" }
       ]
     },
     {

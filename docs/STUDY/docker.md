@@ -314,6 +314,23 @@ server {
 docker run -d -p 80:80 --name nginx -v /home/nginx/html:/usr/share/nginx/html nginx
 ```
 
+## docker 配置官方镜像加速
+
+### 获取官网链接
+
+登录阿里云控制台,找到镜像工具 => 镜像加速器 => 复制自己的链接
+
+[阿里云加速器控制台链接](https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors)
+
+![image-20220305164015219](http://i0.hdslb.com/bfs/album/baa691a5a7cf8d3b4a9aebd6d40d0d573e227d41.png)
+
+- `Windows` 客户端
+
+点击设置小齿轮 => `Dockers Engine` => 翻到最下面的仓库镜像配置 => 粘贴进去(注意链接要有引号)
+
+![image-20220305164129094](http://i0.hdslb.com/bfs/album/9630a8c9fd59a0041d9ea7823906218ec1949e3e.png)
+
+
 ## `dockers`概念区分,`Images`,`Containers` `Volumes` 区别
 
 ![3524_1](http://i0.hdslb.com/bfs/album/a74a14baabac144c4224bf3fcc2e6b530546f184.png)

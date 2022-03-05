@@ -2546,7 +2546,358 @@ var canConstruct = function (ransomNote, magazine) {
 };
 ```
 
+## [2181. 合并零之间的节点](https://leetcode-cn.com/problems/merge-nodes-in-between-zeros/)
 
+![image-20220301204016933](http://i0.hdslb.com/bfs/album/e5bb43e2e9b8fed44cb825583deab8ff0913a4aa.png)
+
+``` js
+// 方法一: 从数组中构造链表
+var mergeNodes = function (head) {
+  let list = [], cur = head.next, sum = 0;
+  // 遍历链表得到零之间节点的和,并添加到数组中
+  while (cur) {
+    if (cur.val) {
+      sum += cur.val
+    } else {
+      list.push(new ListNode(sum, null))
+      sum = 0;
+    }
+    cur = cur.next;
+  }
+  // 从数组中重新构造节点,串起来
+  for (let i = 0; i < list.length - 1; i++) {
+    list[i].next = list[i + 1]
+  }
+  return list[0]
+}
+
+// 方法二: 直接在遍历链表的时候,用处理好的数构造链表
+var mergeNodes = function (head) {
+  let dummy = new ListNode(0, null), idx = dummy, cur = head.next, sum = 0;
+  while (cur) {
+    if (cur.val) {
+      sum += cur.val
+    } else {
+      idx.next = new ListNode(sum, null)
+      idx = idx.next
+      sum = 0;
+    }
+    cur = cur.next;
+  }
+  return dummy.next
+}
+
+ 
+// 双指针法: cur: 当前遍历的指针, pre: 指向 '0' 节点的指针
+var mergeNodes = function (head) {
+  let cur = head, pre = null;
+  while (cur) {
+    if (cur.val) {  // 如果是正常数字的话
+      pre.val += cur.val
+    } else {      // 遇到 0 ,前置指针已经累加完毕,指向当前遍历指针
+      if (pre) pre.next = cur.next ? cur : null;
+      pre = cur
+    }
+    cur = cur.next
+  }
+  return head;
+};
+```
+
+## [49. 字母异位词分组](https://leetcode-cn.com/problems/group-anagrams/)
+
+![image-20220301204237163](http://i0.hdslb.com/bfs/album/4f905ccd22bb2c6cf474fc28c540d16684b3dcdd.png)
+
+``` js
+var groupAnagrams = function (strs) {
+  let res = [], map = {};
+  // 对所有单词进行排序
+  let arr = strs.map(i => [...i].sort().join(''))
+  // 表中添加所有相同单词出现的索引
+  for (let i = 0; i < arr.length; i++) {
+    let item = arr[i];
+    item in map ? map[item].push(i) : map[item] = [i]
+  }
+  // 遍历表中的索引,依据索引找到原字符串添加到结果中
+  for (let key in map) {
+    res.push(map[key].map(idx => strs[idx]))
+  }
+  return res
+};
+```
+
+## [203. 移除链表元素](https://leetcode-cn.com/problems/remove-linked-list-elements/)
+
+![image-20220301204400881](http://i0.hdslb.com/bfs/album/cc2d0bf575ccd8721299f86fcb4ef2c1be9bdf1a.png)
+
+``` js
+var removeElements = function (head, val) {
+  let dn = new ListNode(0, head)
+  let cur = dn
+  while (cur.next) {
+    if (cur.next.val === val) {
+      cur.next = cur.next.next
+      continue
+    }
+    cur = cur.next;
+  }
+  return dn.next;
+};
+```
+
+## [1556. 千位分隔数](https://leetcode-cn.com/problems/thousand-separator/)
+
+![image-20220301204556767](http://i0.hdslb.com/bfs/album/c1c15d49cd560320449873f85009f01711d7ee3e.png)
+
+``` js
+// 方法一: 转字符串倒序遍历拼接
+var thousandSeparator = function (n) {
+  let str = n.toString(), res = '';
+  for (let i = str.length - 1, count = 0; i >= 0; i--, count++) {
+    if (count === 3) {
+      res = '.' + res;
+      count = 0;
+    }
+    res = str[i] + res;
+  }
+  return res;
+};
+console.log(thousandSeparator(987))
+
+// 方法二: 
+var thousandSeparator = function (n) {
+  return (n).toLocaleString()
+};
+```
+
+## [876. 链表的中间结点](https://leetcode-cn.com/problems/middle-of-the-linked-list/)
+
+![image-20220301213836954](http://i0.hdslb.com/bfs/album/d3324feb7ed8cdf9444bfe7c92bb036ba3f4453a.png)
+
+``` js
+//方法一: 遍历求出链表的长度并计算出他中间节点的位置
+var middleNode = function (head) {
+  let cur = head, count = 0;
+  while (cur) {
+    count++
+    cur = cur.next
+  }
+  count = count % 2 === 0 ? count / 2 + 1 : Math.ceil(count / 2);
+  cur = head;
+  while (count - 1) {
+    cur = cur.next;
+    count--
+  }
+  return cur
+};
+// @lc code=end
+
+// 用数组存取
+var middleNode = function (head) {
+  let list = [], cur = head;
+  while (cur) {
+    list.push(cur)
+    cur = cur.next;
+  }
+  let idx = Math.trunc(list.length / 2) // 因为数组的索引是比少一的,使用trunc分割正好满足要求
+  return list[idx]
+};
+
+
+// 快慢指针
+var middleNode = function (head) {
+  let slow = head, fast = head;
+  while (fast && fast.next) {
+    slow = slow.next;       // 慢指针每次移动一步
+    fast = fast.next.next   // 快指针每次移动两步
+  }
+  return slow     // 最后慢指针的位置就是中点
+};
+
+/* 
+
+慢指针:              ↓            
+let arr = [1, 2, 3, 4, 5, 6]
+快指针:                 ↑
+
+*/
+```
+
+## [148. 排序链表](https://leetcode-cn.com/problems/sort-list/)
+
+![image-20220301222155123](http://i0.hdslb.com/bfs/album/7b2598a7fb2fddeae72c0d8e35168214883def05.png)
+
+``` js
+var sortList = function (head) {
+  if (!head) return head
+  // 判断为空情况
+  let list = [], cur = head;
+  // 遍历添加值到数组中
+  while (cur) {
+    list.push(cur.val)
+    cur = cur.next;
+  }
+  // 排序
+  list.sort((a, b) => a - b)
+  // 最排序的数组返回节点
+  list = list.map(i => new ListNode(i, null))
+  // 连接节点
+  list.reduce((acc, cur) => acc.next = cur)
+  return list[0]
+};
+```
+
+## [234. 回文链表](https://leetcode-cn.com/problems/palindrome-linked-list/)
+
+![image-20220302202241686](http://i0.hdslb.com/bfs/album/90e603a27a0faf61f7f554d348224759c1db0a6b.png)
+
+``` js
+var isPalindrome = function (head) {
+  let list = [], cur = head;
+  while (cur) {
+    list.push(cur.val)
+    cur = cur.next;
+  }   // 拆数组
+  let l = -1, r = list.length;
+  while (l < r) {
+    if (list[l++] !== list[r--]) return false
+  }   // 判断回文
+  return true;
+};
+```
+
+## [2. 两数相加](https://leetcode-cn.com/problems/add-two-numbers/)
+
+
+
+![image-20220303122039545](http://i0.hdslb.com/bfs/album/325bb690759564420424d69574b62116ef9d45ab.png)
+
+![image-20220303122051892](http://i0.hdslb.com/bfs/album/7a8895228998e1b76f8e6624f81d3e4f07df3ff2.png)
+
+``` js
+// 方法一: 链表转成数组求和,在重新构造出新链表
+var addTwoNumbers = function (l1, l2) {
+  // 链表转数组函数
+  let forEach = ll => {
+    let list = [], cur = ll;
+    while (cur) {
+      list.push(cur.val)
+      cur = cur.next
+    }
+    return list
+  }
+  // 数组相加函数
+  let add = (arr1, arr2) => {
+    let arr = new Array(Math.max(arr1.length, arr2.length)).fill(0)
+    for (var i = 0, next = 0; i < arr.length; i++) {
+      if (!arr1[i]) arr1[i] = 0
+      if (!arr2[i]) arr2[i] = 0
+      let sum = arr1[i] + arr2[i] + next;
+      if (sum > 9) {
+        arr[i] = sum - 10
+        next = 1
+      } else {
+        arr[i] = sum
+        next = 0;
+      }
+    }
+    if (next) arr.push(1)
+    return arr
+  }
+  let arr = add(forEach(l1), forEach(l2)).map(i => new ListNode(i, null));
+  // 串链表
+  for (let i = 0; i < arr.length - 1; i++) {
+    arr[i].next = arr[i + 1]
+  }
+  return arr[0]
+};
+ 
+
+// 方法二: 三指针遍历累加
+var addTwoNumbers = function (l1, l2) {
+  let head = new ListNode(0), cur = head;   // 创建新链表存取新数据
+  let cur1 = l1, cur2 = l2, carry = 0;    // 两个指针,carry用来存取进位信息
+  while (cur1 || cur2 || carry) {     // 只要还有节点没有遍历到,并且还有位没有进完,就一直执行
+    let sum = 0;      // 存放两个节点的和
+    if (cur1) {       // 节点一此时的值
+      sum += cur1.val
+      cur1 = cur1.next;
+    }
+    if (cur2) {       // 节点二此时的值
+      sum += cur2.val;
+      cur2 = cur2.next;
+    }
+    sum += carry    // 把进位累加到和中
+    cur.next = new ListNode(sum % 10)   // 创立新节点串到结果链表的当前指针上
+    carry = Math.trunc(sum / 10)    // 更新进位信息
+    cur = cur.next      // 结果链表指针后移
+  }
+  return head.next;
+};
+```
+
+## [24. 两两交换链表中的节点](https://leetcode-cn.com/problems/swap-nodes-in-pairs/)
+
+![image-20220303161133910](http://i0.hdslb.com/bfs/album/fdb11e09f14ac21df6323574ad3c26b9eeebe59c.png)
+
+``` js
+// 迭代法
+var swapPairs = function (head) {
+  let dummy = new ListNode(0, head), cur = dummy;   // 设立一个假节点
+  while (cur.next && cur.next.next) {     // 只要第二第三指针都存在
+    let one = cur.next, two = one.next;
+    cur.next = two
+    one.next = two.next;
+    two.next = one
+    cur = one;      // 每次交换过后cur指针移动到原来第一个,以便下次遍历
+  }
+  return dummy.next;
+};
+// @lc code=end
+
+// 递归法:
+var swapPairs = function (head) {
+  if (!head || !head.next) return head;
+  let one = head, two = one.next, three = two.next;
+  two.next = one;
+  one.next = swapPairs(three)
+  return two
+};
+```
+
+## [1721. 交换链表中的节点](https://leetcode-cn.com/problems/swapping-nodes-in-a-linked-list/)
+
+![image-20220303210400480](http://i0.hdslb.com/bfs/album/f008b7fd781d8b072cf084b405bb17f5f54c5a2b.png)
+
+``` js
+// 把遍历到的节点都存放数组中,交换目标值
+var swapNodes = function (head, k) {
+  let list = [], cur = head;
+  while (cur) {
+    list.push(cur)
+    cur = cur.next
+  }
+  [list[k - 1].val, list[list.length - k].val] = [list[list.length - k].val, list[k - 1].val]
+  return list[0]
+};
+
+// 方法二: 快慢指针
+var swapNodes = function (head, k) {
+  let left, right = head;   // 左指针用来查找正数第k个,右指针查询倒数第k个元素
+  let cur = head, count = 1;
+  while (cur) {
+    if (count === k) left = cur   // 找到前面的第k个节点
+    if (count > k) right = right.next   // 找到倒数第k个节点,当count > k的时候,右指针开始移动
+    cur = cur.next
+    count++
+  }
+  // 交换节点val
+  [left.val, right.val] = [right.val, left.val]
+  return head
+};
+```
+
+[题解](https://leetcode-cn.com/problems/swapping-nodes-in-a-linked-list/solution/js-zui-xiang-xi-jie-da-kan-bu-hui-suan-w-y470/)
 
 
 

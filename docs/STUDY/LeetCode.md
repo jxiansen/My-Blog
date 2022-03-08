@@ -2899,13 +2899,47 @@ var swapNodes = function (head, k) {
 
 [题解](https://leetcode-cn.com/problems/swapping-nodes-in-a-linked-list/solution/js-zui-xiang-xi-jie-da-kan-bu-hui-suan-w-y470/)
 
+## [剑指 Offer 22. 链表中倒数第k个节点](https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof/)
 
+![image-20220306203209634](http://i0.hdslb.com/bfs/album/dd49d343f06b8d277e4c116b9e7e17f35eb7dc9c.png)
 
+<<< @/snippets/LeetCode/剑指 Offer 22. 链表中倒数第k个节点.js
 
+## [21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/)
 
+![image-20220306215648728](http://i0.hdslb.com/bfs/album/c9dfc8d2fd7f2c754521dff6273ff23771c57cf7.png)
 
+<<< @/snippets/LeetCode/21.合并两个有序链表.js
 
+## [61. 旋转链表](https://leetcode-cn.com/problems/rotate-list/)
 
+![image-20220308210626200](http://i0.hdslb.com/bfs/album/e6362b0e6232656463b006ce370915b8cec6a714.png)
+
+<<< @/snippets/LeetCode/61.旋转链表.js
+
+## [面试题 02.05. 链表求和](https://leetcode-cn.com/problems/sum-lists-lcci/)
+
+![image-20220308210947990](http://i0.hdslb.com/bfs/album/aa4f5cc7076b9a2eef770a173498c10c95272c3c.png)
+
+<<< @/snippets/LeetCode/面试题 02.05. 链表求和.js
+
+## [24. 两两交换链表中的节点](https://leetcode-cn.com/problems/swap-nodes-in-pairs/)
+
+![image-20220308211156331](http://i0.hdslb.com/bfs/album/4fea5b522b3d605a66f647303b6937f340817ae5.png)
+
+<<< @/snippets/LeetCode/24.两两交换链表中的节点.js
+
+## [234. 回文链表](https://leetcode-cn.com/problems/palindrome-linked-list/)
+
+![image-20220308211424806](http://i0.hdslb.com/bfs/album/56f72f7b482f5db1ef3001bf422af129835dc4bf.png)
+
+<<< @/snippets/LeetCode/234.回文链表.js
+
+## [143. 重排链表](https://leetcode-cn.com/problems/reorder-list/)
+
+![image-20220308211545936](http://i0.hdslb.com/bfs/album/a6fbdb55b679c6a281a115d797f2b8c325e08281.png)
+
+<<< @/snippets/LeetCode/143.重排链表.js
 
 
 

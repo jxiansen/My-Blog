@@ -232,17 +232,27 @@ for(let i = 0; i < 5; i++) {
 'hello '.repeat(5)					// 'hello hello hello hello hello '
 ```
 
+## 创建对象计数器或者映射
 
+* 对象存储
 
+``` js
+let str = 'kapilalipak';
+const table = {}
+for(let char of str) {
+	table[char] = table[char] + 1 || 1;
+}
+// 输出: {k: 2, a: 3, p: 2, i: 2, l: 2}
+```
 
+* 哈希表存储
 
-
-
-
-
-
-
-
-
-
+``` js
+let string = 'kapilalipak';
+const map = new Map();
+for (let char of string) {
+  map.has(char) ? map.set(char, map.get(char) + 1) : map.set(char, 1);
+}
+// 输出: Map(5) { 'k' => 2, 'a' => 3, 'p' => 2, 'i' => 2, 'l' => 2 }
+```
 

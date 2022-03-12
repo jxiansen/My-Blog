@@ -14,7 +14,7 @@ module.exports = {
 
   themeConfig: {
     logo: 'http://i0.hdslb.com/bfs/album/f6337abef81027541d5dfe953c210a573dfb1f8f.png',
-    repo: 'https://gitee.com/hijingfeng/my-blog',
+    repo: 'https://github.com/jxiansen/My-blog',
     docsDir: 'docs',
     docsBranch: 'main', //分支
 
@@ -29,8 +29,8 @@ module.exports = {
     lastUpdated: '上次更新于',
 
     nav: [
-      { text: '首页', link: '/', activeMatch: '^/$|^/guide/' },
-      { text: 'Github', link: 'https://github.com/jxiansen' },
+      { text: '首页', link: '/' },
+      { text: 'Netlify', link: 'https://app.netlify.com/sites/mr-j/overview' },
       { text: '友情链接', link: 'http://www.shyuu.cn' },
     ],
 
@@ -65,6 +65,7 @@ function getSidebar() {
     {
       text: '前端拓展技能',
       children: [
+        { text: "手写JS源码", link: "/STUDY/JS-Manual" },
         { text: "Markdown语法", link: "/STUDY/markdown" },
         { text: "git入门教程", link: "/STUDY/git" },
         { text: "sass入门", link: "/STUDY/sass" },

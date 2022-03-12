@@ -44,6 +44,49 @@ es  mike  new.js
 # 重命名文件夹
 ```
 
+### 文件管理
+
+1. `cat`
+
+连接文件并打印到标准输出设备上
+
+``` bash
+cat index.html
+```
+
+使用 `cat` 创建新文件
+
+``` sh
+cat > hello.js
+```
+
+将文件1和 文件2里面的内容合并存储到文件3中
+
+``` sh
+cat 1.txt 2.txt >> 3.txt
+```
+
+将内容写入到文件中
+
+``` sh
+echo 'hello Wolrd' > README.md
+```
+
+在 `power Shell` 中创建文件
+
+``` sh
+new-item hello.js
+```
+
+运行 `.sh` 文件
+
+``` sh
+# 切换到sh文件目录
+sh 
+```
+
+
+
 ## 基本属性
 
 ```bash
@@ -79,57 +122,65 @@ lrwxrwxrwx  1 root root          13 Aug  5  2020 iptables-save -> xtables-multi
 
 ![](http://i0.hdslb.com/bfs/album/8a2b31fb945069aedccd6a47e20ecda692a15ba8.png)
 
+## 查看linux系统版本号
 
+1. 查看`/etc/issue` 文件
 
+``` sh
+# cat /etc/issue
+Debian GNU/Linux 9 \n \l
+```
 
+2. 查看 `/etc/os-release` 文件
 
+``` sh
+[root@mr-j ~]# cat /etc/os-release
+NAME="CentOS Linux"
+VERSION="7 (Core)"
+ID="centos"
+ID_LIKE="rhel fedora"
+VERSION_ID="7"
+PRETTY_NAME="CentOS Linux 7 (Core)"
+ANSI_COLOR="0;31"
+CPE_NAME="cpe:/o:centos:centos:7"
+HOME_URL="https://www.centos.org/"
+BUG_REPORT_URL="https://bugs.centos.org/"
 
+CENTOS_MANTISBT_PROJECT="CentOS-7"
+CENTOS_MANTISBT_PROJECT_VERSION="7"
+REDHAT_SUPPORT_PRODUCT="centos"
+REDHAT_SUPPORT_PRODUCT_VERSION="7"
+```
 
+![image-20220311202304174](http://i0.hdslb.com/bfs/album/511081ff75aaf20efe34278f6ebd1924b445eeae.png)
 
+3. 使用 `hostnamectl `命令
 
+`hostnamectl` 命令用于配置或修改系统的主机名，不过也使用此命令来获取`linux` 系统的版本，只需要直接输入 `hostnamectl` 即可：
 
+``` sh
+[root@mr-j ~]# hostnamectl
+   Static hostname: mr-j
+   Pretty hostname: Mr-j
+         Icon name: computer-vm
+           Chassis: vm
+        Machine ID: 123311d21a084588b34fd192e65b7b7e
+           Boot ID: 6680d9e862d84c6882cc04aaf64f80ba
+    Virtualization: kvm
+  Operating System: CentOS Linux 7 (Core)
+       CPE OS Name: cpe:/o:centos:centos:7
+            Kernel: Linux 3.10.0-1127.19.1.el7.x86_64
+      Architecture: x86-64
+```
 
+4. 使用 `uname` 命令
 
+`uname` 命令可以显示电脑以及操作系统的相关信息，输入下面的命令：
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+``` sh
+[root@mr-j ~]# uname -a
+Linux mr-j 3.10.0-1127.19.1.el7.x86_64 #1 SMP Tue Aug 25 17:23:54 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+```
 
 ## Centos 开放端口
 

@@ -5,6 +5,7 @@
 
 ## 运行
 
+* 第一步: 
 ``` sh
 npm install
 npm run dev

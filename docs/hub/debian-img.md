@@ -1,5 +1,7 @@
 # debian 替换为国内镜像源
 
+更换镜像前需要先查看当前系统的具体版本再去网上找到镜像源
+
 ``` sh
 nano /etc/apt/sources.list
 ```

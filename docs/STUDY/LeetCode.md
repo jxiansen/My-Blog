@@ -2941,7 +2941,44 @@ var swapNodes = function (head, k) {
 
 <<< @/snippets/LeetCode/143.重排链表.js
 
+## [382. 链表随机节点](https://leetcode-cn.com/problems/linked-list-random-node/)
 
+![image-20220317134007446](http://i0.hdslb.com/bfs/album/50ed49d7a0172784c61282b1d1412151471d21ae.png)
 
+<<< @/snippets/LeetCode/382.链表随机节点.js
 
+## [2068. 检查两个字符串是否几乎相等](https://leetcode-cn.com/problems/check-whether-two-strings-are-almost-equivalent/)
 
+![image-20220317221906322](http://i0.hdslb.com/bfs/album/12bac65330fb0c721ed33ab5893506ac43f5fe03.png)
+
+<<< @/snippets/LeetCode/2068.检查两个字符串是否几乎相等.js
+
+## [451. 根据字符出现频率排序](https://leetcode-cn.com/problems/sort-characters-by-frequency/)
+
+![image-20220317222028263](http://i0.hdslb.com/bfs/album/517ba1ccc49dcfb14e00df30bbd0500bd5d62834.png)
+
+<<< @/snippets/LeetCode/451.根据字符出现频率排序.js
+
+## [面试题 16.02. 单词频率](https://leetcode-cn.com/problems/words-frequency-lcci/)
+
+![image-20220317222125540](http://i0.hdslb.com/bfs/album/8c77710f8598093e6525c49d21f7ef135c83c631.png)
+
+<<< @/snippets/LeetCode/面试题 16.02. 单词频率.js
+
+## [705. 设计哈希集合](https://leetcode-cn.com/problems/design-hashset/)
+
+![image-20220317222228868](http://i0.hdslb.com/bfs/album/3df5ccddc00dfbb89e820783bf2079d424c4be18.png)
+
+<<< @/snippets/LeetCode/705.设计哈希集合.js
+
+## [706. 设计哈希映射](https://leetcode-cn.com/problems/design-hashmap/)
+
+![image-20220317222322484](http://i0.hdslb.com/bfs/album/fe2c68465e4c045eb024e46e7f5ba67a72ac3e5f.png)
+
+<<< @/snippets/LeetCode/706.设计哈希映射.js
+
+## [345. 反转字符串中的元音字母](https://leetcode-cn.com/problems/reverse-vowels-of-a-string/)
+
+![image-20220317222453036](http://i0.hdslb.com/bfs/album/3ba4036489fcd002a749f099489bd148e9a346e2.png)
+
+<<< @/snippets/LeetCode/345.反转字符串中的元音字母.js

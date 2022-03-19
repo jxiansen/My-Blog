@@ -2982,3 +2982,84 @@ var swapNodes = function (head, k) {
 ![image-20220317222453036](http://i0.hdslb.com/bfs/album/3ba4036489fcd002a749f099489bd148e9a346e2.png)
 
 <<< @/snippets/LeetCode/345.反转字符串中的元音字母.js
+
+## [面试题50. 第一个只出现一次的字符](https://leetcode-cn.com/problems/di-yi-ge-zhi-chu-xian-yi-ci-de-zi-fu-lcof/)
+
+![image-20220319151004555](http://i0.hdslb.com/bfs/album/ffc68bc601e24ee83d1eb7f69c1430ad876b8e00.png)
+
+<<< @/snippets/LeetCode/面试题50. 第一个只出现一次的字符.js
+
+## [1704. 判断字符串的两半是否相似](https://leetcode-cn.com/problems/determine-if-string-halves-are-alike/)
+
+![image-20220319151100998](http://i0.hdslb.com/bfs/album/587ed53ecd20ffb069ba723dc1ae2f2aa5de8ced.png)
+
+<<< @/snippets/LeetCode/1704.判断字符串的两半是否相似.js
+
+## [1189. “气球” 的最大数量](https://leetcode-cn.com/problems/maximum-number-of-balloons/)
+
+![image-20220319151159883](http://i0.hdslb.com/bfs/album/db67f986a786c6b197b86d43f6ff8e8f84ea32ea.png)
+
+<<< @/snippets/LeetCode/1189.气球-的最大数量.js
+
+## [2150. 找出数组中的所有孤独数字](https://leetcode-cn.com/problems/find-all-lonely-numbers-in-the-array/)
+
+![image-20220319151249001](http://i0.hdslb.com/bfs/album/945e75a56337590354d0616f0cb46186726733a8.png)
+
+<<< @/snippets/LeetCode/2150.找出数组中的所有孤独数字.js
+
+## [2085. 统计出现过一次的公共字符串](https://leetcode-cn.com/problems/count-common-words-with-one-occurrence/)
+
+![image-20220319151356046](http://i0.hdslb.com/bfs/album/65642abff68f349bf4b4b9a4c5bcd73c60718c1a.png)
+
+<<< @/snippets/LeetCode/2085.统计出现过一次的公共字符串.js
+
+## [1512. 好数对的数目](https://leetcode-cn.com/problems/number-of-good-pairs/)
+
+![image-20220319151509382](http://i0.hdslb.com/bfs/album/1e2bbb3feb287f949a33f9a7b62f926253653292.png)
+
+<<< @/snippets/LeetCode/1512.好数对的数目.js
+
+## [1394. 找出数组中的幸运数](https://leetcode-cn.com/problems/find-lucky-integer-in-an-array/)
+
+![image-20220319151603345](http://i0.hdslb.com/bfs/album/36330784368adf4081f6dcb0fdab74bd3d5187a7.png)
+
+<<< @/snippets/LeetCode/1394.找出数组中的幸运数.js
+
+## [347. 前 K 个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/)
+
+![image-20220319151638336](http://i0.hdslb.com/bfs/album/138d446cdc3075deb41b6e4a3ce4a5c315fd7bd8.png)
+
+<<< @/snippets/LeetCode/347.前-k-个高频元素.js
+
+## [692. 前K个高频单词](https://leetcode-cn.com/problems/top-k-frequent-words/)
+
+![image-20220319151754306](http://i0.hdslb.com/bfs/album/6b2d63387bf66c9036d6260be19c2af1a07c4c19.png)
+
+<<< @/snippets/LeetCode/692.前k个高频单词.js
+
+## [819. 最常见的单词](https://leetcode-cn.com/problems/most-common-word/)
+
+![image-20220319151902362](http://i0.hdslb.com/bfs/album/124af282c4533a564d0e58a102575800299db623.png)
+
+<<< @/snippets/LeetCode/819.最常见的单词.js
+
+## [1394. 找出数组中的幸运数](https://leetcode-cn.com/problems/find-lucky-integer-in-an-array/)
+
+![image-20220319151947821](http://i0.hdslb.com/bfs/album/466e2c8013700b687b95a15b7a961ba284388a64.png)
+
+<<< @/snippets/LeetCode/1394.找出数组中的幸运数.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<<< @/snippets/LeetCode/

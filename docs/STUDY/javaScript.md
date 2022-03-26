@@ -51,6 +51,87 @@ if (3 > 2) console.log(23);
  9%3！=0 || alert('成立')
 ```
 
+### Call、apply、bind区别
+
+``` js
+const steven = {
+  name: 'steven',
+  phoneBattery: 70,
+  charge: function (level1) {
+    this.phoneBattery = level1
+  }
+}
+
+const jack = {
+  name: 'jack',
+  phoneBattery: 50,
+}
+
+console.log(jack)
+steven.charge.call(jack,90)
+console.log(jack)
+/* 
+{ name: 'jack', phoneBattery: 50 }
+{ name: 'jack', phoneBattery: 90 }
+ */
+// jack调用了steven的充电方法并传入了90的电量参数
+```
+
+``` js
+const steven = {
+  name: 'steven',
+  phoneBattery: 70,
+  charge: function (level1,level2) {
+    this.phoneBattery = level1 + level2
+  }
+}
+
+const jack = {
+  name: 'jack',
+  phoneBattery: 50,
+}
+
+console.log(jack)
+steven.charge.apply(jack,[40,50])
+console.log(jack)
+/* 
+{ name: 'jack', phoneBattery: 50 }
+{ name: 'jack', phoneBattery: 90 }
+ */
+//apply传入的参数是一个数组参数
+```
+
+``` js
+const steven = {
+  name: 'steven',
+  phoneBattery: 70,
+  charge: function (level1) {
+    this.phoneBattery = level1 
+  }
+}
+
+const jack = {
+  name: 'jack',
+  phoneBattery: 50,
+}
+
+console.log(jack)
+const jackCharge = steven.charge.bind(jack)
+jackCharge(90)
+console.log(jack)
+/* 
+{ name: 'jack', phoneBattery: 50 }
+{ name: 'jack', phoneBattery: 90 }
+ */
+//bind并不是立即执行,而是先返回一个函数对象
+```
+
+* 这三者的作用都是改变 `this` 指向的
+* 不同点: `call`可以传入多个形参, `apply` 只能传一个数组形参
+* `bind` 区别: `bind` 并不会立即调用,而是返回一个函数对象
+
+[B站视频链接](https://www.bilibili.com/video/BV1Ug411F7fZ)
+
 ## DOM
 
 - DOM(document model model)文档对象模型
@@ -96,7 +177,7 @@ console.log(body)
 返回值：
 
     有与此 id 匹配的元素，返回相应元素
-
+    
     无与此 id 匹配的元素，返回null
 
 - `getElementsByTagName()`
@@ -106,7 +187,7 @@ console.log(body)
 返回值：伪数组(常用的数组方法无法使用)
 
     遇到相匹配的标签元素，返回所有的元素
-
+    
     如果没有相匹配的元素，返回空伪数组
 
 - `getElementsByClassName()`
@@ -116,7 +197,7 @@ console.log(body)
 返回值：伪数组(常用的数组方法无法使用)
 
     遇到相匹配的类元素，返回所有的元素
-
+    
     如果没有相匹配的类名，返回空伪数组
 
 - `getElementsByName()`
@@ -638,4 +719,3 @@ for (let son of map.entries()) {
 */
 ```
 
-​

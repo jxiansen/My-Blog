@@ -11,6 +11,10 @@
   "author": "Mr-j",
   "license": "ISC",
   "dependencies": {
+    "@algolia/client-search": "4.9.1",
+    "@types/react": ">= 16.8.0 < 18.0.0",
+    "react": ">= 16.8.0 < 18.0.0",
+    "react-dom": ">= 16.8.0 < 18.0.0",
     "vitepress": "^0.22.3"
   }
 }

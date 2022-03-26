@@ -19,10 +19,11 @@ module.exports = {
     docsBranch: 'main', //分支
 
     algolia: {
-      appId: 'AEBD6KM6KA',
-      apiKey: '53f1a9e7bcee7bf871a4602329fbf639',
-      indexName: 'data'
+      appId: 'LXWNZH1IJK',
+      apiKey: '400a3b23303b6651ada13466b0e9f922',
+      indexName: 'test'
     },
+
 
     editLinks: true,
     editLinkText: '在gitee上面修改',

@@ -26,7 +26,7 @@ module.exports = {
 
 
     editLinks: true,
-    editLinkText: '在gitee上面修改',
+    editLinkText: '在github上面修改',
     lastUpdated: '上次更新于',
 
     nav: [

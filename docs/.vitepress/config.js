@@ -31,13 +31,8 @@ module.exports = {
     },
 
     editLinks: true,
-<<<<<<< HEAD
-    editLinkText: "在gitee上面修改",
+    editLinkText: "在github上面修改",
     lastUpdated: "上次更新于",
-=======
-    editLinkText: '在github上面修改',
-    lastUpdated: '上次更新于',
->>>>>>> 0af0165d3109d945127fa170013398c48c63c71a
 
     nav: [
       { text: "首页", link: "/" },

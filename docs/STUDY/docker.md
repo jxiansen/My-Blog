@@ -58,7 +58,94 @@
 
 `docker attach '容器id'`: 进入到正在运行中的容器,(不推荐,`exit` 退出容器会暂停容器)
 
-`docker exec -it 容器id /bin/bash` 进入到容器命令行中
+`docker exec -it 容器id /bin/bash` 进入到容器命令行中,启动一个远程shell
+
+## 概念
+
+`docker file` 自动化脚本文件： 可以被docker用来构建镜像
+
+`docker-compose` 一个工具用来定义和运行多个Docker容器，
+
+* `dockerfile` 文件示范
+
+``` dockerfile
+FROM node:14-alpine AS build
+# 选择一个基础镜像，附加版本号
+WORKDIR /opt/node_app
+# 指定之后所有的docker命令的工作路径（如果不存在docker会自动创建该路径）
+COPY package.json yarn.lock ./
+RUN yarn --ignore-optional
+
+ARG NODE_ENV=production
+
+COPY . .
+# 使用copy命令将当前文件夹下的所有内容拷贝到Docker镜像中
+# 第一个参数：本地文件 '.' 代表程序根目录下的所有文件
+# 第二个参数代表Docker镜像中的路径，此时的 '.' 代表当前的工作路径，即使之前设置的工作路径
+RUN yarn build:app:docker
+# 使用包管理工具进行打包
+FROM nginx:1.21-alpine
+
+COPY --from=build /opt/node_app/build /usr/share/nginx/html
+
+HEALTHCHECK CMD wget -q -O /dev/null http://localhost || exit 1
+
+```
+
+使用docker build命令来创建一个镜像
+
+``` sh
+docker build -t my-app .
+# `-t` : tag指定了创建镜像的名字  '.' 代表在当前目录下构建
+```
+
+* `docker-compose.yml` 文件
+
+``` yaml
+version: "3.8"
+
+services:
+# 定义多个容器
+  excalidraw:
+    build:
+      context: .
+      args:
+        - NODE_ENV=development
+    container_name: excalidraw
+    ports:
+      - "3000:80"
+    restart: on-failure
+    stdin_open: true
+    healthcheck:
+      disable: true
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./:/opt/node_app/app:delegated
+      - ./package.json:/opt/node_app/package.json
+      - ./yarn.lock:/opt/node_app/yarn.lock
+      - notused:/opt/node_app/app/node_modules
+# 指定数据卷用来存放数据
+volumes:
+  notused:
+
+```
+
+接下来运行
+
+``` sh
+docker compose up -d
+# d(detach) 代表在后台运行所有的容器
+```
+
+如果想要删除运行的容器
+
+``` sh
+docker compose down
+# 停止并删除所有的容器
+```
+
+
 
 ## Docker 安装 Mysql
 
@@ -330,6 +417,30 @@ docker run -d -p 80:80 --name nginx -v /home/nginx/html:/usr/share/nginx/html ng
 
 ![image-20220305164129094](http://i0.hdslb.com/bfs/album/9630a8c9fd59a0041d9ea7823906218ec1949e3e.png)
 
+### docker-compose安装
+
+直接下载`docker-compose`的二进制文件
+
+docker-compose的下载地址：[github下载链接](https://github.com/docker/compose/releases)
+
+根据自己的操作系统选择对应的版本进行下载
+
+上传到自己的服务器上,输入以下命令
+
+``` sh
+mv docker-compose-Linux-x86_64 /usr/bin/docker-compose
+chmod 755 /usr/bin/docker-compose
+docker-compose version
+```
+
+如果输出以下版本号,则表示安装成功
+
+``` sh
+Docker Compose version v2.4.1
+```
+
+
+
 
 ## `dockers`概念区分,`Images`,`Containers` `Volumes` 区别
 
@@ -341,3 +452,9 @@ docker run -d -p 80:80 --name nginx -v /home/nginx/html:/usr/share/nginx/html ng
 ![](http://i0.hdslb.com/bfs/album/a7be97ed925ff163ef344a2c1ee7e4b644eb30b6.png)
 
 [10 张图带你深入理解 Docker 容器和镜像](http://dockone.io/article/783)
+
+`kubernetes` 和 `docker` 的区别：
+
+`kubernetes`所做的就是将各个容器分发到一个集群中运行，并进行全自动化的管理，包括应用的部署和升级
+
+![image-20220416170959362](http://i0.hdslb.com/bfs/album/71f629e94074999b04f31dfd9a4889684a1af855.png)

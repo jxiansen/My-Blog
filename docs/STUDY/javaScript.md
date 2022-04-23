@@ -132,6 +132,233 @@ console.log(jack)
 
 [B站视频链接](https://www.bilibili.com/video/BV1Ug411F7fZ)
 
+### 生成器函数
+
+ ### promise async await和异步编程
+
+异步编程：异步编程允许在执行一个长期的任务时，程序无需等待，继续执行后续的代码
+直到任务完成时才返回通知，正常情况下是使用回调函数形式进行的
+
+单线程的优点： 
+
+* 所有的任务处理都集中在同一个线程上，可以避免线程同步、和资源竞争的问题
+* 无需频繁切换线程，节省资源开销
+
+`Java Script` 语言中有两种异步编程的方式：
+
+1. 第一种是使用 **回调函数**
+
+``` js
+setTimeout(() => console.log('这是三秒后的结果'),3000)
+console.log('立马就能看到我')
+// 立马就能看到我
+undefined
+// 这是三秒后的结果
+```
+
+![image-20220417153953466](http://i0.hdslb.com/bfs/album/02125d9a4619d98758c60a8b89093d6f10a49048.png)
+
+回调函数简单好理解，但是一但执行多个异步操作，回调函数代码一层套一层，将会变得可读性很差，形成回调地狱，由此产生了 `promise` 
+
+**回调地狱现象**：（`Callback Hell`） 多个异步函数的叠加，导致代码层次变得很深。
+
+``` js
+console.log('任务开始')
+setTimeout(() => {
+    console.log('开始执行第一个任务')
+    setTimeout(() => {
+        console.log('开始执行第二个任务')
+        setTimeout(() => {
+            console.log('开始执行第三个任务')
+            // . . .
+        }, 3000)
+    }, 3000)
+}, 3000)
+```
+
+
+
+2. 使用 `promise` 
+
+![image-20220418152152160](http://i0.hdslb.com/bfs/album/80330443b5a34ffe709be76d42f3a0413019b2cd.png)
+
+### 声明方式
+
+使用 `promise` 类来定义一个 `promise` 对象
+
+``` js
+const myPromise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('this is the eventual value the promise will return');
+  }, 3000);
+});
+
+console.log(myPromise);
+```
+
+还可以通过使用 `promise` 内置的 `API` 进行声明：
+
+``` js
+const myPromise = Promise.resolve('这将返回一个Promise')
+console.log(myPromise)
+```
+
+### 介绍
+
+``` js
+// promise resolve状态
+let promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve('完成了')
+        console.log(promise)
+    }, 3000)
+})
+console.log(promise)
+```
+
+![image-20220418154056771](http://i0.hdslb.com/bfs/album/35debfe419eaffd5ef8ffeb32f06b067c39b9cdd.png)
+
+**注意点**
+
+``` js
+// 以下代码输出什么？
+let promise = new Promise((resolve,reject) => {
+    resolve(1);
+    setTimeout(() => resolve(2),1000);
+})
+promise.then(res => console.log(res))
+```
+
+> 输出结果为 `1`
+>
+> 第二个对 `resolve` 的调用会被忽略，只有第一次对 `resolve/reject` 的调用才会被处理，进一步的处理都会被忽略掉
+
+异步函数： 返回值永远是一个 `promise` 对象
+
+``` js
+// 使用 async 将一个函数标记为异步函数
+async function f() {
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts/1")
+    const json = await response.json();
+    console.log(json)
+}
+// await会等待promise完成之后直接返回最终的结果
+f();
+```
+
+### AJAX
+
+`XMLHttpRequest` 是浏览器内建的对象，允许使用 `javaScript` 发送 `http` 请求
+
+一个简单的`ajax` 请求函数
+
+``` js
+// 完整的ajax请求，包含错误处理
+function XHR(method, url) {
+  method = method.toUpperCase();
+  // 1.创建XML对象
+  let xhr = new XMLHttpRequest();
+  xhr.responseType = "arraybuffer";
+  // 2.配置请求对象
+  xhr.open(method, url);
+  // 3.发送网络请求
+  xhr.send();
+  // 4.响应处理
+  xhr.onload = function () {
+    if (xhr.status !== 200) {
+      // 状态码不是200即为错误
+      console.log(`错误 ${xhr.status}: ${xhr.statusText}`);
+    } else {
+      console.log(`已经接收到，接收了${xhr.response.length} bytes`); // 服务器响应长度
+      console.log(`详细信息为：`);
+      console.log(xhr.response);
+    }
+  };
+
+  // 5.错误处理
+  xhr.onerror = function () {
+    console.log(`请求拒绝！`);
+  };
+}
+```
+
+`XML` 实例对象中主要的方法和参数
+
+``` js
+// 上传文件并实现上传进度
+function upload(file) {
+  let xhr = new XMLHttpRequest();
+  var size;
+  xhr.upload.onprogress = function (event) {
+    size = event.total / 2 ** 20;
+    console.log(`上传了${event.loaded} 总共${event.total}`);
+  };
+  xhr.onloadend = function () {
+    //上传完成的触发事件，结束时间戳
+    var time = ~~(Date.now() - start) / 1000;
+    var speed = size / time;
+    console.log(`时间花费${time}s`);
+    console.log(`${speed}MB/s`);
+    if (xhr.status === 200) {
+      console.log("成功");
+    } else {
+      console.log("错误" + this.status);
+    }
+  };
+
+  xhr.open("POST", "http://localhost:3001/users");
+  xhr.timeout = 2000;
+  xhr.send(file);
+  // 开始的时间戳
+  var start = Date.now();
+  xhr.onerror = () => console.log("网络错误");
+}
+```
+
+### Fetch
+
+使用 `Fetch` 来发送 `GET` 请求
+
+``` js
+let url = "http://localhost:3001/users";
+fetch(url)
+  .then((res) => res.text())
+// 响应数据以text形式解析
+  .then((data) => console.log(data))
+// 接着打印处解析出的数据
+  .catch((err) => console.log(err))
+// 捕获过程中发生的错误
+  .finally(() => console.log("最终结果"));
+// 最终无论发生什么都执行的操作
+```
+
+使用 `Fetch` 来发送 `POST` 请求
+
+``` js
+// 使用 Fetch来发送post数据
+let url = "http://localhost:3001/users";
+
+let obj = {
+  id: 23,
+  name: "张三",
+};
+
+let response = await fetch(url, {
+  method: "POST",	// 请求方法
+  headers: {		// 设置请求头
+    "Content-type": "application/json;charset=utf-8",	// 如果请求体是字符串，默认设置为文本
+  },
+  body: JSON.stringify(obj),	// 将对象转换成json数据
+});
+
+let result = await response.text();		// 发送数据后，等待服务器响应
+console.log(result);		// s
+```
+
+
+
+
+
 ## DOM
 
 - DOM(document model model)文档对象模型
@@ -236,7 +463,37 @@ console.log(body)
 
 ### 模块化(module)
 
-前端应用原来越复杂，导致项目难以维护，需要引入模块化开发的思想解决问题，项目按需加载相应模块
+前端应用原来越复杂，导致项目难以维护，需要引入模块化开发的思想解决问题，项目按需加载相应模块,随着项目越来越大,会有大量变量在全局作用域内冲突,代码难以调试.项目无法维护.
+
+``` js
+//几种不同的作用域
+Global Scope => Module Scope => Function Scope => Block Scope
+// 模块级作用域会作用范围在全局和函数级之间
+// 各个模块之间的作用域是独立的,彼此无法互相访问
+```
+
+使用`IIFE` 也可以创建出类似的效果
+
+``` js
+//使用IIFE来创建出一个立即执行的函数:函数运行但却不会产生任何的变量,不会污染全局
+var weekDay = function () {
+	var name = 'jack'
+	return name;
+	};
+}();
+```
+
+
+
+
+
+**几种模块化的方案**
+
+按照出现的历史顺序
+
+* `Commonjs` : 主要用于node开发服务端和electron桌面应用程序
+* `AMD`(asynchronous module definition): 异步模块定义: 浏览器中用的比较多
+* `ES Module` js语言原生实现的语法
 
 ### 对象
 

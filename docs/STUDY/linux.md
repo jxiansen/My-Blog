@@ -308,3 +308,35 @@ ssh-keygen -t rsa -C "xxxxx@xxxxx.com"
 上图中的 `authorized_keys` 文件，就是设置本地免密登录的文件，只要把之前本地生成的 `id_rsa.pub` 内容放入 `authorized_keys` 中，在本地命令行工具执行 `ssh root@服务器IP`，便能直接免密登录。
 
 ![image-20220227160328206](http://i0.hdslb.com/bfs/album/8d38f66805cc31cfe740a3791f3e2337367fe0db.png)
+
+### 报错解决
+
+重置以后ssh 连接远程服务器报错
+
+``` sh
+❯ ssh root@121.4.185.31
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the ECDSA key sent by the remote host is
+SHA256:kxq3yTNoiSygcU8hVFB+Pdmanx1HAn2p0QSyL1XfDQE.
+Please contact your system administrator.
+Add correct host key in C:\\Users\\30328/.ssh/known_hosts to get rid of this message.
+Offending ECDSA key in C:\\Users\\30328/.ssh/known_hosts:1
+Host key verification failed.
+```
+
+原因： 服务器端的网络发生变化，远程主机发送的认证密钥产生了改变，在本地的 `known_hosts`文件中找不到这个服务器
+
+**解决方法** : 清除旧的公钥信息
+
+``` sh
+❯ ssh-keygen -R 121.4.185.31
+# Host 121.4.185.31 found: line 1
+C:\Users\30328/.ssh/known_hosts updated.
+Original contents retained as C:\Users\30328/.ssh/known_hosts.old
+```
+

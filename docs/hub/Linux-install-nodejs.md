@@ -1,10 +1,10 @@
-# Centos7 安装 nodejs 并配置 NPM
+# Linux 安装 nodejs 并配置 NPM
 
-#### final shell ssh 连接 Centos
+#### final shell ssh 连接服务器
 
 ![](http://i0.hdslb.com/bfs/album/84852beaad0f834d6579f3ce5d220c8195b3dba9.png)
 
-## 第一步,在 centos 中找到安装路径并下载
+## 第一步,在 Linux 中找到安装路径并下载
 
 ```sh
 cd /usr/local/bin
@@ -28,8 +28,7 @@ cd /usr/local/bin
 ```sh
 yum install -y wget
 # 前提需要先安装wget命令
-wget https://npm.taobao.org/mirrors/node/v16.4.0/node-v16.4.0-linux-x64.tar.gz
-
+wget https://npmmirror.com/mirrors/node/v16.14.2/node-v16.14.-linux-x64.tar.xz
 ```
 
 ![](http://i0.hdslb.com/bfs/album/81329770552fdce51a96016332559688a640b8e5.png)
@@ -116,7 +115,7 @@ node 安装路径下的文件夹格式
 
 ```sh
 # 设置镜像源
-npm config set registry=http://registry.npm.taobao.org
+npm config set registry=https://registry.npmmirror.com
 # 查看更改后的镜像源
 npm config get registry
 ```

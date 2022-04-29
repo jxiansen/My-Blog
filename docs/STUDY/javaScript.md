@@ -976,3 +976,88 @@ for (let son of map.entries()) {
 */
 ```
 
+## Nodejs
+
+### `fs`
+
+**fd**：概念（file descriptor)文件描述符
+
+操作系统当前打开的文件的编号，是一个整数
+
+``` js
+fs.readSync(fd, buffer, offset, length, position)
+```
+
+#### 判断文件夹是否存在
+
+``` js
+import { constants } from "buffer";
+import fs from "fs";
+fs.access("./info.json", constants.F_OK, (err) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log("包含该文件夹");
+  }
+});
+```
+
+#### 创建空文件夹
+
+主要用于临时创建文件夹
+
+``` js
+import fs from 'fs'
+> fs.mkdtempSync('img')			// 创建的同时并返回文件夹名
+'imgZ6tevo'
+```
+
+#### 返回存在文件的绝对路径
+
+``` js
+import fs from 'fs'
+> fs.realpathSync('index.js')
+'/mnt/c/Users/30328/Desktop/axios/index.js'
+```
+
+#### 删除文件夹
+
+> 删除的时候要求文件夹需要为空的
+
+``` js
+import fs from 'fs'
+> fs.rmdirSync('hi')
+Uncaught Error: ENOTEMPTY: directory not empty, rmdir 'hi'
+    at Object.rmdirSync (node:fs:1188:10) {
+  errno: -39,
+  syscall: 'rmdir',
+  code: 'ENOTEMPTY',
+  path: 'hi'
+}
+// 文件夹不为空
+```
+
+#### 删除文件或文件夹
+
+``` js
+import fs from 'fs'
+> fs.rmSync('hi',{recursive: true})
+undefined
+// 使用{recursive: true}可以将文件夹中的子目录和子文件都递归性质的删除
+```
+
+#### 读取文件任意位置任意长度的数据
+
+``` js
+// hello.txt  =>  hello world!
+> fd = fs.openSync('./hello.txt')	// 打开hello.txt文件，返回描述符
+21
+> bf = Buffer.alloc(16)		// 申请16个字节的内存空间
+<Buffer 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00>
+> fs.readSync(fd,bf,5,10,3)		// 读取文件描述符所在的文件，将其第3个字节传入buffer的第5个位置，放10个字节
+10
+> bf
+<Buffer 00 00 00 00 00 6c 6f 20 77 6f 72 6c 64 21 0a 00>
+16进制的 '6c' 正好是 10进制的 '108' 对应第四个字母为 'l' 正好对应其 ASCII 表
+```
+

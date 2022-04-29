@@ -85,7 +85,38 @@ new-item hello.js
 sh 
 ```
 
+### 文件资源路径
 
+``` sh
+'./': 当前的路径
+'../': 当前路径的上一级路径
+'/' : 表示文件系统根路径
+```
+
+
+
+
+
+## 卸载软件
+
+以`debian` 系软件为例，要求软件安装时，是使用 `apt` 工具安装的
+
+1. 列出所有已经安装的应用
+
+``` sh
+dpkg --list
+```
+
+可以通过 `page` 上下键来找到需要卸载的软件
+
+![image-20220425153642356](http://i0.hdslb.com/bfs/album/c7da49af48ead6470aa81d581193abf02caae2d8.png)
+
+2. 新开一个终端，输入命令并加上软件包名。
+
+``` sh
+apt remove node --purge
+# 卸载软件(纯净模式)
+```
 
 ## 基本属性
 
@@ -240,6 +271,17 @@ firewall-cmd --permanent --remove-port=123/tcp
 `*.rar` 用 unrar e解压
 `*.zip` 用 unzip 解压
 ```
+
+``` sh
+node-v18.0.0-linux-x64.tar.xz  // 这种tar.xz文件是经过两次压缩，先tar压缩，然后xz压缩
+// 安装xz命令
+apt install -y xz-utils
+// 可以分两步解压
+xz -d node-v18.0.0-linux-x64.tar.xz
+tar -xvf node-v18.0.0-linux-x64.tar.xz
+```
+
+
 
 ## 重命名主机名
 

@@ -46,15 +46,6 @@ tar -xvf node-v16.4.0-linux-x64.tar.gz
 
 ![](http://i0.hdslb.com/bfs/album/923c50d2721e2de914e6b5c2a0ee94d908c23ad3.png)
 
-进入解压好的目录,执行命令安装 node 依赖组件
-
-```sh
-cd node-v16.4.0-linux-x64.tar.gz
-yum install gcc gcc-c++
-```
-
-![](http://i0.hdslb.com/bfs/album/0d81159d2734c34ad1cfcd8db916790ca210d2ea.png)
-
 回到上一级重命名文件夹为 **node.js**
 
 ```sh
@@ -80,6 +71,15 @@ cd Node.js/bin
 ln -s /usr/local/bin/Node.js/bin/node /usr/bin/node
 ln -s /usr/local/bin/Node.js/bin/npm /usr/bin/npm
 ln -s /usr/local/bin/Node.js/bin/npx /usr/bin/npx
+```
+
+### wsl安装产生的错误
+
+我的`WSL` `debian` 安装到这一步的时候一直报错，需要先去终端中关闭 `wsl` 再重启一下,就配置好了
+
+``` sh
+wsl --shutdown
+wsl
 ```
 
 配置好后进入根目录,输入 **npm**,**node** 等命令测试一下

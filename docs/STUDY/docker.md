@@ -1,5 +1,17 @@
 # Docker 入门
 
+## 安装
+
+Linux直接使用官方的一键安装脚本
+
+``` sh
+#先下载脚本然后再运行
+wget https://get.docker.com -o get-docker.sh
+sh get-docker.sh
+```
+
+
+
 ## 基础命令
 
 `docker ps`: 查看正在运行的容器, 参数`-a` :过去曾经运行过的容器
@@ -16,9 +28,9 @@
 
 `docker run` 以镜像创建一个新的容器并运行
 
-`-d` 后台运行容器，并返回容器 ID
+`-d` (detach) 后台运行容器，并不直接在宿主机上与之交互，并返回容器 ID
 
-`i` 以交互模式运行容器，通常与 `-t` 同时使用；
+`i` (interactive)以交互模式运行容器，通常与 `-t` 同时使用；
 
 `--name 名字` 自定义容器名字
 
@@ -46,8 +58,6 @@
 
 `docker diff '容器的id'`: 列出容器内文件变动情况
 
-![image-20210801143934667](http://i0.hdslb.com/bfs/album/d67843beff63e0785b6ab20d8c2df09963ed4d7a.png)
-
 `A`: add 代表新增的文件
 
 `C`: 更新的文件
@@ -59,6 +69,23 @@
 `docker attach '容器id'`: 进入到正在运行中的容器,(不推荐,`exit` 退出容器会暂停容器)
 
 `docker exec -it 容器id /bin/bash` 进入到容器命令行中,启动一个远程shell
+`docke volume create my-volume` : 创建一个数据卷
+
+![image-20210801143934667](http://i0.hdslb.com/bfs/album/d67843beff63e0785b6ab20d8c2df09963ed4d7a.png)
+
+``` sh
+docker run -dp 80:80 -v my-volume:/var/www/html nginx
+# 容器启动时，将数据卷挂载到容器指定的路径： /var/www/html
+# 容器运行时产生的任何数据都会写入这个路径中
+```
+
+> 默认的数据卷在linux中都是在 此路径中 
+>
+> ``` sh
+> /var/lib/docker/volumes
+> ```
+
+`docker volume ls` 产看所有的数据卷
 
 ## 概念
 
@@ -315,7 +342,7 @@ cat /var/jenkins_home/secrets/initialAdminPassword
 
 ![image-20210802135853545](http://i0.hdslb.com/bfs/album/023eac3342a2307714a618c1ca3bf03e70ced63a.png)
 
-## docker 部署 gogs
+## Docker 部署 gogs
 
 ### 简介
 
@@ -353,7 +380,7 @@ docker run --name gogs -p 10022:22 -p 10050:3000 \
 ```bash
 docker pull nginx
 #拉取nginx镜像
-docker run -di --name=nginx -p 80:80 -v /var/jenkins_home/workspace/html:/usr/share/nginx/html nginx
+docker run -id --name nginx -p 80:80 -v /root/html:/usr/share/nginx/html nginx
 #启动容器
 ```
 
@@ -401,7 +428,7 @@ server {
 docker run -d -p 80:80 --name nginx -v /home/nginx/html:/usr/share/nginx/html nginx
 ```
 
-## docker 配置官方镜像加速
+## Docker 配置官方镜像加速
 
 ### 获取官网链接
 
@@ -417,7 +444,27 @@ docker run -d -p 80:80 --name nginx -v /home/nginx/html:/usr/share/nginx/html ng
 
 ![image-20220305164129094](http://i0.hdslb.com/bfs/album/9630a8c9fd59a0041d9ea7823906218ec1949e3e.png)
 
-### docker-compose安装
+``` json
+ "registry-mirrors": [
+    "https://mirror.ccs.tencentyun.com"
+  ]
+```
+
+* linux客户端
+
+修改配置文件，并重启docker服务，
+
+``` sh
+nano /etc/docker/daemon.json
+{
+   "registry-mirrors": [
+       "https://mirror.ccs.tencentyun.com"
+  ]
+}
+sudo systemctl restart docker
+```
+
+## Docker-compose安装
 
 直接下载`docker-compose`的二进制文件
 
@@ -442,7 +489,7 @@ Docker Compose version v2.4.1
 
 
 
-## `dockers`概念区分,`Images`,`Containers` `Volumes` 区别
+## `Dockers`概念区分,`Images`,`Containers` `Volumes` 区别
 
 ![3524_1](http://i0.hdslb.com/bfs/album/a74a14baabac144c4224bf3fcc2e6b530546f184.png)
 

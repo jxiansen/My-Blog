@@ -240,7 +240,7 @@ _示例_:
 
 - **效果图**
 
-<img src="http://i0.hdslb.com/bfs/album/d1f198444fee9b6b16bd3b1d5b2534accc027908.png" alt="v-for迭代对象.png">
+<img src="http://i0.hdslb.com/bfs/album/d1f198444fee9b6b16bd3b1d5b2534accc027908.png">
 
 ::: tip 迭代对象数组
 将多个对象组合作为数组处理

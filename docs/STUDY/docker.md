@@ -10,15 +10,75 @@ wget https://get.docker.com -o get-docker.sh
 sh get-docker.sh
 ```
 
-
-
 ## 基础命令
+
+#### 数据卷 `volume`
+
+数据卷挂载之后即使容器删除，只要宿主机的目录不变，除非手动删除数据卷数据
+
+* 创建一个数据卷：`dockek volume create my-volume` 
+* 查看所有数据卷： `docker volume ls` 
+* 删除数据卷：`docker volume rm volume_name`
+* 查看数据卷详情：`docker volume inspect volume_name`  (创建时间，宿主机的挂载位置)
+* 清初无用数据卷： `docker volume prune` 
+
+``` sh
+docker run -dp 80:80 -v my-volume:/var/www/html nginx
+# 容器启动时，将数据卷挂载到容器指定的路径： /var/www/html
+# 容器运行时产生的任何数据都会写入这个路径中
+# 使用 -v 参数的时候甚至不需要提前使用命令创建 volume，系统会自动挂载
+```
+
+> 默认的数据卷在linux中都是在 此路径中 
+>
+> ``` sh
+> /var/lib/docker/volumes
+> ```
+
+**使用绝对路径挂载**
+
+``` sh
+docker run -idt -v /data/docker_volume/html:/root/html nginx
+```
+
+**自动挂载** 不在乎 `volume` 的所在位置只是想要讲某个目录文件持久化
+
+``` sh
+docker run -itd -v /root/html nginx   #这会创建一个匿名的 volume
+```
+
+
+
+#### 容器管理
+
 
 `docker ps`: 查看正在运行的容器, 参数`-a` :过去曾经运行过的容器
 
 `docker stop 容器id`: 停止运行此容器
 
 `docker start 容器id` 启动已经创建好的容器
+`docker rename 原容器名 新容器名` 重命名容器
+
+![image-20210801183244053](http://i0.hdslb.com/bfs/album/4c3edd85ca533cea2d330934c72469b3919d193d.png)
+
+`docker diff '容器的id'`: 列出容器内文件变动情况
+
+`A`: add 代表新增的文件
+
+`C`: 更新的文件
+
+`D`: 删除的文件
+
+
+`docker commit '容器id'`: 更换容器名字
+
+`docker attach '容器id'`: 进入到正在运行中的容器,(不推荐,`exit` 退出容器会暂停容器)
+
+#### 镜像管理
+
+`docker image ls` : 查看已经下载到本地的镜像
+
+`docker rmi 镜像id` 移除镜像
 
 `docker search 镜像名` 在远程仓库中搜索所有可用的镜像
 
@@ -48,44 +108,17 @@ sh get-docker.sh
 
 `docker cp /root/demo.txt 容器id:/home` 拷贝宿主机中的`demo.txt`文件到容器内部
 
-`docker rmi 镜像id` 移除镜像
 
-`docker rename 原容器名 新容器名` 重命名容器
 
-![image-20210801183244053](http://i0.hdslb.com/bfs/album/4c3edd85ca533cea2d330934c72469b3919d193d.png)
 
-`docker image ls` : 查看已经下载到本地的镜像
 
-`docker diff '容器的id'`: 列出容器内文件变动情况
 
-`A`: add 代表新增的文件
 
-`C`: 更新的文件
 
-`D`: 删除的文件
-
-`docker commit '容器id'`: 更换容器名字
-
-`docker attach '容器id'`: 进入到正在运行中的容器,(不推荐,`exit` 退出容器会暂停容器)
 
 `docker exec -it 容器id /bin/bash` 进入到容器命令行中,启动一个远程shell
-`docke volume create my-volume` : 创建一个数据卷
-
 ![image-20210801143934667](http://i0.hdslb.com/bfs/album/d67843beff63e0785b6ab20d8c2df09963ed4d7a.png)
 
-``` sh
-docker run -dp 80:80 -v my-volume:/var/www/html nginx
-# 容器启动时，将数据卷挂载到容器指定的路径： /var/www/html
-# 容器运行时产生的任何数据都会写入这个路径中
-```
-
-> 默认的数据卷在linux中都是在 此路径中 
->
-> ``` sh
-> /var/lib/docker/volumes
-> ```
-
-`docker volume ls` 产看所有的数据卷
 
 ## 概念
 
@@ -172,9 +205,9 @@ docker compose down
 # 停止并删除所有的容器
 ```
 
+## 各种服务的安装
 
-
-## Docker 安装 Mysql
+### Docker 安装 Mysql
 
 1. 拉取`Mysql`镜像
 
@@ -213,7 +246,7 @@ apt-get update:更新源中的索引,获得最新的软件包
 
 `mysql -u root -p`
 
-## Dockers 安装 nginx
+### Dockers 安装 nginx
 
 1. 从云端拉取`nginx`镜像
 
@@ -275,7 +308,7 @@ apt-get update:更新源中的索引,获得最新的软件包
 
 [nginx配置](https://www.cnblogs.com/qiqiloved/p/13470064.html)
 
-## Docker 部署 Jenkins 及初始配置
+### Docker 部署 Jenkins 及初始配置
 
 1. 下载`jenkins` 镜像
 
@@ -342,7 +375,7 @@ cat /var/jenkins_home/secrets/initialAdminPassword
 
 ![image-20210802135853545](http://i0.hdslb.com/bfs/album/023eac3342a2307714a618c1ca3bf03e70ced63a.png)
 
-## Docker 部署 gogs
+### Docker 部署 gogs
 
 ### 简介
 
@@ -375,7 +408,7 @@ docker run --name gogs -p 10022:22 -p 10050:3000 \
 
 [知乎gogs部署](https://zhuanlan.zhihu.com/p/253217380)
 
-## Docker 部署 nginx
+### Docker 部署 nginx
 
 ```bash
 docker pull nginx
@@ -464,7 +497,7 @@ nano /etc/docker/daemon.json
 sudo systemctl restart docker
 ```
 
-## Docker-compose安装
+### Docker-compose安装
 
 直接下载`docker-compose`的二进制文件
 

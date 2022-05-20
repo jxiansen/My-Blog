@@ -4,29 +4,29 @@
 
 > `ls` 列出目录
 
-* `-a` 列出全部文件,包括隐藏文件
-* `-l` 列出所有的文件,包含文件的属性和权限,没有隐藏文件
+- `-a` 列出全部文件,包括隐藏文件
+- `-l` 列出所有的文件,包含文件的属性和权限,没有隐藏文件
 
 > `rmdir` 删除空目录
 
-* `-p` 递归的删除多个目录
+- `-p` 递归的删除多个目录
 
 `rmdir`仅能删除空目录,如果目录下存在文件,需要先删除文件,
 
 > `cp` 复制文件
 
-`cp`   `oldPath  ` `newPath`
+`cp` `oldPath ` `newPath`
 
 > `rm` 移除文件或目录
 
-* `-f` 忽略不存在的文件,不会出现警告,强制删除
-* `-r` 递归性删除目录
-* `-i` 互动,询问是否删除
+- `-f` 忽略不存在的文件,不会出现警告,强制删除
+- `-r` 递归性删除目录
+- `-i` 互动,询问是否删除
 
 > `mv` 移动文件或者目录 ,重命名文件
 
-* `-f` 强制移动
-* `-u` 只替换文件
+- `-f` 强制移动
+- `-u` 只替换文件
 
 ```bash
 root@Mr-j:~# dir
@@ -50,52 +50,59 @@ es  mike  new.js
 
 连接文件并打印到标准输出设备上
 
-``` bash
+```bash
 cat index.html
 ```
 
 使用 `cat` 创建新文件
 
-``` sh
+```sh
 cat > hello.js
 ```
 
-将文件1和 文件2里面的内容合并存储到文件3中
+将文件 1 和 文件 2 里面的内容合并存储到文件 3 中
 
-``` sh
+```sh
 cat 1.txt 2.txt >> 3.txt
 ```
 
 将内容写入到文件中
 
-``` sh
+```sh
 echo 'hello Wolrd' > README.md
 ```
 
 在 `power Shell` 中创建文件
 
-``` sh
+```sh
 new-item hello.js
 ```
 
 运行 `.sh` 文件
 
-``` sh
+```sh
 # 切换到sh文件目录
-sh 
+sh
 ```
 
 ### 文件资源路径
 
-``` sh
+```sh
 './': 当前的路径
 '../': 当前路径的上一级路径
 '/' : 表示文件系统根路径
 ```
 
+### 列出当前文件夹下所有的文件
 
+`tree` 命令可以显示当前文件夹的目录结构，可以通过指定参数来排除不想要的文件夹
 
-
+```sh
+tree
+tree -I 'node_modules'	# 忽略node_modules文件夹
+tree -I 'node_modules|cache|test'	# 忽略多个文件夹
+tree -L 2 	# 有时候文件嵌套层级很深，可以用-L参数只展示前两级的文件
+```
 
 ## 卸载软件
 
@@ -103,7 +110,7 @@ sh
 
 1. 列出所有已经安装的应用
 
-``` sh
+```sh
 dpkg --list
 ```
 
@@ -113,7 +120,7 @@ dpkg --list
 
 2. 新开一个终端，输入命令并加上软件包名。
 
-``` sh
+```sh
 apt remove node --purge
 # 卸载软件(纯净模式)
 ```
@@ -143,28 +150,28 @@ lrwxrwxrwx  1 root root          13 Aug  5  2020 iptables-save -> xtables-multi
 
 最左边的第一个字母的意义:
 
-* `d` ---> 目录
-* `l` ---> 链接文件
-* `-`  ---> 文件
-* `b` ---> 装置文件里面的可供存储的接口设备(可随机存取设备)
-* `c` ---> 装置文件里面的串行端口设备,列如鼠标,键盘
+- `d` ---> 目录
+- `l` ---> 链接文件
+- `-` ---> 文件
+- `b` ---> 装置文件里面的可供存储的接口设备(可随机存取设备)
+- `c` ---> 装置文件里面的串行端口设备,列如鼠标,键盘
 
 ![](http://i0.hdslb.com/bfs/album/18dc3eee32bc141c7c5577d949dd67d60b7ef6c1.png)
 
 ![](http://i0.hdslb.com/bfs/album/8a2b31fb945069aedccd6a47e20ecda692a15ba8.png)
 
-## 查看linux系统版本号
+## 查看 linux 系统版本号
 
 1. 查看`/etc/issue` 文件
 
-``` sh
+```sh
 # cat /etc/issue
 Debian GNU/Linux 9 \n \l
 ```
 
 2. 查看 `/etc/os-release` 文件
 
-``` sh
+```sh
 [root@mr-j ~]# cat /etc/os-release
 NAME="CentOS Linux"
 VERSION="7 (Core)"
@@ -189,7 +196,7 @@ REDHAT_SUPPORT_PRODUCT_VERSION="7"
 
 `hostnamectl` 命令用于配置或修改系统的主机名，不过也使用此命令来获取`linux` 系统的版本，只需要直接输入 `hostnamectl` 即可：
 
-``` sh
+```sh
 [root@mr-j ~]# hostnamectl
    Static hostname: mr-j
    Pretty hostname: Mr-j
@@ -208,7 +215,7 @@ REDHAT_SUPPORT_PRODUCT_VERSION="7"
 
 `uname` 命令可以显示电脑以及操作系统的相关信息，输入下面的命令：
 
-``` sh
+```sh
 [root@mr-j ~]# uname -a
 Linux mr-j 3.10.0-1127.19.1.el7.x86_64 #1 SMP Tue Aug 25 17:23:54 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
 ```
@@ -272,7 +279,7 @@ firewall-cmd --permanent --remove-port=123/tcp
 `*.zip` 用 unzip 解压
 ```
 
-``` sh
+```sh
 node-v18.0.0-linux-x64.tar.xz  // 这种tar.xz文件是经过两次压缩，先tar压缩，然后xz压缩
 // 安装xz命令
 apt install -y xz-utils
@@ -280,8 +287,6 @@ apt install -y xz-utils
 xz -d node-v18.0.0-linux-x64.tar.xz
 tar -xvf node-v18.0.0-linux-x64.tar.xz
 ```
-
-
 
 ## 重命名主机名
 
@@ -302,20 +307,20 @@ reboot
 
 ![image-20210807180627713](http://i0.hdslb.com/bfs/album/dfb933c9748bc51149efbf4238a6fa21010da026.png)
 
-###  Linux中查找nginx配置所在目录
+### Linux 中查找 nginx 配置所在目录
 
-默认的腾讯云`node`镜像包中配置了`nginx` ,学习`express` 的时候,ip地址总是默认转到80端口,很不方便,用`express` 来提供`http` 服务.
+默认的腾讯云`node`镜像包中配置了`nginx` ,学习`express` 的时候,ip 地址总是默认转到 80 端口,很不方便,用`express` 来提供`http` 服务.
 
 先找到 `nginx` 主程序目录
 
-``` bash
+```bash
 ps - ef | grep nginx
 # 找到 master process后面的目录
 ```
 
 ![image-20211022172917322](http://i0.hdslb.com/bfs/album/d81382bc35d1c98de6ec9dfd0923a4d401ce874a.png)
 
-``` bash
+```bash
 # 停止nginx的http服务,此时就可以接触掉nginx占用的80端口了
 cd /usr/local/lighthouse/softwares/nginx/sbin/nginx -s stop
 ```
@@ -326,7 +331,7 @@ cd /usr/local/lighthouse/softwares/nginx/sbin/nginx -s stop
 
 本地如果已经安装好 `git` 工具,直接命令行 `cd` 到 `~` 目录下,运行命令生成 `ssh key`
 
-``` bash
+```bash
 cd ~
 ssh-keygen -t rsa -C "xxxxx@xxxxx.com"
 ```
@@ -345,17 +350,15 @@ ssh-keygen -t rsa -C "xxxxx@xxxxx.com"
 
 ![image-20220227160237525](http://i0.hdslb.com/bfs/album/8c897ac605c6ad999829a36dd84384a5feb27326.png)
 
-
-
 上图中的 `authorized_keys` 文件，就是设置本地免密登录的文件，只要把之前本地生成的 `id_rsa.pub` 内容放入 `authorized_keys` 中，在本地命令行工具执行 `ssh root@服务器IP`，便能直接免密登录。
 
 ![image-20220227160328206](http://i0.hdslb.com/bfs/album/8d38f66805cc31cfe740a3791f3e2337367fe0db.png)
 
 ### 报错解决
 
-重置以后ssh 连接远程服务器报错
+重置以后 ssh 连接远程服务器报错
 
-``` sh
+```sh
 ❯ ssh root@121.4.185.31
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
@@ -375,10 +378,9 @@ Host key verification failed.
 
 **解决方法** : 清除旧的公钥信息
 
-``` sh
+```sh
 ❯ ssh-keygen -R 121.4.185.31
 # Host 121.4.185.31 found: line 1
 C:\Users\30328/.ssh/known_hosts updated.
 Original contents retained as C:\Users\30328/.ssh/known_hosts.old
 ```
-

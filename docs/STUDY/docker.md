@@ -2,9 +2,9 @@
 
 ## 安装
 
-Linux直接使用官方的一键安装脚本
+Linux 直接使用官方的一键安装脚本
 
-``` sh
+```sh
 #先下载脚本然后再运行
 wget https://get.docker.com -o get-docker.sh
 sh get-docker.sh
@@ -16,41 +16,38 @@ sh get-docker.sh
 
 数据卷挂载之后即使容器删除，只要宿主机的目录不变，除非手动删除数据卷数据
 
-* 创建一个数据卷：`dockek volume create my-volume` 
-* 查看所有数据卷： `docker volume ls` 
-* 删除数据卷：`docker volume rm volume_name`
-* 查看数据卷详情：`docker volume inspect volume_name`  (创建时间，宿主机的挂载位置)
-* 清初无用数据卷： `docker volume prune` 
+- 创建一个数据卷：`dockek volume create my-volume`
+- 查看所有数据卷： `docker volume ls`
+- 删除数据卷：`docker volume rm volume_name`
+- 查看数据卷详情：`docker volume inspect volume_name` (创建时间，宿主机的挂载位置)
+- 清初无用数据卷： `docker volume prune`
 
-``` sh
+```sh
 docker run -dp 80:80 -v my-volume:/var/www/html nginx
 # 容器启动时，将数据卷挂载到容器指定的路径： /var/www/html
 # 容器运行时产生的任何数据都会写入这个路径中
 # 使用 -v 参数的时候甚至不需要提前使用命令创建 volume，系统会自动挂载
 ```
 
-> 默认的数据卷在linux中都是在 此路径中 
+> 默认的数据卷在 linux 中都是在 此路径中
 >
-> ``` sh
+> ```sh
 > /var/lib/docker/volumes
 > ```
 
 **使用绝对路径挂载**
 
-``` sh
+```sh
 docker run -idt -v /data/docker_volume/html:/root/html nginx
 ```
 
 **自动挂载** 不在乎 `volume` 的所在位置只是想要讲某个目录文件持久化
 
-``` sh
+```sh
 docker run -itd -v /root/html nginx   #这会创建一个匿名的 volume
 ```
 
-
-
 #### 容器管理
-
 
 `docker ps`: 查看正在运行的容器, 参数`-a` :过去曾经运行过的容器
 
@@ -69,7 +66,6 @@ docker run -itd -v /root/html nginx   #这会创建一个匿名的 volume
 
 `D`: 删除的文件
 
-
 `docker commit '容器id'`: 更换容器名字
 
 `docker attach '容器id'`: 进入到正在运行中的容器,(不推荐,`exit` 退出容器会暂停容器)
@@ -84,7 +80,7 @@ docker run -itd -v /root/html nginx   #这会创建一个匿名的 volume
 
 ![image-20210808173929994](http://i0.hdslb.com/bfs/album/234c360c8ff0c19984b3c615e75f06f2fc330508.png)
 
-`name` :镜像名	`description` 描述	`stars` 星	`official` 是否是官方	`automated` 自动构建
+`name` :镜像名 `description` 描述 `stars` 星 `official` 是否是官方 `automated` 自动构建
 
 `docker run` 以镜像创建一个新的容器并运行
 
@@ -104,31 +100,22 @@ docker run -itd -v /root/html nginx   #这会创建一个匿名的 volume
 
 > 如果容器内无法修改文件,可以先拷贝到宿主机中修改,然后再拷贝回去
 
-`docker cp 容器id:/home/demo.txt /root/ ` 拷贝容器中的`demo.tx`t文到宿主机的`/root`路径下
+`docker cp 容器id:/home/demo.txt /root/ ` 拷贝容器中的`demo.tx`t 文到宿主机的`/root`路径下
 
 `docker cp /root/demo.txt 容器id:/home` 拷贝宿主机中的`demo.txt`文件到容器内部
 
-
-
-
-
-
-
-
-
-`docker exec -it 容器id /bin/bash` 进入到容器命令行中,启动一个远程shell
+`docker exec -it 容器id /bin/bash` 进入到容器命令行中,启动一个远程 shell
 ![image-20210801143934667](http://i0.hdslb.com/bfs/album/d67843beff63e0785b6ab20d8c2df09963ed4d7a.png)
-
 
 ## 概念
 
-`docker file` 自动化脚本文件： 可以被docker用来构建镜像
+`docker file` 自动化脚本文件： 可以被 docker 用来构建镜像
 
-`docker-compose` 一个工具用来定义和运行多个Docker容器，
+`docker-compose` 一个工具用来定义和运行多个 Docker 容器，
 
-* `dockerfile` 文件示范
+- `dockerfile` 文件示范
 
-``` dockerfile
+```dockerfile
 FROM node:14-alpine AS build
 # 选择一个基础镜像，附加版本号
 WORKDIR /opt/node_app
@@ -152,20 +139,20 @@ HEALTHCHECK CMD wget -q -O /dev/null http://localhost || exit 1
 
 ```
 
-使用docker build命令来创建一个镜像
+使用 docker build 命令来创建一个镜像
 
-``` sh
+```sh
 docker build -t my-app .
 # `-t` : tag指定了创建镜像的名字  '.' 代表在当前目录下构建
 ```
 
-* `docker-compose.yml` 文件
+- `docker-compose.yml` 文件
 
-``` yaml
+```yaml
 version: "3.8"
 
 services:
-# 定义多个容器
+  # 定义多个容器
   excalidraw:
     build:
       context: .
@@ -188,19 +175,18 @@ services:
 # 指定数据卷用来存放数据
 volumes:
   notused:
-
 ```
 
 接下来运行
 
-``` sh
+```sh
 docker compose up -d
 # d(detach) 代表在后台运行所有的容器
 ```
 
 如果想要删除运行的容器
 
-``` sh
+```sh
 docker compose down
 # 停止并删除所有的容器
 ```
@@ -245,6 +231,103 @@ apt-get update:更新源中的索引,获得最新的软件包
 4. 登录`mysql`
 
 `mysql -u root -p`
+
+### Docker 安装 mongodb
+
+1. 拉取镜像
+
+```sh
+docker pull mongo
+Using default tag: latest
+latest: Pulling from library/mongo
+Digest: sha256:82a55eb6d60997007ff390087d4e064218d477e9611a7becd78664a2ab490eff
+Status: Image is up to date for mongo:latest
+docker.io/library/mongo:latest
+```
+
+2. 运行 mongo 容器
+
+```sh
+docker run -itd --name mongo -p 27017:27017 mongo --auth
+e51301d396ce708970a184cc8889fdfa0e885b11ecf72a8cab504478d2fbb63f
+```
+
+`--auth` ：开启 mongo 容器密码认证
+
+3. 命令行进入 mongo 容器
+
+```sh
+docker exec -it mongo mongo admin
+MongoDB shell version v5.0.8
+connecting to: mongodb://127.0.0.1:27017/admin?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("f9026848-d867-4c81-aec3-29aad133ac1d") }
+MongoDB server version: 5.0.8
+================
+Warning: the "mongo" shell has been superseded by "mongosh",
+which delivers improved usability and compatibility.The "mongo" shell has been deprecated and will be removed in
+an upcoming release.
+For installation instructions, see
+https://docs.mongodb.com/mongodb-shell/install/
+================
+```
+
+进入容器后立即执行 `mongo` 命令 以 admin 角色进入数据库命令行
+
+4. 创建管理员账号和密码
+
+```sh
+db.createUser({ user:'admin',pwd:'123456',roles:[ { role:'userAdminAnyDatabase', db: 'admin'}]});
+Successfully added user = {
+  user: "admin",
+  roles: [
+    {
+      role: "userAdminAnyDatabase",
+      db: "admin",
+    },
+  ],
+};
+```
+
+`mongo` 中的用户是基于身份 `role` 的，该管理员账户的 `role` 是 `userAdminAnyDatabase`
+
+`userAdmin`代表用户管理身份，`AnyDatabase` 代表可以管理任何数据库
+
+5. 用创建的账号登录
+
+```sh
+db.auth('admin','123456')
+1
+```
+
+管理员账号登录后，可以用该账户创建其他数据库管理员账号
+
+```sh
+use mydatabase 	// 切换到 mydatabase k
+switched to db mydatabase
+db.createUser({ user: "mr-j", pwd: "123456", roles: [{ role: "dbOwner", db: "mydatabase" }] })
+```
+
+`mongo` 内建的角色类型有：
+
+- `Read` 允许用户读取指定数据库
+
+- `readWrite` 允许用户读写指定数据库
+
+- `dbAdmin` 允许用户在指定数据库中执行管理函数，如索引创建、删除，查看统计或访问 system.profile
+
+- `userAdmin` 允许用户向 system.users 集合写入，可以找指定数据库里创建、删除和管理用户
+
+- `clusterAdmin` 只在 admin 数据库中可用，赋予用户所有分片和复制集相关函数的管理权限。
+
+- `readAnyDatabase` 只在 admin 数据库中可用，赋予用户所有数据库的读权限
+
+- `readWriteAnyDatabase` 只在 admin 数据库中可用，赋予用户所有数据库的读写权限
+
+- `userAdminAnyDatabase` 只在 admin 数据库中可用，赋予用户所有数据库的 userAdmin 权限
+
+- `dbAdminAnyDatabase` 只在 admin 数据库中可用，赋予用户所有数据库的 dbAdmin 权限。
+
+- `root` 只在 admin 数据库中可用。超级账号，超级权限
 
 ### Dockers 安装 nginx
 
@@ -306,7 +389,7 @@ apt-get update:更新源中的索引,获得最新的软件包
 
 > 方法二,将`nginx`容器内部的配置文件挂载到主机内部,对主机的目录进行修改,适合经常修改操作的情况
 
-[nginx配置](https://www.cnblogs.com/qiqiloved/p/13470064.html)
+[nginx 配置](https://www.cnblogs.com/qiqiloved/p/13470064.html)
 
 ### Docker 部署 Jenkins 及初始配置
 
@@ -406,7 +489,7 @@ docker run --name gogs -p 10022:22 -p 10050:3000 \
 
 ![image-20210802160140804](http://i0.hdslb.com/bfs/album/0b69eca5bbef95558ce9a4cea9d47228569ff696.png)
 
-[知乎gogs部署](https://zhuanlan.zhihu.com/p/253217380)
+[知乎 gogs 部署](https://zhuanlan.zhihu.com/p/253217380)
 
 ### Docker 部署 nginx
 
@@ -477,17 +560,17 @@ docker run -d -p 80:80 --name nginx -v /home/nginx/html:/usr/share/nginx/html ng
 
 ![image-20220305164129094](http://i0.hdslb.com/bfs/album/9630a8c9fd59a0041d9ea7823906218ec1949e3e.png)
 
-``` json
+```json
  "registry-mirrors": [
     "https://mirror.ccs.tencentyun.com"
   ]
 ```
 
-* linux客户端
+- linux 客户端
 
-修改配置文件，并重启docker服务，
+修改配置文件，并重启 docker 服务，
 
-``` sh
+```sh
 nano /etc/docker/daemon.json
 {
    "registry-mirrors": [
@@ -497,17 +580,17 @@ nano /etc/docker/daemon.json
 sudo systemctl restart docker
 ```
 
-### Docker-compose安装
+### Docker-compose 安装
 
 直接下载`docker-compose`的二进制文件
 
-docker-compose的下载地址：[github下载链接](https://github.com/docker/compose/releases)
+docker-compose 的下载地址：[github 下载链接](https://github.com/docker/compose/releases)
 
 根据自己的操作系统选择对应的版本进行下载
 
 上传到自己的服务器上,输入以下命令
 
-``` sh
+```sh
 mv docker-compose-Linux-x86_64 /usr/bin/docker-compose
 chmod 755 /usr/bin/docker-compose
 docker-compose version
@@ -515,12 +598,9 @@ docker-compose version
 
 如果输出以下版本号,则表示安装成功
 
-``` sh
+```sh
 Docker Compose version v2.4.1
 ```
-
-
-
 
 ## `Dockers`概念区分,`Images`,`Containers` `Volumes` 区别
 

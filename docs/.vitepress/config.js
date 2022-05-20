@@ -80,6 +80,8 @@ function getSidebar() {
         { text: "vitepress", link: "/STUDY/vitepress-study" },
         { text: "docker入门", link: "/STUDY/docker" },
         { text: "MySQL", link: "/STUDY/mysql" },
+        { text: "Caddy", link: "/STUDY/caddy" },
+        { text: "MongoDB入门", link: "/STUDY/Mongo" },
       ],
     },
     {

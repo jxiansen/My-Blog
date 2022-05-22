@@ -2,13 +2,53 @@
 
 ## 安装
 
-Linux 直接使用官方的一键安装脚本
+#### 海外服务器
 
 ```sh
-#先下载脚本然后再运行
-wget https://get.docker.com -o get-docker.sh
-sh get-docker.sh
+wget -qO- get.docker.com | bash
 ```
+
+卸载`docker`
+
+``` sh
+apt purge docker-ce docker-ce-cli containerd.io 
+rm -rf /var/lib/docker
+rm -rf /var/lib/containerd
+```
+
+`docker-compose` 安装
+
+``` sh
+ sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+```
+
+``` sh
+sudo chmod +x /usr/local/bin/docker-compose
+```
+
+#### 国内机器安装`docker`
+
+``` sh
+curl -sSL https://get.daocloud.io/docker | sh
+```
+
+国内服务器安装 `docker-compose` 
+
+``` sh
+curl -L https://get.daocloud.io/docker/compose/releases/download/v2.1.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+```
+
+卸载 `docker`
+
+``` sh
+sudo apt-get remove docker docker-engine
+rm -fr /var/lib/docker/
+```
+
+
+
+
 
 ## 基础命令
 
@@ -190,6 +230,66 @@ docker compose up -d
 docker compose down
 # 停止并删除所有的容器
 ```
+
+## Hello World
+
+**目标**：使用 `docke` 基础镜像打包出一个私人镜像，输出 `hello world`
+
+``` sh
+# 目录结构
+root@Mr-j:/mnt/c/Users/30328/Desktop/docker_study
+.
+├── Dockerfile
+└── helloworld.js
+```
+
+**Dockerfile文件编写**
+
+``` dock
+FROM node:slim
+# 基础镜像
+WORKDIR /app
+# 容器内切换到指定路径
+COPY . .
+# 拷贝当前文件夹下的文件到容器中的目录
+CMD ["node", "/app/helloworld.js"]
+# 打包完成后执行的命令
+```
+
+`Dokcerfile` 文件编写完成后，需要使用命令来根据文件中的指令来构建出镜像
+
+``` sh
+❯ docker build -t test .
+[+] Building 2.4s (8/8) FINISHED
+ => [internal] load build definition from Dockerfile                                           0.3s
+ => => transferring dockerfile: 117B                                                           0.0s
+ => [internal] load .dockerignore                                                              0.4s
+ => => transferring context: 2B                                                                0.0s
+ => [internal] load metadata for docker.io/library/node:slim                                   0.0s
+ => [1/3] FROM docker.io/library/node:slim                                                     0.0s
+ => [internal] load build context                                                              0.3s
+ => => transferring context: 185B                                                              0.0s
+ => CACHED [2/3] WORKDIR /app                                                                  0.0s
+ => [3/3] COPY . .                                                                             0.5s
+ => exporting to image                                                                         0.8s
+ => => exporting layers                                                                        0.6s
+ => => writing image sha256:37a6ba6990f911e6f8b9812a1a56269c1d462fb9f978abcf60b265343bdb0be4   0.0s
+ => => naming to docker.io/library/test
+```
+
+此时使用命令查看，可以发现镜像中多了一个打包好的镜像
+
+![image-20220522174118758](http://i0.hdslb.com/bfs/album/a8ef36f8562a2c1677a3f89420da11866d73851e.png)
+
+**运行容器**
+
+``` sh
+docker run test
+```
+
+![image-20220522174203302](http://i0.hdslb.com/bfs/album/7bd88cc005695b510d0d5037577154a81d787aee.png)
+
+容器输出了 `hello world` 后就退出了
 
 ## 各种服务的安装
 
@@ -580,7 +680,69 @@ nano /etc/docker/daemon.json
 sudo systemctl restart docker
 ```
 
-### Docker-compose 安装
+
+
+## `Images`,`Containers` `Volumes` 区别
+
+![3524_1](http://i0.hdslb.com/bfs/album/a74a14baabac144c4224bf3fcc2e6b530546f184.png)
+
+- `Image` 镜像就是一堆只读层,是多层静态的文件的堆叠
+- `container` 容器和镜像差不多,也是一堆层的堆叠,唯一的区别是容器的顶层是可读写的,容器=镜像+读写层,通常是动态的
+
+![](http://i0.hdslb.com/bfs/album/a7be97ed925ff163ef344a2c1ee7e4b644eb30b6.png)
+
+[10 张图带你深入理解 Docker 容器和镜像](http://dockone.io/article/783)
+
+`kubernetes` 和 `docker` 的区别：
+
+`kubernetes`所做的就是将各个容器分发到一个集群中运行，并进行全自动化的管理，包括应用的部署和升级
+
+![image-20220416170959362](http://i0.hdslb.com/bfs/album/71f629e94074999b04f31dfd9a4889684a1af855.png)
+
+## Dockfile中使用多个cmd命令
+
+1. 方法一: `CMD` 命令不用中括号框起来，将命令用 “&&”符号连接
+
+``` sh
+# 用nohup框起来，不然npm start执行了之后不会执行后面的
+CMD nohup sh -c 'npm start && node ./server/server.js'
+```
+
+2. 方法二： 用ENTRYPOINT命令，指定一个执行的shell脚本，然后在entrypoint.sh文件中写上要执行的命令：
+
+``` sh
+ENTRYPOINT ["./entrypoint.sh"]
+```
+
+entrypoint.sh文件如下：
+
+``` sh
+// entrypoint.sh
+nohup npm start &
+nohup node ./server/server.js &
+```
+
+### 容器启动执行完脚本后自动退出
+
+ 一个docker容器同时只能管理一个进程，这个进程退出后，容器也就退出了，当然一个容器里可以同时运行多个进程。当容器启动完后执行某脚本后，该进程结束了，其他进程也结束了，所以该容器自动退出了，解决方案：我们可以让该脚本一直运行不停止。
+
+**解决方式：** 
+
+  在脚本最后一行添加tail -f /dev/null，这个命令永远完成不了，所以该脚本一直不会执行完，所以该容器永远不会退出。
+
+## Docker  Compose
+
+`Compose` 是一个用户定义和运行多容器的工具，直接用命令行创建容器不够直观，不方便管理。可以通过把所有的容器运行配置写在 YML文件中，来运行容器。主要有三个步骤，
+
+* 编写 `Dockerfile` 来创建应用程序的环境
+* 编写 `docker-compose.yml` 来定义构成应用程序的服务
+* 执行 `docker-compose up -d` 来启动运行整个应用程序
+
+[composerize](https://www.composerize.com/) ,这个网站可以将`docker`命令转变为 `yml` 文件
+
+![image-20220522211439950](http://i0.hdslb.com/bfs/album/0858da5b39d8200fd6f793a9a35ae9d4c36dc5eb.png)
+
+###  安装
 
 直接下载`docker-compose`的二进制文件
 
@@ -601,20 +763,3 @@ docker-compose version
 ```sh
 Docker Compose version v2.4.1
 ```
-
-## `Dockers`概念区分,`Images`,`Containers` `Volumes` 区别
-
-![3524_1](http://i0.hdslb.com/bfs/album/a74a14baabac144c4224bf3fcc2e6b530546f184.png)
-
-- `Image` 镜像就是一堆只读层,是多层静态的文件的堆叠
-- `container` 容器和镜像差不多,也是一堆层的堆叠,唯一的区别是容器的顶层是可读写的,容器=镜像+读写层,通常是动态的
-
-![](http://i0.hdslb.com/bfs/album/a7be97ed925ff163ef344a2c1ee7e4b644eb30b6.png)
-
-[10 张图带你深入理解 Docker 容器和镜像](http://dockone.io/article/783)
-
-`kubernetes` 和 `docker` 的区别：
-
-`kubernetes`所做的就是将各个容器分发到一个集群中运行，并进行全自动化的管理，包括应用的部署和升级
-
-![image-20220416170959362](http://i0.hdslb.com/bfs/album/71f629e94074999b04f31dfd9a4889684a1af855.png)

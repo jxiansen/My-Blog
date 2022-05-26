@@ -51,6 +51,112 @@ if (3 > 2) console.log(23);
  9%3！=0 || alert('成立')
 ```
 
+### 面向对象知识点
+
+凡是通过构造函数创建出来的新对象，这个对象都叫做这个构造函数的实例。
+
+可以通过 `instanceof` 操作符来判断是否是该构造函数创建的
+
+``` js
+function Fruit(name,color) {
+    this.name = name;
+    this.color = color;
+    this.weigth = 200
+}
+let apple = new Fruit("apple","red")
+console.log(apple instanceof Fruit)
+```
+
+原型属性(`prototype` ):使用构造函数创建新实例对象的时候，大量重复的属性没有必要每次都重新赋予。可以将这些重复的属性挂载到原型属性上 `prototype` ,之后每次创立新实例对象的时候都会自动包含这些变量。所有的实例都可以继承 `prototype` 上面的属性，**因此可以将原型属性看作是创建对象的配方**
+
+#### 迭代所有属性
+
+> 自有属性是直接在对象上定义的，而原型属性是在 `prototype` 上面定义的
+
+``` js
+function Dog(name) {
+  this.name = name;
+}
+
+Dog.prototype.numLegs = 4;
+
+let beagle = new Dog("Snoopy");
+let ownProps = [];
+let prototypeProps = [];
+
+for(let key in beagle) {
+  if(beagle.hasOwnProperty(key)) {		// 通过 Obj.hasOwnProperty(key) 来判断是否是自有属性
+    ownProps.push(key)
+  } else {
+    prototypeProps.push(key)
+  }
+}
+console.log(ownProps,prototypeProps)		// [ 'name' ] [ 'numLegs' ]
+```
+
+#### 构造函数属性
+
+被构造函数创建出来的实例对象都有一个 `constructor` 属性。
+
+**实例对象的constructor属性就是对其构造函数的一个引用**
+
+通过这个属性可以找出它是一个什么对象
+
+``` js
+function Dog(name) {
+  this.name = name;
+}
+let dog = new Dog("jack") 
+
+dog.constructor === Dog		// dog这个实例的 constructor 属性又指向Dog 这个创建它的构造函数
+true
+```
+
+#### 手动更改原型后，构造函数属性丢失
+
+手动设置一个实例对象的原型属性，会有个副作用：将会清除 `constructor` 属性。
+
+<img src="http://i0.hdslb.com/bfs/album/963966ad35ed867a87b4902d1e223e1e38a6c9cd.png" alt="image-20220526222931307" style="zoom: 67%;" />
+
+为了解决这个问题，对于每次手动给新对象重新设置过 `prototype` 属性过后都要重新在原型对象钟定义一个`constructor` 属性
+
+``` js
+Bird.prototype = {
+    constructor : Bird,			// 给构造函数的 prototype 属性重新设置 constructor 指向构造函数，之后创建的每个一实例都能指向当初那个创造它的构造函数
+    numLegs: 2,
+    eat: function() {
+        console.log(`I am eating`)
+    },
+    describe: function() {
+        console.log(`My name is `: this.name)
+    }
+}
+```
+
+#### 原型链
+
+孩子从父母哪里继承他们的基因，实例对象从他们的构造函数哪里继承其 `prototype` 
+
+``` js
+function Bird(name) {
+    this.name = name
+}
+let duck = new Bird("Donald")	
+Bird.prototype.isPrototypeOf(duck)  		// 判断duck是否是从 Bird 哪里继承的 prototype
+```
+
+`JavaScript` 中几乎所有的对象都有自己的`prototype` ,并且它的 `prototyp` 也是一个对象。
+
+``` js
+function Bird(name) {
+  this.name = name;
+}
+let duck = new Bird("Donald");
+duck.hasOwnProperty("name")		// 这个hasOwnProperty是Object对象原型上的一个方法，但是通过继承,duck这个实例也可以方法到该方法。这就是通过原型链条一直可以向上访问。因此所有的对象都可以访问 hasOwnProperty 这个方法
+```
+
+
+
 ### Call、apply、bind区别
 
 ``` js

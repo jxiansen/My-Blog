@@ -4,13 +4,13 @@ services: # 需要用 compose 启动的服务
   node: # 负责打包出html静态文件
     build: .
     volumes:
-      - test:/app/docs/.vitepress/dist
+      - site:/app/docs/.vitepress/dist
 
   web-server:
     image: caddy
     ports:
-      - "3100:80" # 端口映射
+      - "80:80" # 端口映射
     volumes:
-      - test:/usr/share/caddy/
+      - site:/usr/share/caddy/
 volumes:
-  test:
+  site:

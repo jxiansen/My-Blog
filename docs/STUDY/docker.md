@@ -396,7 +396,7 @@ Successfully added user = {
 
 ```sh
 db.auth('admin','123456')
-1
+
 ```
 
 管理员账号登录后，可以用该账户创建其他数据库管理员账号

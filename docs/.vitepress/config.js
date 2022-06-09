@@ -1,5 +1,7 @@
 module.exports = {
-  base: "/", //基础路径
+  lang: "en-US",
+  title: "阿J的前端笔记",
+  description: "总结自己的学习历程",
   head: [
     ["meta", { name: "keywords", content: "前端,学习,成长,Mr-j,资源" }],
     [
@@ -11,47 +13,61 @@ module.exports = {
     ], // 网页tab栏的logo图
     ["meta", { name: "referrer", content: "no-referrer" }], //  使用B站图床防盗链
   ],
-  title: "阿J的前端笔记",
-  description: "总结自己的学习历程",
-  dest: "./dist", //打包输出目录
-  markdown: {
-    lineNumbers: true,
-  },
+  lastUpdated: true,
 
   themeConfig: {
+    nav: nav(),
     logo: "http://i0.hdslb.com/bfs/album/f6337abef81027541d5dfe953c210a573dfb1f8f.png",
-    repo: "https://github.com/jxiansen/My-blog",
-    docsDir: "docs",
-    docsBranch: "main", //分支
 
-    algolia: {
-      appId: "LXWNZH1IJK",
-      apiKey: "400a3b23303b6651ada13466b0e9f922",
-      indexName: "test",
+    sidebar: {
+      "/STUDY/": sidebarGuide(),
+      // "/hub/": sidebarConfig(),
     },
 
-    editLinks: true,
-    editLinkText: "在github上面修改",
-    lastUpdated: "上次更新于",
+    markdown: {
+      lineNumbers: true,
+      theme: "poimandres",
+    },
 
-    nav: [
-      { text: "首页", link: "/" },
-      { text: "vercel", link: "https://vercel.com/jxiansen/my-blog" },
-      { text: "友情链接", link: "http://www.shyuu.cn" },
+    editLink: {
+      pattern: "https://vercel.com/jxiansen/my-blog/:path",
+      text: "Edit this page on GitHub",
+    },
+
+    socialLinks: [
+      { icon: "github", link: "https://vercel.com/jxiansen/my-blog" },
     ],
 
-    sidebarDepth: 4,
-    sidebar: {
-      "/": getSidebar(),
+    footer: {
+      message: "Released under the MIT License.",
+      copyright: "Copyright © 2021-present Mr-j",
+    },
+
+    algolia: {
+      appId: "8J64VVRP8K",
+      apiKey: "a18e2f4cc5665f6602c5631fd868adfd",
+      indexName: "vitepress",
     },
   },
 };
 
-function getSidebar() {
+function nav() {
+  return [
+    { text: "Guide", link: "/STUDY/nowcoder", activeMatch: "/STUDY/" },
+    { text: "Configs", link: "/hub/fontend", activeMatch: "/hub/" },
+    {
+      text: "vercel",
+      link: "https://vercel.com/jxiansen/my-blog",
+    },
+  ];
+}
+
+function sidebarGuide() {
   return [
     {
       text: "基础知识",
-      children: [
+      collapsible: true,
+      items: [
         { text: "30S-css", link: "/STUDY/30S-css" },
         { text: "30S-js", link: "/STUDY/30S-js" },
         { text: "html-study", link: "/STUDY/html-study" },
@@ -62,15 +78,20 @@ function getSidebar() {
     },
     {
       text: "框架",
-      children: [
+      collapsible: true,
+      items: [
         { text: "Vue", link: "/STUDY/Vue" },
+        { text: "React", link: "/STUDY/React" },
+        { text: "Redux", link: "/STUDY/Redux" },
+        { text: "React-router", link: "/STUDY/React-router" },
         { text: "express入门", link: "/STUDY/express" },
         { text: "React初学者手册", link: "/STUDY/React-handbook" },
       ],
     },
     {
       text: "前端拓展技能",
-      children: [
+      collapsible: true,
+      items: [
         { text: "手写JS源码", link: "/STUDY/JS-Manual" },
         { text: "Markdown语法", link: "/STUDY/markdown" },
         { text: "git入门教程", link: "/STUDY/git" },
@@ -86,7 +107,8 @@ function getSidebar() {
     },
     {
       text: "算法刷题",
-      children: [
+      collapsible: true,
+      items: [
         { text: "NowCode", link: "/STUDY/nowcoder" },
         { text: "FreeCodeCamp", link: "/STUDY/js-practice" },
         { text: "LeetCode", link: "/STUDY/LeetCode" },
@@ -94,7 +116,9 @@ function getSidebar() {
     },
     {
       text: "杂七杂八",
-      children: [
+      collapsible: true,
+      items: [
+        { text: "Javascript中的this问题", link: "/STUDY/this" },
         { text: "在wsl中开启使用ssh连接", link: "/hub/wsl-ssh" },
         { text: "node安装与配置", link: "/hub/node-install" },
         { text: "效率", link: "/hub/efficiency" },
@@ -106,6 +130,20 @@ function getSidebar() {
         { text: "window解除端口占用", link: "/hub/windows-kill-process" },
         { text: "SPA单页面应用", link: "/hub/spa" },
         { text: "网址导航", link: "/hub/collect-address" },
+      ],
+    },
+  ];
+}
+
+function sidebarConfig() {
+  return [
+    {
+      text: "Config",
+      items: [
+        { text: "Javascript中的this问题", link: "/STUDY/this" },
+        { text: "在wsl中开启使用ssh连接", link: "/hub/wsl-ssh" },
+        { text: "node安装与配置", link: "/hub/node-install" },
+        { text: "效率", link: "/hub/efficiency" },
       ],
     },
   ];

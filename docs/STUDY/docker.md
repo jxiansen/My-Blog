@@ -10,45 +10,41 @@ wget -qO- get.docker.com | bash
 
 卸载`docker`
 
-``` sh
-apt purge docker-ce docker-ce-cli containerd.io 
+```sh
+apt purge docker-ce docker-ce-cli containerd.io
 rm -rf /var/lib/docker
 rm -rf /var/lib/containerd
 ```
 
 `docker-compose` 安装
 
-``` sh
+```sh
  sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 ```
 
-``` sh
+```sh
 sudo chmod +x /usr/local/bin/docker-compose
 ```
 
 #### 国内机器安装`docker`
 
-``` sh
+```sh
 curl -sSL https://get.daocloud.io/docker | sh
 ```
 
-国内服务器安装 `docker-compose` 
+国内服务器安装 `docker-compose`
 
-``` sh
+```sh
 curl -L https://get.daocloud.io/docker/compose/releases/download/v2.1.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 ```
 
 卸载 `docker`
 
-``` sh
+```sh
 sudo apt-get remove docker docker-engine
 rm -fr /var/lib/docker/
 ```
-
-
-
-
 
 ## 基础命令
 
@@ -155,7 +151,7 @@ docker run -itd -v /root/html nginx   #这会创建一个匿名的 volume
 
 - `dockerfile` 文件示范
 
-```dockerfile
+```sh
 FROM node:14-alpine AS build
 # 选择一个基础镜像，附加版本号
 WORKDIR /opt/node_app
@@ -235,7 +231,7 @@ docker compose down
 
 **目标**：使用 `docke` 基础镜像打包出一个私人镜像，输出 `hello world`
 
-``` sh
+```sh
 # 目录结构
 root@Mr-j:/mnt/c/Users/30328/Desktop/docker_study
 .
@@ -243,9 +239,9 @@ root@Mr-j:/mnt/c/Users/30328/Desktop/docker_study
 └── helloworld.js
 ```
 
-**Dockerfile文件编写**
+**Dockerfile 文件编写**
 
-``` dock
+```sh
 FROM node:slim
 # 基础镜像
 WORKDIR /app
@@ -258,7 +254,7 @@ CMD ["node", "/app/helloworld.js"]
 
 `Dokcerfile` 文件编写完成后，需要使用命令来根据文件中的指令来构建出镜像
 
-``` sh
+```sh
 ❯ docker build -t test .
 [+] Building 2.4s (8/8) FINISHED
  => [internal] load build definition from Dockerfile                                           0.3s
@@ -283,7 +279,7 @@ CMD ["node", "/app/helloworld.js"]
 
 **运行容器**
 
-``` sh
+```sh
 docker run test
 ```
 
@@ -680,8 +676,6 @@ nano /etc/docker/daemon.json
 sudo systemctl restart docker
 ```
 
-
-
 ## `Images`,`Containers` `Volumes` 区别
 
 ![3524_1](http://i0.hdslb.com/bfs/album/a74a14baabac144c4224bf3fcc2e6b530546f184.png)
@@ -699,24 +693,24 @@ sudo systemctl restart docker
 
 ![image-20220416170959362](http://i0.hdslb.com/bfs/album/71f629e94074999b04f31dfd9a4889684a1af855.png)
 
-## Dockfile中使用多个cmd命令
+## Dockfile 中使用多个 cmd 命令
 
 1. 方法一: `CMD` 命令不用中括号框起来，将命令用 “&&”符号连接
 
-``` sh
+```sh
 # 用nohup框起来，不然npm start执行了之后不会执行后面的
 CMD nohup sh -c 'npm start && node ./server/server.js'
 ```
 
-2. 方法二： 用ENTRYPOINT命令，指定一个执行的shell脚本，然后在entrypoint.sh文件中写上要执行的命令：
+2. 方法二： 用 ENTRYPOINT 命令，指定一个执行的 shell 脚本，然后在 entrypoint.sh 文件中写上要执行的命令：
 
-``` sh
+```sh
 ENTRYPOINT ["./entrypoint.sh"]
 ```
 
-entrypoint.sh文件如下：
+entrypoint.sh 文件如下：
 
-``` sh
+```sh
 // entrypoint.sh
 nohup npm start &
 nohup node ./server/server.js &
@@ -724,25 +718,25 @@ nohup node ./server/server.js &
 
 ### 容器启动执行完脚本后自动退出
 
- 一个docker容器同时只能管理一个进程，这个进程退出后，容器也就退出了，当然一个容器里可以同时运行多个进程。当容器启动完后执行某脚本后，该进程结束了，其他进程也结束了，所以该容器自动退出了，解决方案：我们可以让该脚本一直运行不停止。
+一个 docker 容器同时只能管理一个进程，这个进程退出后，容器也就退出了，当然一个容器里可以同时运行多个进程。当容器启动完后执行某脚本后，该进程结束了，其他进程也结束了，所以该容器自动退出了，解决方案：我们可以让该脚本一直运行不停止。
 
-**解决方式：** 
+**解决方式：**
 
-  在脚本最后一行添加tail -f /dev/null，这个命令永远完成不了，所以该脚本一直不会执行完，所以该容器永远不会退出。
+在脚本最后一行添加 tail -f /dev/null，这个命令永远完成不了，所以该脚本一直不会执行完，所以该容器永远不会退出。
 
-## Docker  Compose
+## Docker Compose
 
-`Compose` 是一个用户定义和运行多容器的工具，直接用命令行创建容器不够直观，不方便管理。可以通过把所有的容器运行配置写在 YML文件中，来运行容器。主要有三个步骤，
+`Compose` 是一个用户定义和运行多容器的工具，直接用命令行创建容器不够直观，不方便管理。可以通过把所有的容器运行配置写在 YML 文件中，来运行容器。主要有三个步骤，
 
-* 编写 `Dockerfile` 来创建应用程序的环境
-* 编写 `docker-compose.yml` 来定义构成应用程序的服务
-* 执行 `docker-compose up -d` 来启动运行整个应用程序
+- 编写 `Dockerfile` 来创建应用程序的环境
+- 编写 `docker-compose.yml` 来定义构成应用程序的服务
+- 执行 `docker-compose up -d` 来启动运行整个应用程序
 
 [composerize](https://www.composerize.com/) ,这个网站可以将`docker`命令转变为 `yml` 文件
 
 ![image-20220522211439950](http://i0.hdslb.com/bfs/album/0858da5b39d8200fd6f793a9a35ae9d4c36dc5eb.png)
 
-###  安装
+### 安装
 
 直接下载`docker-compose`的二进制文件
 

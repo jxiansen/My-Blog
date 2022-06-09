@@ -102,7 +102,7 @@ switched to db admin
 
 ### 显示当前数据库的状态
 
-```mariadb
+```sh
 > db.stats()
 {
     "db" : "test",
@@ -127,7 +127,7 @@ switched to db admin
 
 ### 在指定的`collection` 中插入文档
 
-```mariadb
+```sh
 > db.users.insertOne({name: "jackl",age: 12,sex: "female"})
 {
     "acknowledged" : true,
@@ -139,7 +139,7 @@ switched to db admin
 
 参数中传入一个数组，数组中包含了多条对象信息
 
-```mariadb
+```sh
 > db.users.insertMany(
 [{name: "mike",age: 143,sex: "male"},
 {name: "hellen",age: 43,sex:"female"}])
@@ -155,7 +155,7 @@ switched to db admin
 
 ### 查看集合中所有的文档数据
 
-```mariadb
+```sh
 > db.users.find()	# 没有传递参数默认展示所有
 { "_id" : ObjectId("6284bdc5d6cad9bf5ead78bb"), "name" : "jackl", "age" : 12, "sex" : "female" }
 { "_id" : ObjectId("6284be83d6cad9bf5ead78bc"), "name" : "jackl", "age" : 12, "sex" : "female" }
@@ -172,7 +172,7 @@ switched to db admin
 
 > `and` 且查询
 
-```mariadb
+```sh
 > db.users.find({sex: "female",age: 12})
 { "_id" : ObjectId("6284be86d6cad9bf5ead78c1"), "name" : "jackl", "age" : 12, "sex" : "female" }
 
@@ -185,14 +185,14 @@ switched to db admin
 
 > `or` 或查询
 
-```mariadb
+```sh
 # 或条件查询，传入一个条件数组，数组中的条件任意满足都可以返回
 > db.user.find({$or: [{price: {$lt: 500}}, weigth: {$gte: 50}]})
 ```
 
 > 查询时只显示指定的属性
 
-```mariadb
+```sh
 > db.mysubscribeinfos.find({mid: {$lte:30000}},{uname: 1})
 { "_id" : ObjectId("627fb981311bfd3a267678e1"), "uname" : "SKYline" }
 { "_id" : ObjectId("627fba19a952d9e42e2baf70"), "uname" : "epcdiy" }
@@ -206,14 +206,14 @@ switched to db admin
 
 `updateOne` 只会修改匹配到的第一个数据，而不是所有的文档
 
-```mariadb
+```sh
 > db.users.updateOne({name: "mike"},{$set: {age: 99}})
 { "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
 ```
 
 `updateMany` 会修改匹配条件的所有文档
 
-```mariadb
+```sh
 # 查询所有名字为mike的用户，修改age为 48岁
 > db.users.updateMany({name: "mike"},{$set: {age: 48}})
 { "acknowledged" : true, "matchedCount" : 2, "modifiedCount" : 2 }
@@ -221,7 +221,7 @@ switched to db admin
 
 ### 删除文档
 
-```mariadb
+```sh
 # 删除所有age小于20的文档
 > db.users.deleteMany({age: {$lte:20}} )
 { "acknowledged" : true, "deletedCount" : 1 }
@@ -229,7 +229,7 @@ switched to db admin
 
 > 如果想要删除所有的文档，可以传入空对象
 
-```mariadb
+```sh
 > db.users.deleteMany({})
 { "acknowledged" : true, "deletedCount" : 4 }
 ```

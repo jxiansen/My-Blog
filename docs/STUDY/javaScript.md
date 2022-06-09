@@ -155,7 +155,174 @@ let duck = new Bird("Donald");
 duck.hasOwnProperty("name")		// 这个hasOwnProperty是Object对象原型上的一个方法，但是通过继承,duck这个实例也可以方法到该方法。这就是通过原型链条一直可以向上访问。因此所有的对象都可以访问 hasOwnProperty 这个方法
 ```
 
+#### 编写父类使用继承来避免重复属性
 
+`Cat` `Bear` 两个构造函数上都包含着 `eat` 方法多次重复，可以创建一个他们的父类再继承父类的属性。
+
+``` js
+function Cat(name) {
+  this.name = name;
+}
+
+Cat.prototype = {
+  constructor: Cat,
+  eat: function() {
+    console.log("nom nom nom");
+  }
+};
+
+function Bear(name) {
+  this.name = name;
+}
+
+Bear.prototype = {
+  constructor: Bear,
+  eat: function() {
+    console.log("nom nom nom");
+  }
+};
+
+function Animal() { }
+
+Animal.prototype = {
+  constructor: Animal,
+  eat: function() {
+      console.log("nom nom nom")
+  }
+};
+```
+
+通过将子类的原型设置为父类的实例，从而实现继承。
+
+``` js
+function Animal() { }	// 父类 Animal
+
+Animal.prototype = {
+  constructor: Animal,
+  eat: function() {
+    console.log("nom nom nom");
+  }
+};
+
+function Dog() { }		// 子类
+Dog.prototype = Object.create(Animal.prototype)		// 子类的原型从父类的原型上获得
+
+// Bird对象的配方中包含了Animal中所有关键的成分
+let beagle = new Dog();
+```
+
+#### 重置一个继承的构造函数属性
+
+子类从父类哪里继承其 `prototype` 的同时也继承到了他父类的 `constructor` 属性
+
+``` js
+function Bird() { }
+Bird.prototype = Object.create(Animal.prototype);
+let duck = new Bird();
+duck.constructor	// duck的constructor变成了Animal
+```
+
+而 `duck` 和其他所有的 `Bird` 实例都应该表示他们是由 `Bird` 直接创建的，而不是由 `Animal` 创建的。此时可以手动将 `Bird`的构造函数属性设置为 `Bird` 对象
+
+``` js
+Bird.prototype.constructor = Bird
+duck.constructon // Bird
+```
+
+#### 使用 Mixin 在不相关的对象之间添加共同行为
+
+方法和行为是可以通过继承来共享获得的，但是有些情况下，并不是适用于不相关的对象，比如 `Bird` 和 `plane` 虽然都可以飞行，但是之间差别太大并不存在继承关系。
+
+对于不相关的对象，更好的方法是使用 `Mixin` ,`Mixin` 给其他的对象提供了特定的行为方法，但是并不单独使用它，而是将这些方法添加到其他类中。就像工具一样随用随到
+
+``` js
+// mixin
+let sayHiMixin = {
+  sayHi() {
+    alert(`Hello ${this.name}`);
+  },
+  sayBye() {
+    alert(`Bye ${this.name}`);
+  }
+};
+
+// 用法：
+class User {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+// 拷贝方法
+Object.assign(User.prototype, sayHiMixin);
+
+// 现在 User 可以打招呼了
+new User("Dude").sayHi(); // Hello Dude!
+```
+
+#### 通过使用闭包来保护对象内的属性不被外部修改
+
+构造函数构造出来的实例，有公共属性它可以在实例被定义范围内被访问修改。
+
+``` js
+function Bird(name) {
+    this.name = name
+}
+let bird = new Bird("jack")
+bird.name	// "jack"
+bird.name = "Duffy"		// 被修改了
+```
+
+如果想要属性不被修改最简单的方法就是在构造函数中创建变量，这个变量只存在构造函数调用时候的上下文中，而不是全局可用。这样这个属性就只能由构造函数中的方法来访问和修改。
+
+``` js
+function Bird() {
+    let numLegs = 4;		// 这个变量就只有调用的时候才能访问
+    this.getLegs = function(){	// 访问
+        console.log(numLegs)
+    };
+    this.change = function() {	// 修改
+        numLegs = 12
+    }
+}
+let bird = new Bird()
+bird.getLegs()		// 4
+bird.changeLegs()
+bird.getLegs()		// 10
+```
+
+此时的`numLegs`已经变成了私有属性，**在JavaScript中，函数总是可以访问创建它的上下文，这叫做闭包**
+
+#### IIFE创建一个模块
+
+`IIFE` 立即执行函数表达式(`*immediately invoked function expression*`),函数在声明后立刻执行
+
+``` js
+(function () {
+  console.log("Chirp, chirp!");
+})();
+```
+
+通常情况下 `iife` 通常用来讲相关功能分组到单个对象或者 `module` 中 
+
+``` js
+let funModule = (function () {	// 立即调用返回一个对象，返回的对象中包含了所有的Mixin行为，可以用来调用
+  return {
+    isCuteMixin: function (obj) {
+      obj.isCute = function () {
+        return true;
+      };
+    },
+    singMixin: function (obj) {
+      obj.sing = function () {
+        console.log("Singing to an awesome tune");
+      };
+    },
+  };
+})();
+
+funModule.glideMixin(duck)	// 模块上调用glideMixin方法
+```
 
 ### Call、apply、bind区别
 

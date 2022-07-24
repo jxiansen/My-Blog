@@ -307,6 +307,62 @@ reboot
 
 ![image-20210807180627713](http://i0.hdslb.com/bfs/album/dfb933c9748bc51149efbf4238a6fa21010da026.png)
 
+## 环境变量配置
+
+linux系统上安装程序后为了方便在全局调用命令，需要设置环境变量来告诉操作系统去该路径找可执行命令。
+
+* 查看环境变量
+
+`export` 命令
+
+``` sh
+root@mr-j:~# export
+declare -x HOME="/root"
+declare -x LANG="en_US.UTF-8"
+declare -x LOGNAME="root"
+declare -x MOTD_SHOWN="pam"
+declare -x OLDPWD
+declare -x PATH="/usr/local/bin/node/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+declare -x PWD="/root"
+declare -x SHELL="/bin/bash"
+declare -x SHLVL="1"
+declare -x SSH_CLIENT="115.200.217.227 50977 22"
+declare -x SSH_CONNECTION="115.200.217.227 50977 198.23.254.177 22"
+declare -x SSH_TTY="/dev/pts/2"
+declare -x TERM="xterm-256color"
+declare -x USER="root"
+declare -x XDG_RUNTIME_DIR="/run/user/0"
+declare -x XDG_SESSION_CLASS="user"
+declare -x XDG_SESSION_ID="12"
+declare -x XDG_SESSION_TYPE="tty"
+```
+
+* 配置环境变量（对所有用户有效，永久配置）
+
+`nano ~/.bashrc` ,将命令所在的路径暴露出去
+
+``` sh
+# ~/.bashrc: executed by bash(1) for non-login shells.
+
+# Note: PS1 and umask are already set in /etc/profile. You should not
+# need this unless you want different defaults for root.
+# PS1='${debian_chroot:+($debian_chroot)}\h:\w\$ '
+# umask 022
+
+# You may uncomment the following lines if you want `ls' to be colorized:
+# export LS_OPTIONS='--color=auto'
+# eval "$(dircolors)"
+# alias ls='ls $LS_OPTIONS'
+# alias ll='ls $LS_OPTIONS -l'
+# alias l='ls $LS_OPTIONS -lA'
+#
+# Some more alias to avoid making mistakes:
+# alias rm='rm -i'
+# alias cp='cp -i'
+# alias mv='mv -i'
+export PATH="/usr/local/bin/node/bin:$PATH"
+```
+
 ### Linux 中查找 nginx 配置所在目录
 
 默认的腾讯云`node`镜像包中配置了`nginx` ,学习`express` 的时候,ip 地址总是默认转到 80 端口,很不方便,用`express` 来提供`http` 服务.

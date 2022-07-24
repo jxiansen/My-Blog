@@ -326,6 +326,57 @@ User.updateOne({_id: "6264df321679de0656c4109e"},{password:'123'}, (err, results
 
 ```
 
+### 过滤数据
+
+``` js
+// 使用查询参数来过滤数据库中的结果
+const res = await User.find({
+    age: 12,
+    sex: "female",
+})
+
+// 第二种方法
+const res = User.find().where("age").equals(12).where("sex").equals("female")
+```
+
+### 验证器
+
+``` js
+required: [true, "用户名必须存在"]
+enum: {
+    values: ["male", "female"],
+    message: "取值必须为male或female"
+}
+maxLength: [40,'字符串长度最大为40']
+minLength: [10,'字符串长度最小为10']
+```
+
+### 查询时默认不返回指定字段
+
+![image-20220624222339147](http://i0.hdslb.com/bfs/album/f68fab896892ce5ef4ca40d52208a001c2dea9cf.png)
+
+在 `schema` 中设定字段的 `select` 为 `false` 在查询数据的时候，默认不显示在查询结果中。
+
+``` js
+数据库连接成功
+{
+  _id: new ObjectId("62b5c41f86d4e6eb6e0925dd"),
+  username: 'jack',
+  email: '3032825994@qq.com',
+  avatar: 'asdgasgd',
+  updateTime: 2022-06-24T14:03:10.301Z,
+  createTime: 2022-06-24T14:03:12.000Z
+}
+```
+
+如果想要使用该字段,再查询的时候查询的条件上加上 `select` 
+
+``` js
+const user = await User.findOne({email}).select("+password") // password又会显示在查询结果中
+```
+
+
+
 ### 遇到的问题
 
 使用 mongoose 操作数据库时候发现文档莫名奇妙的多加了 `__v` 字段，经过查询得知，此为数据库默认添加的属性。全称：`__version` (版本)，作用是给每一个文档加上版本控制，防止并发来修改数据库中的数据。

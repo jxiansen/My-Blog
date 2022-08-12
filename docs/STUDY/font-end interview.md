@@ -53,7 +53,7 @@
 1. 水平居中
 
 ``` css
-/* 给middle 块级元素设置长宽，并设置 margin */
+/* 给 middle 块级元素设置长宽，并设置 margin */
 .middle {
     margin: 0 auto;
     width: 10px;
@@ -91,8 +91,6 @@
     translate: -50% -50%;	// 补偿的子元素一半
 }
 ```
-
-
 
 ## 代码输出篇
 
@@ -145,9 +143,14 @@ console.log(i);
 
 ### 说一说 const var 和 let 区别，并写出以下代码输出的结果。
 
-* var 用来声明全局变量
-* let 声明块级作用域变量
-* const 声明块级不可改变的变量
+|        区别        | **var** | **let** | **const** |
+| :----------------: | :-----: | :-----: | :-------: |
+|  是否存在变量提升  |    √    |    ×    |     ×     |
+|     块级作用域     |    ×    |    √    |     √     |
+|  是否添加全局属性  |    √    |    ×    |     ×     |
+|  是否允许重复声明  |    √    |    ×    |     ×     |
+|  能否修改内存指向  |    √    |    √    |     ×     |
+| 是否存在暂时性死区 |    ×    |    √    |     √     |
 
 ``` js
 const user = { name: "jack", age: 12 };
@@ -230,7 +233,7 @@ function count(arr) {
 
 ### 什么是闭包？ 闭包的作用是什么？
 
-闭包通常指嵌套函数中，能够访问他外层函数作用域中的变量。
+闭包通常指嵌套函数中，能够访问他外层函数作用域中的变量。 在 JavaScript 中，函数总是可以访问创建它的上下文。 这就叫做 `closure`
 
 闭包的作用：局部变量无法共享和长久保存，而全局变量又可能造成变量污染，使用闭包可以长久保存变量又不会造成全局污染。
 
@@ -280,7 +283,7 @@ Function.prototype.customApply = function (context, arr) {
 
 返回一个绑定好this的函数,bind调用的时候可以传参，掉后之后返回的新函数也可以传参，效果一样所以也需要处理
 
-``` js
+```js
 Function.prototype.customBind = function (context, ...args) {
   const fn = this; // 接收原函数
   args = args ? args : []; // 判断接收的剩余参数存在与否
@@ -378,9 +381,76 @@ Array.prototype.customReduce = function (callback, initVal) {
 };
 ```
 
+### deepClone深拷贝
+
+* 浅拷贝： 就是将一个对象的内存地址直接复制给另一个对象
+* 深拷贝： 先创建一个对象，内存中创建一个新地址，然后把被复制的对象的所有可枚举的属性方法一一复制过来。
+
+js中的数据分为引用数据类型和基本数据类型，基本数据类型的拷贝复制是直接创建新的副本和原本数据不相关，引用数据类型直接拷贝的话仅仅是拷贝了其指针
+
+* 手写：覆盖了基本数据类型，数组和简单对象,正则表达式，日期类型，Map,Set
+
+  **处理循环引用**
+
+  这里用到了 `weakMap` ,特点是只接受 对象作为 key 存储键值对。当需要拷贝当前对象时，先去存储 Cache 中寻找，有的话直接返回
+
+``` js
+function deepClone(source) {
+  // 如果源数据是 null 或者 基本数据类型直接返回
+  if (source === null || typeof source !== "object") return source;
+  // 处理正则表达式
+  if (source instanceof RegExp) return new RegExp(source);
+  // 处理 Date 类型
+  if (source instanceof Date) return new Date(source);
+  /* 
+    利用函数本身也是对象的特点,存放缓存解决针对引用数据类型中循环引用的问题,
+    设置一个缓存,如果拷贝过这个对象了直接返回,没有的话继续执行下面的代码
+  */
+  let cache = null;
+  if (!deepClone.cache) {
+    deepClone.cache = new WeakMap();
+  }
+  cache = deepClone.cache;
+  if (cache.has(source)) {
+    return cache.get(source);
+  }
+  // 处理 Map 类型
+  if (source instanceof Map) {
+    const map = new Map();
+    cache.set(source, map);
+    source.forEach((val) => {
+      map.set(deepClone(val));
+    });
+    return map;
+  }
+  // 处理 Set 类型
+  if (source instanceof Set) {
+    const set = new Set();
+    cache.set(source, set);
+    source.forEach((val) => {
+      set.add(deepClone(val));
+    });
+    return set;
+  }
+  // 处理其他引用类型的数据,例如：对象或者数组
+  const temp = new source.constructor();
+  cache.set(source, temp);
+  for (let [key, val] of Object.entries(source)) {
+    temp[key] = deepClone(val);
+  }
+  return temp;
+}
+```
+
+* `JSON.parse(JSON.stringify(obj));`，有弊端：会忽略 undefined, symbol,和函数，还不能解决循环引用的问题
+* 浏览器中实现了 `StructuredClone()`，比较新的方法兼容性差
+* 使用 `lodash` 或者 `Ramda` 库来实现
+
 ### debounce防抖函数
 
-函数的防抖，这个函数能够取消调用一大堆的调用操作，只调用最后一次操作并延迟操作
+防抖或者节流都是为了限制函数的执行次数，避免短时间内进行大量的重复执行。
+
+通过setTimeout 的方式，在一定时间的间隔内，将多次触发只执行一次触发
 
 **要点**
 
@@ -393,12 +463,46 @@ const debounce = function(fn,ms=0) {
     let timer;
     return function(...args) {
         clearTimeout(timer)
-        setTimeout(() => {fn.apply(this,args)},ms)
+        setTimeout(() => fn.apply(this,args),ms)
     }
 }
 ```
 
+### **throttle**节流函数
 
+一个时间段内，只触发一次
+
+* 版本一，定时器,定时一定时间周期之内，如果这个定时器还存在就返回操作,定时器清空后重新计时
+
+``` js
+function throttle(fn, delay = 1000) {
+  let timer;
+  return function (...args) {
+    if (timer) {
+      return;
+    }
+    timer = setTimeout(() => {
+      fn.apply(this, args);
+      timer = null;
+    }, delay);
+  };
+}
+```
+
+* 版本二，时间戳，如果现在的时间与之前的时间间隔大于延迟,才能执行函数并更新上一次的延迟时间
+
+``` js
+function throttle(fn, delay = 1000) {
+  let pre = 0
+  return function(...args) {
+      let now = new Date()
+      if(now - pre > delay) {
+          fn.apply(this,args)
+          pre = now
+      }
+  }
+}
+```
 
 ### 手写  `Promise.all`
 
@@ -508,10 +612,6 @@ function typeOf(obj) {
     return Object.prototype.toString.call(obj).slice(8,-1).toLowerCase()
 }
 ```
-
-
-
-
 
 ## 浏览器
 

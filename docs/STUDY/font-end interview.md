@@ -25,6 +25,16 @@
 <footer>底部</footer>
 ```
 
+### 说一下你对盒模型的理解？
+
+盒模型有两种： 标准盒模型和IE盒模型(怪异盒模型)
+
+标准盒模型的 width 和 height 只包括 Content ，`box-sizing: content-box`
+
+![preview](https://i0.hdslb.com/bfs/album/5f5cdcd4a66959c2119f7942767864348960bb04.jpg)
+
+IE 盒模型的 width 和 height 包括 border padding content, `box-sizing: border-box`
+
 ## CSS
 
 ### ::before 和 ::after的作用是什么？ CSS3中单冒号 ：和双冒号 :: 的区别是什么？ 
@@ -92,6 +102,8 @@
 }
 ```
 
+### 说一下 BFC ,以及BFC有什么优缺点？ 
+
 ## 代码输出篇
 
 ### 代码执行的结果
@@ -141,6 +153,30 @@ console.log(i);
 
 先报错，一秒之后打印出 1，2，3，4
 
+
+### 代码执行结果
+
+``` js
+setTimeout(() => {
+  console.log("aaa");
+}, 0);
+
+new Promise((resolve) => {
+  console.log("bbb");	// 此处都没有调用 resolve 
+}).then(() => {
+  console.log("ccc");
+});
+
+console.log("ddd");
+
+// bbb
+// ddd
+// aaa
+```
+
+## JavaScript
+
+
 ### 说一说 const var 和 let 区别，并写出以下代码输出的结果。
 
 |        区别        | **var** | **let** | **const** |
@@ -166,30 +202,6 @@ console.log(user);
 ```
 
 const 声明的变量不可以被重新赋值
-
-### 代码执行结果
-
-``` js
-setTimeout(() => {
-  console.log("aaa");
-}, 0);
-
-new Promise((resolve) => {
-  console.log("bbb");	// 此处都没有调用 resolve 
-}).then(() => {
-  console.log("ccc");
-});
-
-console.log("ddd");
-
-// bbb
-// ddd
-// aaa
-```
-
-
-
-## JavaScript
 
 ### 基本数据类型和引用数据类型的区别？ 堆内存和栈内存？
 
@@ -245,6 +257,31 @@ instanceof : 只能判断引用数据类型，判断变量是否时指定对象�
 constructor : 既可以判断数据类型，也可以用来通过对象实例的 constructor对象来访问它的构造函数
 Object.prototype.toString.call(): 通用性最好也最准确的
 ```
+
+### 箭头函数和普通函数的区别？
+
+* 箭头函数更加简洁，一般作为回调函数使用
+* 箭头函数没有自己的this,它的 this 只是上下文中继承的 this
+* 箭头函数没有 arguments,prototype,也不能作为构造函数使用
+
+### new 操作符做了些什么？
+
+new 运算符创建一个用户自定义的对象实例。
+
+``` js
+function Bird() {
+  this.name = "Albert";
+  this.color  = "blue";
+  this.numLegs = 2;
+}
+
+let blueBird = new Bird();
+```
+
+1. 创建一个新的空对象，{}
+2. 设置原型，将构造函数的 prototype属性赋给新对象内部的 [[Prototype]]
+3. 让函数的 this 指向这个新创建的对象，执行构造函数中的代码（为新对象添加各种属性）
+4. 判断构造函数是否有返回对象，有则返回该对象，否则返回新创建的对象
 
 ## 手写源码系列
 
@@ -379,6 +416,21 @@ Array.prototype.customReduce = function (callback, initVal) {
   }
   return preVal;
 };
+```
+
+### new 操作符
+
+``` js
+function customNew(constructor, ...args) {
+  // 1. 定义一个空对象
+  const obj = {};
+  // 2. 此方法设置一个指定对象的原型,即内部[[Prototype]]属性到另一个对象
+  Object.setPrototypeOf(obj, constructor.prototype);
+  // 3. this指向空对象,并执行构造函数
+  const result = constructor.apply(obj, args);
+  // 4. 判断构造函数有无返回值,这个值是否为对象
+  return result instanceof Object ? result : obj;
+}
 ```
 
 ### deepClone深拷贝
@@ -627,6 +679,80 @@ function typeOf(obj) {
 3. **http请求**
    * `cookie` : 每次都会携带在 http 头部中，如果 cookie 保存过多的数据会带来性能问题
    * `localStorage和sessionStorage` : 仅在浏览器中保存，不参与和服务端的通信
+
+### 浏览器路由的 Hash 和 history 有什么区别？
+
+* hash 模式
+
+hash路由通过监听 location 对象的 hash 值发生改变得时候会触发 `onhashchange` 事件。
+
+特点： 
+
+1. 哈希路由变化会触发网页跳转，即浏览器得前进和后退。
+2. 兼容性比较好
+3. 不太美观，地址栏中会有 # 号。
+
+* history模式
+
+history 是h5 新提供的特性，可以做到无刷新得更新浏览器地址而不需要重新发起请求。主要用到了 history 对象的 pushState 方法
+
+特点
+
+1. 使用简单，比较美观
+2. api 较的缘故，低版本浏览器会不兼容
+3. 前端的 URL 必须想发送请求的后端 URL 保持一致，需要后端配合不然会产生404 错误
+
+**history路由模式的问题**：
+
+ 该模式不怕地址前进和后退,就怕刷新,如果打开一个页面的二级页面刷新页面会产生 404 错误。因为此时刷新页面是实实在在的请求服务,我要得到这个页面。而这个页面在服务那边是不存在的 而hash模式就不会有这个问题，因为此时前端路由修改的是 # 中的信息,浏览器在请求服务器的时候 是不包含这部分的,所有不会有找不到文件的情况.
+
+**解决方法**，在 nginx 中进行配置
+
+``` sh
+location / {
+  try_files $uri $uri/ /index.html;
+}
+```
+
+## http网络
+
+### 说一下常见的 http 状态码？
+
+**1xx**: 表示消息已经接收，继续处理 -->
+
+101 Switching Protocols： 切换协议
+
+**2xx**:成功，表示请求已经被成功接收处理 
+
+200 ok,客户端请求成功
+
+204 No Content : 无内容，服务器成功处理，但未返回内容
+
+206 Partial Content: 客户端进行了范围请求，服务端成功执行了范围响应
+
+**3xx** 重定向，表示浏览器需要执行某些特殊的处理来正确的处理请求
+
+301：Moved Permanently: 永久重定向，表示请求的资源已被永久的移动到新的 url 地址中，返回的信息中包含新的 url 地址，浏览器自动定向到这个新地址，以后每次请求都使用这个新地址
+
+302： Found: 临时重定向，表示请求的资源临时搬到了其他位置
+
+**4xx** 客户端错误
+
+400 ：Bad Request： 客户端的请求有语法错误，服务器无法理解
+
+401： Unauthorized: 请求未经授权，用户未没有进行身份验证
+
+403： Forbidden: 服务端理解了请求，但是拒绝服务
+
+404： Not Found 请求的资源不存在
+
+405： Method Not Allowed: 请求的方法不支持
+
+**5xx** 服务端错误
+
+500： Internal Server Error: 服务器内部错误，无法完成请求
+
+502: Bad Gateway: 网关错误
 
 ## React
 

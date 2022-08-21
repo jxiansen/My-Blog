@@ -43,6 +43,13 @@ IE 盒模型的 width 和 height 包括 border padding content, `box-sizing: bor
 
 双冒号是伪元素的标识符,表示被选中元素的某个部分，这个部分看起来像独立的元素，但是这个元素是假元素并不存在，所以叫伪元素。例如：`:before`和 `:after`
 
+### 说一说 position 的属性已经分别相对于什么定位？
+
+* `relative` 元素的定位永远是相对于元素自身的位置，和其他的元素没关系，也不会影响到其他元素，不脱离文档流
+* `fixed` 元素的定位是相对于 window 窗口边界的，和其他元素没有关系，但是它具有破坏性，会导致其他元素位置的变化，脱离文档流
+* `absolute` : 它会找到一个离他最近的设置了 `position: relative/absolute/fixed` 的元素定位，如果没找到，就以浏览器边界定位，脱离文档流定位。
+* `sticky` 在 `position:relative` 与 `position:fixed` 定位之间切换。在元素定位表现为跨越特定阈值前为相对定位，之后为固定定位
+
 ### 如何居中下面代码中的  .middle 元素？ 水平居中？ 垂直居中？
 
 ``` css
@@ -103,6 +110,49 @@ IE 盒模型的 width 和 height 包括 border padding content, `box-sizing: bor
 ```
 
 ### 说一下 BFC ,以及BFC有什么优缺点？ 
+
+### 如何实现一个上中下三行布局，顶部和底部最小高度是100px,中间自适应？
+
+``` css
+.container {
+    display: flex,
+    height: 100%,
+    flex-direction: column,
+}
+
+.top {
+	min-height: 100px;
+}
+
+.middle {
+	flex-grow: 2;
+}
+<div id="container">
+	<div class="top">a</div>
+	<div class="middle">b</div>
+	<div class="top">c</div>
+</div>
+```
+
+### 实现左右两侧固定宽度，中间不固定三栏布局，有那些方法？
+
+1. 使用 flex 实现
+
+外层盒子设置 `display: flex` ; 左右两个盒子设置 `width: 100px`, 中间盒子设置 `flex: 1` 
+
+2. 使用 grid 布局
+
+外层盒子设置 `display: grid`, `grid-template-columns: 100px 1fr 100px` 
+
+3. 浮动 + calc实现
+
+三个并列的盒子，左侧盒子设置 `float: left` 中间设置：`float: left; width： calc(100% -200px)` 右侧盒子设置 `float: right`
+
+4. 浮动 + margin 实现
+
+左侧盒子设置 `float: left` ,中间盒子设置 `margin: 0 100px` ,右侧设置： `float: right` 
+
+
 
 ## 代码输出篇
 
@@ -282,6 +332,17 @@ let blueBird = new Bird();
 2. 设置原型，将构造函数的 prototype属性赋给新对象内部的 [[Prototype]]
 3. 让函数的 this 指向这个新创建的对象，执行构造函数中的代码（为新对象添加各种属性）
 4. 判断构造函数是否有返回对象，有则返回该对象，否则返回新创建的对象
+
+### 说一说 ES6有那些新特性？
+
+* let const
+* 模板字符串
+* 箭头函数
+* set map
+* promise
+* class
+* 解构赋值
+* 展开运算符
 
 ## 手写源码系列
 
@@ -754,11 +815,25 @@ location / {
 
 502: Bad Gateway: 网关错误
 
+### 强缓存和弱缓存？
+
+
+
 ## React
 
 ### 声明组件的方式，有什么不同和优缺点？
 
 ### setState 是同步还是异步？
+
+### React性能优化？
+
+### React 中组件和组件之间有那些通信方式？
+
+1. 父组件给子组件通过 props 来传递信息，子组件通过事件向父组件传递信息
+2. 使用内部的两个 hooks, useContext, useReducer
+3. 使用状态管理库，比如 redux,hox,mobx 来实现跨组件之间进行通信
+
+
 
 
 

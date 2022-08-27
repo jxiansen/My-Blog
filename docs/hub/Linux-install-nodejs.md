@@ -1,6 +1,6 @@
 # Linux 安装 nodejs 并配置 NPM
 
-#### final shell ssh 连接服务器
+####  连接服务器
 
 ![](http://i0.hdslb.com/bfs/album/84852beaad0f834d6579f3ce5d220c8195b3dba9.png)
 
@@ -114,10 +114,40 @@ node 安装路径下的文件夹格式
 **更换国内的淘宝镜像源**提高下载速度
 
 ```sh
-# 设置镜像源
+# 设置镜像源(淘宝或者腾讯镜像源)
 npm config set registry=https://registry.npmmirror.com
+npm config set registry=http://mirrors.cloud.tencent.com/npm
 # 查看更改后的镜像源
 npm config get registry
 ```
 
 ![](http://i0.hdslb.com/bfs/album/ef2f891fff085b1107d24fa4e652d5b3abd5231d.png)
+
+### 安装pnpm以提高安装速度
+
+``` sh
+npm i pnpm -g
+```
+
+安装完成后输入pnpm 会发现提示命令没找到，这是由于nodejs 是使用二进制包解压缩后，将 npm 和 node 命令使用软链接放到 /usr/local/bin 中安装的
+
+配置环境变量，让以后每次全局安装的命令都从自己指定的目录文件夹去搜寻
+
+``` sh
+nano /etc/profile
+```
+
+![image-20220824182617648](https://i0.hdslb.com/bfs/album/69e11388fc5deeaf32a7966c5d0e018fe2512c87.png)
+
+在末尾添加全局命令的文件夹
+
+``` sh
+export PATH="$PATH:/usr/local/bin/nodejs/node_global/bin"
+```
+
+保存后需要执行以下命令才会生效
+
+``` sh
+source /etc/profile
+```
+

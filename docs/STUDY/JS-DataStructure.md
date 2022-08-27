@@ -338,9 +338,6 @@ function LinkedList() {
     }
     return -1
   }
-
-  
-  
 }
 ```
 
@@ -357,5 +354,56 @@ fruit.add('banna')
 fruit.add('cherry')
 console.log(fruit.size())
 // 3
+```
+
+## 排序算法
+
+### 冒泡排序
+
+> 冒泡排序（BubleSort)比较数组内相邻的两个项，如果第一个比第二个大，则交换他们位置，否则不动。数组中元素较大的数会依次向上浮动，类似气泡升到表面。
+
+**注意点**
+
+1. 每一轮过后，轮数相等的元素都会放置最后，变得有序
+2. 比较的轮数是，数组的长度—1
+3. 每一轮需要比较的元素个数为：数组长度-比较轮数
+
+![img](https://i0.hdslb.com/bfs/album/c3b05110462924508ec81e4bf16a48e1d188bd6e.webp)
+
+``` js
+function BubleSort(arr){
+    for(var i = 0; i < arr.length - 1; i++){        //外层循环控制比较轮数
+        for(var j = 0; j < arr.length -(i+1); j++){ //内层循环控制比较指针移动
+            if(arr[j] > arr[j+1]){
+                var tmp = arr[j];                   //设置空元素来交换数组位置
+                arr[j] = arr[j+1];
+                arr[j+1] = tmp;
+            }
+        }
+    }
+}
+```
+
+### 选择排序
+
+> 选择排序（selection sort),每一轮和待排序的元素依次比较，比较出大小就交换两者顺序，直到所有待排序的元素全部排完。
+
+**特点**
+
+1. 比较的轮数=数组长度-1
+2. 每次比较完毕后，指针的地址+1
+
+![img](https://i0.hdslb.com/bfs/album/9461357cf5362dc376107eac8a407bbb8bf57748.gif)
+
+``` js
+  for(var i = 0; i < arr.length-1; i++){        //比较的轮数
+    for(var j = i+1; j < arr.length; j++){      //被比较数的下标
+      if(arr[i] > arr[j]){            
+        var tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
+      }
+    }
+  }
 ```
 

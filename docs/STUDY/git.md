@@ -72,7 +72,7 @@ master就是本地分支的一个名字,通常情况下是指主分支,这个名
 
 ![](http://i0.hdslb.com/bfs/album/c822eda163c56b49070767937a452d00cabbc5e1.png)
 
-### 对于`git`配置邮箱和用户名的理解
+## 对于`git`配置邮箱和用户名的理解
 
 #### 前提
 
@@ -110,7 +110,7 @@ git config --global user.email "邮箱地址"
 // 或者直接修改全局的.gitconfig 文件, 路径在 /.gitconfigzhon
 ```
 
-#### 疑问 
+### 疑问 
 
 1. **为什么要配置用户名和邮箱？**
 
@@ -124,11 +124,51 @@ git config --global user.email "邮箱地址"
 
 最后，**这个用户名和邮箱是可以随便配置的（不提倡），如果你配置的邮箱是github里真实存在的邮箱，则commits里显示的是这个邮箱对应的账号；如果配置的邮箱是一个在github里不存在的邮箱，则commits里显示的是你配置的用户名**。
 
-### 常用`git`命令
+## git clone 时候报错解决
+
+### 错误经过
+
+服务器端刚使用完 `apt install git` 安装好`git` 环境，准备克隆自己的项目进行部署，失败后报错提示
+
+``` sh
+root@mr-j:~/dev# git clone git@github.com:jxiansen/My-blog.git
+Cloning into 'My-blog'...
+The authenticity of host 'github.com (140.82.112.3)' can't be established.
+ECDSA key fingerprint is SHA256:p2QAMXNIC1TJYWeIOttrVc98/R1BUFWu3/LiyKgUfQM.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'github.com,140.82.112.3' (ECDSA) to the list of known hosts.
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+```
+
+大概意思就是： 主机 `github.com` 的域名真实性无法确定。 `github` 的主机无法确定自己有正确的访问权限，也就是说自己主机访问 `github` 服务器的时候，没有携带公钥认证信息。
+
+### 解决方式
+
+1. 客户端生成公钥
+
+``` sh
+ssh-keygen -t res -C "自己的邮箱地址"
+```
+
+输入后一路回车，就会生成新的 `ssh key` 文件。
+
+2. 去自己的 `github` 账户设置里添加自己主机的认证公钥
+
+![image-20220423145854096](http://i0.hdslb.com/bfs/album/b02b4810d9c12152b82ec5d97f660d5e2054b099.png)
+
+![image-20220423145933130](http://i0.hdslb.com/bfs/album/76e84ab4bca8dca5bd014fc051115e96ddf0d58a.png)
+
+接下来自己的主机就有 `github` 访问权限了
+
+## 常用`git`命令
 
 ![](http://i0.hdslb.com/bfs/album/484201019fa90a20006838c06da18b19d34ca0f0.jpg)
 
-### `git`命令思维导图
+## `git`命令思维导图
 
 ![git命令](http://i0.hdslb.com/bfs/album/ced18de825e756bf0e60e92b4b7b18f0a50550ad.png)
 

@@ -17,10 +17,10 @@ hero:
       link: https://github.com/jxiansen/My-blog
 
 features:
-  - title: 💡 老天保佑,永无BUG
-    details: 今天是个好日子
-  - title: ⚡️ 跪求offer
-    details: 啊哈
-  - title: 🛠️ 菩萨显灵,发际下移
-    details: 心想的事儿都会成
+  - title: 💡 读码上万行
+    # details: 今天是个好日子
+  - title: ⚡️ 运鼠帷幄
+    # details: 啊哈
+  - title: 🛠️ 下键如有神
+    # details: 心想的事儿都会成
 ---

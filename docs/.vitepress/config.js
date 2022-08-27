@@ -21,7 +21,7 @@ module.exports = {
 
     sidebar: {
       "/STUDY/": sidebarGuide(),
-      // "/hub/": sidebarConfig(),
+      // "/hub/": sidebarConfig2(),
     },
 
     markdown: {
@@ -132,13 +132,9 @@ function sidebarGuide() {
         { text: "网址导航", link: "/hub/collect-address" },
       ],
     },
-  ];
-}
-
-function sidebarConfig() {
-  return [
     {
-      text: "Config",
+      text: "其他",
+      collapsible: true,
       items: [
         { text: "Javascript中的this问题", link: "/STUDY/this" },
         { text: "在wsl中开启使用ssh连接", link: "/hub/wsl-ssh" },

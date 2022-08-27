@@ -104,6 +104,18 @@ tree -I 'node_modules|cache|test'	# 忽略多个文件夹
 tree -L 2 	# 有时候文件嵌套层级很深，可以用-L参数只展示前两级的文件
 ```
 
+## 安装软件
+
+``` sh
+apt install aria2 -y
+```
+
+下载好的软件一般在 `/usr/share`
+
+可执行文件在 `/usr/bin`
+
+配置文件在 `/etc` 下
+
 ## 卸载软件
 
 以`debian` 系软件为例，要求软件安装时，是使用 `apt` 工具安装的

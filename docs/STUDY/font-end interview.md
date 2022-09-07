@@ -112,6 +112,21 @@ IE 盒模型的 width 和 height 包括 border padding content, `box-sizing: bor
 
 ### 说一下 BFC ,以及BFC有什么优缺点？ 
 
+BFC又叫块级格式化上下文，是一种常见的布局手段，主要是为了创建出一个块**独立的区域**， 不受外部元素的干扰，让其内部元素更好的在这片区域中布局。
+
+**应用**：
+
+1. 阻止 `margin` 覆盖
+2. 阻止元素被浮动元素覆盖
+3. 清除内部浮动（父元素高度塌陷问题）
+
+**常见的几个触发方式**
+
+1. `float` 不为 none
+2. `overflow` 不为 visible
+3. `display` 为 inline-block ,table-caption 或 table-cell
+4. `postion` 不为 static 或 relative
+
 ### 如何实现一个上中下三行布局，顶部和底部最小高度是100px,中间自适应？
 
 ``` css
@@ -369,6 +384,10 @@ let blueBird = new Bird();
 * class
 * 解构赋值
 * 展开运算符
+
+### EventLoop
+
+由于 `JavaScript` 是单线程的，包含了同步任务和异步任务。同步任务放入 **调用栈**（主线程） 中执行，异步任务会放到 **消息队列**中，等待主线程中的任务执行完毕后再取出来执行，而这个时候如果`异步任务中任有异步` 任务，则会继续放入消息队列中等待
 
 ## 手写源码系列
 
@@ -801,6 +820,20 @@ location / {
 }
 ```
 
+### 浏览器跨域解决方案
+
+1. `jsonp` (利用 `script` 标签，前端需要定义一个回调函数接受数据，兼容性好，但是只能发送 get请求)
+2. `CORS` (需要服务器端支持)
+3. 使用 `websocket` 
+4. 使用 `Nginx` 进行反向代理
+
+### 浏览器缓存策略
+
+* `cookie` : 有过期时间，长度限制在 4kb左右，每次都会携带在请求头重，不推荐使用
+* `SessionStorage` 无过期时间，容量大，但是窗口一旦关闭就会自动删除
+* `localStorage` 无过期时间，容量大概5M左右
+* `indexedDB` 存储更大量的结构化数据，浏览器本身不受限制其容量
+
 ## http网络
 
 ### 说一下常见的 http 状态码？
@@ -840,6 +873,25 @@ location / {
 500： Internal Server Error: 服务器内部错误，无法完成请求
 
 502: Bad Gateway: 网关错误
+
+### HTTP 1.x/2.x/3.0的区别？
+
+**http1.x** 
+
+* 通过 `keep-alive` 来保持长久连接，即 `Tcp` 连接在发出请求后不会立刻关闭，可以被多个请求复用
+* `队头阻塞` 问题限制并发性能（通过减少请求或域名切片来优化）
+* 由于无状态，一个页面的加载中多次请求中需要发送多次重复的 `cookie` 来维持会话，导致请求体积增大应用性能
+
+**http2**
+
+* 通过二进制（帧）来传输数据（哈夫曼编码）
+* 使用 `hpack` 压缩格式，压缩请求和响应标头元数据
+* 使用报头压缩，降低开销
+* 服务端可以主动推送静态资源给客户端
+
+**http3**
+
+* 基于 `udp` 实现，速度更快
 
 ### 强缓存和弱缓存？
 
@@ -900,9 +952,19 @@ location / {
 
 ### redux 的工作流程？
 
+**核心概念**
 
+* `store` : 保存数据的地方，可以看成一个容器，整个应用只能有一个 `store` 
+* `state`:  `store` 对象包含所有数据，如果想得到某个时间点的数据，就要对 `store` 生成快照，这种时间点的数据集合就叫做 `state` 
+* `Action` :  `state` 的变化，会导致 `view` 的变化，但是用户接触不到 `state` ,只能接触到 `view` ,
+* `Reducer` 将 `state` 和 `action` 作为参数返回新的 `state` 
+* `dispatch` : 是 `view` 发出 `action` 的唯一方法
 
+1. 用户，操作界面视图层发出 `Action` ,发出方式用到了 `dispatch` 方法
+2. `store` 自动调用 `reducer` ,并且传入两个参数，当前的 `state` 和收到的 `action` , `Reducer` 会返回新的 `state` 
+3. `state` 一旦有变化， `store` 就会调用监听函数，用来更新 `view`
 
+![img](https://i0.hdslb.com/bfs/album/0cf61f2a52c3883c6e07382ce16aa4ab98606023.png)
 
 ## 其他
 
@@ -917,7 +979,16 @@ location / {
 
 ### 项目性能优化有那些方式？
 
+## webpack 相关
 
+### Loader 和 Plugin 的区别？
+
+* `Loader` （加载器），webpack 中将一切文件都视为模块，未经配置的 `webpack` 只能解析 `js` 文件，如果想要打包其他文件的话，就需要使用到 `loader` ,其最大的作用就是让 `webpack` 拥有加载和解析非 `js` 文件的能力。
+* `Plugin` (插件) ： plugin可以扩展 webpack 的功能，让 webpack 有更多的灵活性，webpack 在运行的生命周期中会广播出许多事件，`plugin` 可以监听这些事件，在合适的时机，通过 webpack 提供的 api 改变输出结果。
+
+### 有那些 webpakck 优化前端性能的方案？
+
+1. 
 
 ## HR面试相关
 
@@ -959,3 +1030,41 @@ location / {
 * 说： 说用途，简短说明技术用途
 * 理： 理思路，概要说明核心技术思路
 * 列： 优缺点，独特优势和个别缺点
+
+### 面试官打招呼
+
+首先，**第一点**，总结提炼自己的定位、方向、优势、业绩、态度。尽可能用数字高度话概括自己的工作内容、工作业绩。
+
+比如：
+
+211本科人力资源管理专业毕业；
+
+有3年[房地产行业](https://www.zhihu.com/search?q=房地产行业&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A"2134135112"})[人力资源](https://www.zhihu.com/search?q=人力资源&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A"2134135112"})全盘[工作经验](https://www.zhihu.com/search?q=工作经验&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A"2134135112"})，招过184人，组织过35场活动和培训，输出过4个培训课件等等；
+
+希望能够在房地产行业人力资源领域深耕发展，公司所需经验，我都具备，有能力能够胜任。
+
+**第二点**，能分点就分点，能分行就分行，造成视觉美观，便于[快速阅读](https://www.zhihu.com/search?q=快速阅读&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A"2134135112"})，抓住重点。
+
+**第三点**，字数一定要适量！不要太多，也不要太少。我相信hr没时间去看一篇小作文，咱们也没必要写的这么具体。具体的东西留给[hr面试](https://www.zhihu.com/search?q=hr面试&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A"2134135112"})的时候像你提问和自己的进一步展示。大概在50-100字之间比较合适。
+
+**第四点**，客套话要到位，开头一定要缓场，一定要先问候hr，[介绍自己](https://www.zhihu.com/search?q=介绍自己&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A"2134135112"})，再复制自己的介绍。结尾也要固定写上期待语。比如感谢您百忙抽空查看我的简历，十分期待贵司的回复。
+
+另外，大家一定要记住，开篇一定不要全部都只写您好。你能看到这公司的招聘负责人是谁吧，上面都有写xx经理，xx负责人xx总监，稍微用点心，在前面加上，[王经理](https://www.zhihu.com/search?q=王经理&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A"2134135112"})您好，balabala...
+
+所以完整的回复语就是：
+
+王经理，您好，我是xx。
+
+.....
+
+感谢您百忙抽空查看我的简历，十分期待贵司的回复！
+
+我相信每个hr都会认为你是用心看过[招聘信息](https://www.zhihu.com/search?q=招聘信息&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A"2134135112"})才投递的，不是海投的，也不是系统推荐的。
+
+**第五点**，一定要记得，打完招呼语，如果面试官回复了，就主动发份简历过去。
+
+**第六点**，如果你有多个岗位应聘方向，那侧重点一定是不一样的，还要定制化不同的简历、不同的总结。
+
+**第七点**，和大家再次强调下，[第一印象](https://www.zhihu.com/search?q=第一印象&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A"2134135112"})真的很重要，哪怕目前的岗位不够适合你，但是如果hr对你印象不错，说不定会直接把你推荐给其他公司，同行hr的圈子，或者放到自己的人才库中。
+
+**第八点**，这段招呼语也可以放在简历中的[自我评价](https://www.zhihu.com/search?q=自我评价&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A"2134135112"})环节，这两部分，本质上是一样的目的哟！就是为了让面试官通过你的[自我认知](https://www.zhihu.com/search?q=自我认知&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A"2134135112"})快速了解你的经验水准、能力水平。

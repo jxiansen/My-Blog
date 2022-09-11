@@ -34,3 +34,65 @@ sass --watch index.scss:index.css
 
 ![image-20211208223748659](http://i0.hdslb.com/bfs/album/6573c3fffbca09f8540b410cbe7cc969676ff5af.png)
 
+## 语法
+
+### 变量
+
+`Sass` 和 `css` 不同的一个点就是允许使用变量，可以在 `sass` 中声明变量，并未它赋值。使用 `$` 来进行声明
+
+``` SAS
+// 声明变量
+$textColor: red;
+$imgWidth: 200px;
+
+// 使用变量
+p {
+	color: $textColor;
+}
+
+img {
+	width: $imgWidth;
+}
+```
+
+### 嵌套
+
+多层 `css` 直接嵌套使用
+
+``` css
+nav {
+  background-color: red;
+
+  ul {
+    list-style: none;
+
+    li {
+      display: inline-block;
+    }
+  }
+}
+```
+
+### for 循环
+
+`@for` 循环有两种结束，一个是 `through` 结束 ，一个是 `to` 结束。
+
+`through` 结束会包括结束数字，`to` 不包括
+
+``` css
+<style type='text/scss'>
+@for $j from 1 through 5 {
+  .text-#{$j} {
+    font-size: 15px * $j;
+  }
+}
+</style>
+
+<p class="text-1">Hello</p>
+<p class="text-2">Hello</p>
+<p class="text-3">Hello</p>
+<p class="text-4">Hello</p>
+<p class="text-5">Hello</p>
+```
+
+![image-20220829211346965](https://i0.hdslb.com/bfs/album/04bf143eb05e22589a15bbb60e877bdfc76853da.png)

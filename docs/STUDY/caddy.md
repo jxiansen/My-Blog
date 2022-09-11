@@ -38,6 +38,8 @@ docker exec -it caddy /bin/sh
 
 ### linux
 
+**二进制安装**
+
 使用 wget 命令去下载 `caddy` 的二进制安装包，[官网链接](https://github.com/caddyserver/caddy/releases),根据自己的系统自行下载
 
 ```sh
@@ -61,6 +63,22 @@ ln -s /root/Caddy/caddy /usr/sbin/caddy		# 前面为应用的目录，后面为�
 ![image-20220515180152408](http://i0.hdslb.com/bfs/album/cca8d3b79c3e9442761e87d70d75f04a1cb50458.png)
 
 现在命令全局可用了，已经安装完成
+
+**直接安装**
+
+默认将 `caddy` 作为 `systemd` 服务运行
+
+``` sh
+sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https
+curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
+sudo apt update
+sudo apt install caddy
+```
+
+安装成功后，通过 `systemctl status caddy` 查看 caddy 的状态，发现 `caddy` 已经被注册为系统服务
+
+![image-20220908122018881](https://i0.hdslb.com/bfs/album/8d0aecae69ab1a1bdf80ee9e6a712f152d0ed46c.png)
 
 ### windows
 
@@ -116,6 +134,31 @@ Use 'caddy help <command>' for more information about a command.
 Full documentation is available at:
 https://caddyserver.com/docs/command-line
 ```
+
+## 基本路径
+
+作为系统服务安装好后，需要注意以下几个点
+
+```sh
+# 默认的网站页面路径在
+/var/www/html
+# 默认的Caddyfile 配置文件在
+/etc/caddy/Caddyfile
+```
+
+每次重新更改 `Caddyfile` 文件后都需要重新加载配置文件使用命令 `systemctl reload caddy`
+
+然后就可以按照自己配置的路径访问网站了
+
+* 通过自带的 `Admin Api` 查看当前的配置文件
+
+``` sh
+curl localhost:2019/config/
+```
+
+
+
+
 
 ## Caddyfile 文件配置
 
@@ -199,3 +242,8 @@ http://www.mr-j.com {
   }
 }
 ```
+
+### 优质教程
+
+`https://segmentfault.com/a/1190000022733237`
+

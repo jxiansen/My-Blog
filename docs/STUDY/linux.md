@@ -104,6 +104,22 @@ tree -I 'node_modules|cache|test'	# 忽略多个文件夹
 tree -L 2 	# 有时候文件嵌套层级很深，可以用-L参数只展示前两级的文件
 ```
 
+### 查看端口占用情况
+
+使用 `lsof` （list open file） 列出当前系统打开文件的工具
+
+```sh
+root@mr-j:~# lsof -i:9000
+COMMAND      PID USER   FD   TYPE  DEVICE SIZE/OFF NODE NAME
+node\x20/ 312995 root   20u  IPv6 4577638      0t0  TCP *:9000 (LISTEN)
+```
+
+杀掉端口占用的进程使用 `kill` 命令来结束进程的 `PID` (process Id)
+
+```sh
+kill -9 PID
+```
+
 ## 安装软件
 
 ``` sh
@@ -115,6 +131,14 @@ apt install aria2 -y
 可执行文件在 `/usr/bin`
 
 配置文件在 `/etc` 下
+
+### 拷贝文件
+
+将 `/root/docker/npm/data/clock` 目录夹递归的拷贝到当前文件夹
+
+``` sh
+cp -r /root/docker/npm/data/clock ./
+```
 
 ## 卸载软件
 
@@ -300,6 +324,20 @@ xz -d node-v18.0.0-linux-x64.tar.xz
 tar -xvf node-v18.0.0-linux-x64.tar.xz
 ```
 
+**最常用的压缩与解压缩命令**
+
+在当前文件夹下直接压缩所有文件
+
+```sh
+zip test.zip *
+```
+
+如果有子文件夹需要加上 `-r` 参数来递归
+
+``` sh
+zip test.zip -r ./*
+```
+
 ## 重命名主机名
 
 阿里云的主机名太长太丑了,想要修改主机名,发现阿里云居然不提供修改的地方,百度了下找到了简单的方法
@@ -452,3 +490,20 @@ Host key verification failed.
 C:\Users\30328/.ssh/known_hosts updated.
 Original contents retained as C:\Users\30328/.ssh/known_hosts.old
 ```
+
+## 使用ssh 传输文件
+
+主要是用 `scp` 这个命令，`secure copy` 
+
+**从服务器下载文件**
+
+```sh
+scp root@198.211.49.166:/path/filename ./ （本地目录）
+```
+
+**上传文件到服务器**
+
+```sh
+scp ./test.zip root@198.211.49.166:/root/download
+```
+

@@ -68,7 +68,7 @@ ln -s /root/Caddy/caddy /usr/sbin/caddy		# 前面为应用的目录，后面为�
 
 默认将 `caddy` 作为 `systemd` 服务运行
 
-``` sh
+```sh
 sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https
 curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
 curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
@@ -150,15 +150,11 @@ https://caddyserver.com/docs/command-line
 
 然后就可以按照自己配置的路径访问网站了
 
-* 通过自带的 `Admin Api` 查看当前的配置文件
+- 通过自带的 `Admin Api` 查看当前的配置文件
 
-``` sh
+```sh
 curl localhost:2019/config/
 ```
-
-
-
-
 
 ## Caddyfile 文件配置
 
@@ -246,4 +242,3 @@ http://www.mr-j.com {
 ### 优质教程
 
 `https://segmentfault.com/a/1190000022733237`
-

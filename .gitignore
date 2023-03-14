@@ -47,3 +47,4 @@ dist-ssr
 *.local
 debug.log
 img
+cache

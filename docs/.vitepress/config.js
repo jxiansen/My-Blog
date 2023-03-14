@@ -8,7 +8,7 @@ module.exports = {
       "link",
       {
         rel: "icon",
-        href: "http://i0.hdslb.com/bfs/album/ec78ee304b559735b0998fc680cfa3a2cfb8c53c.png",
+        href: "https://i0.hdslb.com/bfs/album/ec78ee304b559735b0998fc680cfa3a2cfb8c53c.png",
       },
     ], // 网页tab栏的logo图
     ["meta", { name: "referrer", content: "no-referrer" }], //  使用B站图床防盗链
@@ -17,7 +17,7 @@ module.exports = {
 
   themeConfig: {
     nav: nav(),
-    logo: "http://i0.hdslb.com/bfs/album/f6337abef81027541d5dfe953c210a573dfb1f8f.png",
+    logo: "https://i0.hdslb.com/bfs/album/f6337abef81027541d5dfe953c210a573dfb1f8f.png",
 
     sidebar: {
       "/STUDY/": sidebarGuide(),

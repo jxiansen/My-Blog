@@ -1,10 +1,10 @@
-# This问题
+# This 问题
 
-## this是什么？
+## this 是什么？
 
 this 是一个指针，这个指针并不指向自身，而是指向调用函数的对象.
 
-> 指向原则: **this永远指向最后调用它的对象**
+> 指向原则: **this 永远指向最后调用它的对象**
 
 ## 绑定类型
 
@@ -12,12 +12,12 @@ this 是一个指针，这个指针并不指向自身，而是指向调用函数
 
 如果引用 `this` 的函数是一个**独立函数**,那么函数将绑定到全局对象
 
-``` js
+```js
 function log() {
-    console.log(this.name)	// 尝试从全局对象中找一个叫 "name" 的属性
+  console.log(this.name); // 尝试从全局对象中找一个叫 "name" 的属性
 }
-var name = "jack"		// var 声明的变量已经变为window对象的一个属性
-log()	// 输出： "jack"
+var name = "jack"; // var 声明的变量已经变为window对象的一个属性
+log(); // 输出： "jack"
 ```
 
 ![image-20220526174048225](http://i0.hdslb.com/bfs/album/5f66941ac15f48a1f6272dbe159caf0e8e389278.png)
@@ -26,64 +26,66 @@ log()	// 输出： "jack"
 
 ![image-20220526174251192](http://i0.hdslb.com/bfs/album/b201d43252ff75f660d9f7e93047744d5ab4ced0.png)
 
-``` js
-(function log1(){console.log(this)})()
+```js
+(function log1() {
+  console.log(this);
+})();
 // Window about:newtab 默认输出全局对象
 
 function log2() {
-  "use strict"		// 严格模式下this就指向undefined
-    console.log(this)
+  "use strict"; // 严格模式下this就指向undefined
+  console.log(this);
 }
-log2()		//  undefined
+log2(); //  undefined
 ```
 
-###  隐式绑定
+### 隐式绑定
 
 函数调用是否存在于调用者的对象上(上下文中)，当对象在调用站点绑定到它时，函数才能使用该对象作为其上下文。
 
-``` js
+```js
 function log() {
-  console.log(this.name)
+  console.log(this.name);
 }
 var myObj = {
-    name: "jack",
-    log: log
-}
-myObj.log()
+  name: "jack",
+  log: log,
+};
+myObj.log();
 ```
 
 这里的 `log` 函数声明在对象的外部，严格来说不属于 `myObj` 这个对象，但是在调用 `log` 函数的时候，`Js` 会默认根据调用位置的上下文环境来应用这个函数， 隐式绑定将函数调用中的 `this` 指向 `myObj` 这个上下文对象。
 
 **等价于**
 
-``` js
+```js
 function log() {
   console.log(this.name);
 }
 
 var myObj = {
-  name: "jack",	//运行时自动插入该方法
+  name: "jack", //运行时自动插入该方法
 };
 
-myObj.log();	// "jack"
+myObj.log(); // "jack"
 ```
 
 这种情况下，虽然 `myObj` 这个对象中没有 `log` 这个字段的函数，但是在运行时将会自动插入 `log` 函数作为其方法，然后解析为 `this` 上下文
 
 **对象属性链中只有最后一层会影响到调用位置**
 
-``` js
-function sayHi(){
-    console.log('Hello,', this.name);
+```js
+function sayHi() {
+  console.log("Hello,", this.name);
 }
 var person2 = {
-    name: 'Christina',
-    sayHi: sayHi
-}
+  name: "Christina",
+  sayHi: sayHi,
+};
 var person1 = {
-    name: 'YvetteLau',
-    friend: person2
-}
+  name: "YvetteLau",
+  friend: person2,
+};
 person1.friend.sayHi();
 // 结果是: Hello, Christina.
 ```
@@ -100,21 +102,21 @@ person1.friend.sayHi();
 
 要将函数调用显式的绑定到上下文中，需要对函数调用 `call()` 方法，并且将上下文对象作为参数传入：
 
-``` js
+```js
 function log() {
-    console.log(this.name)
+  console.log(this.name);
 }
 
 var myObj = {
-    name: "jack"
-}
-log.call(myObj)		// myObj中原本是没有log方法的，但是log方法执行的时候将执行上下文绑定到myObj中了
+  name: "jack",
+};
+log.call(myObj); // myObj中原本是没有log方法的，但是log方法执行的时候将执行上下文绑定到myObj中了
 // 输出： "jack"
 ```
 
 此时这个函数无论传递多少次给新的变量，只要一被调用他执行的都是相同的上下文，因为它已经被绑定（显式绑定）到该对象，这叫做硬绑定。
 
-``` js
+```js
 function log() {
   console.log(this.name);
 }
@@ -146,7 +148,7 @@ sayName.call(window); // 重新绑定到 window 对象也没有,依然是 "jack"
 3. 执行构造函数方法，属性和方法被添加到 `this` 引用的对象中
 4. 如果该函数中没有返回其他的对象，那么返回 `this` ,即刚刚创建的这个新对象， 否则返回函数中返回的对象。
 
-``` js
+```js
 // 手动模拟构造函数的过程
 function _new() {
   let target = {}; //创建的新对象
@@ -167,30 +169,15 @@ function _new() {
 
 因此使用 `new` 来调用函数的时候，`this` 上绑定到新创立的对象上
 
-``` js
+```js
 function People(name) {
-    this.name = name;
+  this.name = name;
 }
-var someone = new People("Jack")	// 创建新对象，并把this指向这个对象，接着this上面挂载属性和方法
-console.log(someone.name)	// "jack"
+var someone = new People("Jack"); // 创建新对象，并把this指向这个对象，接着this上面挂载属性和方法
+console.log(someone.name); // "jack"
 ```
 
 ### 绑定优先级
 
 当同时应用了多种 `this` 绑定的规则，会按照一定的优先级进行决定。
 `new绑定` > `显示绑定` > `隐式绑定` > `默认绑定`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

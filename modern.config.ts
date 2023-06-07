@@ -11,7 +11,7 @@ export default defineConfig({
         "/": getSidebar(),
       },
     },
-    markdown: { experimentalMdxRs: true },
+    // markdown: { experimentalMdxRs: true },
 
     builderConfig: {
       html: {

@@ -80,10 +80,6 @@ function getSidebar() {
       text: "杂七杂八",
       collapsible: true,
       items: [
-        { text: "Javascript中的this问题", link: "/study/this" },
-        { text: "在wsl中开启使用ssh连接", link: "/hub/wsl-ssh" },
-        { text: "node安装与配置", link: "/hub/node-install" },
-        { text: "效率", link: "/hub/efficiency" },
         { text: "中国程序员容易发音错误的单词", link: "/hub/wordvoice" },
         { text: "Linux安装nodejs", link: "/hub/Linux-install-nodejs" },
         { text: "2021前端开发路线图", link: "/hub/fontend" },

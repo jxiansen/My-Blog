@@ -1,26 +1,26 @@
 ---
-layout: home
-
-title: 前端笔记
-titleTemplate: study
+pageType: home
 
 hero:
-  name: 阿J 的前端笔记
-  text: Vite & Vue Powered Static Site Generator
-  tagline: Life · Study · Think
+  name: Modern.js Doc
+  text: 文档工程解决方案
+  tagline: 现代化文档开发技术栈
   actions:
     - theme: brand
-      text: Get Started
-      link: /STUDY/30S-css
+      text: 介绍
+      link: /hub/spa
     - theme: alt
-      text: View on GitHub
-      link: https://github.com/jxiansen/My-blog
+      text: 快速开始
+      link: /STUDY/linux
 
 features:
-  - title: 💡 读码上万行
-    # details: 今天是个好日子
-  - title: ⚡️ 运鼠帷幄
-    # details: 啊哈
-  - title: 🛠️ 下键如有神
-    # details: 心想的事儿都会成
+  - title: "MDX: 使用灵活语法编写内容"
+    details: MDX 是一种强大的内容编写方式，你可以在 Markdown 中使用 React 组件。
+    icon: 📦
+  - title: "功能丰富: 一站式解决方案"
+    details: 对全文搜索、国际化等常见功能可以做到开箱即用。
+    icon: 🎨
+  - title: "扩展性强: 提供多种自定义能力"
+    details: 通过其扩展机制，你可以轻松的扩展主题 UI 和构建能力。
+    icon: 🚀
 ---

@@ -3,7 +3,7 @@ pageType: home
 
 hero:
   name: Modern.js Doc
-  text: 文档工程解决方案
+  text: 文档工程解决方案1
   tagline: 现代化文档开发技术栈
   actions:
     - theme: brand

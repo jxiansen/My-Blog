@@ -1,6 +1,6 @@
 # 力扣刷题
 
-## [1480. 一维数组的动态和](https://leetcode-cn.com/problems/running-sum-of-1d-array/)
+## 1480. 一维数组的动态和
 
 ![image-20210903163015252](http://i0.hdslb.com/bfs/album/a65f723a67c1ffbc5d2c210523c3d43e635c7601.png)
 
@@ -24,7 +24,7 @@ function runningSum(nums) {
 }
 ```
 
-## [136. 只出现一次的数字](https://leetcode-cn.com/problems/single-number/)
+## 136. 只出现一次的数字
 
 ![image-20210906010418140](http://i0.hdslb.com/bfs/album/829664eabbfee5f8387b44d681ee3aa6c6bf84b7.png)
 
@@ -41,7 +41,7 @@ function singleNumber(nums) {
 }
 ```
 
-## [977. 有序数组的平方](https://leetcode-cn.com/problems/squares-of-a-sorted-array/)
+## 977. 有序数组的平方
 
 ![image-20210906101536449](http://i0.hdslb.com/bfs/album/d69f92aee9a0833eab927fb919e072449a81e35d.png)
 
@@ -70,7 +70,7 @@ var sortedSquares = function (nums) {
 };
 ```
 
-## [1491. 去掉最低工资和最高工资后的工资平均值](https://leetcode-cn.com/problems/average-salary-excluding-the-minimum-and-maximum-salary/)
+## 1491. 去掉最低工资和最高工资后的工资平均值
 
 ![image-20210906104441186](http://i0.hdslb.com/bfs/album/ad69f7005623149346e7f275ba23a509d9d54fa7.png)
 
@@ -95,7 +95,7 @@ function average(salary) {
 }
 ```
 
-## [1470. 重新排列数组](https://leetcode-cn.com/problems/shuffle-the-array/)
+## 1470. 重新排列数组
 
 ![image-20210906115115797](http://i0.hdslb.com/bfs/album/1a2bd69e7f1fecbf73bb9c6b78584b009df905d8.png)
 
@@ -120,7 +120,7 @@ function shuffle(nums, n) {
 }
 ```
 
-## [414. 第三大的数](https://leetcode-cn.com/problems/third-maximum-number/)
+## 414. 第三大的数
 
 ![image-20210907005441567](http://i0.hdslb.com/bfs/album/86434757fdd90ea08fd655a4c9da370b49fead73.png)
 
@@ -162,7 +162,7 @@ var thirdMax = function (nums) {
 };
 ```
 
-## [268. 丢失的数字](https://leetcode-cn.com/problems/missing-number/)
+## 268. 丢失的数字
 
 ![image-20210911002110978](http://i0.hdslb.com/bfs/album/15c18390735e28352ca721c8e3ff80d5877ce7f0.png)
 
@@ -186,7 +186,7 @@ function missingNumber(nums) {
 }
 ```
 
-## [1. 两数之和](https://leetcode-cn.com/problems/two-sum/)
+## 1. 两数之和
 
 ![image-20210919011550412](http://i0.hdslb.com/bfs/album/caea4fcfa03f3a3776c792182bfc178ad8c1ccb8.png)
 
@@ -217,7 +217,7 @@ var twoSum = function (nums, target) {
 };
 ```
 
-## [283. 移动零](https://leetcode-cn.com/problems/move-zeroes/)
+## 283. 移动零
 
 ![image-20211225162052079](http://i0.hdslb.com/bfs/album/767e30ec7ed4c09a90ce09fa1df7c15bee898f79.png)
 
@@ -246,7 +246,7 @@ let moveZeroes = function (nums) {
 };
 ```
 
-## [27. 移除元素](https://leetcode-cn.com/problems/remove-element/)
+## 27. 移除元素
 
 ![image-20211225173139804](http://i0.hdslb.com/bfs/album/2d889e499a719d62db3cb6d8efb84fb51cae1073.png)
 
@@ -277,7 +277,7 @@ var removeElement = function (nums, val) {
 };
 ```
 
-## [287. 寻找重复数](https://leetcode-cn.com/problems/find-the-duplicate-number/)
+## 287. 寻找重复数
 
 ![image-20211225223018280](http://i0.hdslb.com/bfs/album/5d0bbdc2dccb92ea90ac05b845aa08aac3bfaecc.png)
 
@@ -296,7 +296,7 @@ var findDuplicate = function (nums) {
 };
 ```
 
-## [125. 验证回文串](https://leetcode-cn.com/problems/valid-palindrome/)
+## 125. 验证回文串
 
 ![image-20211226140129733](http://i0.hdslb.com/bfs/album/927f0c79df158f8309fd6da6249ac91eff2dafee.png)
 
@@ -342,7 +342,7 @@ var isPalindrome = function (s) {
 };
 ```
 
-## [2000. 反转单词前缀](https://leetcode-cn.com/problems/reverse-prefix-of-word/)
+## 2000. 反转单词前缀
 
 ![image-20211226161455523](http://i0.hdslb.com/bfs/album/ade76247e4c37d298298e65916e4d57ce6503630.png)
 
@@ -359,7 +359,7 @@ var reversePrefix = function (word, ch) {
 };
 ```
 
-## [507. 完美数](https://leetcode-cn.com/problems/perfect-number/)
+## 507. 完美数
 
 ![image-20211227092915402](http://i0.hdslb.com/bfs/album/3efaf592bd4762542b9be0b2b99974ccd8e34de4.png)
 
@@ -378,7 +378,7 @@ var checkPerfectNumber = function (num) {
 };
 ```
 
-## [412. Fizz Buzz](https://leetcode-cn.com/problems/fizz-buzz/)
+## 412. Fizz Buzz
 
 ![image-20211227095149282](http://i0.hdslb.com/bfs/album/f3ab7671a62f89ae7d88129cd0082c31e6d03ef7.png)
 
@@ -401,7 +401,7 @@ var fizzBuzz = function (n) {
 };
 ```
 
-## [167. 两数之和 II - 输入有序数组](https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/)
+## 167. 两数之和 II - 输入有序数组
 
 ![image-20211227110459232](http://i0.hdslb.com/bfs/album/880a21f081cb314cad6aacf72c66b7355ddfdb47.png)
 
@@ -421,7 +421,7 @@ var twoSum = function (numbers, target) {
 };
 ```
 
-## [66. 加一](https://leetcode-cn.com/problems/plus-one/)
+## 66. 加一
 
 ![image-20211227115240374](http://i0.hdslb.com/bfs/album/9b9e824af2cef3a3f8f714fb536a927a02374924.png)
 
@@ -457,7 +457,7 @@ function plusOne(digits) {
 }
 ```
 
-## [202. 快乐数](https://leetcode-cn.com/problems/happy-number/)
+## 202. 快乐数
 
 ![image-20211227164513823](http://i0.hdslb.com/bfs/album/8620c1bb8a1f02a8c4adf67569b503e3b3bf5771.png)
 
@@ -480,7 +480,7 @@ var isHappy = function (n) {
 };
 ```
 
-## [2089. 找出数组排序后的目标下标](https://leetcode-cn.com/problems/find-target-indices-after-sorting-array/)
+## 2089. 找出数组排序后的目标下标
 
 ![image-20211227202501283](http://i0.hdslb.com/bfs/album/ae186305459d6ecd30df2344cbc9fb8a4fb4e889.png)
 
@@ -500,7 +500,7 @@ var targetIndices = function (nums, target) {
 };
 ```
 
-## [704. 二分查找](https://leetcode-cn.com/problems/binary-search/)
+## 704. 二分查找
 
 ![image-20211227203742299](http://i0.hdslb.com/bfs/album/e41a26c1f33e9aaf0c1305d85a600a63cba84ed4.png)
 
@@ -542,7 +542,7 @@ var search = function (nums, target) {
 };
 ```
 
-## [LCP 01. 猜数字](https://leetcode-cn.com/problems/guess-numbers/)
+## LCP 01. 猜数字
 
 ![image-20211229203448935](http://i0.hdslb.com/bfs/album/2804d10f9c5c30e5e3b08cdb191b7ddcb6443850.png)
 
@@ -559,7 +559,7 @@ var game = function (guess, answer) {
 };
 ```
 
-## [1672. 最富有客户的资产总量](https://leetcode-cn.com/problems/richest-customer-wealth/)
+## 1672. 最富有客户的资产总量
 
 ![image-20211229204211143](http://i0.hdslb.com/bfs/album/27f716e89d61659607636e7a5930c9ed15113d8b.png)
 
@@ -570,7 +570,7 @@ var maximumWealth = function (accounts) {
 };
 ```
 
-## [1662. 检查两个字符串数组是否相等](https://leetcode-cn.com/problems/check-if-two-string-arrays-are-equivalent/)
+## 1662. 检查两个字符串数组是否相等
 
 ![image-20211229204831629](http://i0.hdslb.com/bfs/album/4364ec1f308fbbd8263d89294514764c65d92d00.png)
 
@@ -588,7 +588,7 @@ var arrayStringsAreEqual = function (word1, word2) {
 };
 ```
 
-## [169. 多数元素](https://leetcode-cn.com/problems/majority-element/)
+## 169. 多数元素
 
 ![image-20211229221706617](http://i0.hdslb.com/bfs/album/ae240aa7c99227b9174ec8a774c29727e68bd8c1.png)
 
@@ -613,7 +613,7 @@ var majorityElement = function (nums) {
 };
 ```
 
-## [1920. 基于排列构建数组](https://leetcode-cn.com/problems/build-array-from-permutation/)
+## 1920. 基于排列构建数组
 
 ![image-20211229224010741](http://i0.hdslb.com/bfs/album/2b52c139dae730faf110b5e4119f8d8071d44eaa.png)
 
@@ -639,7 +639,7 @@ var buildArray = function (nums) {
 };
 ```
 
-## [1913. 两个数对之间的最大乘积差](https://leetcode-cn.com/problems/maximum-product-difference-between-two-pairs/)
+## 1913. 两个数对之间的最大乘积差
 
 ![image-20211230101849947](http://i0.hdslb.com/bfs/album/65301694f75c76770da224812fd99ba146c225da.png)
 
@@ -651,7 +651,7 @@ var maxProductDifference = function (nums) {
 };
 ```
 
-## [1389. 按既定顺序创建目标数组](https://leetcode-cn.com/problems/create-target-array-in-the-given-order/)
+## 1389. 按既定顺序创建目标数组
 
 ![image-20211230104902870](http://i0.hdslb.com/bfs/album/bdd6128e2c8e56f63ae2387d5cbea26bdd94e134.png)
 
@@ -676,7 +676,7 @@ var createTargetArray = function (nums, index) {
 };
 ```
 
-## [2114. 句子中的最多单词数](https://leetcode-cn.com/problems/maximum-number-of-words-found-in-sentences/)
+## 2114. 句子中的最多单词数
 
 ![image-20211230110251756](http://i0.hdslb.com/bfs/album/7a05cf228809c2743a198c6a35bb09cd9f24e14e.png)
 
@@ -686,7 +686,7 @@ var mostWordsFound = function (sentences) {
 };
 ```
 
-## [1732. 找到最高海拔](https://leetcode-cn.com/problems/find-the-highest-altitude/)
+## 1732. 找到最高海拔
 
 ![image-20211230111754664](http://i0.hdslb.com/bfs/album/a7a377f51943c9480f898b9e8161dc2087297d79.png)
 
@@ -705,7 +705,7 @@ var largestAltitude = function (gain) {
 };
 ```
 
-## [832. 翻转图像](https://leetcode-cn.com/problems/flipping-an-image/)
+## 832. 翻转图像
 
 ![image-20211230113524733](http://i0.hdslb.com/bfs/album/4057377a34976ae3a89b189fd89f1f67d606fb28.png)
 
@@ -718,7 +718,7 @@ var flipAndInvertImage = function (image) {
 };
 ```
 
-## [1979. 找出数组的最大公约数](https://leetcode-cn.com/problems/find-greatest-common-divisor-of-array/)
+## 1979. 找出数组的最大公约数
 
 ![image-20211230120534142](http://i0.hdslb.com/bfs/album/5435e5d42662bddd33968931aa0d208804149b21.png)
 
@@ -737,7 +737,7 @@ var findGCD = function (nums) {
 };
 ```
 
-## [1748. 唯一元素的和](https://leetcode-cn.com/problems/sum-of-unique-elements/)
+## 1748. 唯一元素的和
 
 ![image-20211230211723428](http://i0.hdslb.com/bfs/album/b5791ca097d942ab153e98cfba82284c142ac737.png)
 
@@ -773,7 +773,7 @@ var sumOfUnique = function (nums) {
 };
 ```
 
-## [1816. 截断句子](https://leetcode-cn.com/problems/truncate-sentence/)
+## 1816. 截断句子
 
 ![image-20211230214020219](http://i0.hdslb.com/bfs/album/df31ac612357be1edb1c2bd0c39b005cec6d7a6d.png)
 
@@ -783,7 +783,7 @@ var truncateSentence = function (s, k) {
 };
 ```
 
-## [1051. 高度检查器](https://leetcode-cn.com/problems/height-checker/)
+## 1051. 高度检查器
 
 ![image-20211230220218819](http://i0.hdslb.com/bfs/album/0ac6c488a85ec2a5054126e29e6593db156d2b78.png)
 
@@ -800,7 +800,7 @@ var heightChecker = function (heights) {
 };
 ```
 
-## [1502. 判断能否形成等差数列](https://leetcode-cn.com/problems/can-make-arithmetic-progression-from-sequence/)
+## 1502. 判断能否形成等差数列
 
 ![image-20211231151238519](http://i0.hdslb.com/bfs/album/2ad53e55516c3e98c5f4c2a5572618c85656248f.png)
 
@@ -818,7 +818,7 @@ var canMakeArithmeticProgression = function (arr) {
 };
 ```
 
-## [1572. 矩阵对角线元素的和](https://leetcode-cn.com/problems/matrix-diagonal-sum/)
+## 1572. 矩阵对角线元素的和
 
 ![image-20211231161539561](http://i0.hdslb.com/bfs/album/8beb7077d1bf08f935348f19faaa4b1bcce77213.png)
 
@@ -837,7 +837,7 @@ var diagonalSum = function (mat) {
 };
 ```
 
-## [1299. 将每个元素替换为右侧最大元素](https://leetcode-cn.com/problems/replace-elements-with-greatest-element-on-right-side/)
+## 1299. 将每个元素替换为右侧最大元素
 
 ![image-20220101190132996](http://i0.hdslb.com/bfs/album/589cbd3ee767dd43707c59198a9a8f08ab32a43a.png)
 
@@ -854,7 +854,7 @@ var replaceElements = function (arr) {
 };
 ```
 
-## [1822. 数组元素积的符号](https://leetcode-cn.com/problems/sign-of-the-product-of-an-array/)
+## 1822. 数组元素积的符号
 
 ![image-20220101191458479](http://i0.hdslb.com/bfs/album/774865cf4f87022ecb88f8b2f5454a1a8c181fe7.png)
 
@@ -887,7 +887,7 @@ var arraySign = function (nums) {
 };
 ```
 
-## [剑指 Offer 17. 打印从 1 到最大的 n 位数](https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/)
+## 剑指 Offer 17. 打印从 1 到最大的 n 位数
 
 ![image-20220101193933407](http://i0.hdslb.com/bfs/album/98c2adf4c618045c6342c76061c7fbb8fcce7f2c.png)
 
@@ -913,7 +913,7 @@ var printNumbers = function (n) {
 };
 ```
 
-## [1464. 数组中两元素的最大乘积](https://leetcode-cn.com/problems/maximum-product-of-two-elements-in-an-array/)
+## 1464. 数组中两元素的最大乘积
 
 ![image-20220102143224108](http://i0.hdslb.com/bfs/album/3995b112acff6e1207084e09174fbb7cf01a20bc.png)
 
@@ -939,7 +939,7 @@ var maxProduct = function (nums) {
 };
 ```
 
-## [1475. 商品折扣后的最终价格](https://leetcode-cn.com/problems/final-prices-with-a-special-discount-in-a-shop/)
+## 1475. 商品折扣后的最终价格
 
 ![image-20220102151723963](http://i0.hdslb.com/bfs/album/c51dc59a61ad4ddafcfdedb26e34b9e75642e742.png)
 
@@ -960,7 +960,7 @@ var finalPrices = function (prices) {
 };
 ```
 
-## [剑指 Offer 57. 和为 s 的两个数字](https://leetcode-cn.com/problems/he-wei-sde-liang-ge-shu-zi-lcof/)
+## 剑指 Offer 57. 和为 s 的两个数字
 
 ![image-20220102153655340](http://i0.hdslb.com/bfs/album/dd31fd6c4b3b28a06cc5a4c062ecdb0eb84197bf.png)
 
@@ -985,7 +985,7 @@ var twoSum = function (nums, target) {
 };
 ```
 
-## [剑指 Offer 58 - II. 左旋转字符串](https://leetcode-cn.com/problems/zuo-xuan-zhuan-zi-fu-chuan-lcof/)
+## 剑指 Offer 58 - II. 左旋转字符串
 
 ![image-20220102202658275](http://i0.hdslb.com/bfs/album/47f16729d4d3c002e3ce537260a04d4b35efafcd.png)
 
@@ -1008,7 +1008,7 @@ var reverseLeftWords = function (s, n) {
 };
 ```
 
-## [557. 反转字符串中的单词 III](https://leetcode-cn.com/problems/reverse-words-in-a-string-iii/)
+## 557. 反转字符串中的单词 III
 
 ![image-20220102215612084](http://i0.hdslb.com/bfs/album/4537bcc64d5a11ca1118d8dd75acf59fb7c08f10.png)
 
@@ -1061,7 +1061,7 @@ var reverseWords = function (s) {
 };
 ```
 
-## [350. 两个数组的交集 II](https://leetcode-cn.com/problems/intersection-of-two-arrays-ii/)
+## 350. 两个数组的交集 II
 
 ![image-20220103205650970](http://i0.hdslb.com/bfs/album/7ff643764c56b732c95d6a65a2592c26e7a6958d.png)
 
@@ -1102,7 +1102,7 @@ var intersect = function (nums1, nums2) {
 };
 ```
 
-## [709. 转换成小写字母](https://leetcode-cn.com/problems/to-lower-case/)
+## 709. 转换成小写字母
 
 ![image-20220103213455276](http://i0.hdslb.com/bfs/album/ec0695a1f2591239294b9ceefdbad81a85aaeddc.png)
 
@@ -1126,7 +1126,7 @@ var toLowerCase = function (s) {
 };
 ```
 
-## [1859. 将句子排序](https://leetcode-cn.com/problems/sorting-the-sentence/)
+## 1859. 将句子排序
 
 ![image-20220103220111504](http://i0.hdslb.com/bfs/album/ad69de2406356cda14f02089d7728e6ef1ef7005.png)
 
@@ -1160,7 +1160,7 @@ var sortSentence = function (s) {
 };
 ```
 
-## [剑指 Offer 03. 数组中重复的数字](https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/)
+## 剑指 Offer 03. 数组中重复的数字
 
 ![image-20220104175647251](http://i0.hdslb.com/bfs/album/0340b9fd173a39244fb5f5923dc6f575035c0eda.png)
 
@@ -1177,7 +1177,7 @@ var findRepeatNumber = function (nums) {
 };
 ```
 
-## [剑指 Offer 05. 替换空格](https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/)
+## 剑指 Offer 05. 替换空格
 
 ![image-20220104181959698](http://i0.hdslb.com/bfs/album/02ccb1ca81baf457dd4d0d1fbc814a558374d7c4.png)
 
@@ -1238,7 +1238,7 @@ var replaceSpace = function (s) {
 };
 ```
 
-## [387. 字符串中的第一个唯一字符](https://leetcode-cn.com/problems/first-unique-character-in-a-string/)
+## 387. 字符串中的第一个唯一字符
 
 ![image-20220104225113686](http://i0.hdslb.com/bfs/album/865da6d3c5885e07a3c6154f8f03e309b6aa89c6.png)
 
@@ -1275,7 +1275,7 @@ var firstUniqChar = function (s) {
 };
 ```
 
-## [1528. 重新排列字符串](https://leetcode-cn.com/problems/shuffle-string/)
+## 1528. 重新排列字符串
 
 ![image-20220106165835536](http://i0.hdslb.com/bfs/album/8d6b3de80050983d7e888025ec416c1dd4b87180.png)
 
@@ -1316,7 +1316,7 @@ var restoreString = function (s, indices) {
 };
 ```
 
-## [1768. 交替合并字符串](https://leetcode-cn.com/problems/merge-strings-alternately/)
+## 1768. 交替合并字符串
 
 ![image-20220108170016290](http://i0.hdslb.com/bfs/album/839d47d048aa1be63c49a58ac878ef435151ac0d.png)
 
@@ -1347,7 +1347,7 @@ var mergeAlternately = function (word1, word2) {
 };
 ```
 
-## [面试题 01.01. 判定字符是否唯一](https://leetcode-cn.com/problems/is-unique-lcci/)
+## 面试题 01.01. 判定字符是否唯一
 
 ![image-20220108171738943](http://i0.hdslb.com/bfs/album/101cd7f0e2156532dece3fbeec062ff373cb237f.png)
 
@@ -1371,7 +1371,7 @@ var isUnique = function (s) {
 };
 ```
 
-## [884. 两句话中的不常见单词](https://leetcode-cn.com/problems/uncommon-words-from-two-sentences/)
+## 884. 两句话中的不常见单词
 
 ![image-20220108220507437](http://i0.hdslb.com/bfs/album/1d0de29c8107ca104559acba7109a46997d7b433.png)
 
@@ -1410,7 +1410,7 @@ var uncommonFromSentences = function (s1, s2) {
 };
 ```
 
-## [1945. 字符串转化后的各位数字之和](https://leetcode-cn.com/problems/sum-of-digits-of-string-after-convert/)
+## 1945. 字符串转化后的各位数字之和
 
 ![image-20220108222308268](http://i0.hdslb.com/bfs/album/17289ab14f9904861c8a97b6c490c555935d638f.png)
 
@@ -1428,7 +1428,7 @@ var getLucky = function (s, k) {
 };
 ```
 
-## [771. 宝石与石头](https://leetcode-cn.com/problems/jewels-and-stones/)
+## 771. 宝石与石头
 
 ![image-20220109150114742](http://i0.hdslb.com/bfs/album/2bffd498602d00bf351ec5fc5451339f1647997f.png)
 
@@ -1467,7 +1467,7 @@ var numJewelsInStones = function (jewels, stones) {
 };
 ```
 
-## [1880. 检查某单词是否等于两单词之和](https://leetcode-cn.com/problems/check-if-word-equals-summation-of-two-words/)
+## 1880. 检查某单词是否等于两单词之和
 
 ![image-20220109161001405](http://i0.hdslb.com/bfs/album/e409d648eeaae036dea4ec87799e6a457c253949.png)
 
@@ -1480,7 +1480,7 @@ var isSumEqual = function (firstWord, secondWord, targetWord) {
 };
 ```
 
-## [1941. 检查是否所有字符出现次数相同](https://leetcode-cn.com/problems/check-if-all-characters-have-equal-number-of-occurrences/)
+## 1941. 检查是否所有字符出现次数相同
 
 ![image-20220109163613326](http://i0.hdslb.com/bfs/album/511ae25945b5ea7c949487231bf2cd77ef9e2a23.png)
 
@@ -1498,7 +1498,7 @@ var areOccurrencesEqual = function (s) {
 };
 ```
 
-## [1935. 可以输入的最大单词数](https://leetcode-cn.com/problems/maximum-number-of-words-you-can-type/)
+## 1935. 可以输入的最大单词数
 
 ![image-20220109181137819](http://i0.hdslb.com/bfs/album/2c911cd21b1bd4eb9113a25d72cbe4b9954082e6.png)
 
@@ -1521,7 +1521,7 @@ var canBeTypedWords = function (text, brokenLetters) {
 };
 ```
 
-## [1431. 拥有最多糖果的孩子](https://leetcode-cn.com/problems/kids-with-the-greatest-number-of-candies/)
+## 1431. 拥有最多糖果的孩子
 
 ![image-20220110113913063](http://i0.hdslb.com/bfs/album/ea16a51df8eaf9d2ef6b6a97d64ab6e9b614b4d4.png)
 
@@ -1532,7 +1532,7 @@ var kidsWithCandies = function (candies, extraCandies) {
 };
 ```
 
-## [1281. 整数的各位积和之差](https://leetcode-cn.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/)
+## 1281. 整数的各位积和之差
 
 ![image-20220110120248051](http://i0.hdslb.com/bfs/album/60e46e677805d48aba963adfd068fe49b4434138.png)
 
@@ -1557,7 +1557,7 @@ var subtractProductAndSum = function (n) {
 };
 ```
 
-## [面试题 16.01. 交换数字](https://leetcode-cn.com/problems/swap-numbers-lcci/)
+## 面试题 16.01. 交换数字
 
 ![image-20220110193114350](http://i0.hdslb.com/bfs/album/35fc09bc695a48465b06ce4e17a37fde5d7ed510.png)
 
@@ -1590,7 +1590,7 @@ var swapNumbers = function (numbers) {
 };
 ```
 
-## [1832. 判断句子是否为全字母句](https://leetcode-cn.com/problems/check-if-the-sentence-is-pangram/)
+## 1832. 判断句子是否为全字母句
 
 ![image-20220110192902550](http://i0.hdslb.com/bfs/album/ca4ba1221def97eef7945fef838f61c6c6b59322.png)
 
@@ -1609,7 +1609,7 @@ var checkIfPangram = function (sentence) {
 };
 ```
 
-## [剑指 Offer 18. 删除链表的节点](https://leetcode-cn.com/problems/shan-chu-lian-biao-de-jie-dian-lcof/)
+## 剑指 Offer 18. 删除链表的节点
 
 ![image-20220114120051504](http://i0.hdslb.com/bfs/album/aca4d6bcbf898a1803706c017360891740d59e02.png)
 
@@ -1635,7 +1635,7 @@ var deleteNode = function (head, val) {
 };
 ```
 
-## [面试题 02.03. 删除中间节点](https://leetcode-cn.com/problems/delete-middle-node-lcci/)
+## 面试题 02.03. 删除中间节点
 
 ![image-20220114134216909](http://i0.hdslb.com/bfs/album/94f9f425da2f153b0e85f7e5b9548b8aadb78348.png)
 
@@ -1648,7 +1648,7 @@ var deleteNode = function (node) {
 };
 ```
 
-## [206. 反转链表](https://leetcode-cn.com/problems/reverse-linked-list/)
+## 206. 反转链表
 
 ![image-20220114162517762](http://i0.hdslb.com/bfs/album/2fa2d0c06f46c8339b978070a05827dc20d2ad79.png)
 
@@ -1690,7 +1690,7 @@ var reverseList = function (head) {
 };
 ```
 
-## [1991. 找到数组的中间位置](https://leetcode-cn.com/problems/find-the-middle-index-in-array/)
+## 1991. 找到数组的中间位置
 
 ![image-20220211152045139](http://i0.hdslb.com/bfs/album/5220f860639dc4803bc91a3cf832739941414eeb.png)
 
@@ -1705,7 +1705,7 @@ var findMiddleIndex = function (nums) {
 };
 ```
 
-## [1137. 第 N 个泰波那契数](https://leetcode-cn.com/problems/n-th-tribonacci-number/)
+## 1137. 第 N 个泰波那契数
 
 ![image-20220211174815502](http://i0.hdslb.com/bfs/album/8ca87e9af20eb139c65e608da23dee8ce85c5098.png)
 
@@ -1727,7 +1727,7 @@ var tribonacci = function (n) {
 };
 ```
 
-## [917. 仅仅反转字母](https://leetcode-cn.com/problems/reverse-only-letters/)
+## 917. 仅仅反转字母
 
 ![image-20220211195741133](http://i0.hdslb.com/bfs/album/3efbc50971819f06232f72cc9ae60724de9a9aae.png)
 
@@ -1766,7 +1766,7 @@ var reverseOnlyLetters = function (s) {
 };
 ```
 
-## [面试题 01.09. 字符串轮转](https://leetcode-cn.com/problems/string-rotation-lcci/)
+## 面试题 01.09. 字符串轮转
 
 ![image-20220211202716816](http://i0.hdslb.com/bfs/album/4f8b0b2e10acdc3979629752e7db16968a242c06.png)
 
@@ -1777,7 +1777,7 @@ var isFlipedString = function (s1, s2) {
 };
 ```
 
-## [796. 旋转字符串](https://leetcode-cn.com/problems/rotate-string/)
+## 796. 旋转字符串
 
 ![image-20220211205123890](http://i0.hdslb.com/bfs/album/c585dd0a263db1557a3f4b912bb510213156f037.png)
 
@@ -1788,9 +1788,7 @@ var rotateString = function (s, goal) {
 };
 ```
 
-## [剑指 Offer II 003. 前 n 个数字二进制中 1 的个数](https://leetcode-cn.com/problems/w3tCBm/)
-
-![image-20220211215842528](http://i0.hdslb.com/bfs/album/729ab635fec8c5e1da4f78ddc3dd319db520b734.png)
+## 剑指 Offer II 003. 前 n 个数字二进制中 1 的个数![image-20220211215842528](http://i0.hdslb.com/bfs/album/729ab635fec8c5e1da4f78ddc3dd319db520b734.png)
 
 ```js
 // 方法1: 对数组转成二进制后再分割统计出 '1'的个数
@@ -1827,7 +1825,7 @@ var countBits = function (n) {
 };
 ```
 
-## [88. 合并两个有序数组](https://leetcode-cn.com/problems/merge-sorted-array/)
+## 88. 合并两个有序数组
 
 ![image-20220213171638059](http://i0.hdslb.com/bfs/album/9ef1df31e64bce58bb598c4783ff9b437df0be17.png)
 
@@ -1855,7 +1853,7 @@ var merge = function (nums1, m, nums2, n) {
 };
 ```
 
-## [1089. 复写零](https://leetcode-cn.com/problems/duplicate-zeros/)
+## 1089. 复写零
 
 ![image-20220213173114645](http://i0.hdslb.com/bfs/album/96953212c5f450624412abbd5d28e09a1b207e54.png)
 
@@ -1872,7 +1870,7 @@ var duplicateZeros = function (arr) {
 };
 ```
 
-## [844. 比较含退格的字符串](https://leetcode-cn.com/problems/backspace-string-compare/)
+## 844. 比较含退格的字符串
 
 ![image-20220213224827077](http://i0.hdslb.com/bfs/album/24fd53812eb7eee0c6ff8b4aa6e165714f516724.png)
 
@@ -1933,7 +1931,7 @@ var backspaceCompare = function (s, t) {
 };
 ```
 
-## [821. 字符的最短距离](https://leetcode-cn.com/problems/shortest-distance-to-a-character/)
+## 821. 字符的最短距离
 
 ![image-20220214134829782](http://i0.hdslb.com/bfs/album/e2cb62cab17cca2fd0333b3cbebe332c96c41d68.png)
 
@@ -1954,7 +1952,7 @@ var shortestToChar = function (s, c) {
 };
 ```
 
-## [剑指 Offer 21. 调整数组顺序使奇数位于偶数前面](https://leetcode-cn.com/problems/diao-zheng-shu-zu-shun-xu-shi-qi-shu-wei-yu-ou-shu-qian-mian-lcof/)
+## 剑指 Offer 21. 调整数组顺序使奇数位于偶数前面
 
 ​ ![image-20220214141800065](http://i0.hdslb.com/bfs/album/5e5260f35cfb3334ba40acfb4180000066a680c9.png)
 
@@ -1976,7 +1974,7 @@ var exchange = function (nums) {
 };
 ```
 
-## [1417. 重新格式化字符串](https://leetcode-cn.com/problems/reformat-the-string/)
+## 1417. 重新格式化字符串
 
 ![image-20220215122059858](http://i0.hdslb.com/bfs/album/9dbe01050cc2ba98e606fa61be35bde2c017cd4d.png)
 
@@ -2005,7 +2003,7 @@ var reformat = function (s) {
 };
 ```
 
-## [151. 翻转字符串里的单词](https://leetcode-cn.com/problems/reverse-words-in-a-string/)
+## 151. 翻转字符串里的单词
 
 ![image-20220222151440118](http://i0.hdslb.com/bfs/album/545761f82038a17a591714cc97970b3411a6ede2.png)
 
@@ -2079,7 +2077,7 @@ var reverseWords = function (s) {
 };
 ```
 
-## [344. 反转字符串](https://leetcode-cn.com/problems/reverse-string/)
+## 344. 反转字符串
 
 ![image-20220222151909887](http://i0.hdslb.com/bfs/album/9b13de58f4fbf20b9411bd09ac1cd3980ffe1e21.png)
 
@@ -2095,7 +2093,7 @@ var reverseString = function (s) {
 };
 ```
 
-## [剑指 Offer 05. 替换空格](https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/)
+## 剑指 Offer 05. 替换空格
 
 ![image-20220222152144804](http://i0.hdslb.com/bfs/album/1e8208615791af39224de09bbcd4ff8dd99e400b.png)
 
@@ -2133,7 +2131,7 @@ var replaceSpace = function (s) {
 };
 ```
 
-## [1614. 括号的最大嵌套深度](https://leetcode-cn.com/problems/maximum-nesting-depth-of-the-parentheses/)
+## 1614. 括号的最大嵌套深度
 
 ![image-20220222225150307](http://i0.hdslb.com/bfs/album/6c2f47fe0acedc03dab489820663c1086a20ea6e.png)
 
@@ -2158,7 +2156,7 @@ var maxDepth = function (s) {
 };
 ```
 
-## [面试题 03.04. 化栈为队](https://leetcode-cn.com/problems/implement-queue-using-stacks-lcci/)
+## 面试题 03.04. 化栈为队
 
 ![image-20220223170006929](http://i0.hdslb.com/bfs/album/b22d44576220a3111b66dee8a0de4e448fb193c8.png)
 
@@ -2201,7 +2199,7 @@ MyQueue.prototype.empty = function () {
 };
 ```
 
-## [剑指 Offer 09. 用两个栈实现队列](https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/)
+## 剑指 Offer 09. 用两个栈实现队列
 
 ![image-20220223173857690](http://i0.hdslb.com/bfs/album/3931dcfac54741ec3e945d886ebbfb4269b070cd.png)
 
@@ -2239,7 +2237,7 @@ CQueue.prototype.deleteHead = function () {
 };
 ```
 
-## [225. 用队列实现栈](https://leetcode-cn.com/problems/implement-stack-using-queues/)
+## 225. 用队列实现栈
 
 ![image-20220224211439691](http://i0.hdslb.com/bfs/album/fbd19d5086b827c621953ce2d88a449e6e5c514c.png)
 
@@ -2303,7 +2301,7 @@ MyStack.prototype.empty = function () {
 };
 ```
 
-## [面试题 03.02. 栈的最小值](https://leetcode-cn.com/problems/min-stack-lcci/)
+## 面试题 03.02. 栈的最小值
 
 ![image-20220223204905217](http://i0.hdslb.com/bfs/album/9509fd9f579d01d634906580a1eb1a144aa58da0.png)
 
@@ -2313,7 +2311,7 @@ MyStack.prototype.empty = function () {
 
 **有两种压栈方式,各有特点**
 
-[题解思路](https://leetcode-cn.com/problems/min-stack-lcci/solution/lai-zi-zuo-shen-de-jie-ti-si-lu-wo-yi-yi-hyp4/)
+[题解路
 
 ```js
 var MinStack = function () {
@@ -2343,7 +2341,7 @@ MinStack.prototype.getMin = function () {
 };
 ```
 
-## [1021. 删除最外层的括号](https://leetcode-cn.com/problems/remove-outermost-parentheses/)
+## 1021. 删除最外层的括号
 
 ![image-20220224112448241](http://i0.hdslb.com/bfs/album/83bc445bc33cae05a12597cfc7a600e2eecbb9f6.png)
 
@@ -2388,11 +2386,11 @@ var removeOuterParentheses = function (s) {
 };
 ```
 
-## [20. 有效的括号](https://leetcode-cn.com/problems/valid-parentheses/)
+## 20. 有效的括号
 
 ![image-20220224203919550](http://i0.hdslb.com/bfs/album/e1a89ef11097f774762c35c18367938a1cfe7c80.png)
 
-[题解](https://leetcode-cn.com/problems/valid-parentheses/solution/dai-ma-sui-xiang-lu-dai-ni-gao-ding-zhan-x3xw/)
+[题解
 
 ```js
 var isValid = function (s) {
@@ -2415,7 +2413,7 @@ var isValid = function (s) {
 };
 ```
 
-## [1441. 用栈操作构建数组](https://leetcode-cn.com/problems/build-an-array-with-stack-operations/)
+## 1441. 用栈操作构建数组
 
 ![image-20220224211715412](http://i0.hdslb.com/bfs/album/03bf54c51a8d0170716d576bb51e6cca96f3a5ad.png)
 
@@ -2435,7 +2433,7 @@ var buildArray = function (target, n) {
 };
 ```
 
-## [1047. 删除字符串中的所有相邻重复项](https://leetcode-cn.com/problems/remove-all-adjacent-duplicates-in-string/)
+## 1047. 删除字符串中的所有相邻重复项
 
 ![image-20220224213954027](http://i0.hdslb.com/bfs/album/ae2e70c7ee37a6314a16c0a7295146d768158e39.png)
 
@@ -2453,7 +2451,7 @@ var removeDuplicates = function (s) {
 };
 ```
 
-## [150. 逆波兰表达式求值](https://leetcode-cn.com/problems/evaluate-reverse-polish-notation/)
+## 150. 逆波兰表达式求值
 
 ![image-20220224224336230](http://i0.hdslb.com/bfs/album/9f364afbe69dd73ab7230796edea3012a3cc94e8.png)
 
@@ -2481,7 +2479,7 @@ var evalRPN = function (tokens) {
 };
 ```
 
-## [682. 棒球比赛](https://leetcode-cn.com/problems/baseball-game/)
+## 682. 棒球比赛
 
 ![image-20220225120825650](http://i0.hdslb.com/bfs/album/4eaf9bbfe119650edcce46a3310a8a9fd9e0bdf5.png)
 
@@ -2500,7 +2498,7 @@ var calPoints = function (ops) {
 };
 ```
 
-## [1544. 整理字符串](https://leetcode-cn.com/problems/make-the-string-great/)
+## 1544. 整理字符串
 
 ![image-20220225181311462](http://i0.hdslb.com/bfs/album/aa2444224d94f24b8a8057c7b5a5f48db508f764.png)
 
@@ -2521,7 +2519,7 @@ var makeGood = function (s) {
 };
 ```
 
-## [2011. 执行操作后的变量值](https://leetcode-cn.com/problems/final-value-of-variable-after-performing-operations/)
+## 2011. 执行操作后的变量值
 
 ![image-20220226115241546](http://i0.hdslb.com/bfs/album/2340bbf277360d60f3cb32c1c604192aa3d49fec.png)
 
@@ -2532,7 +2530,7 @@ var finalValueAfterOperations = function (operations) {
 };
 ```
 
-## [2161. 根据给定数字划分数组](https://leetcode-cn.com/problems/partition-array-according-to-given-pivot/)
+## 2161. 根据给定数字划分数组
 
 ![image-20220226121401947](http://i0.hdslb.com/bfs/album/97e7a15ddca9f5149a830650cd565d5b543ee910.png)
 
@@ -2550,7 +2548,7 @@ var pivotArray = function (nums, pivot) {
 };
 ```
 
-## [1844. 将所有数字用字符替换](https://leetcode-cn.com/problems/replace-all-digits-with-characters/)
+## 1844. 将所有数字用字符替换
 
 ![image-20220226130309738](http://i0.hdslb.com/bfs/album/3feb3c683c43cac9b8b31fa12c184f5f99b4a2f2.png)
 
@@ -2563,7 +2561,7 @@ var replaceDigits = function (s) {
 };
 ```
 
-## [1002. 查找共用字符](https://leetcode-cn.com/problems/find-common-characters/)
+## 1002. 查找共用字符
 
 ![image-20220226203002817](http://i0.hdslb.com/bfs/album/0154fcadfca03e07a93d1780798f57bb5c92aa93.png)
 
@@ -2609,7 +2607,7 @@ var commonChars = function (words) {
 */
 ```
 
-## [242. 有效的字母异位词](https://leetcode-cn.com/problems/valid-anagram/)
+## 242. 有效的字母异位词
 
 ![image-20220226214727704](http://i0.hdslb.com/bfs/album/b667c7e82aa49bf77a6e29d7c01131137f769103.png)
 
@@ -2641,7 +2639,7 @@ var isAnagram = function (s, t) {
 };
 ```
 
-## [383. 赎金信](https://leetcode-cn.com/problems/ransom-note/)
+## 383. 赎金信
 
 ![image-20220226220944108](http://i0.hdslb.com/bfs/album/22f9930c08b3342d673575d849f8c9a3f1b988db.png)
 
@@ -2678,7 +2676,7 @@ var canConstruct = function (ransomNote, magazine) {
 };
 ```
 
-## [2181. 合并零之间的节点](https://leetcode-cn.com/problems/merge-nodes-in-between-zeros/)
+## 2181. 合并零之间的节点
 
 ![image-20220301204016933](http://i0.hdslb.com/bfs/album/e5bb43e2e9b8fed44cb825583deab8ff0913a4aa.png)
 
@@ -2743,7 +2741,7 @@ var mergeNodes = function (head) {
 };
 ```
 
-## [49. 字母异位词分组](https://leetcode-cn.com/problems/group-anagrams/)
+## 49. 字母异位词分组
 
 ![image-20220301204237163](http://i0.hdslb.com/bfs/album/4f905ccd22bb2c6cf474fc28c540d16684b3dcdd.png)
 
@@ -2766,7 +2764,7 @@ var groupAnagrams = function (strs) {
 };
 ```
 
-## [203. 移除链表元素](https://leetcode-cn.com/problems/remove-linked-list-elements/)
+## 203. 移除链表元素
 
 ![image-20220301204400881](http://i0.hdslb.com/bfs/album/cc2d0bf575ccd8721299f86fcb4ef2c1be9bdf1a.png)
 
@@ -2785,7 +2783,7 @@ var removeElements = function (head, val) {
 };
 ```
 
-## [1556. 千位分隔数](https://leetcode-cn.com/problems/thousand-separator/)
+## 1556. 千位分隔数
 
 ![image-20220301204556767](http://i0.hdslb.com/bfs/album/c1c15d49cd560320449873f85009f01711d7ee3e.png)
 
@@ -2811,7 +2809,7 @@ var thousandSeparator = function (n) {
 };
 ```
 
-## [876. 链表的中间结点](https://leetcode-cn.com/problems/middle-of-the-linked-list/)
+## 876. 链表的中间结点
 
 ![image-20220301213836954](http://i0.hdslb.com/bfs/album/d3324feb7ed8cdf9444bfe7c92bb036ba3f4453a.png)
 
@@ -2866,7 +2864,7 @@ let arr = [1, 2, 3, 4, 5, 6]
 */
 ```
 
-## [148. 排序链表](https://leetcode-cn.com/problems/sort-list/)
+## 148. 排序链表
 
 ![image-20220301222155123](http://i0.hdslb.com/bfs/album/7b2598a7fb2fddeae72c0d8e35168214883def05.png)
 
@@ -2891,7 +2889,7 @@ var sortList = function (head) {
 };
 ```
 
-## [234. 回文链表](https://leetcode-cn.com/problems/palindrome-linked-list/)
+## 234. 回文链表
 
 ![image-20220302202241686](http://i0.hdslb.com/bfs/album/90e603a27a0faf61f7f554d348224759c1db0a6b.png)
 
@@ -2912,7 +2910,7 @@ var isPalindrome = function (head) {
 };
 ```
 
-## [2. 两数相加](https://leetcode-cn.com/problems/add-two-numbers/)
+## 2. 两数相加
 
 ![image-20220303122039545](http://i0.hdslb.com/bfs/album/325bb690759564420424d69574b62116ef9d45ab.png)
 
@@ -2986,7 +2984,7 @@ var addTwoNumbers = function (l1, l2) {
 };
 ```
 
-## [24. 两两交换链表中的节点](https://leetcode-cn.com/problems/swap-nodes-in-pairs/)
+## 24. 两两交换链表中的节点
 
 ![image-20220303161133910](http://i0.hdslb.com/bfs/album/fdb11e09f14ac21df6323574ad3c26b9eeebe59c.png)
 
@@ -3020,7 +3018,7 @@ var swapPairs = function (head) {
 };
 ```
 
-## [1721. 交换链表中的节点](https://leetcode-cn.com/problems/swapping-nodes-in-a-linked-list/)
+## 1721. 交换链表中的节点
 
 ![image-20220303210400480](http://i0.hdslb.com/bfs/album/f008b7fd781d8b072cf084b405bb17f5f54c5a2b.png)
 
@@ -3058,9 +3056,9 @@ var swapNodes = function (head, k) {
 };
 ```
 
-[题解](https://leetcode-cn.com/problems/swapping-nodes-in-a-linked-list/solution/js-zui-xiang-xi-jie-da-kan-bu-hui-suan-w-y470/)
+[题解
 
-## [剑指 Offer 22. 链表中倒数第 k 个节点](https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof/)
+## 剑指 Offer 22. 链表中倒数第 k 个节点
 
 ![image-20220306203209634](http://i0.hdslb.com/bfs/album/dd49d343f06b8d277e4c116b9e7e17f35eb7dc9c.png)
 
@@ -3102,7 +3100,7 @@ var getKthFromEnd = function (head, k) {
 };
 ```
 
-## [21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/)
+## 21. 合并两个有序链表
 
 ![image-20220306215648728](http://i0.hdslb.com/bfs/album/c9dfc8d2fd7f2c754521dff6273ff23771c57cf7.png)
 
@@ -3171,7 +3169,7 @@ var mergeTwoLists = function (list1, list2) {
 
 <<< @/snippets/LeetCode/21.合并两个有序链表.js
 
-## [61. 旋转链表](https://leetcode-cn.com/problems/rotate-list/)
+## 61. 旋转链表
 
 ![image-20220308210626200](http://i0.hdslb.com/bfs/album/e6362b0e6232656463b006ce370915b8cec6a714.png)
 
@@ -3243,7 +3241,7 @@ var rotateRight = function (head, k) {
 };
 ```
 
-## [面试题 02.05. 链表求和](https://leetcode-cn.com/problems/sum-lists-lcci/)
+## 面试题 02.05. 链表求和
 
 ![image-20220308210947990](http://i0.hdslb.com/bfs/album/aa4f5cc7076b9a2eef770a173498c10c95272c3c.png)
 
@@ -3315,13 +3313,13 @@ var addTwoNumbers = function (l1, l2) {
 };
 ```
 
-## [24. 两两交换链表中的节点](https://leetcode-cn.com/problems/swap-nodes-in-pairs/)
+## 24. 两两交换链表中的节点
 
 ![image-20220308211156331](http://i0.hdslb.com/bfs/album/4fea5b522b3d605a66f647303b6937f340817ae5.png)
 
 <<< @/snippets/LeetCode/24.两两交换链表中的节点.js
 
-## [234. 回文链表](https://leetcode-cn.com/problems/palindrome-linked-list/)
+## 234. 回文链表
 
 ![image-20220308211424806](http://i0.hdslb.com/bfs/album/56f72f7b482f5db1ef3001bf422af129835dc4bf.png)
 
@@ -3362,7 +3360,7 @@ var isPalindrome = function (head) {
 // @lc code=end
 ```
 
-## [143. 重排链表](https://leetcode-cn.com/problems/reorder-list/)
+## 143. 重排链表
 
 ![image-20220308211545936](http://i0.hdslb.com/bfs/album/a6fbdb55b679c6a281a115d797f2b8c325e08281.png)
 
@@ -3406,7 +3404,7 @@ var reorderList = function (head) {
 };
 ```
 
-## [382. 链表随机节点](https://leetcode-cn.com/problems/linked-list-random-node/)
+## 382. 链表随机节点
 
 ![image-20220317134007446](http://i0.hdslb.com/bfs/album/50ed49d7a0172784c61282b1d1412151471d21ae.png)
 
@@ -3444,7 +3442,7 @@ Solution.prototype.getRandom = function () {
 };
 ```
 
-## [2068. 检查两个字符串是否几乎相等](https://leetcode-cn.com/problems/check-whether-two-strings-are-almost-equivalent/)
+## 2068. 检查两个字符串是否几乎相等
 
 ![image-20220317221906322](http://i0.hdslb.com/bfs/album/12bac65330fb0c721ed33ab5893506ac43f5fe03.png)
 
@@ -3475,7 +3473,7 @@ var checkAlmostEquivalent = function (word1, word2) {
 };
 ```
 
-## [451. 根据字符出现频率排序](https://leetcode-cn.com/problems/sort-characters-by-frequency/)
+## 451. 根据字符出现频率排序
 
 ![image-20220317222028263](http://i0.hdslb.com/bfs/album/517ba1ccc49dcfb14e00df30bbd0500bd5d62834.png)
 
@@ -3504,7 +3502,7 @@ var frequencySort = function (s) {
 // @lc code=end
 ```
 
-## [面试题 16.02. 单词频率](https://leetcode-cn.com/problems/words-frequency-lcci/)
+## 面试题 16.02. 单词频率
 
 ![image-20220317222125540](http://i0.hdslb.com/bfs/album/8c77710f8598093e6525c49d21f7ef135c83c631.png)
 
@@ -3535,7 +3533,7 @@ WordsFrequency.prototype.get = function (word) {
  */
 ```
 
-## [705. 设计哈希集合](https://leetcode-cn.com/problems/design-hashset/)
+## 705. 设计哈希集合
 
 ![image-20220317222228868](http://i0.hdslb.com/bfs/album/3df5ccddc00dfbb89e820783bf2079d424c4be18.png)
 
@@ -3634,7 +3632,7 @@ MyHashSet.prototype.contains = function (key) {
 // @lc code=end
 ```
 
-## [706. 设计哈希映射](https://leetcode-cn.com/problems/design-hashmap/)
+## 706. 设计哈希映射
 
 ![image-20220317222322484](http://i0.hdslb.com/bfs/album/fe2c68465e4c045eb024e46e7f5ba67a72ac3e5f.png)
 
@@ -3702,7 +3700,7 @@ MyHashMap.prototype.remove = function (key) {
 // @lc code=end
 ```
 
-## [345. 反转字符串中的元音字母](https://leetcode-cn.com/problems/reverse-vowels-of-a-string/)
+## 345. 反转字符串中的元音字母
 
 ![image-20220317222453036](http://i0.hdslb.com/bfs/album/3ba4036489fcd002a749f099489bd148e9a346e2.png)
 
@@ -3757,7 +3755,7 @@ var reverseVowels = function (s) {
 console.log(reverseVowels("hello"));
 ```
 
-## [面试题 50. 第一个只出现一次的字符](https://leetcode-cn.com/problems/di-yi-ge-zhi-chu-xian-yi-ci-de-zi-fu-lcof/)
+## 面试题 50. 第一个只出现一次的字符
 
 ![image-20220319151004555](http://i0.hdslb.com/bfs/album/ffc68bc601e24ee83d1eb7f69c1430ad876b8e00.png)
 
@@ -3778,7 +3776,7 @@ var firstUniqChar = function (s) {
 };
 ```
 
-## [1704. 判断字符串的两半是否相似](https://leetcode-cn.com/problems/determine-if-string-halves-are-alike/)
+## 1704. 判断字符串的两半是否相似
 
 ![image-20220319151100998](http://i0.hdslb.com/bfs/album/587ed53ecd20ffb069ba723dc1ae2f2aa5de8ced.png)
 
@@ -3808,7 +3806,7 @@ console.log(halvesAreAlike("book"));
 // @lc code=end
 ```
 
-## [1189. “气球” 的最大数量](https://leetcode-cn.com/problems/maximum-number-of-balloons/)
+## 1189. “气球” 的最大数量
 
 ![image-20220319151159883](http://i0.hdslb.com/bfs/album/db67f986a786c6b197b86d43f6ff8e8f84ea32ea.png)
 
@@ -3839,7 +3837,7 @@ var maxNumberOfBalloons = function (text) {
 // @lc code=end
 ```
 
-## [2150. 找出数组中的所有孤独数字](https://leetcode-cn.com/problems/find-all-lonely-numbers-in-the-array/)
+## 2150. 找出数组中的所有孤独数字
 
 ![image-20220319151249001](http://i0.hdslb.com/bfs/album/945e75a56337590354d0616f0cb46186726733a8.png)
 
@@ -3871,7 +3869,7 @@ var findLonely = function (nums) {
 // @lc code=end
 ```
 
-## [2085. 统计出现过一次的公共字符串](https://leetcode-cn.com/problems/count-common-words-with-one-occurrence/)
+## 2085. 统计出现过一次的公共字符串
 
 ![image-20220319151356046](http://i0.hdslb.com/bfs/album/65642abff68f349bf4b4b9a4c5bcd73c60718c1a.png)
 
@@ -3907,7 +3905,7 @@ var countWords = function (words1, words2) {
 // @lc code=end
 ```
 
-## [1512. 好数对的数目](https://leetcode-cn.com/problems/number-of-good-pairs/)
+## 1512. 好数对的数目
 
 ![image-20220319151509382](http://i0.hdslb.com/bfs/album/1e2bbb3feb287f949a33f9a7b62f926253653292.png)
 
@@ -3939,13 +3937,13 @@ var numIdenticalPairs = function (nums) {
 // @lc code=end
 ```
 
-## [1394. 找出数组中的幸运数](https://leetcode-cn.com/problems/find-lucky-integer-in-an-array/)
+## 1394. 找出数组中的幸运数
 
 ![image-20220319151603345](http://i0.hdslb.com/bfs/album/36330784368adf4081f6dcb0fdab74bd3d5187a7.png)
 
 <<< @/snippets/LeetCode/1394.找出数组中的幸运数.js
 
-## [347. 前 K 个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/)
+## 347. 前 K 个高频元素
 
 ![image-20220319151638336](http://i0.hdslb.com/bfs/album/138d446cdc3075deb41b6e4a3ce4a5c315fd7bd8.png)
 
@@ -3976,7 +3974,7 @@ console.log(topKFrequent([1, 1, 1, 2, 2, 3], 2));
 // @lc code=end
 ```
 
-## [692. 前 K 个高频单词](https://leetcode-cn.com/problems/top-k-frequent-words/)
+## 692. 前 K 个高频单词
 
 ![image-20220319151754306](http://i0.hdslb.com/bfs/album/6b2d63387bf66c9036d6260be19c2af1a07c4c19.png)
 
@@ -4009,7 +4007,7 @@ var topKFrequent = function (words, k) {
 // @lc code=end
 ```
 
-## [819. 最常见的单词](https://leetcode-cn.com/problems/most-common-word/)
+## 819. 最常见的单词
 
 ![image-20220319151902362](http://i0.hdslb.com/bfs/album/124af282c4533a564d0e58a102575800299db623.png)
 
@@ -4040,7 +4038,7 @@ var mostCommonWord = function (paragraph, banned) {
 // @lc code=end
 ```
 
-## [1394. 找出数组中的幸运数](https://leetcode-cn.com/problems/find-lucky-integer-in-an-array/)
+## 1394. 找出数组中的幸运数
 
 ![image-20220319151947821](http://i0.hdslb.com/bfs/album/466e2c8013700b687b95a15b7a961ba284388a64.png)
 

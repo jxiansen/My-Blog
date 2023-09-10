@@ -151,7 +151,7 @@ and the repository exists.
 1. 客户端生成公钥
 
 ``` sh
-ssh-keygen -t res -C "自己的邮箱地址"
+ssh-keygen -t rsa -C "自己的邮箱地址"
 ```
 
 输入后一路回车，就会生成新的 `ssh key` 文件。
@@ -167,6 +167,15 @@ ssh-keygen -t res -C "自己的邮箱地址"
 ## 常用`git`命令
 
 ![](http://i0.hdslb.com/bfs/album/484201019fa90a20006838c06da18b19d34ca0f0.jpg)
+
+配置用户名和邮箱
+
+```sh
+git config --global user.name "your username"
+git config --global user.email "your email"
+```
+
+
 
 ## `git`命令思维导图
 

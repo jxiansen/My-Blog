@@ -1,27 +1,25 @@
-import docTools, { defineConfig } from "@modern-js/doc-tools";
+import { defineConfig } from "rspress/config";
 import path from "path";
 
 export default defineConfig({
-  doc: {
-    root: path.join(__dirname, "docs"),
-    outDir: "build",
-    themeConfig: {
-      nav: getNav(),
-      sidebar: {
-        "/": getSidebar(),
-      },
-    },
-    markdown: { experimentalMdxRs: true },
+  root: path.join(__dirname, "docs"),
+  outDir: "build",
 
-    builderConfig: {
-      html: {
-        tags: [
-          { tag: "meta", attrs: { name: "referrer", content: "no-referrer" } },
-        ],
-      },
+  themeConfig: {
+    nav: getNav(),
+    sidebar: {
+      "/": getSidebar(),
     },
   },
-  plugins: [docTools()],
+  markdown: { experimentalMdxRs: true },
+
+  builderConfig: {
+    html: {
+      tags: [
+        { tag: "meta", attrs: { name: "referrer", content: "no-referrer" } },
+      ],
+    },
+  },
 });
 
 function getSidebar() {
@@ -61,6 +59,7 @@ function getSidebar() {
         { text: "正则表达式入门", link: "/study/regex" },
         { text: "Linux学习", link: "/study/linux" },
         { text: "vitepress", link: "/study/vitepress-study" },
+        { text: "vite", link: "/study/vite" },
         { text: "docker入门", link: "/study/docker" },
         { text: "MySQL", link: "/study/mysql" },
         { text: "Caddy", link: "/study/caddy" },

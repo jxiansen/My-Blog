@@ -1,11 +1,13 @@
 {
 	"scripts": {
-		"dev": "modern dev",
-		"build": "modern build",
-		"preview": "modern preview"
+		"dev": "rspress dev",
+		"build": "rspress build",
+		"preview": "rspress preview"
+	},
+	"dependencies": {
+		"rspress": "^0.1.1"
 	},
 	"devDependencies": {
-		"@modern-js/doc-tools": "^2.32.1",
 		"typescript": "^5.2.2"
 	}
 }

@@ -3,15 +3,16 @@ import path from "path";
 
 export default defineConfig({
   root: path.join(__dirname, "docs"),
-  outDir: "build",
+  outDir: "dist",
 
   themeConfig: {
-    nav: getNav(),
+    nav: getNavbarConf(),
     sidebar: {
-      "/": getSidebar(),
+      "/": getSidebarConf(),
     },
+    // enableContentAnimation: true,
   },
-  markdown: { experimentalMdxRs: true },
+  markdown: { experimentalMdxRs: false },
 
   builderConfig: {
     html: {
@@ -22,7 +23,7 @@ export default defineConfig({
   },
 });
 
-function getSidebar() {
+function getSidebarConf() {
   return [
     {
       text: "基础知识",
@@ -102,10 +103,8 @@ function getSidebar() {
   ];
 }
 
-function getNav() {
+function getNavbarConf() {
   return [
-    { text: "Guide", link: "/study/nowcoder", activeMatch: "/study/" },
-    { text: "Configs", link: "/hub/fontend", activeMatch: "/hub/" },
     {
       text: "vercel",
       link: "https://vercel.com/jxiansen/my-blog",

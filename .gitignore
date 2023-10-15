@@ -48,3 +48,5 @@ dist-ssr
 debug.log
 img
 cache
+doc_build
+build

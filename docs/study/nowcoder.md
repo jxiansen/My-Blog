@@ -8,45 +8,45 @@
 
 ![image-20211228152644970](http://i0.hdslb.com/bfs/album/cc4f52cf15e5e8ef4e25fb3c2d508d9417d9e665.png)
 
-``` js
+```js
 function _typeof(value) {
-    return typeof(value)
+  return typeof value;
 }
 ```
 
-### FED22数据类型转换
+### FED22 数据类型转换
 
 ![image-20211228161202765](http://i0.hdslb.com/bfs/album/cb58944df81daf0ae341d9178871569f1a039a9d.png)
 
-``` js
+```js
 // ES6模板字符串语法
-function _splice(left,right) {
-    return `${left}${right}`
+function _splice(left, right) {
+  return `${left}${right}`;
 }
 
 // 简单的字符串拼接
-function _splice(left,right) {
-    return left.toString() + right.toString()
+function _splice(left, right) {
+  return left.toString() + right.toString();
 }
 ```
 
 ## 运算符
 
-### FED23阶乘 
+### FED23 阶乘
 
 ![image-20211228164633698](http://i0.hdslb.com/bfs/album/f6f7845438868470be371256282feb182879920d.png)
 
-``` js
+```js
 function _factorial(number) {
   let res = 1;
-  for(let i = 1; i <= number; i++) {
-    res *= i
+  for (let i = 1; i <= number; i++) {
+    res *= i;
   }
   return res;
 }
 ```
 
-### FED24绝对值
+### FED24 绝对值
 
 ![image-20211228164938801](http://i0.hdslb.com/bfs/album/da35d62489b6d2b7b64bd8fe236e701ed1d270ca.png)
 
@@ -55,7 +55,7 @@ function _factorial(number) {
       function _abs(number) {
           return number >= 0 ? number : -number;
       }
-      
+
       // Math.abs()
       function _abs(number) {
           return Math.abs(number)
@@ -66,19 +66,19 @@ function _factorial(number) {
 
 ![image-20211228171039916](http://i0.hdslb.com/bfs/album/746dcc283d888c315955d66fe23d173b9757ca58.png)
 
-``` js
+```js
 // 简单函数写法
-function _pow(number,power) {
+function _pow(number, power) {
   let res = 1;
-  while(power > 0) {
+  while (power > 0) {
     res *= number;
-    power--
+    power--;
   }
-  return res
+  return res;
 }
 
 // 直接调用库
-function _pow(number,power) {
+function _pow(number, power) {
   return number ** power;
 }
 ```
@@ -87,7 +87,7 @@ function _pow(number,power) {
 
 ![image-20211228171333460](http://i0.hdslb.com/bfs/album/df1f466ed2b5235d30ecf9ac238046878381b53c.png)
 
-``` js
+```js
 function _sqrt(number) {
   return Math.sqrt(number);
 }
@@ -97,9 +97,9 @@ function _sqrt(number) {
 
 ![image-20211228171456725](http://i0.hdslb.com/bfs/album/3d8cb2fe6961bd3a36fdc9812252dcac08f7d3f7.png)
 
-``` js
+```js
 function _remainder(value) {
-    return value % 2;
+  return value % 2;
 }
 ```
 
@@ -107,19 +107,20 @@ function _remainder(value) {
 
 ![image-20211228172230608](http://i0.hdslb.com/bfs/album/a11ae31f15cf032a54b3a4324d9d4ec39285c018.png)
 
-``` js
+```js
 // 遍历数组累加
 function sum(arr) {
   let sum = 0;
-  arr.forEach(item => sum += item)
+  arr.forEach((item) => (sum += item));
   return sum;
 }
 
 // ES6中的reduce()求和
 function sum(arr) {
-  return arr.reduce((acc,cur) => acc + cur);
+  return arr.reduce((acc, cur) => acc + cur);
 }
 ```
+
 ### FED69 完全等同
 
 ![image-20210726143657770](http://i0.hdslb.com/bfs/album/ee2974b69b46d720d08f0dcb86ac6b8e09d8e6b7.png)
@@ -154,18 +155,20 @@ function add(a, b) {
 //且运算规则:如果a的布尔值是true ===> 返回b的值
 //				 如果a的布尔值是false===> 直接返回a的值,且不再对第二个运算子求值
 ```
+
 ### FED72 字符串字符统计
 
 ![image-20211228225233380](http://i0.hdslb.com/bfs/album/4b9127061cbce6c8bb9349caef3ff7098384c08a.png)
 
-``` js
+```js
 function count(str) {
   let obj = {};
-  let arr = [...str].filter(i => i !== ' ');    // 字符串打散成数组并过滤掉空格
-  for(let item of arr) {      // 遍历数组
-    item in obj ? obj[item]++ : obj[item] = 1;      // 如果空对象中已经有属性,计数加一;没有属性添加这个属性值为一
+  let arr = [...str].filter((i) => i !== " "); // 字符串打散成数组并过滤掉空格
+  for (let item of arr) {
+    // 遍历数组
+    item in obj ? obj[item]++ : (obj[item] = 1); // 如果空对象中已经有属性,计数加一;没有属性添加这个属性值为一
   }
-  return obj
+  return obj;
 }
 ```
 
@@ -175,7 +178,7 @@ function count(str) {
 
 ![image-20211228221947130](http://i0.hdslb.com/bfs/album/cfc52a6ff8c446d7514e75917d1db555471abb50.png)
 
-``` js
+```js
 function _getday(value) {
   switch (value) {
     case 1:
@@ -196,18 +199,16 @@ function _getday(value) {
 }
 ```
 
-
-
 ## 内置对象
 
 ### FED29 从大到小排序
 
 ![image-20211228181454502](http://i0.hdslb.com/bfs/album/3ae99523f75b1ae2de418e74524c93f428327071.png)
 
-``` js
+```js
 // 直接使用内置的排序函数
 function _sort(array) {
-	return array.sort((a,b) => b - a);
+  return array.sort((a, b) => b - a);
 }
 ```
 
@@ -215,9 +216,9 @@ function _sort(array) {
 
 ![image-20211228181617459](http://i0.hdslb.com/bfs/album/c6860f28af6fac6f640248a4c7e8bcdfc37834a5.png)
 
-``` js
+```js
 function _touppercase(string) {
-	return string.toUpperCase()
+  return string.toUpperCase();
 }
 ```
 
@@ -225,14 +226,14 @@ function _touppercase(string) {
 
 ![image-20211228182212451](http://i0.hdslb.com/bfs/album/508f288822fd34136518e806989fb962d24f04d4.png)
 
-``` js
+```js
 // 使用for...in... 遍历对象的键,数组也是一种对象
 function _keys(object) {
-  let arr = []
-  for(let key in object) {
-    arr.push(key)
+  let arr = [];
+  for (let key in object) {
+    arr.push(key);
   }
-  return arr
+  return arr;
 }
 ```
 
@@ -240,9 +241,9 @@ function _keys(object) {
 
 ![image-20211228182937433](http://i0.hdslb.com/bfs/album/b25c3e08e3f84c14c47bc29040a824138d836782.png)
 
-``` js
+```js
 function _numbertoobject(number) {
-	return {number}    
+  return { number };
 }
 ```
 
@@ -250,9 +251,9 @@ function _numbertoobject(number) {
 
 ![image-20211228183114822](http://i0.hdslb.com/bfs/album/af6555d4a17c26d8e9878511e1ad546c6c4a61bb.png)
 
-``` js
+```js
 function _stringtoobject(string) {
-    return {string}
+  return { string };
 }
 ```
 
@@ -260,9 +261,9 @@ function _stringtoobject(string) {
 
 ![image-20211228183245600](http://i0.hdslb.com/bfs/album/b37201fcd2ac1f82d62c25dfe23210f2f7f45ade.png)
 
-``` js
+```js
 function _trim(string) {
-	return string.trim();			// 去除字符串两端的空格
+  return string.trim(); // 去除字符串两端的空格
 }
 ```
 
@@ -270,13 +271,13 @@ function _trim(string) {
 
 ![image-20211228205119898](http://i0.hdslb.com/bfs/album/937a1675e47a2730630106335fa69a62d045fd31.png)
 
-``` js
+```js
 function _date(number) {
   let date = new Date(number);
   let year = date.getFullYear();
   let month = date.getMonth() + 1;
   let day = date.getDate();
-  return `${year}-${month}-${day}`
+  return `${year}-${month}-${day}`;
 }
 ```
 
@@ -284,7 +285,7 @@ function _date(number) {
 
 ![image-20211228203315106](http://i0.hdslb.com/bfs/album/82a8c5245e98195483b312c017e9665ea592a6aa.png)
 
-``` js
+```js
 // 可以使用 ~~ 代替 Math.floor()
 function _int(value) {
   return ~~value;
@@ -295,36 +296,36 @@ function _int(value) {
 
 ![image-20211228205608236](http://i0.hdslb.com/bfs/album/518cc4f2bd28ca3f5cb85880117fbc55c73d701f.png)
 
-  ``` js
-  // 使用自带的数组反转函数
-  function _reverse(array) {
-  	return array.reverse();
+```js
+// 使用自带的数组反转函数
+function _reverse(array) {
+  return array.reverse();
+}
+
+// 从后往前遍历数组
+function _reverse(array) {
+  let res = [];
+  for (let i = array.length - 1; i >= 0; i--) {
+    res.push(array[i]);
   }
-  
-  // 从后往前遍历数组
-  function _reverse(array) {
-    let res = [];
-    for(let i = array.length - 1; i >= 0; i--) {
-      res.push(array[i])
-    }
-    return res;
-  }
-  ```
+  return res;
+}
+```
 
 ### FED38 数组转字符串
 
 ![image-20211228205910420](http://i0.hdslb.com/bfs/album/4db5a1080277abbe32674602a08a03c41b5faa43.png)
 
-``` js
+```js
 // 直接使用自带的join() 函数
 function _join(array) {
-  return array.join('');
+  return array.join("");
 }
 
 // 遍历拼接数组
 function _join(array) {
-  let res = '';
-  array.forEach(item => res += item);
+  let res = "";
+  array.forEach((item) => (res += item));
   return res;
 }
 ```
@@ -333,7 +334,7 @@ function _join(array) {
 
 ![image-20211228210309084](http://i0.hdslb.com/bfs/album/20c68f1f4eed88b1c3ed176fca1d2a21af0dd545.png)
 
-``` js
+```js
 // 自带的函数方法
 function _max(array) {
   return Math.max(...array);
@@ -342,11 +343,11 @@ function _max(array) {
 // 遍历数组比较
 function _max(array) {
   let max = array[0];
-  array.forEach(i => {
-    if(i > max) {
+  array.forEach((i) => {
+    if (i > max) {
       max = i;
     }
-  })
+  });
   return max;
 }
 ```
@@ -355,10 +356,10 @@ function _max(array) {
 
 ![image-20211228213620500](http://i0.hdslb.com/bfs/album/e9c4d320b8c0597935d8250d127d8e8e01f8dd53.png)
 
-``` js
+```js
 // 字符串也可以使用...操作符
 function _search(string) {
-	return [...string].map(i => parseInt(i)).some(i => i >= 0 && i <9);
+  return [...string].map((i) => parseInt(i)).some((i) => i >= 0 && i < 9);
 }
 ```
 
@@ -366,31 +367,31 @@ function _search(string) {
 
 ![image-20211228213926761](http://i0.hdslb.com/bfs/album/a22b70f1ad00965c5e2509904d129596cf286179.png)
 
-``` js
+```js
 // ES6写法
-function _unshift(array,value) {
-  return [value,...array]
+function _unshift(array, value) {
+  return [value, ...array];
 }
 
 // 直接插入到数组头写法
-function _unshift(array,value) {
+function _unshift(array, value) {
   array.unshift(value);
   return array;
 }
 ```
 
-### FED42 尾部插入元素 
+### FED42 尾部插入元素
 
 ![image-20211228214502819](http://i0.hdslb.com/bfs/album/f7b7190f3d2c003475dd71117ffa6e19565d6b35.png)
 
-``` js
+```js
 // ES6写法
-function _push(array,value) {
-  return [...array,value]
+function _push(array, value) {
+  return [...array, value];
 }
 
 // 直接push()写法
-function _push(array,value) {
+function _push(array, value) {
   array.push(value);
   return array;
 }
@@ -400,9 +401,9 @@ function _push(array,value) {
 
 ![image-20211228214821753](http://i0.hdslb.com/bfs/album/837111794a973a979b92bfe5ad44bcae7a3c10fa.png)
 
-``` js
+```js
 // indexOf() 方法
-function _indexof(array,value) {
+function _indexof(array, value) {
   return array.indexOf(value);
 }
 
@@ -410,10 +411,10 @@ function _indexof(array,value) {
 function _indexof(array, value) {
   for (let i of array) {
     if (array[i] == value) {
-      return i
+      return i;
     }
   }
-  return -1
+  return -1;
 }
 ```
 
@@ -421,7 +422,7 @@ function _indexof(array, value) {
 
 ![image-20211228215525453](http://i0.hdslb.com/bfs/album/ce13390cc6e5d278419d031db3cf926e1b7f110b.png)
 
-``` js
+```js
 function _floor(number) {
   return ~~number;
 }
@@ -431,10 +432,10 @@ function _floor(number) {
 
 ![image-20211228220336557](http://i0.hdslb.com/bfs/album/120483a91cc54549d10846dc1d7c3a329db20f2b.png)
 
-``` js
+```js
 function _reverse(number) {
-    let res = parseInt(Math.abs(number).toString().split('').reverse().join(''));
-    return number >= 0 ? res : res * -1;
+  let res = parseInt(Math.abs(number).toString().split("").reverse().join(""));
+  return number >= 0 ? res : res * -1;
 }
 ```
 
@@ -442,7 +443,7 @@ function _reverse(number) {
 
 ![image-20211229140329167](http://i0.hdslb.com/bfs/album/b650020ead78c384f083b8506ae882cfbb6efca1.png)
 
-``` js
+```js
 // 直接循环遍历字符串
 function _search(string, value) {
   for (let i = 0; i <= string.length - 1; i++) {
@@ -454,8 +455,8 @@ function _search(string, value) {
 }
 
 // 字符串打散成为数组操作
-function _search(string,value) {
-	return [...string].includes(value)
+function _search(string, value) {
+  return [...string].includes(value);
 }
 
 // String.indexOf()返回调用它的String对象中第一次出现的指定值的索引
@@ -464,25 +465,25 @@ function _search(string, value) {
 }
 ```
 
-### FED57移除数组中的元素
+### FED57 移除数组中的元素
 
 ![image-20211228172822096](http://i0.hdslb.com/bfs/album/939b0a29393a1f751a565eeebd5ad9b914dbf5a6.png)
 
-``` js
+```js
 // 遍历数组,找出其中不是目标的值
 function remove(arr, item) {
   let res = [];
-  arr.forEach(i => {
-    if(i !== item) {
-      res.push(i)
+  arr.forEach((i) => {
+    if (i !== item) {
+      res.push(i);
     }
-  })
-  return res
+  });
+  return res;
 }
 
 // 直接使用ES6中的filter( )过滤函数
 function remove(arr, item) {
-  return arr.filter(i => i !== item);
+  return arr.filter((i) => i !== item);
 }
 ```
 
@@ -493,12 +494,12 @@ function remove(arr, item) {
 ```js
 // 从后往前遍历数组!,遇到相等的就直接切掉当前数组
 function removeWithoutCopy(arr, item) {
-  for(let i = arr.length - 1; i >= 0; i--) {
-    if(arr[i] == item) {
-      arr.splice(i,1)
+  for (let i = arr.length - 1; i >= 0; i--) {
+    if (arr[i] == item) {
+      arr.splice(i, 1);
     }
   }
-  return arr
+  return arr;
 }
 ```
 
@@ -658,22 +659,22 @@ function square(arr) {
 
 // forEach():会修改原来的数组  ; map():得到一个新数组并返回
 ```
+
 ### FED66 查找元素位置
 
 ![image-20211228175337597](http://i0.hdslb.com/bfs/album/b45a5cae2e38612ef8320bb6f235640241d3a075.png)
 
-``` js
+```js
 function findAllOccurrences(arr, target) {
-  let res = []
-  arr.forEach((item,index) => {
-    if(target == item) {
-      res.push(index)
+  let res = [];
+  arr.forEach((item, index) => {
+    if (target == item) {
+      res.push(index);
     }
-  })
+  });
   return res;
 }
 ```
-
 
 ### FED68 正确的使用 `parseInt`
 
@@ -698,30 +699,24 @@ function parse2Int(num) {
 
 ![image-20211229141126126](http://i0.hdslb.com/bfs/album/04c6a47f2cbb74f8a455a0b9c7aba73ea6c43f6e.png)
 
-``` js
+```js
 // 浏览器函数在调用的时候,会传递一个类数组对象参数: arguments.
 function getArguments(a, b, c) {
-  return [...arguments];			// 展开运算符将类数组对象转换成数组.
+  return [...arguments]; // 展开运算符将类数组对象转换成数组.
 }
 ```
 
 ## this
 
-### FED48 this指向
+### FED48 this 指向
 
 ![image-20211229143912059](http://i0.hdslb.com/bfs/album/beaaade738d9fc04c827c90ca695e497a3a16437.png)
 
-``` js
+```js
+
 ```
 
-
-
-
-
-
-
-
-###        
+###
 
 ### 20.添加元素
 
@@ -784,7 +779,6 @@ function duplicates(arr) {
   return tmp;
 }
 ```
-
 
 ### 查找数组元素
 
@@ -879,8 +873,6 @@ function functions(flag) {
   return flag ? "a" : "b";
 }
 ```
-
-
 
 ### 计时器
 
@@ -1118,8 +1110,6 @@ function fibonacci(n) {
 }
 ```
 
-
-
 ### 使用 arguments
 
 ![image-20210901140106457](http://i0.hdslb.com/bfs/album/9c43d0889c659ae963d86c0e36b9a2e3ac3a8790.png)
@@ -1210,16 +1200,16 @@ function strLength(s, bUnicode255For1) {
 
 ### JS1 直角三角形
 
-​      ![image-20220130102542119](http://i0.hdslb.com/bfs/album/9219aa230b8369cd0e384ecf88634630e1d7cdf9.png)
+​ ![image-20220130102542119](http://i0.hdslb.com/bfs/album/9219aa230b8369cd0e384ecf88634630e1d7cdf9.png)
 
-``` js
-var triangle = document.querySelector('.triangle');
-let str = ''
-for(let i = 0; i <= 3; i++) {
-    for(let j = 0; j < i; j++) {
-        str += '*'
-    }
-    str += '<br/>'
+```js
+var triangle = document.querySelector(".triangle");
+let str = "";
+for (let i = 0; i <= 3; i++) {
+  for (let j = 0; j < i; j++) {
+    str += "*";
+  }
+  str += "<br/>";
 }
 triangle.innerHTML = str;
 ```
@@ -1228,61 +1218,53 @@ triangle.innerHTML = str;
 
 ![image-20220130102912401](http://i0.hdslb.com/bfs/album/592506e911f8dcd06f946500de8875170750162c.png)
 
-``` js
+```js
 const _createArray = (number) => {
-    return new Array(number).fill(number)
-}
+  return new Array(number).fill(number);
+};
 ```
 
 ### JS7 无重复数组
 
 ![image-20220130104617651](http://i0.hdslb.com/bfs/album/0458d557f3c7fb3790217158131b7fec32d8b752.png)
 
-``` js
+```js
 const _getUniqueNums = (start, end, n) => {
-  var res = [], i = n;
+  var res = [],
+    i = n;
   var randomNum = (start, end) => ~~(Math.random() * (end - start + 1)) + start;
   while (n) {
-    res.push(randomNum(start, end))
-    n--
+    res.push(randomNum(start, end));
+    n--;
   }
-  return res
-}
+  return res;
+};
 ```
 
 ## JS9 新数组
 
 ![image-20220130105926868](http://i0.hdslb.com/bfs/album/69b01c723e3f6e94b9f795c18bed266cb3a37dd6.png)
 
-``` js
+```js
 const _delete = (array, index) => {
   let res = [];
   for (let item of array) {
     if (item === array[index]) continue;
-    res.push(item)
+    res.push(item);
   }
-  return res
-}
+  return res;
+};
 ```
 
 ### JS10 计数器
 
 ![image-20220130110621411](http://i0.hdslb.com/bfs/album/2077646f31459c483bdcfed30fe2050ca1a1e1c4.png)
 
-``` js
+```js
 const closure = () => {
   let count = 1;
   return function () {
     return count++;
-  }
-}
+  };
+};
 ```
-
-
-
-
-
-
-
-
-

@@ -75,7 +75,7 @@ ln -s /usr/local/bin/Node.js/bin/npx /usr/bin/npx
 
 ### wsl安装产生的错误
 
-我的`WSL` `debian` 安装到这一步的时候一直报错，需要先去终端中关闭 `wsl` 再重启一下,就配置好了
+xxxxxxxxxx deb http://mirrors.aliyun.com/debian/ bullseye main non-free contribdeb-src http://mirrors.aliyun.com/debian/ bullseye main non-free contribdeb http://mirrors.aliyun.com/debian-security/ bullseye-security maindeb-src http://mirrors.aliyun.com/debian-security/ bullseye-security maindeb http://mirrors.aliyun.com/debian/ bullseye-updates main non-free contribdeb-src http://mirrors.aliyun.com/debian/ bullseye-updates main non-free contribdeb http://mirrors.aliyun.com/debian/ bullseye-backports main non-free contribdeb-src http://mirrors.aliyun.com/debian/ bullseye-backports main non-free contribsh
 
 ``` sh
 wsl --shutdown

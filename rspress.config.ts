@@ -37,6 +37,7 @@ function getSidebarConf() {
         { text: "前端面试题", link: "/study/font-end interview" },
       ],
     },
+
     {
       text: "框架",
       collapsible: true,
@@ -88,6 +89,10 @@ function getSidebarConf() {
         { text: "window解除端口占用", link: "/hub/windows-kill-process" },
         { text: "SPA单页面应用", link: "/hub/spa" },
         { text: "网址导航", link: "/hub/collect-address" },
+        {
+          text: "工作代码片段",
+          link: "/hub/code-snippet",
+        },
       ],
     },
     {

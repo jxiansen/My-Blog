@@ -1,18 +1,34 @@
 import { defineConfig } from "rspress/config";
-import path from "path";
+import * as path from "path";
 
 export default defineConfig({
-  root: path.join(__dirname, "docs"),
+  root: path.join(__dirname, "src/docs"),
+  icon: "/favicon.ico",
   outDir: "dist",
 
+  // route: {
+  //   exclude: ["components/"],
+  // },
+
   themeConfig: {
-    nav: getNavbarConf(),
+    nav: [
+      {
+        text: "vercel",
+        link: "https://vercel.com/jxiansen/my-blog",
+      },
+    ],
     sidebar: {
       "/": getSidebarConf(),
     },
-    // enableContentAnimation: true,
+    outlineTitle: "目录",
+    enableContentAnimation: true,
+    enableScrollToTop: true,
   },
-  markdown: { experimentalMdxRs: false },
+
+  markdown: {
+    globalComponents: [path.join(__dirname, "src/components/JnButton.tsx")],
+    mdxRs: false,
+  },
 
   builderConfig: {
     html: {
@@ -37,7 +53,6 @@ function getSidebarConf() {
         { text: "前端面试题", link: "/study/font-end interview" },
       ],
     },
-
     {
       text: "框架",
       collapsible: true,
@@ -81,6 +96,10 @@ function getSidebarConf() {
       text: "杂七杂八",
       collapsible: true,
       items: [
+        {
+          text: "test",
+          link: "/hub/test",
+        },
         { text: "中国程序员容易发音错误的单词", link: "/hub/wordvoice" },
         { text: "Linux安装nodejs", link: "/hub/Linux-install-nodejs" },
         { text: "2021前端开发路线图", link: "/hub/fontend" },
@@ -170,15 +189,6 @@ function getSidebarConf() {
         { text: "node安装与配置", link: "/hub/node-install" },
         { text: "效率", link: "/hub/efficiency" },
       ],
-    },
-  ];
-}
-
-function getNavbarConf() {
-  return [
-    {
-      text: "vercel",
-      link: "https://vercel.com/jxiansen/my-blog",
     },
   ];
 }

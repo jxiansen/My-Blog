@@ -50,3 +50,4 @@ img
 cache
 doc_build
 build
+pnpm-lock.yaml

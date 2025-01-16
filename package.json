@@ -8,11 +8,11 @@
     "preview": "rspress preview"
   },
   "dependencies": {
-    "antd": "^5.18.3",
+    "antd": "^5.23.1",
     "react": "^18.3.1",
-    "rspress": "^1.25.0"
+    "rspress": "^1.40.0"
   },
   "devDependencies": {
-    "@types/node": "^16.18.101"
+    "@types/node": "^22.10.7"
   }
 }
